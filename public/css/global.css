@@ -1,0 +1,133 @@
+@font-face {
+  font-family: 'uxiconfont';
+  src: url('/public/css/uxiconfont.eot');
+  src: url('/public/css/uxiconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+   url('/public/css/uxiconfont.ttf') format('woff'), /* chrome、firefox */
+   url('/public/css/uxiconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+   url('/public/css/uxiconfont.svg#svgFontName') format('svg');/* IE9*/
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: uxiconfont;
+  font-style: normal;
+}
+#user_login {
+line-height: 29px;
+}
+.iconList {
+  background: #555;
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  text-align: center;
+  z-index: 9999;
+  padding: 5px;
+  width: 330px;
+}
+.iconList li {
+  float: left;
+  margin-left: 5px;
+}
+.iconList li a {
+  width: 70px;
+  display: block;
+  text-align: center;
+  height: 60px;
+  cursor: pointer;
+  color: #ccc;
+}
+.iconList li a .iconfont {
+  color: #ccc;
+  font-size: 20px;
+  height: 25px;
+  float: left;
+  margin-top: 3px;
+  width: 70px;
+  font-family: "uxiconfont";
+}
+.iconList li a cite {
+  float: left;
+  width: 70px;
+}
+.iconList li a .watch {
+  background: url("/public/images/comic_icon.png") 15px -45px;
+  display: block;
+  text-indent: -999em;
+}
+.iconList li a:hover {
+  text-decoration: none;
+  color: #666;
+  background: #fff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  behavior: url("/public/css/ie-css3.htc");
+}
+.iconList .login {
+  padding: 0 40px;
+}
+.user {
+  color: #ccc;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "uxiconfont";
+  padding: 0px 20px 0 0;
+  float: right;
+}
+.user:hover {
+  color: #ff8839;
+}
+.dropMenu {
+  background: #555;
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  text-align: center;
+  z-index: 9999;
+  padding: 20px 10px;
+  width: 155px;
+}
+.dropMenu ul li {
+  margin: 7px 5px 10px 5px;
+  float: left;
+  overflow: hidden;
+}
+.dropMenu ul li a {
+  background: #327cb1;
+  display: inline;
+  float: left;
+  padding: 0px 12px;
+  height: 30px;
+  line-height: 30px;
+  background: #327cb1;
+  background: -moz-linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5194c6), color-stop(100%, #327cb1));
+  background: -webkit-linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  background: -o-linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  background: -ms-linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  background: linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  -pie-background: linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  behavior: url("/public/css/ie-css3.htc");
+  position: relative;
+  border-top: #93bddc 1px solid;
+  text-align: center;
+  color: #fff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  behavior: url("/public/css/ie-css3.htc");
+}
+.dropMenu ul li a:hover {
+  background: #327cb1;
+  background: #327cb1;
+  background: -moz-linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5194c6), color-stop(100%, #327cb1));
+  background: -webkit-linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  background: -o-linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  background: -ms-linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  background: linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  -pie-background: linear-gradient(top, #5194c6 0%, #327cb1 100%);
+  behavior: url("/public/css/ie-css3.htc");
+  display: inline;
+  text-decoration: none;
+}
