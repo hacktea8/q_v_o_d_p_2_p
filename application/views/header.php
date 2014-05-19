@@ -1,180 +1,68 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="zh-CN" xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:wb="http://open.weibo.com/wb">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<meta content="<?php echo $seo_keywords,',',$web_title;?>,BT种子下载,电驴资源,eD2k,磁力链接,龙BT发布,BT之家" name="keywords">
-<meta content="<?php echo $seo_title,'-',$web_title,$seo_description;?>" name="description">
-<?php if(isset($cid)){?>
-<link href="/api/feed/<?php echo $cid;?>" title="<?php echo $seo_title;?> - <?php echo $web_title;?>" type="application/rss+xml" rel="alternate">
-<?php }?>
-<title><?php echo $seo_title;?> - <?php echo $web_title;if(in_array($_a,array('index','lists'))){ echo '_BT种子下载|电驴资源|eD2k|磁力链接|龙BT发布|BT之家';}?></title>
-<link title="电驴资源" href="/api/opensearch" type="application/opensearchdescription+xml" rel="search">
-
-<link rel="stylesheet" href="<?php echo $css_url;?>global.css?v=<?php echo $version;?>" type="text/css">
-<link rel="stylesheet" href="<?php echo $css_url,$_c,'_',$_a;?>.css?v=<?php echo $version;?>" type="text/css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="<?php echo $js_url;?>global.js?v=<?php echo $version;?>"></script>
-<?php if(in_array($_a,array('index','lists','topic','fav','search'))){ ?>
-<script type="text/javascript" src="<?php echo $js_url;?>jquery.lazyload.min.js?v=<?php echo $version;?>"></script>
-<?php } ?>
-<?php if(in_array($_a,array('topic'))){ ?>
-<script type="text/javascript" src="<?php echo $js_url;?>ZeroClipboard.js?v=<?php echo $version;?>"></script>
-<script type="text/javascript" src="<?php echo $js_url;?>item.js?v=<?php echo $version;?>"></script>
-<?php } ?>
-<script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-43439571-1', 'hacktea8.com');
-  ga('send', 'pageview');
-
-</script>
-<?php if(in_array($_a,array('index','lists','topic'))){ ?>
-<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
-<?php } ?>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>喜剧片-兔兔电影网-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载</title>
+<meta name="keywords" content="喜剧片" />
+<meta name="description" content="喜剧片" />
+<link href="/img/common.css" rel="stylesheet" type="text/css" />
+<link href="/img/index.css" rel="stylesheet" type="text/css" />
+<script>var sitePath=''</script>
+<script src="/js/common.js"></script>
+<script src="/js/function.js"></script>
 </head>
 <body>
-<?php if($click_ad_link){?>
-<a href="<?php echo $click_ad_link;?>" target="_blank" style="width: 100%;height: auto;z-index: 999999;position: absolute;margin-left: -699px;" id="adlink_button">  </a>
-<?php }?>
-<a style="display: none;" id="gotop" href="#" title="返回顶部" onfocus="this.blur()"> <span><em class="tr">♦</em><em class="tube">▐</em></span></a>
-<div style="height: 31px;">
-<div id="header_div"><iframe scrolling="no" frameborder="no"
-	src="about:blank" class="topbar_iframe"></iframe>
-<div class="mainDiv" id="notice_wrapper">
-<ul class="header_link clearfix">
-  <li class="link_item"><a href="/"
-onclick="" class="hover_red"><strong>首页</strong></a></li>
-  <li class="link_item">
-<a target="_blank" href="http://goo.gl/UEybJt"><img border="0" style="margin-top:5px;" src="http://pub.idqqimg.com/wpa/images/group.png" alt="电驴BT资源分享" title="电驴BT资源分享"></a>
-  </li>
-  <li class="link_item">
-<a version="1.0" class="qzOpenerDiv" href="http://goo.gl/LwcZXa" target="_blank" alt="赞一个" title="赞一个">赞一个</a>
-  </li>
-	</ul>
-<div id="header_login">
-<span class="link_box">
+<div class="wrap">
+<div class="toptools mb">
+<div class="l"></div>
+<div class="r"></div>
+<div class="notice">欢迎访问兔兔在线电影网。<font color="#FF0000">重要通知:因快播倒闭,本站发布的新电影改用"影音先锋"播放器发布,站长亲测无毒,速度快!<a href='http://www.xfplay.com/xfplay.exe'>点此下载</a>影音先锋播放器!(之前电影不受影响!)</font></div>
+</div>
+<div class="box mb"> <a href="/" title="兔兔影视网" target="_self" class="l logo"><img src="/img/logo.gif" alt="兔兔影视网" /></a>
+<div class="r banner">
+<!-- 广告位置开始//End -->
+<script type="text/javascript" language="javascript" src="/js/ads/banner-728x90.js"></script><!-- 广告位置结束//End -->
+</div></div>
+</div>
+<!-- 导航标签开始//End -->
+<div class="nav_wrap">
+<div class="nav">
 <ul>
-<?php if(0){ ?>
-	<li type="history" name="dropmenu" class="watching" status="hide"
-		original_class="watching"><a
-		onclick=""
-		class="watching_item" href="javascript: void(0);">我正在看<span
-		class="top_arrow"></span></a></li>
-<?php } 
-?>
-  <li>
-   <div id="user_login">
-   <span class="user">Œ</span>
-   <div class="iconList" style="display: none;">
-   <ul>
-<?php if($uinfo['isadmin']){ ?>
-    <li><a href="/index/setvipdown/" title="VIP download"><em class="watch">图片</em>VIP下载</a></li>
-    <li><a href="/bookmark/" title="我的書簽"><em class="iconfont">ŷ</em><cite>我的書簽</cite></a></li>
-<?php } ?>
-    <li><a href="/index/fav/" title="我的收藏"><em class="iconfont">ũ</em><cite>我的收藏</cite></a></li>
-    <li><a href="/index/logout" title="登出"><em class="iconfont">ơ</em><cite>登出</cite></a></li>
-   </ul>
-   </div>
-   <div class="dropMenu" style="display: none;">
-   <ul>
-<?php if(0){ ?>
-    <li><a href="http://ck101.com/member.php?mod=register" title="注冊會員">注冊會員</a></li>
-<?php } ?>
-    <li><a class="btn" title="登入" href="/index/login" target="_blank">登入</a></li>
-   </ul> 
-   </div>
-  </div>
-   <?php echo '<a href="'.$loginurl.'" title="'.$logintitle.'">'.$logintitle.'</a>';?>
-  </li>
+<li class="current"><a href='/'>网站首页</a></li>
+<li><a href="/list/index1.html" >动作片</a></li><li><a href="/list/index2.html"  class="current">喜剧片</a></li><li><a href="/list/index3.html" >科幻片</a></li><li><a href="/list/index4.html" >恐怖片</a></li><li><a href="/list/index5.html" >战争片</a></li><li><a href="/list/index6.html" >爱情片</a></li><li><a href="/list/index7.html" >剧情片</a></li><li><a href="/list/index8.html" >动漫片</a></li><li><a href="/list/index9.html" >综艺片</a></li><li><a href="/list/index32.html" >纪录片</a></li><li><a href="/list/index33.html" >全部电影</a></li> <li><a href='/new.html'>最新电影</a></li>
 </ul>
-</span></div>
 </div>
-</div>
-</div>
-<div id="banner_div">
-<div class="mainDiv block">
-<div id="logo_div"><a href="/" title="<?php echo $web_title;?> - 分享互联网"
-	target="_top" id="index_logo"><img alt="<?php echo $web_title;?> - 分享互联网"
-	src="<?php echo $img_url;?>emulogo.jpg?v=<?php echo $version;?>"
-	class="png_image"></a></div>
-<div id="new_search_bar_div">
-<div class="clearfix">
-<?php if(0){ ?>
-<div id="top_add" class="top_add"><a
-	onclick="showTopAddOptions(this);return false;"
-	class="top_add_link" href="#">分享</a>
-<div style="display: none;" id="top_add_options"
-	class="top_add_options png"><a class="top_add_article"
-	onclick="" href="/articles/add/">
-文章 </a> <a class="top_add_entry"
-	onclick="" href="/base/add"> 资料
-</a> <a class="top_add_topic"
-	onclick=""
-	href="/topics/post"> 资源 </a></div>
-<?php } ?>
-</div>
-<div id="top-search">
-<form action="/index/search/" onsubmit=""
-	class="block"><span id="search-module-toggle"> <img
-	onload="this.onload=''; if(this.style.filter) { this.src='<?php echo $img_url;?>search0.gif'; this.width=18; this.height=18; }"
-	style=""
-	src="<?php echo $img_url;?>entries.png?v=<?php echo $version;?>"
-	alt="" id="current-search-module-img"> </span> <input type="text"
-	tabindex="1" 
-	x-webkit-grammar="builtin:translate" x-webkit-speech=""
-	onblur="if(this.value=='')this.value='搜索资料标题、内容...';this.style.color='#999';"
-	onfocus="if(this.value=='搜索资料标题、内容...'){this.value=''};this.style.color='#000';"
-	autocomplete="off" class="top-search-input" value="" name="q"
-	id="search_keyword"> <input type="hidden" value="<?php echo isset($cid)?$cid:0;?>"
-	id="search_type">
-<button class="top-search-button" id="top-search-button" type="submit">搜索</button>
-<?php if(0){ ?>
-<button
-	onclick="location.href='/search#advanced';return false;"
-	class="top-search-button" id="top-search-advance" type="button">高级搜索</button>
-<?php } ?>
-</form>
-</div>
+<div class="nav">
+<ul>
 
-<div class="link_line hot_search_keywords">热门搜索：&nbsp;
-<?php if(0){ ?>
-<a target="_blank" href="/search/entries/%E7%88%B1%E6%83%85%E5%85%AC%E5%AF%934" style="text-decoration: none;">爱情公寓4</a>&nbsp;&nbsp;
-<?php } ?>
-</div>
-</div>
-</div>
-</div>
+<li><a href="/list/index10.html" >大陆剧</a></li>
+<li><a href="/list/index11.html" >香港剧</a></li>
+<li><a href="/list/index12.html" >台湾剧</a></li>
+<li><a href="/list/index13.html" >日本剧</a></li>
+<li><a href="/list/index14.html" >韩国剧</a></li>
+<li><a href="/list/index15.html" >欧美剧</a></li>
+<li><a href="/list/index30.html" >海外剧</a></li>
+<li><a href="/list/index34.html" >全部电视剧</a></li><li><a href='/dianshiju.html'>最新电视剧</a></li><li><a href='/hot.html'>热播电视剧</a></li><li><a href='/tv.html'>在线直播</a></li>
 
-<div class="mainDiv">
-<div id="nav_div">
-<ul id="header_ul_big" class="ul big">
-	<li><a onclick="" href="/" class="<?php echo $_a == 'index' ? 'hover':'';?>">首页</a></li>
-<?php foreach($rootCate as $row){
-?>
-                <li><a href="<?php echo $row['url'];?>" onclick="" class="<?php echo in_array($row['id'],array($cid,$cpid)) ? 'hover':'';?>"><?php echo $row['name'];?></a></li>
-<?php
-} ?>
+<li><a href='http://www.tutumv.com'><font color="#FF0000">兔兔电影网</font></a></li>
+
 </ul>
+</div></div>
+</div>
 
+<!-- 导航标签结束//End -->
+<div class="Search">
+<form name="formsearch" id="formsearch" method="post" action="/search.asp" target="_blank">
+<div class="r searchbar">
+<input type="text" class="text" id="searchword" name="searchword" value="请输入要搜索的关键词..." onblur="if(this.value=='') this.value='请输入要搜索的关键词...';" onfocus="if(this.value=='请输入要搜索的关键词...') this.value='';"/>
+<input type="submit" class="submit" value="搜 索" />
 </div>
+ </form>
+<div class="l seach_tag"><strong>猜你喜欢看：</strong><a href="/search.asp?searchword=%CE%F7%D3%CE%BD%B5%C4%A7%C6%AA">西游降魔篇</a><a href="/search.asp?searchword=%CD%ED%C4%EF2012">晚娘2012</a><a href="/search.asp?searchword=%BB%F4%B1%C8%CC%D8%C8%CB">霍比特人</a><a href="/search.asp?searchword=101%B4%CE%C7%F3%BB%E9">101次求婚</a><a href="/search.asp?searchword=%CA%AE%B6%FE%C9%FA%D0%A4">十二生肖</a><a href="/search.asp?searchword=%C8%CB%D4%D9%87%E5%CD%BE%D6%AE%CC%A9%87%E5">人再囧途之泰囧</a><a href="/search.asp?searchword=%B4%F3%C9%CF%BA%A3">大上海</a><a href="/search.asp?searchword=%D1%AA%B5%CE%D7%D3">血滴子</a><a href="/search.asp?searchword=%D2%BB%B4%FA%D7%DA%CA%A6">一代宗师</a><a href="/search.asp?searchword=007%A3%BA%B4%F3%C6%C6%CC%EC%C4%BB%C9%B1%BB%FA">007：大破天幕杀机</a><a href="/search.asp?searchword=%BF%EC%C0%D6%B5%BD%BC%D2">快乐到家</a>
 </div>
-<div class="mainDiv">
-<div style="float: right; padding-right: 12px;" id="addfavorite_div">
-<a onclick="addfavorite('<?php echo $base_url;?>','<?php echo $web_title;?>');return false;"
-	style="color: #555" rel="sidebar" href="<?php echo $base_url;?>">+ 将本站加入收藏夹</a></div>
-<div id="location_div">您的位置：<a href="/"><?php echo $web_title;?></a>
-<?php foreach($postion as $row){?>
- &gt; <a
-	href="<?php echo $row['url'];?>"><?php echo $row['name'];?></a> 
-<?php } ?>
-<?php if(isset($cidd)){ ?>
-<a href="http://www.verycd.com/base/tv/feed"
-	title="使用RSS订阅本栏更新"><img align="absmiddle"
-	src="<?php echo $img_url;?>feeds.gif?v=<?php echo $version;?>" alt="feed" style="vertical-align: top;"></a>
-<?php } ?>
+</div><!--Search end-->
+<div class="wrap">
+<div class="all960 mb">
+<!-- 广告位置开始//End -->
+<script type="text/javascript" language="javascript" src="/js/ads/top.js"></script><!-- 广告位置结束//End -->
 </div>
-</div>
-<div class="mainDiv">

@@ -49,11 +49,11 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'emuweb';
+$db['default']['username'] = 'qvodweb';
 $db['default']['password'] = 'ilovehk8';
-$db['default']['database'] = 'emuweb';
+$db['default']['database'] = 'qvodweb';
 $db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = 'pw_';
+$db['default']['dbprefix'] = 'qd_';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;

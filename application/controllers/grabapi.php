@@ -13,22 +13,31 @@ class Grabapi extends CI_Controller {
   public function addCateByname(){
     $post = $_POST['cate_info'];
     if(!$post){
-      echo 'data 404';
+      echo '404';
       return 0;
     }
     $data = $this->grabapimodel->addCateByname($post);
     $data = json_encode($data);
     die($data);
   }
-  public function feed($cid=0){
-    $data = $this->apimodel->getFeedById($cid);
-    $this->load->view('api_feed',array('data'=>$data));
+  public function checkArticleByOname(){
+    $oname = $_POST['oname'];
+    if(!$post){
+      echo '404';
+      return 0;
+    }
+    $data = $this->grabapimodel->checkArticleByOname($oname);
+    $data = json_encode($data);
+    die($data);
   }
-  public function opensearch(){
-    $data = $this->apimodel->getFeedById($cid);
-    $this->load->view('api_opensearch',array('data'=>$data));
+  public function addArticleInfo(){
+    $post = $_POST['article_data'];
+    if(!$post){
+      echo '404';
+      return 0;
+    }
+    $data = $this->grabapimodel->addArticle($post);
+    $data = json_encode($data);
+    die($data);
   }
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

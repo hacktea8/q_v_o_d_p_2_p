@@ -6,7 +6,6 @@ function getAllcate(){
   $html = iconv("GBK","UTF-8//IGNORE",$html) ;
   preg_match_all('#<li><a href="(/list/index\d+\.html)" >([^<]+)</a></li>#Uis',$html,$match,PREG_SET_ORDER);
   $pcate=$match;
-echo $html;
 var_dump($pcate);exit;
   foreach($pcate as $pc){
     $pid=$model->addCateByname(trim($pc[2]),0,trim($pc[1]));
