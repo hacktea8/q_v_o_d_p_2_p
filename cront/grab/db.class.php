@@ -31,7 +31,9 @@ class DB_MYSQL{
     return $this->db_pre.$table;
   }
   function close(){
-    mysql_close($this->link_id);
+    if(is_resource($this->link_id)){
+      mysql_close($this->link_id);
+    }
     return 1;
   }
   function connect($server="",$user="",$password="",$database="") {

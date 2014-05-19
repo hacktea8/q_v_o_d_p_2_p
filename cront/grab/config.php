@@ -1,5 +1,7 @@
 <?php
 
+$post_API = 'http://qvod.hacktea8.com/grabapi/';
+
 $grabsite = array(
 //ed2k
 array('domain'=>'http://www.ed2kers.com/'),
