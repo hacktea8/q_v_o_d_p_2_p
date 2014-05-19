@@ -1,7 +1,12 @@
 <?php
 
+define('ROOTPATH',$APPPATH.'../');
 include_once($APPPATH.'../db.class.php');
 include_once($APPPATH.'../model.php');
+require_once ROOTPATH.'phpCurl.php';
+
+$apicurl = new phpCurl();
+$apicurl->config['cookie'] = 'cookie_api';
 
 $model=new Model();
 
@@ -92,7 +97,36 @@ function getSubCatearticle($cate){
    $cid=$cate['id'];
    getinfolist($cateurl);
 }
-
+function addCateByname($name,$pid,$ourl){
+  global $apicurl,$apiurl;
+  $url = $apiurl.'addCateByname';
+  $apicurl->config['url'] = $url;
+  $apicurl->postVal = array(
+  'cate_info' => array('name'=>$name,'pid' => $pid, 'ourl' => $ourl)
+  );
+  $html = $apicurl->getHtml();
+  return json_decode($html,1);
+}
+function checkArticleByOname($oname){
+  global $apicurl,$apiurl;
+  $url = $apiurl.'checkArticleByOname';
+  $apicurl->config['url'] = $url;
+  $apicurl->postVal = array(
+  'oname' => $oname
+  );
+  $html = $apicurl->getHtml();
+  return json_decode($html,1);
+}
+function addArticle($data){
+  global $apicurl,$apiurl;
+  $url = $apiurl.'addArticleInfo';
+  $apicurl->config['url'] = $url;
+  $apicurl->postVal = array(
+  'article_data' => $data
+  );
+  $html = $apicurl->getHtml();
+  return json_decode($html,1);
+}
 function getHtml($url){
   global $http_proxy;
   $curl = curl_init();
