@@ -16,14 +16,15 @@ class grabapiModel extends CI_Model{
       return 0;
     }
     $table = $this->db->dbprefix('emule_cate');
-    $sql = sprintf("SELECT * FROM %s WHERE `name`='%s' LIMIT 1",$table,$data['name']);
+    $sql = sprintf("SELECT * FROM %s WHERE `name`='%s' LIMIT 1",$table,mysql_real_escape_string($data['name']));
     $row = $this->db->query($sql)->row_array();
     if($row){
       return $row['id'];
     }
     $sql = $this->db->insert_string($table,$data);
-    $id = $this->db->query($sql)->insert_id();
-    return $id;
+    $this->db->query($sql);
+    $id = $this->db->insert_id();
+    return array('id'=>$id);
   }
   public function checkArticleByOname($name){
      if(!$name){

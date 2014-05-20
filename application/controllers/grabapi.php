@@ -12,9 +12,9 @@ class Grabapi extends CI_Controller {
   }
   public function addCateByname(){
     $post = $_POST['cate_info'];
+    $post = json_decode($post,1);
     if(!$post){
-      echo '404';
-      return 0;
+      echo '404';exit;
     }
     $data = $this->grabapimodel->addCateByname($post);
     $data = json_encode($data);
