@@ -14,7 +14,9 @@ var_dump($pcate);exit;
 //var_dump($pcate);exit;
 >>>>>>> 7e7b21418fc5215c6b03035f0838601f985934a4
   foreach($pcate as $pc){
-    $pid = addCateByname(trim($pc[2]),0,trim($pc[1]));
+    $pinfo = addCateByname(trim($pc[2]),0,trim($pc[1]));
+    $pid = $pinfo['id'];
+//var_dump($pinfo);exit;
     if( !$pid){
       continue;
     }
@@ -23,7 +25,7 @@ var_dump($pcate);exit;
     $html = getHtml($_root.$pc[1]);
     preg_match_all($subcatelistPattern,$html,$match,PREG_SET_ORDER);
     foreach($match as $cate){
-      $sid = $model->addCateByname(trim($cate[2]),$pid,trim($cate[1]));
+      $sid = addCateByname(trim($cate[2]),$pid,trim($cate[1]));
       echo "cate id $sid\r\n";
     }
 sleep(2);
@@ -64,10 +66,10 @@ echo '<pre>';var_dump($matchs);exit;
 sleep(1);
     }
 //test data
-if($i>30)
+  }
+//if($i>30)
 //  break;
 //sleep(1);
-  }
 return 0;
 }
 
@@ -102,7 +104,7 @@ function getinfodetail(&$data){
     $html=substr($html,$start);
   }
   $html=$head.$html;
-  getTagpair($str,$html,$head,$end,$same);
+//  getTagpair($str,$html,$head,$end,$same);
   $data['intro']=$str;
 //echo $str;exit;
   foreach($strreplace as $val){

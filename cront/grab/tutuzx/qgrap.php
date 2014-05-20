@@ -1,13 +1,14 @@
 <?php
 
 $APPPATH=dirname(__FILE__).'/';
+include_once($APPPATH.'../config.php');
 include_once($APPPATH.'../function.php');
 include_once($APPPATH.'/function.php');
 include_once($APPPATH.'config.php');
 
 /**/
-$cateurl = '/list/index33';
-getinfolist($cateurl);exit;
+//$cateurl = '/list/index33';
+//getinfolist($cateurl);exit;
 getAllcate();exit;
 /**/
 
