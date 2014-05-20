@@ -4,9 +4,15 @@ function getAllcate(){
   global $model,$_root;
   $html = getHtml($_root.'/list/index33.html');
   $html = iconv("GBK","UTF-8//IGNORE",$html) ;
+<<<<<<< HEAD
+  preg_match_all('#<li><a href="(/list/index\d+\.html)" >([^<]+)</a></li>#Uis',$html,$match,PREG_SET_ORDER);
+  $pcate=$match;
+var_dump($pcate);exit;
+=======
   preg_match_all('#<li><a href="(/list/index\d+)\.html" >([^<]+)</a></li>#Uis',$html,$match,PREG_SET_ORDER);
   $pcate = $match;
 //var_dump($pcate);exit;
+>>>>>>> 7e7b21418fc5215c6b03035f0838601f985934a4
   foreach($pcate as $pc){
     $pinfo = addCateByname(trim($pc[2]),0,trim($pc[1]));
     $pid = $pinfo['id'];

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once 'usrbase.php';
-class Index extends Usrbase {
+class Maindex extends Usrbase {
 
 	/**
 	 * Index Page for this controller.

@@ -1,0 +1,137 @@
+@charset "UTF-8";
+/* CSS Document */
+.new {width:250px; overflow:hidden;}
+.new ul {padding:8px 10px 10px 10px;}
+.new ul li {padding:4px 0; height:18px; overflow:hidden; vertical-align:middle; line-height:16px; border-bottom:1px solid #343434;}
+.new ul li a {color:#bfbfbf;}
+.new ul li em {width:18px; height:14px; line-height:14px; float:left; display:inline; margin-right:8px; overflow:hidden; text-align:center; border:1px solid #848484; font-size:11px; color:#848484;}
+.new ul li em.on {font-weight:bold; background:url(sbg.png) no-repeat left -68px; width:20px; height:16px; line-height:16px; border:none; color:#fff;}
+.new ul li p strong {font-weight:normal; color:#5f5f5f; margin-left:6px;}
+.new ul li span {float:right;color:#ff9500;}
+
+/*focue*/
+.focus {width:700px; overflow:hidden; position:relative;}
+
+
+.soft {width:190px; overflow:hidden; padding:10px;}
+.softinfo {color:#ffa800; font-size:14px; line-height:24px;}
+.softdes {line-height:24px;}
+.download {display:block; margin:10px auto auto; width:174px; height:41px; overflow:hidden; background:url(sbg.png) left -99px;}
+
+.news {width:350px; overflow:hidden;}
+.news ul,.bbs ul {padding:5px 0 5px 10px;}
+
+.bbs {width:290px; padding-left:30px; border-left:1px dashed #b2b2b2; overflow:hidden; margin-right:10px; display:inline;}
+.bbs h6 {border-bottom:2px #fff solid;}
+.bbs ul li {margin-top:2px;}
+.bbs h6 span {display:inline-block; color:red; padding:3px 15px; margin-left:20px; background:#fff;}
+
+.zzs {height:291px;}
+.ulbl {border-bottom:1px dashed #7f7f7f;}
+.ctext {padding:0 0 10px 12px;}
+.ctext li {margin:6px 13px 0 0; float:left; display:inline; width:23%; position:relative;overflow:hidden; white-space:nowrap;}
+.ctext li span {position:absolute; top:0; right:0; color:#ff9500;}
+
+.typebox {width:120%;}
+.tlist {width:349px; float:left; display:inline; margin:6px 6px 0 0; overflow:hidden; padding-bottom:10px;}
+.tlist ul li {width:190px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; float:left; margin-top:10px; line-height:normal; height:14px; color:#5f5f5f;}
+.tlist ul li.nli {height:auto; margin-left:10px;}
+
+.wth3 {background:url(sbg.png) no-repeat left -435px; text-align:center; height:35px; line-height:37px; margin-top:0; padding-left:0;}
+.wwetitle {padding:6px 10px 0px; height:100%; overflow:hidden; text-align:center; font-size:14px; font-weight:900;}
+.wwetitle dl {width:100%; overflow:hidden; margin-bottom:6px;}
+.wwetitle dt {color:#fff; padding:2px 0; background:#3d3d3d;}
+.wwetitle img {width:230px; height:130px; vertical-align:bottom; margin:6px auto;}
+.wwetitle dd.tname {width:230px; height:30px; line-height:30px; background:url(sbg.png) left -490px; overflow:hidden;}
+.wwetitle dd span {width:50%; display:inline-block; overflow:hidden;}
+
+.flink h5 {border-bottom:1px solid #0c0c0c;}
+.flink ul {padding:0 0 8px 8px; border-top:1px solid #414141;}
+.flink ul li {float:left; display:inline; margin:8px 9px 0 0; width:60px; overflow:hidden;}
+
+.channellist ul {padding:0 0 20px 16px;}
+.channellist ul li {float:left; display:inline; margin:20px 15px 0 0; width:329px; overflow:hidden;}
+.channellist ul li a.aimg img {width:120px; height:150px; padding:2px;}
+.channellist ul li h2,.channellist ul li p {float:left; display:inline; margin-left:8px; width:192px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.thisli {background:#555;}
+.channellist ul li h2 {line-height:2.2; font-weight:bold;}
+.channellist ul li h2 a {color:#8ec319;}
+.nxtclist ul li h2 a {color:#fc0;}
+.channellist ul li p {line-height:2;}
+.channellist ul li.c674 {width:674px; background:#555; text-align:center;}
+
+.tsdh {background:url(channel.png) left -551px no-repeat;}
+.tppvh {background:url(channel.png) left -190px no-repeat;}
+.tnxth {background:url(channel.png) left -720px no-repeat;}
+.ppv {background:url(channel.png) no-repeat left -875px;}
+.tna {background:url(channel.png) no-repeat left -916px;}
+.sdbg {background:#2b2b2b;}
+.nxtbg {background:#e68a0a;}
+.tnabg {background:#821919;}
+.sdbg .cpic li a,.sdclist ul li h2 a {color:#fff;}
+.sdlist h4 span.current {background:url(channel.png) left -474px;}
+.ppvlist h4 span.current {background:url(channel.png) left -515px;}
+.nxtlist h4 span.current {background:url(channel.png) left -803px;}
+.tnalist h4 span.current {background:url(channel.png) left -839px;}
+
+.sdcolor {color:#1957db;}
+.nxtcolor {color:#fcc400;}
+.tnacolor {color:#e61321;}
+
+.content {position:relative;}
+.infobox {padding:20px; position:relative;}
+.pic {width:170px; height:230px; padding:5px; border:1px solid #737373; margin-right:10px; display:inline;}
+.info {width:470px; overflow:hidden; color:#ddd; display:inline-block; font-size:14px;}
+.info h1 {font-size:20px; color:#f60;}
+.info p {line-height:2.4;}
+.info p em {width:48%; margin-right:1%; display:inline-block;}
+#ckepop {margin-top:8px;}
+.typelink {color:#fc0; position:absolute; right:40px; bottom:40px; font-weight:900; text-decoration:underline;}
+.score {position:absolute; top:16px; right:35px; font-size:14px; color:#ddd;}
+.score img {vertical-align:middle; margin-left:5px;}
+#MARK_B2,#MARK_B3 {display:none;}
+
+.relatedinfo h5 {background-position:left -335px;}
+.relatedinfo ul {padding:0 0 10px 13px;}
+.relatedinfo ul li {float:left; display:inline; margin:10px 12px 0 0; background:#353535; width:125px; text-align:center; padding-bottom:6px;}
+.relatedinfo ul li h3 {margin:0; height:24px; line-height:24px; overflow:hidden; color:#fff; background:url(repeat.png) left -376px; font-size:12px; text-align:left;}
+.relatedinfo ul li p {padding:8px 0;}
+.relatedinfo ul li p img {width:107px; height:126px; margin:0 auto;}
+.relatedinfo ul li strong {display:block;}
+.relatedinfo ul li strong a {color:red;}
+
+.description ul {padding:10px; line-height:2.2; font-size:14px;}
+.description ul a {color:#f60;}
+.description img{WIDTH: 680px;MAX-WIDTH: 100%!important;HEIGHT: auto!important;width:expression(this.width > 680 ? "680px" : this.width)!important;}
+
+.bbsbox {width:120%; overflow:hidden;}
+.blist {width:231px; overflow:hidden; margin-right:6px;}
+.blist ul {padding:10px;}
+.blist ul li {height:24px; line-height:24px; overflow:hidden; width:100%; color:#fc0; border-bottom:1px solid #343434;}
+
+.vlist h5,.relatedinfo h5 {height:31px; line-height:31px; background:url(repeat.png) left -294px; overflow:hidden; position:relative;}
+.vlist h5 span {display:inline; background:url(sbg.png) no-repeat; width:43px; height:31px; overflow:hidden;}
+.vlist h5 span.vplay {background-position:left -584px;}
+.vlist h5 span.vdown {background-position:left -624px;}
+.vlist h5 em,.vlist h5 em a {color:#fff; font-size:14px;}
+.vlist ul {padding:0 0 10px 12px;}
+.vlist ul li {float:left; display:inline; margin:10px 10px 0 0;}
+.vlist ul li a {display:block; padding:4px 5px; width:95px; overflow:hidden; white-space:nowrap; color:#fff; background:#96b809; text-align:center; font-size:14px;}
+.vlist ul li a:hover {background:#000; color:#ff6c00; text-decoration:none;}
+.mlist ul li a {width:138px;}
+
+.play655{float:left; width:655px; height:487px;z-index:299;}
+.ad300{width:300px; height:250px; float:right;}
+.ad250{width:300px; height:250px; float:right; margin-top:10px;}
+.playbox {position:relative;}
+.playerbox {width:960px; overflow:hidden; margin:0 auto; }
+.playert,.playerb {height:29px; line-height:29px; overflow:hidden; position:relative; background:url(repeat.png) left -410px;}
+.playert h1 {font-size:14px; color:#9ed21c; padding-left:10px;}
+.playert span.more {font-size:14px; color:#f70; font-weight:900; margin-right:25px;}
+.player {width:500px; overflow:hidden;}
+.plad,.prad {width:160px; overflow:hidden; position:absolute; top:0;}
+.prad {right:0;}
+.psad {position:absolute; right:170px; bottom:39px; background:#2b2b2b; width:120px; height:200px;}
+.ptext {width:550px; text-align:center;}
+.ptext a,.pcomment a,.prcommend ul li h2 a {color:#9ed21c;}
+.pcomment {width:80px; height:29px; margin-right:10px; background:url(sbg.png) left -665px; overflow:hidden; text-align:center;}
