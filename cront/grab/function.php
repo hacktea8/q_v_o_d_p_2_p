@@ -1,14 +1,14 @@
 <?php
 
 define('ROOTPATH',$APPPATH.'../');
-include_once($APPPATH.'../db.class.php');
-include_once($APPPATH.'../model.php');
+//include_once($APPPATH.'../db.class.php');
+//include_once($APPPATH.'../model.php');
 require_once ROOTPATH.'phpCurl.php';
 
 $apicurl = new phpCurl();
 $apicurl->config['cookie'] = 'cookie_api';
 
-$model=new Model();
+//$model=new Model();
 
 /*
 获取配对的标签的内容
@@ -98,14 +98,15 @@ function getSubCatearticle($cate){
    getinfolist($cateurl);
 }
 function addCateByname($name,$pid,$ourl){
-  global $apicurl,$apiurl;
-  $url = $apiurl.'addCateByname';
+  global $apicurl,$POST_API;
+  $url = $POST_API.'addCateByname';
   $apicurl->config['url'] = $url;
   $apicurl->postVal = array(
-  'cate_info' => array('name'=>$name,'pid' => $pid, 'ourl' => $ourl)
+  'cate_info' => json_encode(array('name'=>$name,'pid' => $pid, 'ourl' => $ourl))
   );
   $html = $apicurl->getHtml();
-  return json_decode($html,1);
+  $return = json_decode($html,1);
+  return $return;
 }
 function checkArticleByOname($oname){
   global $apicurl,$apiurl;
