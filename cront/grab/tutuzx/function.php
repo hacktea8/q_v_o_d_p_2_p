@@ -4,15 +4,9 @@ function getAllcate(){
   global $model,$_root;
   $html = getHtml($_root.'/list/index33.html');
   $html = iconv("GBK","UTF-8//IGNORE",$html) ;
-<<<<<<< HEAD
-  preg_match_all('#<li><a href="(/list/index\d+\.html)" >([^<]+)</a></li>#Uis',$html,$match,PREG_SET_ORDER);
-  $pcate=$match;
-var_dump($pcate);exit;
-=======
   preg_match_all('#<li><a href="(/list/index\d+)\.html" >([^<]+)</a></li>#Uis',$html,$match,PREG_SET_ORDER);
   $pcate = $match;
 //var_dump($pcate);exit;
->>>>>>> 7e7b21418fc5215c6b03035f0838601f985934a4
   foreach($pcate as $pc){
     $pinfo = addCateByname(trim($pc[2]),0,trim($pc[1]));
     $pid = $pinfo['id'];
@@ -34,34 +28,37 @@ sleep(2);
 }
 
 function getinfolist(&$cateurl){
-  global $model,$_root,$cid;
-  for($i=1;$i<=60;$i++){
+  global $_root,$cid;
+  for($i=1; $i<=60000; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'':'_'.$i;
     $url = $cateurl.$suf.'.html';
+echo "\n++++ ",$url," ++++\n";
     $html = getHtml($url);
     $html = iconv("GBK","UTF-8//IGNORE",$html) ;
     preg_match_all('#<li onmousemove="[^"]+" onmouseout="[^"]+"><a href="[^"]+" class="aimg l" target="_blank"><img src="([^"]+)" alt="[^"]+" /></a>\s+<h2><a href="(/view/index\d+\.html)" target="_blank">([^<]+)</a></h2>\s+<p>主演：([^<]+)</p>\s+<p>分类：([^<]+)</p>\s+<p>人气：\d+</p>\s+<p>时间：[^<]+</p>\s+<p><a href="(/player/index\d+\.html\?\d+-\d+-\d+)" class="btn1" target="_blank">马上观看</a></p></li>#Uis',$html,$matchs,PREG_SET_ORDER);
-echo '<pre>';var_dump($matchs);exit;
+//echo '<pre>';var_dump($matchs);exit;
     if(empty($matchs)){
-       preg_match_all('##Uis',$html,$matchs,PREG_SET_ORDER);
+       file_put_contents('match_error_list'.$cid.'.html',$html);
+       //preg_match_all('##Uis',$html,$matchs,PREG_SET_ORDER);
     }
     if(empty($matchs)){
-      echo ('Cate list Failed '.$cateurl."/第{$i}页\r\n");
+      echo ('Cate list Failed '.$url."\r\n");
       return 6;
     }
     foreach($matchs as $list){
-      $oid = preg_replace('#[^\d]+#','',$list[1]);
-      $oname = trim($list[2]);
+      $oid = preg_replace('#[^\d]+#','',$list[2]);
+      $oname = trim($list[3]);
 //在判断是否更新
       $aid = checkArticleByOname($oname);
       if($aid){
          echo "{$aid}已存在未更新!\r\n";
- //        continue;
+         continue;
         return 6;
       }
-      $purl = $_root.$list[1].'.html';
-      $ainfo = array('ourl'=>$purl,'name'=>$oname,'oid'=>$oid,'cid'=>$cid);
+      $ourl = $_root.$list[2];
+      $purl = $_root.$list[6];
+      $ainfo = array('thum'=>$list[1],'ourl'=>$ourl,'purl'=>$purl,'actor'=>$list[4],'name'=>$oname,'oid'=>$oid,'cid'=>$cid);
       getinfodetail($ainfo);
 sleep(1);
     }
@@ -74,57 +71,53 @@ return 0;
 }
 
 function getinfodetail(&$data){
-  global $model,$cid,$strreplace,$pregreplace;
+  global $model,$_root,$cid,$strreplace,$pregreplace;
   $html = getHtml($data['ourl']);
   $html = iconv("GBK","UTF-8//IGNORE",$html) ;
   if(!$html){
     echo "获取html失败";exit;
   }
   //kw
+/*/
   preg_match('#<meta name="keywords" content="(.+)" />#U',$html,$match);
   $data['keyword']=trim($match[1]);
-  //
-  preg_match($bookimg,$html,$match);
-//  var_dump($match);exit;
-  $data['thum']=trim($match[1]);
+  /**/
+  $data['keyword'] = '';
   //
   $data['ptime']=time();
   $data['utime']=time();
-  $data['downurl']=$str;
-  foreach($strreplace as $val){
-    $data['downurl']=str_replace($val['from'],$val['to'],$data['downurl']);
+  preg_match('#<h3 class="ph3">影片介绍</h3>\s+<ul>.+<br />\s*(.+)\s*</ul>\s+</div>\s+</div>#Uis',$html,$match);
+  $data['intro'] = strip_tags($match[1],'br');
+  $data['intro'] = trim($data['intro']);
+  $data['intro'] = preg_replace('#&\S+;#Uis','',$data['intro']);
+  $playhtml = getArticlePlayData($data['purl']);
+  if(empty($playhtml)){
+    die("\n++ Ourl:$data[ourl] Purl:$data[purl] playdata vols decode error!++\n");
   }
-  foreach($pregreplace as $val){
-    $data['downurl']=preg_replace($val['from'],$val['to'],$data['downurl']);
-  }
-  $data['downurl']=trim($data['downurl']);
-  //
-  for($mk=0;$mk<2;$mk++){
-    $start=stripos($html,$head)+strlen($head);
-    $html=substr($html,$start);
-  }
-  $html=$head.$html;
-//  getTagpair($str,$html,$head,$end,$same);
-  $data['intro']=$str;
-//echo $str;exit;
-  foreach($strreplace as $val){
-    $data['intro']=str_replace($val['from'],$val['to'],$data['intro']);
-  }
-  foreach($pregreplace as $val){
-    $data['intro']=preg_replace($val['from'],$val['to'],$data['intro']);
-  }
-  $data['intro']=trim($data['intro']);
-  if(!$data['name'] || !$data['downurl']){
+  $data['vols'] = jsary2phpary($playhtml);
+  unset($data['purl']);
+  if(!$data['name'] || empty($data['vols'])){
      echo "抓取失败 $data[ourl] \r\n";
      return false;
   }
-  //echo '<pre>';var_dump($data);exit;
+  $data['ourl'] = str_replace($_root,'',$data['ourl']);
+//  echo '<pre>';var_dump($data);exit;
   $aid = addArticle($data);
 //echo '|',$aid,'|';exit;
   if( !$aid){
     echo "添加失败! $data[ourl] \r\n";
-    return false;
+    exit;return false;
   }
   echo "添加成功! $aid \r\n";
 }
-
+function getArticlePlayData($purl){
+  global $_root;
+  $html = getHtml($purl);
+  $html = iconv("GBK","UTF-8//IGNORE",$html) ;
+  preg_match('#<div class="play[^"]+">\s+<script type="text/javascript" src="(/playdata/[^"]+)"></script>#Uis',$html,$match);
+  $url = $_root.$match[1];
+  $html = getHtml($url);
+  $html = iconv("GBK","UTF-8//IGNORE",$html) ;
+  preg_match('#VideoListJson=(.+),urlinfo=#Uis',$html,$match);
+  return $match[1];
+}
