@@ -1,7 +1,7 @@
 <?php
 class grabapiModel extends CI_Model{
   public $db;
-  
+  public $serverMod = array('qvod'=>1,'百度影音'=>2,'xfplay'=>3);  
   public function __construct(){
      parent::__construct();
      $this->db  = $this->load->database('default', TRUE);
@@ -38,10 +38,9 @@ class grabapiModel extends CI_Model{
     if(empty($data['name'])){
       return 0;
     }
-    $head = $this->copy_array($data['head'],array('name','cid'));
-    $contents = $this->copy_array($data['content'],array('intro','keyword'));
-    $vols = $data['vols'];
-    $sql=$this->db->insert_string($this->db->dbprefix('emule_article'),$head);
+    $head = $this->copy_array($data,array('name','cid','thum','ourl','ptime','utime'));
+    $contents = $this->copy_array($data,array('intro','actor','keyword'));
+    $sql = $this->db->insert_string($this->db->dbprefix('emule_article'),$head);
     $this->db->query($sql);
     $id = $this->db->insert_id();
     if(!$id){
@@ -49,16 +48,25 @@ class grabapiModel extends CI_Model{
     }
     $contents['id'] = $id;
     $table = $this->get_content_table($id);
-    $sql=$this->db->insert_string($this->db->dbprefix($table),$contents);
+    $sql = $this->db->insert_string($this->db->dbprefix($table),$contents);
     $this->db->query($sql);
+    foreach($data['vols'] as $vinfo){
+      $vdata = array('vid'=>$id,'server'=>$vinfo[0],'vols'=>$vinfo[1]);
+      $this->addArticleVols($vdata);
+    }
     return $id;
   }
   public function addArticleVols($data){
     if( !$data){
       return 0;
     }
-    foreach($data as $vol){
-      $this->addVols($vol);
+    $vols = array();
+    $vols['sid'] = $this->serverMod[$data['server']];
+    $vols['vid'] = $data['vid'];
+    foreach($data['vols'] as $vol){
+      $vols['vol'] = $k+1;
+      $vols['link'] = $vol;
+      $this->addVols($vols);
     }
     return 1;
   }
@@ -67,13 +75,14 @@ class grabapiModel extends CI_Model{
       return 0;
     }
     $table = $this->db->dbprefix('emule_article_vols'.$data['vid']%10);
-    $sql = sprintf("SELECT `id` FROM %s WHERE `sid`=%d AND `vid`=%d LIMIT 1",$table,$data['sid'],$data['vid']);
+    $sql = sprintf("SELECT `id` FROM %s WHERE `vol`=%d AND `sid`=%d AND `vid`=%d LIMIT 1",$table,$data['vol'],$data['sid'],$data['vid']);
     $row = $this->db->query($sql)->row_array();
     if($row){
       return $row['id'];
     }
-    $sql=$this->db->insert_string($table,$data);
-    $id = $this->db->query($sql)->insert_id();
+    $sql = $this->db->insert_string($table,$data);
+    $this->db->query($sql);
+    $id = $this->db->insert_id();
     return $id;
   }
   public function copy_array($data,$key){

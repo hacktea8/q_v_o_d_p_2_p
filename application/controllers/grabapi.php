@@ -22,7 +22,7 @@ class Grabapi extends CI_Controller {
   }
   public function checkArticleByOname(){
     $oname = $_POST['oname'];
-    if(!$post){
+    if(!$oname){
       echo '404';
       return 0;
     }
@@ -32,11 +32,22 @@ class Grabapi extends CI_Controller {
   }
   public function addArticleInfo(){
     $post = $_POST['article_data'];
+    $post = json_decode($post,1);
     if(!$post){
       echo '404';
       return 0;
     }
     $data = $this->grabapimodel->addArticle($post);
+    $data = json_encode($data);
+    die($data);
+  }
+  public function addArticleVols(){
+    $post = $_POST['article_data'];
+    if(!$post){
+      echo '404';
+      return 0;
+    }
+    $data = $this->grabapimodel->addArticleVols($post);
     $data = json_encode($data);
     die($data);
   }

@@ -4,54 +4,49 @@
 <div class="bg box content mb">
 <h3 class="ph3">影片信息</h3>
 <div class="infobox box">
-<img src="http://img14.poco.cn/mypoco/myphoto/20130222/12/173223716201302221329333340372973754_000.jpg" alt="激情热线(未分级版)" class="pic l" />
+<img src="<?php echo $info['cover'];?>" alt="<?php echo $info['name'];?>" class="pic l" />
 <div class="info l">
-<h1>激情热线(未分级版)</h1>
-<p><em>年份：<a href="/search.asp?searchword=2012&searchtype=3" target="_blank">2012</a></em> 
-<em>热度：<span class="red"><span id="hit">加载中</span><script>getVideoHit('16398')</script> ℃</em></p>
-<p><em>类型：<a href="/list/index2.html" target="_blank">喜剧片</a></em></p>
-<p>主演：<a href="/search.asp?searchword=%B0%A2%C0%F6%A1%A4%B8%F1%C0%D7%C0%D5">阿丽·格雷勒</a>&nbsp;&nbsp;<a href="/search.asp?searchword=%2F">/</a>&nbsp;&nbsp;<a href="/search.asp?searchword=Lauren">Lauren</a>&nbsp;&nbsp;<a href="/search.asp?searchword=Miller">Miller</a>&nbsp;&nbsp;<a href="/search.asp?searchword=%2F">/</a>&nbsp;&nbsp;<a href="/search.asp?searchword=%BC%D6%CB%B9%CD%A1%A1%A4%C0%CA">贾斯汀·朗</a>&nbsp;&nbsp;</p>
+<h1><?php echo $info['name'];?>
+<?php if($uinfo['uid'] === $info['uid'] || $uinfo['isadmin']){echo "<a href='$editeUrl/$info[id]'>编辑</a>"; }?>
+</h1>
+<p> 
+<em>热度：<span class="red"><span id="hit"><?php echo $info['hits'];?></span> ℃</em></p>
+<p><em>类型：<a href="<?php echo $channel[$cid]['url'];?>" target="_blank"><?php echo $channel[$cid]['name'];?></a></em></p>
+<p>主演：
+<?php echo $info['actor'];?>
+&nbsp;&nbsp;</p>
 
-<p>时间：2013-2-22 12:55:20</p>
+<p>时间：<?php echo $info['onlinedate'];?></p>
 <!-- 影片信息结束/End -->
 <!-- JiaThis Button BEGIN -->
 <div id="ckepop">
-	<a href="http://www.jiathis.com/share/" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	<a class="jiathis_counter_style"></a>
-	<a class="jiathis_button_tools_1"></a>
-	<a class="jiathis_button_tools_2"></a>
-	<a class="jiathis_button_tools_3"></a>
-	<a class="jiathis_button_tools_4"></a>
 </div>
-<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
 <!-- JiaThis Button END -->
 </div>
 </div>
-<div class="score">评分：<script type="text/javascript">markVideo(16398,1,0,5,5,1);</script></div>
+<div class="score">评分：<script type="text/javascript">markVideo(<?php echo $info['id'];?>,1,0,5,5,1);</script></div>
 </div>
 <!-- 播放地址开始/End -->
 <div class="vlist bg mb">
-<h5><span class="vplay l"></span>百度影音<em class="more"><a href="http://www.qvod.com" target="_blank"> <a href="http://player.baidu.com" target="_blank">需要下载百度影音播放器</a></a></em></h5>
-<ul><ul><li><a title='DVD' href='/player/index16398.html?16398-0-0' target="_blank">DVD</a></li><li><a title='BD蓝光720P中英双字' href='/player/index16398.html?16398-0-1' target="_blank">BD蓝光720P中英双字</a></li></ul></ul></div>
+<h5><span class="vplay l"></span>Qvod<em class="more"><a href="http://www.qvod.com" target="_blank"> Qvod</a>百度影音 <a href="http://player.baidu.com" target="_blank">需要下载百度影音播放器</a></a></em></h5>
+<ul><li><a title='DVD' href='<?php echo $info['purl'];?>' target="_blank">开始观看</a></li>
+</ul></div>
 
 <!-- 播放地址结束/End  -->
 <div class="all728 wrap mb">
-<script type="text/javascript" language="javascript" src="/js/ads/content-zhong-1.js"></script></div>
+</div>
 
 <div class="bg mb box description">
 <h3 class="ph3">影片介绍</h3>
-<ul>
-<span style="font-size: 18px"><span style="font-size: large"><span style="color: rgb(255,0,0)"><span style="font-size: 18px"><span property="v:summary"><span style="font-size: 18px"><font size="4"><font color="#ff0000"><font color="#ff0000" size="4"><font size="3"><strong>BD蓝光720P高清中英双字</strong><span property="v:summary"><span style="font-size: medium"><span property="v:summary"><font color="#ff0000"><font size="3"><strong>： </strong><span style="font-size: 18px"><a href="http://yfdisk.com/file/dyshoufa/a8ec64d2/"><span style="color: rgb(0,128,0)"><strong>BT下载</strong></span></a>&nbsp;&nbsp;&nbsp;<a href="http://ref.so/ds7of"><span style="color: rgb(0,128,0)"><strong>迅雷下载</strong></span></a></span></font></font></span></span></span><br />
-<strong>DVD中字</strong></font><span property="v:summary"><span style="font-size: medium"><span property="v:summary"><font color="#ff0000"><font size="3"><strong>： </strong><span style="font-size: 18px"><a href="http://filemarkets.com/file/dyshoufa/463ab95d/"><span style="color: rgb(0,128,0)"><strong>BT下载</strong></span></a>&nbsp;&nbsp; <a href="http://adf.ly/FGv52"><span style="color: rgb(0,128,0)"><strong>迅雷下载</strong></span></a></span></font></font></span></span></span></font></font></font></span></span></span></span></span></span><br />
-<br />
-　　由两位80后美女阿丽&middot;格雷勒、劳伦&middot;米勒主演的喜剧《激情热线》首度曝光限制级预告片。两位性感美女、一条电话热线，且不说剧情如何，单单这样的设定便相当吸引眼球。影片的路线并非情色到底，故事讲述两个女孩在纽约合租，当她们为生计发愁时，开始化敌为友共同经营一条提供情色聊天的电话热线，也让她们重新理解了青春、友谊与爱情。
-</ul>
+<p>
+<?php echo $info['intro'];?>
+</p>
 </div>
 </div>
 <div class="r w250 bg">
 <div class="zz">周边赞助</div>
 <!-- 广告位置开始//End -->
-<script type="text/javascript" language="javascript" src="/js/ads/content-right.js"></script><!-- 广告位置结束//End -->
+<!-- 广告位置结束//End -->
 </div>
 <div class="r w250 bg">
 <!-- 热门排行开始//End -->
