@@ -29,7 +29,7 @@ sleep(2);
 
 function getinfolist(&$cateurl){
   global $_root,$cid;
-  for($i=1; $i<=60000; $i++){
+  for($i=13; $i<=60000; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'':'_'.$i;
     $url = $cateurl.$suf.'.html';
@@ -87,12 +87,14 @@ function getinfodetail(&$data){
   $data['ptime']=time();
   $data['utime']=time();
   preg_match('#<h3 class="ph3">影片介绍</h3>\s+<ul>.+<br />\s*(.+)\s*</ul>\s+</div>\s+</div>#Uis',$html,$match);
+  $match[1] = isset($match[1])?$match[1]:'';
   $data['intro'] = strip_tags($match[1],'br');
   $data['intro'] = trim($data['intro']);
   $data['intro'] = preg_replace('#&\S+;#Uis','',$data['intro']);
   $playhtml = getArticlePlayData($data['purl']);
   if(empty($playhtml)){
-    die("\n++ Ourl:$data[ourl] Purl:$data[purl] playdata vols decode error!++\n");
+    echo ("\n++ Ourl:$data[ourl] Purl:$data[purl] playdata vols decode error!++\n");
+    return 0;
   }
   $data['vols'] = jsary2phpary($playhtml);
   unset($data['purl']);
@@ -105,7 +107,7 @@ function getinfodetail(&$data){
   $aid = addArticle($data);
 //echo '|',$aid,'|';exit;
   if( !$aid){
-    echo "添加失败! $data[ourl] \r\n";
+    var_dump($data);echo "\r\n添加失败! $data[ourl] \r\n";
     exit;return false;
   }
   echo "添加成功! $aid \r\n";
