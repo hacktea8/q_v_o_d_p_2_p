@@ -7,7 +7,7 @@
 <meta name="description" content="<?php echo $seo_title,'-',$web_title,$seo_description;?>" />
 <link href="<?php echo $cdn_url;?>/public/css/common.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $cdn_url;?>/public/css/index.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
-<script>var sitePath=''</script>
+<script>var sitePath='public/';</script>
 <script src="<?php echo $cdn_url;?>/public/js/common.js?v=<?php echo $version;?>"></script>
 <script src="<?php echo $cdn_url;?>/public/js/function.js?v=<?php echo $version;?>"></script>
 </head>

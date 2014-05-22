@@ -51,62 +51,13 @@
 <div class="r w250 bg">
 <!-- 热门排行开始//End -->
 <div class="new l">
-<h3 class="ph3">喜剧片热门排行</h3>
+<h3 class="ph3"><?php echo $channel[$cid]['name'];?>热门排行</h3>
 <ul>
-<li><em  class="on">01</em>
-<p><a href="/view/index14716.html" target="_blank">人再囧途之泰囧</a><strong>DVDRIP高清国语中字</strong></p><span>154519</span></li>
-
-<li><em  class="on">02</em>
-<p><a href="/view/index16817.html" target="_blank">西游降魔篇/大话西游之除魔传奇/大话西游3</a><strong>HD1280高清国语中英双字</strong></p><span>129184</span></li>
-
-<li><em  class="on">03</em>
-<p><a href="/view/index17542.html" target="_blank">内裤之穴</a><strong>DVD中字</strong></p><span>57581</span></li>
-
-<li><em >04</em>
-<p><a href="/view/index13481.html" target="_blank">厨子戏子痞子/厨子·戏子·痞子</a><strong>DVDscr国语中字</strong></p><span>29274</span></li>
-
-<li><em >05</em>
-<p><a href="/view/index17825.html" target="_blank">笑功震武林</a><strong>HD1280高清国语中字</strong></p><span>18053</span></li>
-
-<li><em >06</em>
-<p><a href="/view/index17249.html" target="_blank">北京遇上西雅图/情定西雅图</a><strong>TC清晰国语中英双字</strong></p><span>17738</span></li>
-
-<li><em >07</em>
-<p><a href="/view/index14393.html" target="_blank">请叫我英雄</a><strong>BD1280高清版</strong></p><span>15980</span></li>
-
-<li><em >08</em>
-<p><a href="/view/index16398.html" target="_blank">激情热线(未分级版)</a><strong>BD蓝光720P中英双字</strong></p><span>15560</span></li>
-
-<li><em >09</em>
-<p><a href="/view/index16558.html" target="_blank">我老公不靠谱/我老婆未满十八岁2</a><strong>BD蓝光720P国粤语中字</strong></p><span>14974</span></li>
-
-<li><em >10</em>
-<p><a href="/view/index16716.html" target="_blank">快Le到家</a><strong>HD1280高清国语中字</strong></p><span>14194</span></li>
-
-<li><em >11</em>
-<p><a href="/view/index17617.html" target="_blank">百星酒店</a><strong>BD蓝光720P国粤语中字</strong></p><span>13358</span></li>
-
-<li><em >12</em>
-<p><a href="/view/index17254.html" target="_blank">越来越好之村晚/越来越好·村晚</a><strong>HD720P高清完美版国语中字</strong></p><span>10933</span></li>
-
-<li><em >13</em>
-<p><a href="/view/index16084.html" target="_blank">不宜生育/儿童不宜</a><strong>DVD中英双字</strong></p><span>10821</span></li>
-
-<li><em >14</em>
-<p><a href="/view/index18007.html" target="_blank">囧人之越挠越痒</a><strong>HD1280高清国语中英双字</strong></p><span>10313</span></li>
-
-<li><em >15</em>
-<p><a href="/view/index17908.html" target="_blank">神偷艳贼</a><strong>BD蓝光720P中英双字</strong></p><span>9164</span></li>
-
-<li><em >16</em>
-<p><a href="/view/index17957.html" target="_blank">四十而惑(未分级版)/这就是四十岁</a><strong>BD蓝光720P高清中字</strong></p><span>8974</span></li>
-
-<li><em >17</em>
-<p><a href="/view/index16844.html" target="_blank">愤怒的小孩</a><strong>HD1280高清国语中英双字</strong></p><span>8034</span></li>
-
-<li><em >18</em>
-<p><a href="/view/index14407.html" target="_blank">泰迪熊/贱熊30</a><strong>BD蓝光720P高清中字</strong></p><span>7873</span></li>
- 
+18
+<?php foreach($viewHot as $k => &$v){?>
+<li><em  class="on"><?php echo $k+1;?></em>
+<p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
+<?php }?>
 </ul>
 </div>
 <!-- 热门排行结束//End -->
@@ -116,6 +67,6 @@
 <span id="hit">加载中</span></span>
 <div class="all960 wrap mb">
 <!-- 广告位置开始//End -->
-<script type="text/javascript" language="javascript" src="/js/ads/content-dibu.js"></script><!-- 广告位置结束//End -->
+<!-- 广告位置结束//End -->
 </div>
 </div>

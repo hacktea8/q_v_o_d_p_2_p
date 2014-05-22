@@ -1,0 +1,87 @@
+<HEAD><script type="text/javascript" src="/public/js/swfobject.js"></script></HEAD><BODY topmargin=0 leftmargin=0 style="background-color=#000000"><div id="max"></div>
+<!--暂停广告代码,如不想使用可以删除-->
+    <!--由于页面布局及播发器大小不同,暂停广告位置没法动态只能手动调整, 调试时先吧 display:none 去掉 ,调完再加回去 -->
+    <!--位置调整请修改 top 和 left 其中 top 代表顶部的距离 left 代表左边的距离-->
+    <div id="divad" style="position: absolute; z-index: 1000; top: 90; left: 150; display:none">
+        <!--src 代表自定义广告页面的地址,请自行修改, width 代表广告窗口的宽度,height 代表广告窗口的高度,可自行调整-->
+<iframe src="/public/js/loading2.html" scrolling="no" frameborder="no" width="350px"  height="260px"></iframe>
+    </div>
+    <!--暂停广告代码,如不想使用可以删除-->
+
+    <table id="qvodtable" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <!--修改这2个值可修改播放器大小, width 代表宽 , height 代表高-->
+            <td id="tdqvod" width="720" height="500" colspan="3">
+			</td>
+        </tr>
+    </table>
+<script language="JavaScript" type="text/javascript">
+		var videolist = window.parent.VideoListJson;
+		var url = unescape(window.parent.location.href);
+		var flagArr;
+		if(url.indexOf("?")!=-1){
+			flagArr= url.split("?")[1];
+		}else{
+			if(url.indexOf("/vodplayer/") != -1){
+				flagArr = url.split("/vodplayer/")[1];
+			}else{
+				flagArr = url.split("/player")[1];
+			}			
+		}	
+		var thepageArr = flagArr.split("-");
+		var team = thepageArr[1];
+		var page = thepageArr[2].split(".")[0];
+		if(videolist[team*1][0]=="qvod")
+        {
+		var qvodurls;
+		var qvodurl;
+		var nonext = false;
+		qvodurls= videolist[team][1][page];
+		qvodurl = (qvodurls).split("$")[1];
+		if(page == videolist[team][1].length-1 ){
+			if(videolist[team*1+1] != null){
+			team = team*1+1;	
+			page = 0;
+
+			}else{
+				nonext = true;
+			}
+		}else{
+			page = page*1+1;
+		}
+		//alert(qvodurl);
+        var w=window.parent.playerw;
+        var h=window.parent.playerh;
+		//alert(w+","+h);
+		//获取下一集播放地址
+		//alert(thepageArr[0])	
+		var nexturl="";
+		if(url.indexOf("?") != -1){
+			nexturl = url.split("?")[0]+"?"+thepageArr[0]+"-"+team+"-"+page+".html";
+		}else{
+			nexturl = url.split("/player")[0]+"/player"+thepageArr[0]+"-"+team+"-"+page+".html";
+		}		
+		if(nonext){
+			nexturl="";
+		}
+		//alert("nextweb:"+nexturl);
+		var mynexturl = videolist[team][1][page].split("$")[1];
+		//alert("nexturl:"+mynexturl);
+		//缓冲广告地址,把地址换成你自己的地址就可以了
+		 var bfad="";
+         //QVOD代码
+			document.getElementById("tdqvod").style.height=(h);
+			document.getElementById("tdqvod").style.width=w;
+          document.getElementById("tdqvod").innerHTML="<iframe id=\"iframe_down\" name=\"iframe_down\" scrolling=\"no\" frameborder=\"0\" style=\"position:absolute; z-index:1000; top:0; margin: 0;width: "+w+"px; height: "+h+"px; display: none;\" src=\"\"></iframe><object classid=\"clsid:F3D0D36F-23F8-4682-A195-74C92B03D4AF\" width=\"100%\" height=\""+(h)+"\" id=\"QvodPlayer\" name=\"QvodPlayer\" onerror=\"document.getElementById('QvodPlayer').style.display='none';document.getElementById('iframe_down').style.display='';document.getElementById('iframe_down').src='http://error2.qvod.com/error2.htm';\"><PARAM NAME='Showcontrol' VALUE='1'><PARAM NAME='URL' VALUE='"+qvodurl+"'><PARAM NAME='Autoplay' VALUE='1'><PARAM NAME='QvodAdUrl' VALUE='"+bfad+"'><PARAM NAME='NextWebPage' VALUE='"+nexturl+"'><embed id='QvodPlayer2' name='QvodPlayer2' width='100%' height='100%' URL='"+qvodurl+"' type='application/qvod-plugin' Autoplay='1' QvodAdUrl='"+bfad+"' Showcontrol='1'></embed></object>";
+		
+        } 
+        else
+        {
+           //其他播放器代码
+			document.getElementById("qvodtable").style.display="none";
+			eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[1-9b-m]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('var 3=parent.max_Player_File,4="\\7",1,8="尊敬的用户：对不起，您电脑上的FLASH播放器版本过低，请点此升级";4=(3=="\\9\\b\\c\\d\\5"?"\\7":"\\u0030");3=\'\\9\\b\\c\\d\\5?20110104\';1=new SwFobjeCt(3,\'\\e\\u0061xsw\\5\',\'\\f\\g\',\'\\f\\g\',\'\\u0038\',\'\\u0023\\u003000000\');1.6(\'\\2\\u006clow\\h\\u0063rip\\u0074\\2\\u0063c\\u0065ss\',\'\\2\\u006cw\\u0061ys\');1.6(\'\\2\\u006clo\\i\\u0066ul\\u006c\\h\\u0063re\\u0065n\',\'\\u0074ru\\j\');1.6(\'\\i\\u006dode\',\'\\u004fpa\\u0071ue\');1.addVariable(\'\\u0062ord\\j\\u0072\',4);if(!1.write(\'\\u006dax\')){document.getElementById(\'\\e\\2\\u0078\').innerHTML=\'<k l="m-align:center;margin-top:100px;"><a href=" http://www.macromedia.com/go/getflashplayer" target="_blank" l="m-decoration:none;color:red;"><img border="0" src="flashplayer.jpg" /><br/>\'+8+\'</a></k>\'};',[],23,'|_ll|u0061|_l|_1|u0066|addParam|u0031|_11|u0070la||u0079|u002e|u0073w|u006d|u003100|u0025|u0073|u0077|u0065|div|style|text'.split('|'),0,{}))
+
+		} 
+</script>            
+<script language="JavaScript" src="/public/js/Player.js"></script>
+</body>
