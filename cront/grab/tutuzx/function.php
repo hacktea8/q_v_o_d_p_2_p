@@ -3,7 +3,8 @@
 function getAllcate(){
   global $model,$_root;
   $html = getHtml($_root.'/list/index33.html');
-  $html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  //$html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  $html = mb_convert_encoding($html,"UTF-8","GBK");
   preg_match_all('#<li><a href="(/list/index\d+)\.html" >([^<]+)</a></li>#Uis',$html,$match,PREG_SET_ORDER);
   $pcate = $match;
 //var_dump($pcate);exit;
@@ -35,7 +36,8 @@ function getinfolist(&$cateurl){
     $url = $cateurl.$suf.'.html';
 echo "\n++++ ",$url," ++++\n";
     $html = getHtml($url);
-    $html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  //  $html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  $html = mb_convert_encoding($html,"UTF-8","GBK");
     preg_match_all('#<li onmousemove="[^"]+" onmouseout="[^"]+"><a href="[^"]+" class="aimg l" target="_blank"><img src="([^"]+)" alt="[^"]+" /></a>\s+<h2><a href="(/view/index\d+\.html)" target="_blank">([^<]+)</a></h2>\s+<p>主演：([^<]+)</p>\s+<p>分类：([^<]+)</p>\s+<p>人气：\d+</p>\s+<p>时间：[^<]+</p>\s+<p><a href="(/player/index\d+\.html\?\d+-\d+-\d+)" class="btn1" target="_blank">马上观看</a></p></li>#Uis',$html,$matchs,PREG_SET_ORDER);
 //echo '<pre>';var_dump($matchs);exit;
     if(empty($matchs)){
@@ -68,8 +70,11 @@ return 0;
 
 function getinfodetail(&$data){
   global $model,$_root,$cid,$strreplace,$pregreplace;
+echo $data['ourl'],"\n";
   $html = getHtml($data['ourl']);
-  $html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+//  file_put_contents('error_view.html',$html);
+  //$html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  $html = mb_convert_encoding($html,"UTF-8","GBK");
   if(!$html){
     echo "获取html失败";exit;
   }
@@ -113,11 +118,13 @@ function getinfodetail(&$data){
 function getArticlePlayData($purl){
   global $_root;
   $html = getHtml($purl);
-  $html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  //$html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  $html = mb_convert_encoding($html,"UTF-8","GBK");
   preg_match('#<div class="play[^"]+">\s+<script type="text/javascript" src="(/playdata/[^"]+)"></script>#Uis',$html,$match);
   $url = $_root.$match[1];
   $html = getHtml($url);
-  $html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  //$html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
+  $html = mb_convert_encoding($html,"UTF-8","GBK");
   preg_match('#VideoListJson=(.+),urlinfo=#Uis',$html,$match);
   return $match[1];
 }

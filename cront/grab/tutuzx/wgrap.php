@@ -13,7 +13,7 @@ $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
 $i = 0;
-$num = 3;
+$num = 7;
 foreach($cate_config as $_cate){
   $i++;
   //3,7,11 isok

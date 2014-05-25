@@ -20,7 +20,7 @@ $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
 $i=0;
-$num=1;
+$num=9;
 foreach($cate_config as $_cate){
   $i++;
   //1,5,9 isok
