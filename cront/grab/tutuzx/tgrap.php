@@ -12,10 +12,10 @@ $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
 $i = 0;
-$num = 10;
+$num = 14;
 foreach($cate_config as $_cate){
   $i++;
-  //2,6,10 isok
+  //2,6,10,14,18 isok
   if($i > $num){
     break;
   }
