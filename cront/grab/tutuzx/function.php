@@ -30,7 +30,7 @@ sleep(2);
 
 function getinfolist(&$cateurl){
   global $_root,$cid;
-  for($i=1; $i<=60000; $i++){
+  for($i=1; $i<=5; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'':'_'.$i;
     $url = $cateurl.$suf.'.html';
@@ -92,8 +92,8 @@ echo $data['ourl'],"\n";
   $match[1] = @iconv("UTF-8","UTF-8//TRANSLIT",$match[1]);
 //echo $match[1],"\n";
   $data['intro'] = strip_tags($match[1]);
-  $data['intro'] = trim($data['intro']);
   $data['intro'] = preg_replace('#&\S+;#Uis','',$data['intro']);
+  $data['intro'] = trim($data['intro']);
   $playhtml = getArticlePlayData($data['purl']);
   if(empty($playhtml)){
     echo ("\n++ Ourl:$data[ourl] Purl:$data[purl] playdata vols decode error!++\n");
@@ -107,6 +107,15 @@ echo $data['ourl'],"\n";
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
 //  echo '<pre>';var_dump($data);exit;
+//在判断是否更新
+  $oname = $data['name'];
+  $aid = checkArticleByOname($oname);
+  if($aid){
+    $aid = addArticle($data);
+    echo "{$aid}已存在更新!\r\n";
+    return 6;
+  }
+
   $aid = addArticle($data);
 //echo '|',$aid,'|';exit;
   if( !$aid){
