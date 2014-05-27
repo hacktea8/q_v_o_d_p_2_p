@@ -2,12 +2,16 @@
 require_once 'basemodel.php';
 class emuleModel extends baseModel{
   protected $_dataStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, a.`collectcount`, a.`ptime`, a.`utime`, a.`thum`, a.`cover`, a.`hits`';
-  protected $_datatopicStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, a.`vipdown`,a.`collectcount`, ac.`keyword`, ac.`downurl`, ac.`vipdwurl`, a.`ptime`, a.`utime`, ac.`intro`, a.`thum`, a.`cover`, a.`hits`';
+  protected $_datatopicStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`,a.`collectcount`, ac.`keyword`, a.`onlinedate`, a.`ptime`, a.`utime`, ac.`intro`, a.`cover`, a.`hits`';
 
   public function __construct(){
      parent::__construct();
   }
+  public function getIndexData(){
+    $return = array();
 
+    return $return;
+  }
   public function getNoVIPDownList($limit = 30){
     $sql = sprintf("SELECT `id`, `name` FROM %s WHERE `flag`=2 ORDER BY `hits` DESC LIMIT %d",$this->db->dbprefix('emule_article'),$limit);
     $list = $this->db->query($sql)->result_array();
