@@ -8,20 +8,9 @@ class Maindex extends Usrbase {
 	 */
   public function __construct(){
     parent::__construct();
-//    $this->load->model('indexmodel');
-//var_dump($this->viewData);exit;
   }
   public function index()
   {
-    $c = $this->input->get('c');
-    if('topic' == $c){
-      $aid = $this->input->get('aid');
-      $this->topic($aid);return true;
-    }
-    if('list' == $c){
-      $cid = $this->input->get('cid');
-      $this->lists($cid);return true;
-    }
     $view = BASEPATH.'../';
     if(!is_writeable($view)){
        die($view.' is not write!');
@@ -30,8 +19,8 @@ class Maindex extends Usrbase {
     $lock = $view . '.lock';
     if( !file_exists($view) || (time() - filemtime($view)) > 1*3600 ){
       if(!file_exists($lock)){
-        
-        $this->assign(array('_a'=>'index','emuleIndex'=>$this->mem->get('emutest-emuleIndexinfo')));
+        $qvodIndex = $this->emulemodel->getIndexData();
+        $this->assign(array('_a'=>'index','qvodIndex'=>$qvodIndex));
         $this->view('index_index');
         $output = $this->output->get_output();
         file_put_contents($lock, '');
@@ -39,6 +28,7 @@ class Maindex extends Usrbase {
         @unlink($lock);
         @chmod($view, 0777);
         echo $output;
+exit;
         return true;
       }
     }
@@ -101,32 +91,11 @@ class Maindex extends Usrbase {
     $cid = $cid < 1 ?1:$cid;
     $order = intval($order);
     $page = $page > 0 ? $page: 1;
-    if($page < 11){
-       $data = array();
-       $data['emulelist'] = $this->mem->get('emu-emulelist'.$cid.'-'.$page.$order);
-       $data['atotal'] = $this->mem->get('emu-listatotal'.$cid);
-       $data['subcatelist'] = $this->mem->get('emu-listsubcatelist'.$cid);
-       $data['postion'] = $this->mem->get('emu-listpostion'.$cid);
-       if( empty($data['emulelist'])){
-//die($this->expirettl['12h'].'empty');
-         $data = $this->emulemodel->getArticleListByCid($cid,$order,$page);
-//echo '<pre>';var_dump($data);exit;
-         $this->mem->set('emu-emulelist'.$cid.'-'.$page.$order,$data['emulelist'],$this->expirettl['1d']);
-         $this->mem->set('emu-listatotal'.$cid,$data['atotal'],$this->expirettl['3d']);
-         $this->mem->set('emu-listsubcatelist'.$cid,$data['subcatelist'],$this->expirettl['3d']);
-         $this->mem->set('emu-listpostion'.$cid,$data['postion'],$this->expirettl['3d']);
-       }
-    }else{
-       $data = $this->emulemodel->getArticleListByCid($cid,$order,$page);
-    }
-         $this->_rewrite_list_url($data['postion']);
-         $this->_rewrite_list_url($data['subcatelist']);
-         $this->_rewrite_article_url($data['emulelist']);
-    $data['emulelist'] = is_array($data['emulelist']) ? $data['emulelist']: array();
-    $cpid = isset($data['postion'][0]['id'])?$data['postion'][0]['id']:0;
+    $data = $this->emulemodel->getArticleListByCid($cid,$order,$page);
+    $data = is_array($data) ? $data : array();
     $this->load->library('pagination');
-    $config['base_url'] = sprintf('/index/lists/%d/%d/',$cid,$order);
-    $config['total_rows'] = $data['atotal'];
+    $config['base_url'] = sprintf('/maindex/lists/%d/%d/',$cid,$order);
+    $config['total_rows'] = $atotal;
     $config['per_page'] = 25; 
     $config['first_link'] = '第一页'; 
     $config['next_link'] = '下一页';
@@ -138,63 +107,61 @@ class Maindex extends Usrbase {
     $config['use_page_numbers'] = TRUE;
     $config['num_links'] = 5;
     $config['cur_page'] = $page;
-    
     $this->pagination->initialize($config); 
     $page_string = $this->pagination->create_links();
 // seo setting
     $title = $kw = '';
-    foreach($data['postion'] as $row){
-       $title .= $title ? '_' : '';
-       $title .= $row['name'];
-       $kw .= $row['name'].',';
-    }
     $keywords = $kw.$this->seo_keywords;
-   
-    $this->assign(array('seo_title'=>$title,'seo_keywords'=>$keywords,'cpid'=>$cpid,'infolist'=>$data['emulelist'],'postion'=>$data['postion']
-    ,'page_string'=>$page_string,'subcatelist'=>$data['subcatelist'],'cid'=>$cid));
+    $this->assign(array('seo_title'=>$title,'seo_keywords'=>$keywords,'infolist'=>$data
+    ,'page_string'=>$page_string,'cid'=>$cid));
     $this->view('index_lists');
   }
-  public function topic($aid){
+  public function view($aid){
     $aid = intval($aid);
     $data = $this->emulemodel->getEmuleTopicByAid($aid,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
-    $data['info']['ptime']=date('Y:m:d', $data['info']['ptime']);
-    $data['info']['utime'] = date('Y/m/d', $data['info']['utime']);
-    $this->_rewrite_list_url($data['postion']);
-    $this->_rewrite_article_url($data['info']);
-    $data['info'] = $data['info'][0];
-    $data['info']['relatdata'] = is_array($data['info']['relatdata']) ? $data['info']['relatdata'] : array();
+    $data['ptime']=date('Y:m:d', $data['info']['ptime']);
+    $data['utime'] = date('Y/m/d', $data['info']['utime']);
     $data['info']['fav'] = 0;
-    $cid = $data['info']['cid'] ? $data['info']['cid'] : 0;
-    $cpid = isset($data['postion'][0]['id'])?$data['postion'][0]['id']:0;
+    $cid = $data['cid'] ? $data['cid'] : 0;
 // seo setting
     $kw = '';
-    foreach($data['postion'] as $row){
-       $kw .= $row['name'].',';
-    }
-    $keywords = $data['info']['name'].','.$kw.$this->seo_keywords;
-    $title = $data['info']['name'];
-    $data['info']['intro'] = str_replace('www.ed2kers.com',$this->viewData['domain'],$data['info']['intro']);
-    //$data['info']['downurl'] = str_replace('www.ed2kers.com',$this->viewData['domain'],$data['info']['downurl']);
+    $keywords = $data['name'].','.$kw.$this->seo_keywords;
+    $title = $data['name'];
+    $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
+    $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data,'aid'=>$aid)); 
+    $this->view('index_view');
+  }
+  public function play($aid){
+    $aid = intval($aid);
+    $data = $this->emulemodel->getEmuleTopicByAid($aid,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
+    $data['ptime']=date('Y:m:d', $data['info']['ptime']);
+    $data['utime'] = date('Y/m/d', $data['info']['utime']);
+    $data['info']['fav'] = 0;
+    $cid = $data['cid'] ? $data['cid'] : 0;
+// seo setting
+    $kw = '';
+    $keywords = $data['name'].','.$kw.$this->seo_keywords;
+    $title = $data['name'];
     // not VIP Admin check verify
     $emu_aid = isset($_COOKIE['hk8_verify_topic_dw'])?strcode($_COOKIE['hk8_verify_topic_dw'],false):'';
     $emu_aid = explode("\t",$emu_aid);
     $emu_aid = $emu_aid[0];
     $verifycode = '';
     if( !( 1 || $emu_aid == $data['info']['id'] || $this->userInfo['isvip'] || $this->userInfo['isadmin'])){
-       $data['info']['downurl'] = '';
-       $data['info']['vipdwurl'] = '';
+       $data['downurl'] = '';
+       $data['vipdwurl'] = '';
        $this->load->library('verify');
        $verifycode = $this->verify->show();
     }
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
-    $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'postion'=>$data['postion'],'aid'=>$aid)); 
+    $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data,'aid'=>$aid)); 
     $ip = $this->input->ip_address();
     $key = sprintf('emuhitslog:%s:%d',$ip,$aid);
 //var_dump($this->redis->exists($key));exit;
     if(!$this->redis->exists($key)){
        $this->redis->set($key, 1, $this->expirettl['6h']);
     }
-    $this->view('index_topic');
+    $this->view('index_view');
   }
   public function tpl(){
     $this->load->view('index_tpl',$this->viewData);

@@ -47,7 +47,7 @@ class Grabapi extends CI_Controller {
       echo '404';
       return 0;
     }
-    $data = $this->grabapimodel->addArticleVols($post);
+    $data = $this->grabapimodel->updateArticleVols($post);
     $data = json_encode($data);
     die($data);
   }

@@ -56,6 +56,17 @@ class grabapiModel extends CI_Model{
     }
     return $id;
   }
+  public function updateArticleVols($data){
+    $id = $this->checkArticleByOname($data['name']);
+    if(!$id){
+      return 0;
+    }
+    foreach($data['vols'] as $vinfo){
+      $vdata = array('vid'=>$id,'server'=>$vinfo[0],'vols'=>$vinfo[1]);
+      $this->addArticleVols($vdata);
+    }
+    return $id;
+  }
   public function addArticleVols($data){
     if( !$data){
       return 0;
