@@ -39,5 +39,6 @@ array('cid'=>1,'ourl'=>'/list/index1','name'=>'动作片')
 );
 
 $cids = array(8,9,10,11,12,13,14,15,15,17);
+$cids = array(3);
 
 ?>

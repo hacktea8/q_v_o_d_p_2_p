@@ -120,6 +120,16 @@ function checkArticleByOname($oname){
 //var_dump($return);exit;
   return $return;
 }
+function addArticleVols($data){
+  global $apicurl,$POST_API;
+  $url = $POST_API.'addArticleVols';
+  $apicurl->config['url'] = $url;
+  $apicurl->postVal = array(
+  'article_data' => json_encode($data)
+  );
+  $html = $apicurl->getHtml();
+  return json_decode($html,1);
+}
 function addArticle($data){
   global $apicurl,$POST_API;
   $url = $POST_API.'addArticleInfo';

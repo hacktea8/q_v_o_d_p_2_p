@@ -30,7 +30,7 @@ sleep(2);
 
 function getinfolist(&$cateurl){
   global $_root,$cid;
-  for($i=1; $i<=5; $i++){
+  for($i=1; $i<=5000; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'':'_'.$i;
     $url = $cateurl.$suf.'.html';
@@ -51,6 +51,7 @@ echo "\n++++ ",$url," ++++\n";
     foreach($matchs as $list){
       $oid = preg_replace('#[^\d]+#','',$list[2]);
       $oname = trim($list[3]);
+/*
 //在判断是否更新
       $aid = checkArticleByOname($oname);
       if($aid){
@@ -58,6 +59,7 @@ echo "\n++++ ",$url," ++++\n";
          continue;
         return 6;
       }
+*/
       $ourl = $_root.$list[2];
       $purl = $_root.$list[6];
       $ainfo = array('thum'=>$list[1],'ourl'=>$ourl,'purl'=>$purl,'actor'=>$list[4],'name'=>$oname,'oid'=>$oid,'cid'=>$cid);
@@ -106,12 +108,13 @@ echo $data['ourl'],"\n";
      return false;
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
-//  echo '<pre>';var_dump($data);exit;
+  echo '<pre>';var_dump($data);exit;
 //在判断是否更新
   $oname = $data['name'];
   $aid = checkArticleByOname($oname);
   if($aid){
-    $aid = addArticle($data);
+    $vdata = array('name'=>$data['name'],'vols'=>$data['vols']);
+    $aid = addArticleVols($vdata);
     echo "{$aid}已存在更新!\r\n";
     return 6;
   }
