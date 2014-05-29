@@ -108,7 +108,7 @@ echo $data['ourl'],"\n";
      return false;
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
-  echo '<pre>';var_dump($data);exit;
+//  echo '<pre>';var_dump($data);exit;
 //在判断是否更新
   $oname = $data['name'];
   $aid = checkArticleByOname($oname);
