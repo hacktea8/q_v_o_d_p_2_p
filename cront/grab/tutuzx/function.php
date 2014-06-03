@@ -30,7 +30,7 @@ sleep(2);
 
 function getinfolist(&$cateurl){
   global $_root,$cid;
-  for($i=1; $i<=5000; $i++){
+  for($i=1; $i<=2; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'':'_'.$i;
     $url = $cateurl.$suf.'.html';

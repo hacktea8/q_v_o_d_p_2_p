@@ -14,9 +14,9 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$i=0;
 $num=17;
 foreach($cids as $num){
+$i=0;
 foreach($cate_config as $_cate){
   $i++;
   //1,5,9,13,17 isok
@@ -26,6 +26,7 @@ foreach($cate_config as $_cate){
   if($i != $num){
     continue;
   }
+
 //var_dump($_cate);exit;
   $lastgrab = $path.$_cate['cid'].'_'.$lastgrab;
   getSubCatearticle($_cate);
