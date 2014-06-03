@@ -43,6 +43,7 @@ class Grabapi extends CI_Controller {
   }
   public function addArticleVols(){
     $post = $_POST['article_data'];
+    $post = json_decode($post,1);
     if(!$post){
       echo '404';
       return 0;

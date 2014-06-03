@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><?php echo $seo_title,'-',$web_title;?>-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载</title>
 <meta name="keywords" content="<?php echo $seo_keywords,',',$web_title;?>,BT种子下载,电驴资源,eD2k,磁力链接,龙BT发布,BT之家,快播资源,百度影音" />
 <meta name="description" content="<?php echo $seo_title,'-',$web_title,$seo_description;?>" />
 <link href="<?php echo $cdn_url;?>/public/css/common.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo $cdn_url;?>/public/css/index.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo $cdn_url;?>/public/css/maindex.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
 <script>var sitePath='public/';</script>
 <script src="<?php echo $cdn_url;?>/public/js/common.js?v=<?php echo $version;?>"></script>
 <script src="<?php echo $cdn_url;?>/public/js/function.js?v=<?php echo $version;?>"></script>
@@ -29,14 +29,22 @@
 <div class="nav">
 <ul>
 <li class="current"><a href='/'>网站首页</a></li>
-<?php foreach($channelMenuA as &$v){?>
+<?php foreach($channel as &$v){
+if(19 != $v['pid']){
+continue;
+}
+?>
 <li><a href="<?php echo $v['url'];?>" <?php if($cid == $v['id']){echo 'class="current"';}?> ><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
 </div>
 <div class="nav">
 <ul>
-<?php foreach($channelMenuB as &$v){?><li><a href="<?php echo $v['url'];?>" <?php if($cid == $v['id']){echo 'class="current"';}?> ><?php echo $v['name'];?></a></li>
+<?php foreach($channel as &$v){
+if(18 != $v['pid']){
+continue;
+}
+?><li><a href="<?php echo $v['url'];?>" <?php if($cid == $v['id']){echo 'class="current"';}?> ><?php echo $v['name'];?></a></li>
 <?php }?>
 <li><a href='/tv.html'>在线直播</a></li>
 </ul>

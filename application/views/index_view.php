@@ -24,7 +24,9 @@
 <!-- JiaThis Button END -->
 </div>
 </div>
+<?php if(0){?>
 <div class="score">评分：<script type="text/javascript">markVideo(<?php echo $info['id'];?>,1,0,5,5,1);</script></div>
+<?php }?>
 </div>
 <!-- 播放地址开始/End -->
 <div class="vlist bg mb">

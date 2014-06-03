@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once 'webbase.php';
 class Usrbase extends Webbase {
-   
+  public $url404 = '/maindex/show404'; 
   public $seo_title = '首页'; 
   public $seo_keywords = '电驴资源,电驴资源网站,电驴资源下载,电驴资源搜索,电驴资源网,电驴资源网站,电驴下载,电骡资源,ed2k,eMule,电骡下载,emule 资源,电驴资源库,电驴共享';
   public $seo_description = '是一个综合的电驴资源网站，提供包含电影、电视剧、音乐、游戏、动漫、综艺、软件、资料、图书、教育等栏目电驴资源搜索、电驴下载服务。';
@@ -19,15 +19,15 @@ class Usrbase extends Webbase {
       $this->_rewrite_article_url($hotTopic);
       $this->mem->set('emu-hotTopic',$hotTopic,$this->expirettl['12h']);
     }
-    $rootCate = $this->mem->get('emu-rootCate');
-    if( empty($rootCate)){
-      $rootCate = $this->emulemodel->getCateByCid(0);
-      $this->_rewrite_list_url($rootCate);
-      $this->mem->set('emu-rootCate',$rootCate,$this->expirettl['1d']);
+    $channel = $this->mem->get('channel');
+    if( empty($channel)){
+      $channel = $this->emulemodel->getAllChannel();
+      $this->mem->set('channel',$rootCate,$this->expirettl['1d']);
     } 
     $this->assign(array(
     'seo_keywords'=>$this->seo_keywords,'seo_description'=>$this->seo_description,'seo_title'=>$this->seo_title
-    ,'showimgapi'=>$this->showimgapi,'error_img'=>$this->showimgapi.'3958009_0000671092.jpg','hotTopic'=>$hotTopic,'rootCate'=>$rootCate,
+    ,'showimgapi'=>$this->showimgapi,'error_img'=>$this->showimgapi.'3958009_0000671092.jpg'
+    ,'hotTopic'=>$hotTopic,'channel'=>$channel,
     'thumhost'=>'http://i.ed2kers.com','cpid'=>0,'cid'=>0
     ,'editeUrl' => '/edite/index/emuleTopicAdd'
     ));
@@ -65,5 +65,10 @@ class Usrbase extends Webbase {
    }
     $this->assign(array('click_ad_link'=>$click_ad_link));
     //echo $links[$k];exit;
+  }
+  public function view($view_file){
+    $this->load->view('header',$this->viewData);
+    $this->load->view($view_file);
+    $this->load->view('footer');
   }
 }

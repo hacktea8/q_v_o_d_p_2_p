@@ -80,11 +80,6 @@ class Webbase extends CI_Controller {
       $this->viewData[$key] = $val;
     }
   }
-  protected function view($view_file){
-    $this->load->view('header', $this->viewData);
-    $this->load->view($view_file);
-    $this->load->view('footer');
-  }
   public function _rewrite_list_url(&$list){
     foreach($list as &$v){
       $v['url'] = list_url($v['id'],0,1);

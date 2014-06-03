@@ -1,11 +1,23 @@
 <?php
 require_once 'basemodel.php';
 class emuleModel extends baseModel{
-  protected $_dataStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, a.`collectcount`, a.`ptime`, a.`utime`, a.`thum`, a.`cover`, a.`hits`';
+  protected $_dataStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, a.`collectcount`, a.`ptime`, a.`utime`,a.`onlinedate`, a.`cover`, a.`hits`';
   protected $_datatopicStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`,a.`collectcount`, ac.`keyword`, a.`onlinedate`, a.`ptime`, a.`utime`, ac.`intro`, a.`cover`, a.`hits`';
+  protected $_volsStruct = '`id`, `vid`, `sid`, `vol`, `volname`';
+  protected $_volsPlayStruct = '`id`, `vid`, `sid`, `vol`, `volname`, `link`';
 
   public function __construct(){
      parent::__construct();
+  }
+  public function getAllChannel(){
+    $sql = sprintf("SELECT `id`, `pid`, `name`, `atotal` FROM `qd_emule_cate` WHERE `flag`=1");
+    $list = $this->db->query($sql)->result_array();
+    $return = array();
+    foreach($list as &$v){
+      $v['url'] = $this->geturl('lists',$v['id']);
+      $return[$v['id']] = $v;
+    }
+    return $return;
   }
   public function getIndexData(){
     $return = array();
@@ -101,17 +113,14 @@ class emuleModel extends baseModel{
        $cids = implode(',',$cids);
        $where = ' a.`cid` in ('.$cids.')  ';
      }
-     $sql = sprintf('SELECT %s,c.`name` as cname,c.atotal FROM %s as a LEFT JOIN %s as c ON (a.cid=c.id) WHERE %s AND a.`flag`=1 AND c.flag=1 %s LIMIT %d,%d',$this->_dataStruct,$this->db->dbprefix('emule_article'),$this->db->dbprefix('emule_cate'),$where,$order,$page,$limit);
+     $sql = sprintf('SELECT %s FROM %s as a WHERE %s AND a.`flag`=1 %s LIMIT %d,%d',$this->_dataStruct,$this->db->dbprefix('emule_article'),$where,$order,$page,$limit);
 //echo $sql;exit;
      $data = array();
-     $data['emulelist'] = $this->db->query($sql)->result_array();
-     foreach($data['emulelist'] as &$val){
+     $data = $this->db->query($sql)->result_array();
+     foreach($data as &$val){
        $val['ptime'] = date('Y-m-d', $val['ptime']);
        $val['utime'] = date('Y/m/d', $val['utime']);
      }
-     $data['postion'] = $this->getsubparentCate($cid);
-     $data['subcatelist'] = $this->getAllSubcateByCid($cid);
-     $data['atotal']   = $this->getCateAtotal($cid);
      return $data;
   }
 
@@ -150,22 +159,93 @@ class emuleModel extends baseModel{
      }
      return $res = array(array('id'=>$parinfo[0]['id'],'name'=>$parinfo[0]['name']),array('id'=>$subinfo['id'],'name'=>$subinfo['name']));
   }
+  public function get_vols_table($id){
+    return sprintf('emule_article_vols%d',$id%10);
+  }
   public function get_content_table($id){
     return sprintf('emule_article_content%d',$id%10);
   }
-  public function getEmuleTopicByAid($aid,$uid=0,$isadmin=false,$edite=1){
+  public function getEmuleTopicByAid($aid,$sid=0,$uid=0,$isadmin=false,$edite=1,$view=1){
      $where = '';
      if($uid && !$isadmin && $edite)
        $where = sprintf(' AND `uid`=%d LIMIT 1',$uid);
 
      $table = $this->get_content_table($aid);
-     $sql = sprintf('SELECT %s FROM %s as a LEFT JOIN %s as ac ON (a.id=ac.id) WHERE a.id =%d  %s',$this->_datatopicStruct,$this->db->dbprefix('emule_article'),$this->db->dbprefix($table),$aid,$where);
+     $sql = sprintf('SELECT %s FROM %s as a LEFT JOIN %s as ac ON (a.id=ac.id) WHERE a.id =%d  %s LIMIT 1',$this->_datatopicStruct,$this->db->dbprefix('emule_article'),$this->db->dbprefix($table),$aid,$where);
      $data = array();
      $data['info'] = $this->db->query($sql)->row_array();
-     $data['postion'] = $this->getsubparentCate($data['info']['cid']);
+     $data['vols'] = $this->getVideoVolsTitle($aid,$sid,$view);
      return $data;
   }
-
+  public function getVideoVolsTitle($vid,$sid,$view){
+    if($sid){
+       $serverMod = array(1=>'qvod',2=>'百度影音',3=>'xfplay',4=>'百度影音');
+       $sinfo = isset($serverMod[$sid])?$serverMod[$sid]:0;
+    }
+    if($sinfo){
+      $vgroupby = sprintf(' AND `sid`=%d ',$sid);
+    }else{
+      //$vgroupby = ' GROUP BY `sid` ';
+      $vgroupby = ' ';
+    }
+    $table = $this->get_vols_table($vid);
+    if(1 == $view){
+      $struct = $this->_volsStruct;
+    }else{
+      $struct = $this->_volsPlayStruct;
+    }
+    $sql = sprintf('SELECT %s FROM %s WHERE `vid`=%d %s',$struct,$this->db->dbprefix($table),$vid,$vgroupby);
+    $lists = $this->db->query($sql)->result_array();
+    $return = array();
+//echo '<pre>';echo $sql;var_dump($lists);exit;
+    foreach($lists as &$v){
+      $return[$v['sid']][$v['vol']] = $v;
+      if($v['volname']){
+         continue;
+      }
+      $return[$v['sid']][$v['vol']]['volname'] = $this->updateVolsVolTitle($v['id']);
+    }
+    return $return;
+  }
+  public function updateVolsVolTitle($vid,$id){
+    if(!$vid || !$id){
+      return 0;
+    }
+    $table = $this->get_vols_table($vid);
+    $sql = sprintf('SELECT `link` FROM %s WHERE `id`=%d LIMIT 1',$table,$id);
+    $row = $this->db->query($sql)->row_array();
+    $volname = '发生错误!';
+    if($row){
+      $volname = substr($row['link'],0,strpos($row['link'],'$'));
+      $volname = trim($volname);
+      echo $row['link'],'<br />',$volname,'<br />';
+      $volname = $this->unicode_decode($volname);
+      echo $volname;exit;
+    }
+    return $volname;
+  }
+  // 将UNICODE编码后的内容进行解码，编码后的内容格式：YOKA\u738b （原始：YOKA王）
+  public function unicode_decode($name){
+  // 转换编码，将Unicode编码转换成可以浏览的utf-8编码
+    $pattern = '/([\w]+)|(\\\u([\w]{4}))/i';
+    preg_match_all($pattern, $name, $matches);
+    if(!empty($matches)){
+      $name = '';
+      for($j = 0; $j < count($matches[0]); $j++){
+        $str = $matches[0][$j];
+        if(strpos($str, '\\u') === 0){
+          $code = base_convert(substr($str, 2, 2), 16, 10);
+          $code2 = base_convert(substr($str, 4), 16, 10);
+          $c = chr($code).chr($code2);
+          $c = iconv('UCS-2', 'UTF-8', $c);
+          $name .= $c;
+        }else{
+          $name .= $str;
+        }
+      }
+    }
+    return $name;
+  }
   public function setEmuleTopicByAid($uid=0,$data,$isadmin=false){
      //过滤字段
      $header = array();

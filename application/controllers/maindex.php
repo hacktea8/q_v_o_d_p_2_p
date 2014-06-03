@@ -1,11 +1,9 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+ini_set('display_error',1);
+error_reporting(E_ALL);
+ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once 'usrbase.php';
 class Maindex extends Usrbase {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 */
   public function __construct(){
     parent::__construct();
   }
@@ -116,12 +114,13 @@ exit;
     ,'page_string'=>$page_string,'cid'=>$cid));
     $this->view('index_lists');
   }
-  public function view($aid){
+  public function views($aid){
     $aid = intval($aid);
-    $data = $this->emulemodel->getEmuleTopicByAid($aid,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
-    $data['ptime']=date('Y:m:d', $data['info']['ptime']);
-    $data['utime'] = date('Y/m/d', $data['info']['utime']);
-    $data['info']['fav'] = 0;
+    $data = $this->emulemodel->getEmuleTopicByAid($aid,0,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
+    if(empty($data)){
+       header('Location: '.$this->url404);
+       exit;
+    }
     $cid = $data['cid'] ? $data['cid'] : 0;
 // seo setting
     $kw = '';
@@ -129,14 +128,12 @@ exit;
     $title = $data['name'];
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
     $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data,'aid'=>$aid)); 
+//echo "<pre>";var_dump($this->viewData);exit;
     $this->view('index_view');
   }
-  public function play($aid){
+  public function play($aid,$sid){
     $aid = intval($aid);
-    $data = $this->emulemodel->getEmuleTopicByAid($aid,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
-    $data['ptime']=date('Y:m:d', $data['info']['ptime']);
-    $data['utime'] = date('Y/m/d', $data['info']['utime']);
-    $data['info']['fav'] = 0;
+    $data = $this->emulemodel->getEmuleTopicByAid($aid,$sid,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
     $cid = $data['cid'] ? $data['cid'] : 0;
 // seo setting
     $kw = '';

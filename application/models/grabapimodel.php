@@ -1,7 +1,7 @@
 <?php
 class grabapiModel extends CI_Model{
   public $db;
-  public $serverMod = array('qvod'=>1,'百度影音'=>2,'xfplay'=>3);  
+  public $serverMod = array('qvod'=>1,'百度影音'=>2,'xfplay'=>3,'bdhd'=>2);  
   public function __construct(){
      parent::__construct();
      $this->db  = $this->load->database('default', TRUE);
@@ -74,7 +74,7 @@ class grabapiModel extends CI_Model{
     $vols = array();
     $vols['sid'] = $this->serverMod[$data['server']];
     $vols['vid'] = $data['vid'];
-    foreach($data['vols'] as $vol){
+    foreach($data['vols'] as $k => $vol){
       $vols['vol'] = $k+1;
       $vols['link'] = $vol;
       $this->addVols($vols);
