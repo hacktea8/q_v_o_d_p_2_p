@@ -31,16 +31,15 @@
 		var thepageArr = flagArr.split("-");
 		var team = thepageArr[1];
 		var page = thepageArr[2].split(".")[0];
-		if(videolist[team*1][0]=="qvod")
-        {
+		if(videolist[team][0]=="qvod"){
 		var qvodurls;
 		var qvodurl;
 		var nonext = false;
 		qvodurls= videolist[team][1][page];
 		qvodurl = (qvodurls).split("$")[1];
 		if(page == videolist[team][1].length-1 ){
-			if(videolist[team*1+1] != null){
-			team = team*1+1;	
+			if(videolist[team+1] != null){
+			team = team+1;	
 			page = 0;
 
 			}else{

@@ -4,7 +4,6 @@
 <div class="new l">
 <h3 class="ph3"><?php echo $channel[$cid]['name'];?>热门排行</h3>
 <ul>
-18
 <?php foreach($hotRankList as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
 <p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong><?php echo $v['onlinedate'];?></strong></p><span><?php echo $v['hits'];?></span></li>
@@ -17,7 +16,6 @@
 <h3 class="ph3"><?php echo $channel[$cid]['name'];?>热门推荐</h3>
 <ul>
 <ul>
-20
 <?php foreach($hotRecomList as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
 <p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong><?php echo $v['onlinedate'];?></strong></p><span><?php echo $v['hits'];?></span></li>

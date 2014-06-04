@@ -55,18 +55,8 @@ exit;
       $lists = $this->emulemodel->getUserCollectList($this->userInfo['uid'],$order = 'new',$page,$limit);
     }
     $this->load->library('pagination');
-    $config['base_url'] = sprintf('/index/collect/');
+    $config['base_url'] = sprintf('/maindex/collect/');
     $config['total_rows'] = $total;
-    $config['per_page'] = 25;
-    $config['first_link'] = '第一页';
-    $config['next_link'] = '下一页';
-    $config['prev_link'] = '上一页';
-    $config['last_link'] = '最后一页';
-    $config['cur_tag_open'] = '<span class="current">';
-    $config['cur_tag_close'] = '</span>';
-    $config['suffix'] = '.html';
-    $config['use_page_numbers'] = TRUE;
-    $config['num_links'] = 5;
     $config['cur_page'] = $page;
 
     $this->pagination->initialize($config);
@@ -94,24 +84,22 @@ exit;
     $this->load->library('pagination');
     $config['base_url'] = sprintf('/maindex/lists/%d/%d/',$cid,$order);
     $config['total_rows'] = $atotal;
-    $config['per_page'] = 25; 
-    $config['first_link'] = '第一页'; 
-    $config['next_link'] = '下一页';
-    $config['prev_link'] = '上一页';
-    $config['last_link'] = '最后一页';
-    $config['cur_tag_open'] = '<span class="current">';
-    $config['cur_tag_close'] = '</span>';
-    $config['suffix'] = '.html';
-    $config['use_page_numbers'] = TRUE;
-    $config['num_links'] = 5;
     $config['cur_page'] = $page;
     $this->pagination->initialize($config); 
     $page_string = $this->pagination->create_links();
+    $_key = 'list_left_video'.$cid;
+    $list_left_video = $this->mem->get($_key);
+    if(!$list_left_video){
+       $left_hot = $this->emulemodel->getArticleListByCid($cid,2,2,18);
+       $left_new = $this->emulemodel->getArticleListByCid($cid,1,2,20);
+       $list_left_video = array('hot'=>$left_hot,'new'=>$left_new);
+       $this->mem->set($_key,$list_left_video,$this->expirettl['12h']);
+    }
 // seo setting
     $title = $kw = '';
     $keywords = $kw.$this->seo_keywords;
     $this->assign(array('seo_title'=>$title,'seo_keywords'=>$keywords,'infolist'=>$data
-    ,'page_string'=>$page_string,'cid'=>$cid));
+    ,'page_string'=>$page_string,'cid'=>$cid,'hotRankList'=>$list_left_video['hot'],'hotRecomList'=>$list_left_video['new']));
     $this->view('index_lists');
   }
   public function views($aid){
@@ -121,71 +109,98 @@ exit;
        header('Location: '.$this->url404);
        exit;
     }
-    $cid = $data['cid'] ? $data['cid'] : 0;
+    $cid = $data['info']['cid'] ? $data['info']['cid'] : 0;
+    $_key = 'view_rightHot'.$cid;
+    $viewHot = $this->mem->get($_key);
+    if(!$viewHot){
+       $viewHot = $this->emulemodel->getArticleListByCid($cid,2,2,18);
+       $this->mem->set($_key,$viewHot,$this->expirettl['12h']);
+    }
 // seo setting
     $kw = '';
     $keywords = $data['name'].','.$kw.$this->seo_keywords;
     $title = $data['name'];
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
-    $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data,'aid'=>$aid)); 
+    $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title
+    ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
+    ,'videovols'=>$data['vols'],'viewHot'=>$viewHot
+    )); 
 //echo "<pre>";var_dump($this->viewData);exit;
     $this->view('index_view');
   }
-  public function play($aid,$sid){
+  public function playdata($vid,$sid,$vol){
+    $vid = intval($vid);
+    $sid = intval($sid);
+    $vol = intval($vol);
+    $data = $this->emulemodel->getVideoPlayDataByAid($vid);
+    $videoListJason = $data;
+    $view_data = array('sid'=>$sid,'vol'=>$vol,'videoListJason'=>$videoListJason,'vid'=>$vid);
+    $this->load->view('index_playdata',$view_data);
+  }
+  public function play($aid,$sid,$vol){
     $aid = intval($aid);
+    $sid = intval($sid);
+    $vol = intval($vol);
     $data = $this->emulemodel->getEmuleTopicByAid($aid,$sid,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
-    $cid = $data['cid'] ? $data['cid'] : 0;
+    $cid = $data['info']['cid'] ? $data['info']['cid'] : 0;
+    $_key = 'play_bottomHot'.$cid;
+    $playRelate = $this->mem->get($_key);
+    if(!$playRelate){
+       $playRelate = $this->emulemodel->getArticleListByCid($cid,1,2,6);
+       $this->mem->set($_key,$playRelate,$this->expirettl['12h']);
+    }
 // seo setting
     $kw = '';
     $keywords = $data['name'].','.$kw.$this->seo_keywords;
     $title = $data['name'];
-    // not VIP Admin check verify
-    $emu_aid = isset($_COOKIE['hk8_verify_topic_dw'])?strcode($_COOKIE['hk8_verify_topic_dw'],false):'';
-    $emu_aid = explode("\t",$emu_aid);
-    $emu_aid = $emu_aid[0];
-    $verifycode = '';
-    if( !( 1 || $emu_aid == $data['info']['id'] || $this->userInfo['isvip'] || $this->userInfo['isadmin'])){
-       $data['downurl'] = '';
-       $data['vipdwurl'] = '';
-       $this->load->library('verify');
-       $verifycode = $this->verify->show();
-    }
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
-    $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data,'aid'=>$aid)); 
+    $this->assign(array('isCollect'=>$isCollect,'seo_title'=>$title,'sid'=>$sid,'vol'=>$vol
+    ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
+    ,'videovols'=>$data['vols'],'playRelate'=>$playRelate
+    )); 
     $ip = $this->input->ip_address();
     $key = sprintf('emuhitslog:%s:%d',$ip,$aid);
 //var_dump($this->redis->exists($key));exit;
     if(!$this->redis->exists($key)){
        $this->redis->set($key, 1, $this->expirettl['6h']);
     }
-    $this->view('index_view');
+    $this->view('index_play');
   }
-  public function tpl(){
-    $this->load->view('index_tpl',$this->viewData);
+  public function crontab(){
+    $lock = BASEPATH.'/../crontab_loc.txt';
+    if(file_exists($lock) && time()-filemtime($lock)<6*3600){
+       return false;
+    }
+    $this->emulemodel->autoSetVideoOnline(3);
+    $this->emulemodel->setCateVideoTotal();
+    file_put_contents($lock,'');
+    chmod($lock,0777);
+    echo 1;exit;
   }
-  public function search($q='',$type = 0,$order = 0,$page = 1){
+  public function search($q='',$order = 0,$page = 1){
     $q = $q ? $q:$this->input->get('q');
     $q = urldecode($q);
     $q = htmlentities($q);
     $page = intval($page);
     $page = $page < 1 ? 1: $page;
     $list = array();
-    $pageSize = 25;
+    $pageSize = 12;
     if($q){
-      $param = array('kw' => $q, 'page' => $page, 'page_size' => $pageSize);
-      if(1 == $type){
-        $param[] = '';
-      }elseif(2 == $type){
-        $param[] = '';
-      }
-      $this->load->library('aliyunsearchapi');
-      $this->aliyunsearchapi->getsearch($list, $type, $param);
-      $hotKeywords = $this->aliyunsearchapi->topQuery($params = array('num'=>8,'days'=>30));
+      $this->load->library('yunsearchapi');
+      $opt = array('query'=>$q,'start'=>$page,'hits'=>$pageSize);
+      $this->yunsearchapi->search($list,$opt);
+      $hotKeywords = $this->yunsearchapi->getTopQuery($num=8,$days=30);
       //var_dump($hotKeywords);exit;
       if('OK' == $hotKeywords['status']){
          $hotKeywords = $hotKeywords['result']['items']['emu_hacktea8'];
       }
     }
+/*
+echo '<pre>';
+var_dump($q);
+var_dump($hotKeywords);
+var_dump($list);exit;
+/**/
     $hot_search = array();
     $recommen_topic = array();
     $recommen_topic[1] = array();
@@ -194,22 +209,13 @@ exit;
     $hot_topic['hit'] = array();
     $hot_topic['focus'] = array();
     $this->load->library('pagination');
-    $config['base_url'] = sprintf('/index/search/%s/%d/%d/',urlencode($q),$type,$order);
+    $config['base_url'] = sprintf('/maindex/search/%s/%d/',urlencode($q),$order);
     $config['total_rows'] = $list['result']['viewtotal'];
     $config['per_page'] = $pageSize;
-    $config['first_link'] = '第一页';
-    $config['next_link'] = '下一页';
-    $config['prev_link'] = '上一页';
-    $config['last_link'] = '最后一页';
-    $config['cur_tag_open'] = '<span class="current">';
-    $config['cur_tag_close'] = '</span>';
-    $config['suffix'] = '.html';
-    $config['use_page_numbers'] = TRUE;
-    $config['num_links'] = 5;
     $config['cur_page'] = $page;
     $this->pagination->initialize($config);
     $page_string = $this->pagination->create_links();
-    $this->assign(array('searchlist'=>$list['result'],'kw'=>$q,'q'=>$q,'page_string'=>$page_string,'hot_search'=>$hot_search,'recommen_topic'=>$recommen_topic,'hot_topic'=>$hot_topic)); 
+    $this->assign(array('searchlist'=>$list['result'],'kw'=>$q,'q'=>$q,'page_string'=>$page_string,'hot_search'=>$hot_search,'recommen_topic'=>$recommen_topic,'hot_topic'=>$hot_topic));
     $this->load->view('index_search',$this->viewData);
   }
   public function show404($goto = ''){

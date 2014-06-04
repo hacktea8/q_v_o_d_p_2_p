@@ -10,6 +10,9 @@
 <script>var sitePath='public/';</script>
 <script src="<?php echo $cdn_url;?>/public/js/common.js?v=<?php echo $version;?>"></script>
 <script src="<?php echo $cdn_url;?>/public/js/function.js?v=<?php echo $version;?>"></script>
+<?php if(in_array($_a,array('play'))){?>
+<script src="<?php echo $cdn_url;?>/public/js/play.js?v=<?php echo $version;?>"></script>
+<?php }?>
 </head>
 <body>
 <div class="wrap">
@@ -34,7 +37,7 @@ if(19 != $v['pid']){
 continue;
 }
 ?>
-<li><a href="<?php echo $v['url'];?>" <?php if($cid == $v['id']){echo 'class="current"';}?> ><?php echo $v['name'];?></a></li>
+<li <?php if($cid == $v['id']){echo 'class="current"';}?>><a href="<?php echo $v['url'];?>" ><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
 </div>
@@ -44,9 +47,9 @@ continue;
 if(18 != $v['pid']){
 continue;
 }
-?><li><a href="<?php echo $v['url'];?>" <?php if($cid == $v['id']){echo 'class="current"';}?> ><?php echo $v['name'];?></a></li>
+?>
+<li <?php if($cid == $v['id']){echo 'class="current"';}?>><a href="<?php echo $v['url'];?>" ><?php echo $v['name'];?></a></li>
 <?php }?>
-<li><a href='/tv.html'>在线直播</a></li>
 </ul>
 </div></div>
 </div>

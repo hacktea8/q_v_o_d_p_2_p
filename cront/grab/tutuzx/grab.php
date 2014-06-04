@@ -24,6 +24,7 @@ if('http://' != substr($val['thum'],0,7)){
   $val['thum'] = $_root.$val['thum'];
 }
 echo "== $val[thum] ==\n";
+//exit;
 $data['imgurl'] = $val['thum'];
 $cover = getHtml($data);
 //去除字符串前3个字节
@@ -31,12 +32,14 @@ $cover = substr($cover,3);
 echo $cover,"\n";
 //exit;
 //echo strlen($cover);exit;
-if( in_array($cover,array('44','404'))){
+$status = preg_replace('#[^\d]+#','',$cover);
+//echo $status;exit;
+if( in_array($status,array(44,404))){
   die('Token 失效!');
 }
-if(0 == $cover){
+if(0 == $status){
   echo "$val[id] cover is down!\n";
-  setcoverByid(4,$val['id']);
+  seterrcoverByid(4,$val['id']);
   continue;
 }
 
@@ -55,7 +58,7 @@ file_put_contents('imgres.txt',$val['id']);
 
 function getnocoverlist($limit = 20){
     global $db;
-    $sql=sprintf('SELECT `id`,`sitetype`,`thum`,`ourl` FROM %s WHERE `cover`=\'0\' LIMIT %d',$db->getTable('emule_article'),$limit);
+    $sql=sprintf('SELECT `id`,`sitetype`,`thum`,`ourl` FROM %s WHERE `iscover`=0 LIMIT %d',$db->getTable('emule_article'),$limit);
     $res=$db->result_array($sql);
     return $res;
 }
@@ -76,13 +79,22 @@ function setcontentdata($data,$id){
   $db->query($sql);
   return true;
 }
+function seterrcoverByid($cover = '',$id = 0){
+  if(!$id){
+     return false;
+  }
+  global $db;
+  $sql = sprintf('UPDATE %s SET `iscover`=4 WHERE `id`=%d LIMIT 1',$db->getTable('emule_article'),mysql_real_escape_string($cover),$id);
+  $db->query($sql);
+}
 function setcoverByid($cover = '',$id = 0){
-    if(!$id){
-       return false;
-    }
-    global $db;
-    $sql = sprintf('UPDATE %s SET `cover`=\'%s\',flag=1 WHERE `id`=%d LIMIT 1',$db->getTable('emule_article'),mysql_real_escape_string($cover),$id);
-    $db->query($sql);
+  $pos = stripos($cover,'.');
+  if(!$id || !$pos){
+     return false;
+  }
+  global $db;
+  $sql = sprintf('UPDATE %s SET `cover`=\'%s\',flag=1,`iscover`=1 WHERE `id`=%d LIMIT 1',$db->getTable('emule_article'),mysql_real_escape_string($cover),$id);
+  $db->query($sql);
 }
 function getHtml(&$data){
   $curl = curl_init();

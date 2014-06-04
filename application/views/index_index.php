@@ -7,8 +7,8 @@
 <a id="join" href="javascript:void(0)" onclick="javascript:addFavorite('<?php echo $domain;?>','<?php echo $web_title;?>-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载 ')" >【添加到浏览器收藏夹】</a>
 <a href="javascript:window.open('http://shuqian.qq.com/post?from=3&title='+encodeURIComponent(document.title)+'&uri='+encodeURIComponent(document.location.href)+'&jumpback=2&noui=1','favit','width=930,height=470,left=50,top=50,toolbar=no,menubar=no,location=no,scrollbars=yes,status=yes,resizable=yes');void(0)">【添加到QQ收藏】</a></em>
 </h3>
-<ul class="cpic 15">
-<?php foreach($topRecomData as &$v){?>
+<ul class="cpic">
+<?php foreach($qvodIndex['topRecomData'] as &$v){?>
 <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"><img src="<?php echo $v['cover'];?>"/></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span><?php echo $v['onlinedate'];?></span></li>
 <?php }?>
 
@@ -20,8 +20,7 @@
 <div class="new l">
 <h3 class="ph3">今日最新入库<em class="more"><a href="javascript:void(0);">昨日入库<img src="<?php echo $cdn_url;?>/images/hot.gif?v=<?php echo $version;?>" alt="24小时内更新" class="hot"/></a></em></h3>
 <ul>
-23
-<?php foreach($todayNewData as $k => &$v){?>
+<?php foreach($qvodIndex['todayNewData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
 <p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span></span></li>
 <?php }?>
@@ -39,14 +38,12 @@
 <!-- 最新电影标签开始//End -->
 <h3 class="ph3">最新电影频道</h3>
 <ul class="cpic ulbl">
-10
-<?php foreach($todayNewData as &$v){?>
+<?php foreach($qvodIndex['todayMovieNewData'] as &$v){?>
  <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"> <img src="<?php echo $v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span><?php echo $v['onlinedate'];?></span></li>
 <?php }?>
  </ul>
 <ul class="ctext">
-28
-<?php foreach($todayNewData as &$v){?>
+<?php foreach($qvodIndex['todayMovieNewDataTxt'] as &$v){?>
 <li>&bull;&nbsp;
 <a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank">[ <?php echo $channel[$v['id']]['name'];?>]
 <a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
@@ -59,8 +56,7 @@
 <div class="new l">
 <h3 class="ph3">电影频道排行榜</h3>
 <ul>
-22
-<?php foreach($movieHotData as $k => &$v){?>
+<?php foreach($qvodIndex['movieHotData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
 <p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong><?php echo $v['onlinedate'];?></strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>
@@ -74,14 +70,12 @@
 <div class="w704 r bg">
 <h3 class="ph3">最新电视剧场</h3>
 <ul class="cpic ulbl">
-5
-<?php foreach($todayNewTV as &$v){?>
+<?php foreach($qvodIndex['todayNewTV'] as &$v){?>
  <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"><img src="<?php echo $v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span></span></li>
 <?php }?>
 </ul>
 <ul class="ctext">
-20
-<?php foreach($movieHotData as &$v){?>
+<?php foreach($qvodIndex['todayNewTVtxt'] as &$v){?>
 <li>&bull;&nbsp;
 <a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank">[ <?php echo $channel[$v['id']]['name'];?>]
 <a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
@@ -94,8 +88,7 @@
 <div class="new l">
 <h3 class="ph3">电视剧场排行榜</h3>
 <ul>
-12
-<?php foreach($movieHotData as $k => &$v){?>
+<?php foreach($qvodIndex['tvHotData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
 <p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong>
 全集</strong></p><span><?php echo $v['hits'];?></span></li>
@@ -113,14 +106,12 @@
 <div class="w704 r bg">
 <h3 class="ph3">最新综艺节目</h3>
 <ul class="cpic ulbl">
-5
-<?php foreach($varietyNewData as &$v){?>
+<?php foreach($qvodIndex['varietyNewData'] as &$v){?>
  <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"><img src="<?php echo $v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span></span></li>
 <?php }?>
 </ul>
 <ul class="ctext">
-20
-<?php foreach($varietyNewData as &$v){?>
+<?php foreach($qvodIndex['varietyNewDatatxt'] as &$v){?>
 <li>&bull;&nbsp;
 <a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank">[ <?php echo $channel[$v['id']]['name'];?>]
 <a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
@@ -133,8 +124,7 @@
 <div class="new l">
 <h3 class="ph3">综艺节目排行榜</h3>
 <ul>
-12
-<?php foreach($varietyNewData as $k => &$v){?>
+<?php foreach($qvodIndex['varietyHotData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
 <p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>
@@ -148,14 +138,12 @@
 <div class="w704 r bg">
 <h3 class="ph3">最新动漫片</h3>
 <ul class="cpic ulbl">
-5
-<?php foreach($animeNewData as &$v){?>
+<?php foreach($qvodIndex['animeNewData'] as &$v){?>
  <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"><img src="<?php echo $v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span></span></li>
 <?php }?>
 </ul>
 <ul class="ctext">
-20
-<?php foreach($animeNewData as &$v){?>
+<?php foreach($qvodIndex['animeNewDatatxt'] as &$v){?>
 <li>&bull;&nbsp;
 <a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank">[ <?php echo $channel[$v['id']]['name'];?>]
 <a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
@@ -168,8 +156,7 @@
 <div class="new l">
 <h3 class="ph3">动漫排行榜</h3>
 <ul>
-12
-<?php foreach($animeHotData as $k => &$v){?>
+<?php foreach($qvodIndex['animeHotData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
 <p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>

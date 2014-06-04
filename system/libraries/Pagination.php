@@ -27,28 +27,28 @@
 class CI_Pagination {
 
 	var $base_url			= ''; // The page we are linking to
-	var $prefix				= ''; // A custom prefix added to the path.
-	var $suffix				= ''; // A custom suffix added to the path.
+	var $prefix			= ''; // A custom prefix added to the path.
+	var $suffix			= '.shtml'; // A custom suffix added to the path.
 
 	var $total_rows			=  0; // Total number of items (database results)
-	var $per_page			= 10; // Max number of items you want shown per page
-	var $num_links			=  2; // Number of "digit" links to show before/after the currently viewed page
+	var $per_page			= 12; // Max number of items you want shown per page
+	var $num_links			=  5; // Number of "digit" links to show before/after the currently viewed page
 	var $cur_page			=  0; // The current page being viewed
-	var $use_page_numbers	= FALSE; // Use page number for segment instead of offset
-	var $first_link			= '&lsaquo; First';
-	var $next_link			= '&gt;';
-	var $prev_link			= '&lt;';
-	var $last_link			= 'Last &rsaquo;';
+	var $use_page_numbers	        = TRUE; // Use page number for segment instead of offset
+	var $first_link			= '第一页';
+	var $next_link			= '下一页';
+	var $prev_link			= '上一页';
+	var $last_link			= '最后一页';
 	var $uri_segment		= 3;
 	var $full_tag_open		= '';
 	var $full_tag_close		= '';
 	var $first_tag_open		= '';
-	var $first_tag_close	= '&nbsp;';
+	var $first_tag_close	        = '&nbsp;';
 	var $last_tag_open		= '&nbsp;';
 	var $last_tag_close		= '';
 	var $first_url			= ''; // Alternative URL for the First Page.
-	var $cur_tag_open		= '&nbsp;<strong>';
-	var $cur_tag_close		= '</strong>';
+	var $cur_tag_open		= '<span class="current">';
+	var $cur_tag_close		= '</span>';
 	var $next_tag_open		= '&nbsp;';
 	var $next_tag_close		= '&nbsp;';
 	var $prev_tag_open		= '&nbsp;';

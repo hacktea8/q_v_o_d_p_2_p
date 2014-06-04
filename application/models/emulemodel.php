@@ -21,7 +21,22 @@ class emuleModel extends baseModel{
   }
   public function getIndexData(){
     $return = array();
-
+    $return['topRecomData'] = $this->getArticleListByCid($cid =0,$order=0,$page=5,$limit=15);
+    $return['todayNewData'] = $this->getArticleListByCid($cid =0,$order=0,$page=1,$limit=23);
+    $movieCid = date('w')+1;
+    $return['todayMovieNewData'] = $this->getArticleListByCid($cid =$movieCid,$order=0,$page=1,$limit=10);
+    $return['todayMovieNewDataTxt'] = $this->getArticleListByCid($cid =$movieCid,$order=0,$page=3,$limit=28);
+    $return['movieHotData'] = $this->getArticleListByCid($cid =$movieCid,$order=2,$page=1,$limit=22);
+    $tvCid = $movieCid+10;
+    $return['todayNewTV'] = $this->getArticleListByCid($cid =$tvCid,$order=0,$page=1,$limit=5);
+    $return['todayNewTVtxt'] = $this->getArticleListByCid($cid =$tvCid,$order=0,$page=2,$limit=20);
+    $return['tvHotData'] = $this->getArticleListByCid($cid =$tvCid,$order=2,$page=1,$limit=12);
+    $return['varietyNewData'] = $this->getArticleListByCid($cid =9,$order=0,$page=1,$limit=5);
+    $return['varietyNewDatatxt'] = $this->getArticleListByCid($cid =9,$order=0,$page=2,$limit=15);
+    $return['varietyHotData'] = $this->getArticleListByCid($cid =9,$order=2,$page=1,$limit=12);
+    $return['animeNewData'] = $this->getArticleListByCid($cid =8,$order=0,$page=1,$limit=5);
+    $return['animeNewDatatxt'] = $this->getArticleListByCid($cid =8,$order=0,$page=2,$limit=20);
+    $return['animeHotData'] = $this->getArticleListByCid($cid =8,$order=2,$page=1,$limit=12);
     return $return;
   }
   public function getNoVIPDownList($limit = 30){
@@ -108,57 +123,27 @@ class emuleModel extends baseModel{
      $page = intval($page) - 1;
      $page = $page ? $page : 0;
      $page *= $limit;
+     $where = '';
      if($cid){
+/*
        $cids = $this->getAllCateidsByCid($cid);
        $cids = implode(',',$cids);
        $where = ' a.`cid` in ('.$cids.')  ';
+*/
+       $where = ' a.`cid` ='.$cid.' AND ';
      }
-     $sql = sprintf('SELECT %s FROM %s as a WHERE %s AND a.`flag`=1 %s LIMIT %d,%d',$this->_dataStruct,$this->db->dbprefix('emule_article'),$where,$order,$page,$limit);
+     $sql = sprintf('SELECT %s FROM %s as a WHERE %s a.`flag`=1 %s LIMIT %d,%d',$this->_dataStruct,$this->db->dbprefix('emule_article'),$where,$order,$page,$limit);
 //echo $sql;exit;
      $data = array();
      $data = $this->db->query($sql)->result_array();
      foreach($data as &$val){
+       $val['url'] = $this->geturl('views',$val['id']);
        $val['ptime'] = date('Y-m-d', $val['ptime']);
        $val['utime'] = date('Y/m/d', $val['utime']);
      }
      return $data;
   }
 
-  public function getAllSubcateByCid($cid,$limit = 0){
-    $sql = sprintf('SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `id`=%d AND `flag`=1 LIMIT 1',$this->db->dbprefix('emule_cate'),$cid);
-    $subinfo = $this->db->query($sql)->row_array();
-    if( $subinfo['pid']){
-      $cid = $subinfo['pid'];
-    }
-    $limit = intval($limit);
-    $limit = $limit ? ' ORDER BY atotal DESC LIMIT '.$limit : '';
-    $sql = sprintf('SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `pid`=%d AND `flag`=1 %s',$this->db->dbprefix('emule_cate'),$cid,$limit);
-    return $this->db->query($sql)->result_array();
-  }
-
-  public function getCateListByPid($pid = 0, $limit = 0){
-    if( !$pid){
-      return false;
-    }
-    $limit = intval($limit);
-    $limit = $limit ? ' ORDER BY atotal DESC LIMIT '.$limit : '';
-    $sql = sprintf('SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `pid`=%d AND `flag`=1 %s',$this->db->dbprefix('emule_cate'),$pid,$limit);
-    return $this->db->query($sql)->result_array();
-  }
-
-  public function getsubparentCate($cid = 0){
-     if( !$cid){
-        return false;
-     }
-     $sql = sprintf('SELECT `id`, `pid`, `name` FROM %s WHERE `id`=%d AND `flag`=1 LIMIT 1',$this->db->dbprefix('emule_cate'),$cid);
-     $subinfo = $this->db->query($sql)->row_array();
-     if($subinfo['pid']){
-       $parinfo = $this->getsubparentCate($subinfo['pid']);
-     }else{
-       return array($subinfo);
-     }
-     return $res = array(array('id'=>$parinfo[0]['id'],'name'=>$parinfo[0]['name']),array('id'=>$subinfo['id'],'name'=>$subinfo['name']));
-  }
   public function get_vols_table($id){
     return sprintf('emule_article_vols%d',$id%10);
   }
@@ -177,9 +162,23 @@ class emuleModel extends baseModel{
      $data['vols'] = $this->getVideoVolsTitle($aid,$sid,$view);
      return $data;
   }
+  public function getVideoPlayDataByAid($vid){
+    $list = $this->getVideoVolsTitle($vid,$sid=0,$view=0);
+    $return = array();
+    foreach($list as $k => &$v){
+      $tmp = array();
+      foreach($v as &$r){
+        $tmp[] = "'".$r['link']."'";
+      }
+      $tmp = implode(',',$tmp);
+      $return[] = "['".$this->serverMod[$k]."',[".$tmp."]]";
+    }
+    $return = implode(',',$return);
+    return '['.$return.']';
+  }
   public function getVideoVolsTitle($vid,$sid,$view){
     if($sid){
-       $serverMod = array(1=>'qvod',2=>'百度影音',3=>'xfplay',4=>'百度影音');
+       $serverMod = &$this->serverMod;
        $sinfo = isset($serverMod[$sid])?$serverMod[$sid]:0;
     }
     if($sinfo){
@@ -199,11 +198,13 @@ class emuleModel extends baseModel{
     $return = array();
 //echo '<pre>';echo $sql;var_dump($lists);exit;
     foreach($lists as &$v){
-      $return[$v['sid']][$v['vol']] = $v;
+      $kv = $v['vol'] - 1;
+      $v['url'] = $this->geturl('play',$v['vid'],$v['sid'] - 1,$kv);
+      $return[$v['sid']][$kv] = $v;
       if($v['volname']){
          continue;
       }
-      $return[$v['sid']][$v['vol']]['volname'] = $this->updateVolsVolTitle($v['id']);
+      $return[$v['sid']][$kv]['volname'] = $this->updateVolsVolTitle($v['vid'],$v['id']);
     }
     return $return;
   }
@@ -212,15 +213,21 @@ class emuleModel extends baseModel{
       return 0;
     }
     $table = $this->get_vols_table($vid);
-    $sql = sprintf('SELECT `link` FROM %s WHERE `id`=%d LIMIT 1',$table,$id);
+    $table = $this->db->dbprefix($table);
+    $sql = sprintf('SELECT `link` FROM %s WHERE `id`=%d LIMIT 1',$table, $id);
     $row = $this->db->query($sql)->row_array();
     $volname = '发生错误!';
     if($row){
       $volname = substr($row['link'],0,strpos($row['link'],'$'));
       $volname = trim($volname);
-      echo $row['link'],'<br />',$volname,'<br />';
+      //echo $row['link'],'<br />',$volname,'<br />';
       $volname = $this->unicode_decode($volname);
-      echo $volname;exit;
+      $update_data = array('volname'=>$volname);
+      $where_data = array('id'=>$id);
+      $sql = $this->db->update_string($table,$update_data,$where_data);
+//echo $sql;exit;
+      $this->db->query($sql);
+      //echo $volname;exit;
     }
     return $volname;
   }
@@ -352,8 +359,12 @@ class emuleModel extends baseModel{
 
   public function getHotTopic($order = 'hits',$limit=15){
      $order = $order ? ' `ptime` DESC ': ' `hits` DESC ';
-     $sql   = sprintf('SELECT `id`, `name`, `thum`,`cover` FROM %s WHERE `flag`=1 ORDER BY %s LIMIT %d', $this->db->dbprefix('emule_article'), $order, $limit); 
-     return $this->db->query($sql)->result_array();
+     $sql   = sprintf('SELECT `id`, `name`,`cover` FROM %s WHERE `flag`=1 ORDER BY %s LIMIT %d', $this->db->dbprefix('emule_article'), $order, $limit); 
+     $hot = $this->db->query($sql)->result_array();
+     foreach($hot as &$v){
+       $v['url'] = $this->geturl('views',$v['id']);
+     }
+     return $hot;
   }
 
   public function getCateByCid($sub=0){

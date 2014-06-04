@@ -2,7 +2,7 @@
 /* CSS Document */
 /*-Reset-*/
 body,div,h1,h2,h3,h4,h5,h6,p,ul,li,input,form,dl,dt,dd {margin:0; padding:0;}
-body {background:url(bg.jpg); font:12px/1.5 Tahoma, \5b8b\4f53, Helvetica, sans-serif; color:#d7d7d7; -webkit-text-size-adjust:none;}
+body {background:url(/public/images/bg.jpg); font:12px/1.5 Tahoma, \5b8b\4f53, Helvetica, sans-serif; color:#d7d7d7; -webkit-text-size-adjust:none;}
 ul,.box {height:100%; overflow:hidden;}
 li {list-style:none;}
 img {border:none;}
@@ -10,7 +10,7 @@ input {vertical-align:middle;}
 em {font-style:normal;}
 h2 {font-size:12px; font-weight:normal;}
 h3 {font-size:16px; font-family:Arial; color:#3d3d3d; margin-top:0px; padding-left:12px; position:relative; height:31px; line-height:33px; overflow:hidden;}
-h4 {font-size:14px; color:#adadad; height:35px; line-height:35px; overflow:hidden; background:url(repeat.png) left -250px;}
+h4 {font-size:14px; color:#adadad; height:35px; line-height:35px; overflow:hidden; background:url(/public/images/repeat.png) left -250px;}
 h5 {font-size:14px; color:#fff; padding-left:10px; line-height:2.4;}
 h6 {font-size:12px;}
 a {color:#d7d7d7; text-decoration:none;}
@@ -27,10 +27,10 @@ a:hover,.new li a:hover,.slist li a:hover,.news li a:hover {color:#f33c64; text-
 .more {position:absolute; top:0; right:15px; font-size:12px; font-weight:400;color:#fff;}
 .more a{color:#f33c64; text-decoration:none;}
 .hot{padding:5px 0;}
-.ph3 {background:url(sbg.png) no-repeat left -164px;}
-.raw {background:url(sbg.png) no-repeat left -215px;}
-.sd {background:url(sbg.png) no-repeat left -270px;}
-.ch3 {background:url(sbg.png) no-repeat left -327px;}
+.ph3 {background:url(/public/images/sbg.png) no-repeat left -164px;}
+.raw {background:url(/public/images/sbg.png) no-repeat left -215px;}
+.sd {background:url(/public/images/sbg.png) no-repeat left -270px;}
+.ch3 {background:url(/public/images/sbg.png) no-repeat left -327px;}
 .w794 {width:834px; overflow:hidden;}
 .w120 {width:120px; overflow:hidden;}
 .w704 {width:704px; overflow:hidden;}
@@ -41,17 +41,17 @@ a:hover,.new li a:hover,.slist li a:hover,.news li a:hover {color:#f33c64; text-
 a.aimg {border:1px solid #7b7b7b; overflow:hidden; height:100%; display:block;}
 a.aimg:hover {border-color:#96b809;}
 h4 span {display:inline-block; margin:4px auto auto 12px; width:86px; height:26px; overflow:hidden; text-align:center; line-height:28px;}
-h4 span.current {background:url(sbg.png)  left -383px; color:#fff;}
+h4 span.current {background:url(/public/images/sbg.png)  left -383px; color:#fff;}
 .none {display:none;}
 .blank5{font-size:0;height:5px;line-height:0;clear:both;overflow:hidden;}
 /*Header*/
-.toptools {background:url(repeat.png) left -139px; height:28px; overflow:hidden; color:#fff; line-height:28px; position:relative;}
-.toptools .l,.toptools .r {width:4px; height:28px; overflow:hidden; background:url(repeat.png) left -101px;}
+.toptools {background:url(/public/images/repeat.png) left -139px; height:28px; overflow:hidden; color:#fff; line-height:28px; position:relative;}
+.toptools .l,.toptools .r {width:4px; height:28px; overflow:hidden; background:url(/public/images/repeat.png) left -101px;}
 .toptools .r {background-position:left -177px;}
-.toptools .notice {padding-left:30px; background:url(sbg.png) 5px 1px no-repeat; width:92%; overflow:hidden;}
+.toptools .notice {padding-left:30px; background:url(/public/images/sbg.png) 5px 1px no-repeat; width:92%; overflow:hidden;}
 .logo {width:230px; height:90px; display:block; overflow:hidden;}
 .logo img {width:230px; height:90px;}
-.nav_wrap{width:100%;overflow:hidden;display:table;text-align:center;background:url(2.gif) repeat-x;clear:both;margin-top:5px;}
+.nav_wrap{width:100%;overflow:hidden;display:table;text-align:center;background:url(/public/images/2.gif) repeat-x;clear:both;margin-top:5px;}
 .nav_wrap .nav{width:962px;margin:0 auto;height:35px;border-left:1px solid #222;position:relative;}
 .nav ul{width:962px;position:absolute;left:0;top:0;z-index:2;}
 .nav ul a{font-size:12px;padding-top:2px;}
@@ -64,7 +64,7 @@ h4 span.current {background:url(sbg.png)  left -383px; color:#fff;}
 .searchbar {width:344px;height:27px;overflow:hidden;margin:5px 10px 0 0;}
 .searchbar form {position:relative; height:100%;}
 .searchbar input.text {float:left;width:270px;height:14px;padding:6px 0 5px 5px;font-size:14px;color:#999;line-height:14px;border-right:none;border-bottom:1px solid #babebf;border-top:1px solid #babebf;border-left:1px solid #babebf;}
-.searchbar input.submit {overflow:hidden;float:right;background: url(bgx.gif) repeat-x;width: 68px;height: 27px;font-size:14px;color:#3d3d3d;font-weight:bold;border:0; cursor:pointer;}
+.searchbar input.submit {overflow:hidden;float:right;background: url(/public/images/bgx.gif) repeat-x;width: 68px;height: 27px;font-size:14px;color:#3d3d3d;font-weight:bold;border:0; cursor:pointer;}
 .Search .seach_tag { width:570px;_width:566px;height:20px; line-height:20px;margin:8px 0 0 8px; font-size:12px;overflow:hidden;}
 .Search .seach_tag a {margin:0 2px 0 0; padding:0 3px;color:#ff000;}
 /*Footer*/
@@ -86,7 +86,7 @@ h4 span.current {background:url(sbg.png)  left -383px; color:#fff;}
 .cpic li a {color:#bfbfbf;}
 .cpic li span,.tlist ul li.nli span {position:absolute; top:135px; left:3px; width:115px; height:18px; overflow:hidden; text-align:right; padding-right:5px; opacity:0.7; filter:alpha(opacity=70); background:#000; color:#fff;}
 
-.btn1{display:block;width:85px;height:26px; margin-top:5px;text-indent:-9999px;background:url(iconBg.png) 0 -90px no-repeat;}
+.btn1{display:block;width:85px;height:26px; margin-top:5px;text-indent:-9999px;background:url(/public/images/iconBg.png) 0 -90px no-repeat;}
 .btn1:hover{background-position:0 -130px;}
 
 /*Pages*/

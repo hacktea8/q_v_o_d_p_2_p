@@ -12,23 +12,23 @@ class Usrbase extends Webbase {
     
     $this->load->helper('rewrite');
     $this->load->model('emulemodel');
-    $hotTopic = $this->mem->get('emu-hotTopic');
+    $_key = 'top_youMayLike';
+    $youMayLike = $this->mem->get($_key);
 //var_dump($hotTopic);exit;
-    if(empty($hotTopic)){
-      $hotTopic = $this->emulemodel->getHotTopic();
-      $this->_rewrite_article_url($hotTopic);
-      $this->mem->set('emu-hotTopic',$hotTopic,$this->expirettl['12h']);
+    if(empty($youMayLike)){
+      $youMayLike = $this->emulemodel->getHotTopic(0,8);
+      $this->mem->set($_key,$youMayLike,$this->expirettl['12h']);
     }
     $channel = $this->mem->get('channel');
     if( empty($channel)){
       $channel = $this->emulemodel->getAllChannel();
-      $this->mem->set('channel',$rootCate,$this->expirettl['1d']);
+      $this->mem->set('channel',$channel,$this->expirettl['1d']);
     } 
     $this->assign(array(
     'seo_keywords'=>$this->seo_keywords,'seo_description'=>$this->seo_description,'seo_title'=>$this->seo_title
     ,'showimgapi'=>$this->showimgapi,'error_img'=>$this->showimgapi.'3958009_0000671092.jpg'
-    ,'hotTopic'=>$hotTopic,'channel'=>$channel,
-    'thumhost'=>'http://i.ed2kers.com','cpid'=>0,'cid'=>0
+    ,'hotTopic'=>$hotTopic['hot'],'youMayLike'=>$hotTopic['maylike'],'channel'=>$channel
+    ,'cpid'=>0,'cid'=>0
     ,'editeUrl' => '/edite/index/emuleTopicAdd'
     ));
     $this->_get_postion();

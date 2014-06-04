@@ -30,9 +30,26 @@
 </div>
 <!-- 播放地址开始/End -->
 <div class="vlist bg mb">
-<h5><span class="vplay l"></span>Qvod<em class="more"><a href="http://www.qvod.com" target="_blank"> Qvod</a>百度影音 <a href="http://player.baidu.com" target="_blank">需要下载百度影音播放器</a></a></em></h5>
-<ul><li><a title='DVD' href='<?php echo $info['purl'];?>' target="_blank">开始观看</a></li>
-</ul></div>
+<?php
+$_reload_page = 0;$_isbreak = 0;
+foreach($videovols as $k => &$r){
+if($_isbreak){
+break;
+}
+?>
+<h5><span class="vplay l"></span><?php $playMod[$k]['title'];?><em class="more"><a href="<?php $playMod[$k]['url'];?>" target="_blank"><?php $playMod[$k]['title'];?></a></em></h5>
+<ul>
+<?php foreach($r as &$v){
+if(!$v['volname']){
+ $_reload_page = $_isbreak = 1;
+ break;
+}
+?>
+<li><a title="<?php echo $v['volname'];?>" href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['volname'];?></a></li>
+<?php }?>
+</ul>
+<?php }?>
+</div>
 
 <!-- 播放地址结束/End  -->
 <div class="all728 wrap mb">
@@ -55,7 +72,6 @@
 <div class="new l">
 <h3 class="ph3"><?php echo $channel[$cid]['name'];?>热门排行</h3>
 <ul>
-18
 <?php foreach($viewHot as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
 <p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
@@ -72,3 +88,8 @@
 <!-- 广告位置结束//End -->
 </div>
 </div>
+<script type="text/javascript">
+<?php if($_reload_page){?>
+window.location.href="<?php echo $current_url;?>";
+<?php }?>
+</script>
