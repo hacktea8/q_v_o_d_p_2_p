@@ -1,7 +1,4 @@
 <?php
-  
-function getAllcate(){
-}
 
 function getinfolist(&$cate_info){
   global $_root,$cid,$cate_list_url;
@@ -67,9 +64,9 @@ echo $data['ourl'],"\n";
   if(strlen($data['intro']) > 1024){
     $data['intro'] = mb_substr($data['intro'],0,510,'UTF-8').'...';
   }
-  preg_match('#<p class="play-list"><a target="_blank" href="(/videos/\d+vod-play-id-\d+-sid-\d+-pid-\d+\.html)">.+</a></p>#Uis',$html,$match);
+  preg_match('#<p \s*class="play-list"><a \s*target="_blank" \s*href="(/videos/\d+vod-play-id-\d+-sid-\d+-pid-\d+\.html)">.+</a>#Uis',$html,$match);
   $purl = isset($match[1])?$match[1]:'';
-  $purl = '/videos/57122vod-play-id-57122-sid-0-pid-15.html';
+  //$purl = '/videos/57122vod-play-id-57122-sid-0-pid-15.html';
   if(!$purl){
      file_put_contents('play_url_html.html',$html);
      die("\n Ourl: $data[ourl] Get PlayUrl Error!\n");
@@ -91,17 +88,22 @@ echo $data['ourl'],"\n";
     echo "\nOurl: $data[ourl] Get PlayVols Empty!\n";
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
-  echo '<pre>';var_dump($data);exit;
+ // echo '<pre>';var_dump($data);exit;
+/**
 //在判断是否更新
   $oname = $data['name'];
   $aid = checkArticleByOname($oname);
-  if($aid){
+  if($aid && !empty($data['vols'])){
     $vdata = array('name'=>$data['name'],'vols'=>$data['vols']);
     $aid = addArticleVols($vdata);
     echo "{$aid}已存在更新!\r\n";
     return 6;
   }
-
+  if($aid && empty($data['vols'])){
+    echo "{$aid}已存在更新!\r\n";
+    return 6;
+  }
+/**/
   $aid = addArticle($data);
 //echo '|',$aid,'|';exit;
   if( !$aid){
@@ -161,7 +163,7 @@ function getParseListInfo($html){
 //var_dump($match);exit;
   $match = $match[1];
   foreach($match as $mhtml){
-    preg_match('#<a class="play-img" target="_blank" href="([^"]+)"><img src="([^"]+)" alt="([^"]+)"/><label class="score">[^<]+</label></a>#Uis',$mhtml,$match);
+    preg_match('#<a class="play-img" target="_blank" href="([^"]+)"><img src="([^"]+)" alt="([^"]+)" /><label class="score">[^<]+</label></a>#Uis',$mhtml,$match);
     $info['ourl'] = isset($match[1])?$match[1]:'';
     $info['thum'] = isset($match[2])?$match[2]:'';
     $info['thum'] = strlen($info['thum'])>255?'':$info['thum'];

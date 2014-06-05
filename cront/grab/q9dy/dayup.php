@@ -26,6 +26,7 @@ foreach($cate_config as $_cate){
   if($i != $num){
     continue;
   }
+
 //var_dump($_cate);exit;
   $lastgrab = $path.$_cate['cid'].'_'.$lastgrab;
   getSubCatearticle($_cate);

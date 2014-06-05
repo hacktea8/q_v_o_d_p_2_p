@@ -12,10 +12,9 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$i=0;
 $num=17;
 foreach($cate_config as $_cate){
-  $i++;
+  $i = $_cate['cid'];
   //1,5,9,13,17 isok
   if($i > $num){
     break;
