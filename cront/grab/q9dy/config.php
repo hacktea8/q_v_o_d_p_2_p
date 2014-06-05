@@ -1,6 +1,7 @@
 <?php
 
 $_root='http://www.q9dy.com/';
+#$_root='http://xigua.wzyy.la/llp/';
 #$http_proxy = '211.138.121.37:82';
 $http_proxy = '';
 //
