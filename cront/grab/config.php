@@ -1,6 +1,6 @@
 <?php
 
-$POST_API = 'http://qvod.hacktea8.com/grabapi/';
+$POST_API = 'http://qvd.emubt.com/grabapi/';
 
 $grabsite = array(
 //ed2k

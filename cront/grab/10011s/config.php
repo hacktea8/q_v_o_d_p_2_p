@@ -1,7 +1,6 @@
 <?php
 
-$_root='http://www.tutuzx.com/';
-$_devStatus = 'OK';
+$_root='http://www.10011s.info/';
 #$http_proxy = '211.138.121.37:82';
 $http_proxy = '';
 //

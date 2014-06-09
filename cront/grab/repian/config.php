@@ -1,6 +1,7 @@
 <?php
 
 $_root='http://www.repian.com/';
+$_devStatus = '_OK';
 #$http_proxy = '211.138.121.37:82';
 $http_proxy = '';
 //

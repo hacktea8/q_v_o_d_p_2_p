@@ -144,20 +144,6 @@ function addArticle($data){
 function getHtml($url){
   global $http_proxy,$http_header;
  
-/* 
-  $header = implode("\r\n",$http_header);
-  $opts = array(
-  'http'=>array(
-    'method'=>"GET",
-    'header'=>$header
-    )
-  );
-
-  $context = stream_context_create($opts);
-  $tmpInfo = file_get_contents($url, null, $context);
-var_dump($tmpInfo);exit;
-*/
-/**/
   $curl = curl_init();
   curl_setopt($curl, CURLOPT_URL, $url);
   curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36');
@@ -178,7 +164,6 @@ var_dump($tmpInfo);exit;
     return false;
   }
   curl_close($curl);
-/**/
   return $tmpInfo;
 }
 function jsary2phpary($jsarray){
