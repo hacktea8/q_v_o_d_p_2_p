@@ -4,7 +4,42 @@
 </div>
 </div>
 <div style="display:none;">
+<script type="text/javascript">
+function _loadIndex(){jQuery.get("/maindex/index");
+jQuery.get("/maindex/crontab");
+}
+jQuery(document).ready(function(){
+<?php if('index' == $_a){ ?>
+window.setTimeout("_loadIndex()",5000);
+<?php } ?>
+});
+<?php if(in_array($_a,array('topic'))){ ?>
 
+<?php } ?>
+function _Userlogin(){
+ var timer=null;
+ var _hide=function(){
+  jQuery('.iconList').hide();jQuery('.dropMenu').hide();}
+ var init=function(){
+  jQuery('#user_login').mouseout(function(){
+  timer=setTimeout(_hide,500);});
+  jQuery('#user_login').mouseover(function(){
+  clearTimeout(timer);
+  if(jQuery('.iconList').is(":visible") || jQuery('.dropMenu').is(":visible")){
+   return false;}
+  jQuery.get('/maindex/isUserInfo/',function(data){
+  if(data.status==1){
+   jQuery('.iconList').show();jQuery('.dropMenu').hide();
+  }else{
+   jQuery('.iconList').hide();jQuery('.dropMenu').show();}
+  },"json");});}
+  init();}
+_Userlogin();
+
+</script>
+<?php if(in_array($_a,array('lists','topic'))){ ?>
+<script  src="<?php echo $js_url,'moneysad.js?v=',$version;?>" ></script>
+<?php } ?>
 </div>
 </body>
 </html>

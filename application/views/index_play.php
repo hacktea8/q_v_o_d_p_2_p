@@ -6,7 +6,7 @@
 </span></h1>
 </div>
 <div class="play655">
-<script type="text/javascript" src="/maindex/playdata/<?php echo $info['id'];?>"></script><script>var param=getHtmlParas('.shtml');viewplay(param[0],param[1])</script>
+<iframe src="/maindex/playdata/<?php echo $info['id'],'/',$sid,'/',$vol;?>"></iframe>
 <div class="playerb">
 <div class="pcomment r"><a href="javascript:void(0)" onclick="reportErr(<?php echo $info['id'];?>)">报 错</a></div>
 </div>

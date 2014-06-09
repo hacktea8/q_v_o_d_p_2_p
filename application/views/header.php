@@ -7,7 +7,9 @@
 <meta name="description" content="<?php echo $seo_title,'-',$web_title,$seo_description;?>" />
 <link href="<?php echo $cdn_url;?>/public/css/common.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $cdn_url;?>/public/css/maindex.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
-<script>var sitePath='public/';</script>
+<link href="<?php echo $cdn_url;?>/public/css/global.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script>var sitePath='public/';$.noConflict();</script>
 <script src="<?php echo $cdn_url;?>/public/js/common.js?v=<?php echo $version;?>"></script>
 <script src="<?php echo $cdn_url;?>/public/js/function.js?v=<?php echo $version;?>"></script>
 <?php if(in_array($_a,array('play'))){?>
@@ -17,10 +19,27 @@
 <body>
 <div class="wrap">
 <div class="toptools mb">
-<div class="l"></div>
-<div class="r"></div>
 <div class="notice">欢迎访问<?php echo $web_title;?>。<font color="#FF0000">重要通知:因快播倒闭,本站发布的新电影改用"影音先锋"播放器发布,站长亲测无毒,速度快!<a href='http://www.xfplay.com/xfplay.exe'>点此下载</a>影音先锋播放器!(之前电影不受影响!)</font></div>
 </div>
+<div id="user_login">
+   <span class="user">Œ</span>
+   <div class="iconList" style="display: none;">
+   <ul>
+<?php if(0){ ?>
+    <li><a href="/history/" title="我看過的"><em class="watch">图片</em>我看過的</a></li>
+    <li><a href="/bookmark/" title="我的書簽"><em class="iconfont">ŷ</em><cite>我的書簽</cite></a></li>
+<?php } ?>
+    <li><a href="/maindex/fav/" title="我的收藏"><em class="iconfont">ũ</em><cite>我的收藏</cite></a></li>
+    <li><a href="/maindex/loginout" title="登出"><em class="iconfont">ơ</em><cite>登出</cite></a></li>
+   </ul>
+   </div>
+   <div class="dropMenu" style="display: none;">
+   <ul>
+    <li><a class="btn" title="登入" href="/maindex/login" target="_blank">登入</a></li>
+   </ul>
+   </div>
+  </div>
+
 <div class="box mb"> <a href="/" title="<?php echo $web_title;?>" target="_self" class="l logo"><img src="<?php echo $cdn_url;?>/public/images/logo.gif?v=<?php echo $version;?>" alt="<?php echo $web_title;?>" /></a>
 <div class="r banner">
 <!-- 广告位置开始//End -->

@@ -79,12 +79,25 @@ exit;
     $cid = $cid < 1 ?1:$cid;
     $order = intval($order);
     $page = $page > 0 ? $page: 1;
-    $data = $this->emulemodel->getArticleListByCid($cid,$order,$page);
+    $limit = 12;
+    $channel = &$this->viewData['channel'];
+    $atotal = isset($channel[$cid])?$channel[$cid]['atotal']:0;
+    if(!$channel[$cid]['pid']){
+      foreach($channel as &$v){
+        if($cid != $v['pid']){
+          continue;
+        }
+        $atotal = $v['atotal'];
+        break;
+      }
+    }
+    $data = $this->emulemodel->getArticleListByCid($cid,$order,$page,$limit);
     $data = is_array($data) ? $data : array();
     $this->load->library('pagination');
     $config['base_url'] = sprintf('/maindex/lists/%d/%d/',$cid,$order);
     $config['total_rows'] = $atotal;
     $config['cur_page'] = $page;
+    $config['per_page'] = $limit;
     $this->pagination->initialize($config); 
     $page_string = $this->pagination->create_links();
     $_key = 'list_left_video'.$cid;
@@ -132,9 +145,8 @@ exit;
     $vid = intval($vid);
     $sid = intval($sid);
     $vol = intval($vol);
-    $data = $this->emulemodel->getVideoPlayDataByAid($vid);
-    $videoListJason = $data;
-    $view_data = array('sid'=>$sid,'vol'=>$vol,'videoListJason'=>$videoListJason,'vid'=>$vid);
+    $data = $this->emulemodel->getVideoPlayDataByAid($vid,$sid,$vol);
+    $view_data = array('sid'=>$sid,'vol'=>$vol,'playInfo'=>$data,'vid'=>$vid);
     $this->load->view('index_playdata',$view_data);
   }
   public function play($aid,$sid,$vol){
@@ -171,7 +183,7 @@ exit;
     if(file_exists($lock) && time()-filemtime($lock)<6*3600){
        return false;
     }
-    $this->emulemodel->autoSetVideoOnline(3);
+    $this->emulemodel->autoSetVideoOnline(24);
     $this->emulemodel->setCateVideoTotal();
     file_put_contents($lock,'');
     chmod($lock,0777);
@@ -227,14 +239,16 @@ var_dump($list);exit;
 //var_dump($_SERVER);exit;
     $url = $this->viewData['login_url'].urlencode($_SERVER['HTTP_REFERER']);
 //echo $url;exit;
-    redirect($url);
+    header('Location: '.$url);
+    exit;
   }
   public function loginout(){
     $this->session->unset_userdata('user_logindata');
     setcookie('hk8_auth','',time()-3600,'/');
     $url = $_SERVER['HTTP_REFERER'];
 //echo $url;exit;
-    redirect($url);
+    header('Location: '.$url);
+    exit;
   }
   public function isUserInfo(){
     $data = array('status'=>0);

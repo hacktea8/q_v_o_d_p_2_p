@@ -37,7 +37,7 @@
 .tlist ul li {width:190px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; float:left; margin-top:10px; line-height:normal; height:14px; color:#5f5f5f;}
 .tlist ul li.nli {height:auto; margin-left:10px;}
 
-.wth3 {background:url(sbg.png) no-repeat left -435px; text-align:center; height:35px; line-height:37px; margin-top:0; padding-left:0;}
+.wth3 {background:url(/public/images/sbg.png) no-repeat left -435px; text-align:center; height:35px; line-height:37px; margin-top:0; padding-left:0;}
 .wwetitle {padding:6px 10px 0px; height:100%; overflow:hidden; text-align:center; font-size:14px; font-weight:900;}
 .wwetitle dl {width:100%; overflow:hidden; margin-bottom:6px;}
 .wwetitle dt {color:#fff; padding:2px 0; background:#3d3d3d;}
@@ -94,7 +94,7 @@
 .relatedinfo h5 {background-position:left -335px;}
 .relatedinfo ul {padding:0 0 10px 13px;}
 .relatedinfo ul li {float:left; display:inline; margin:10px 12px 0 0; background:#353535; width:125px; text-align:center; padding-bottom:6px;}
-.relatedinfo ul li h3 {margin:0; height:24px; line-height:24px; overflow:hidden; color:#fff; background:url(repeat.png) left -376px; font-size:12px; text-align:left;}
+.relatedinfo ul li h3 {margin:0; height:24px; line-height:24px; overflow:hidden; color:#fff; background:url(/public/images/repeat.png) left -376px; font-size:12px; text-align:left;}
 .relatedinfo ul li p {padding:8px 0;}
 .relatedinfo ul li p img {width:107px; height:126px; margin:0 auto;}
 .relatedinfo ul li strong {display:block;}
@@ -110,13 +110,13 @@
 .blist ul li {height:24px; line-height:24px; overflow:hidden; width:100%; color:#fc0; border-bottom:1px solid #343434;}
 
 .vlist h5,.relatedinfo h5 {height:31px; line-height:31px; background:url(/public/images/repeat.png) left -294px; overflow:hidden; position:relative;}
-.vlist h5 span {display:inline; background:url(sbg.png) no-repeat; width:43px; height:31px; overflow:hidden;}
+.vlist h5 span {display:inline; background:url(/public/images/sbg.png) no-repeat; width:43px; height:31px; overflow:hidden;}
 .vlist h5 span.vplay {background-position:left -584px;}
 .vlist h5 span.vdown {background-position:left -624px;}
 .vlist h5 em,.vlist h5 em a {color:#fff; font-size:14px;}
 .vlist ul {padding:0 0 10px 12px;}
 .vlist ul li {float:left; display:inline; margin:10px 10px 0 0;}
-.vlist ul li a {display:block; padding:4px 5px; width:95px; overflow:hidden; white-space:nowrap; color:#fff; background:#96b809; text-align:center; font-size:14px;}
+.vlist ul li a {display:block; padding:4px 5px; /*width:95px;*/ overflow:hidden; white-space:nowrap; color:#fff; background:#96b809; text-align:center; font-size:14px;}
 .vlist ul li a:hover {background:#000; color:#ff6c00; text-decoration:none;}
 .vlist ul li a.current {background:#000; color:#ff6c00; text-decoration:none;}
 .mlist ul li a {width:138px;}
@@ -135,4 +135,4 @@
 .psad {position:absolute; right:170px; bottom:39px; background:#2b2b2b; width:120px; height:200px;}
 .ptext {width:550px; text-align:center;}
 .ptext a,.pcomment a,.prcommend ul li h2 a {color:#9ed21c;}
-.pcomment {width:80px; height:29px; margin-right:10px; background:url(sbg.png) left -665px; overflow:hidden; text-align:center;}
+.pcomment {width:80px; height:29px; margin-right:10px; background:url(/public/images/sbg.png) left -665px; overflow:hidden; text-align:center;}

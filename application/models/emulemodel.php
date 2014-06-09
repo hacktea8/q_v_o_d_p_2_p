@@ -9,6 +9,24 @@ class emuleModel extends baseModel{
   public function __construct(){
      parent::__construct();
   }
+  public function autoSetVideoOnline($limit = 5){
+    $cate = $this->getSubCateByCid(0);
+    foreach($cate as $v){
+      $k = $v['id'];
+      $sql = sprintf('UPDATE %s SET `onlinedate`=%d,`flag`=1,`utime`=%d,`ptime`=%d WHERE `onlinedate`=0 AND `cid`=%d LIMIT %d',$this->db->dbprefix('emule_article'),date('Ymd'),time(),time(),$k,$limit);
+      $this->db->query($sql);
+    }
+    return 1;
+  }
+  public function setCateVideoTotal(){
+    $cate = $this->getSubCateByCid(0);
+    foreach($cate as $v){
+      $k = $v['id'];
+      $sql = sprintf('UPDATE %s SET`atotal`=(SELECT COUNT(*) FROM %s WHERE `flag`=1 AND `onlinedate`<=%d AND `cid`=%d) WHERE `id`=%d LIMIT 1',$this->db->dbprefix('emule_cate'),$this->db->dbprefix('emule_article'),date('Ymd'),$k,$k);
+      $this->db->query($sql);
+    }
+    return 1;
+  }
   public function getAllChannel(){
     $sql = sprintf("SELECT `id`, `pid`, `name`, `atotal` FROM `qd_emule_cate` WHERE `flag`=1");
     $list = $this->db->query($sql)->result_array();
@@ -159,24 +177,25 @@ class emuleModel extends baseModel{
      $sql = sprintf('SELECT %s FROM %s as a LEFT JOIN %s as ac ON (a.id=ac.id) WHERE a.id =%d  %s LIMIT 1',$this->_datatopicStruct,$this->db->dbprefix('emule_article'),$this->db->dbprefix($table),$aid,$where);
      $data = array();
      $data['info'] = $this->db->query($sql)->row_array();
+     $actor = explode('|',$data['info']['keyword']);
+     $data['info']['type'] = $actor[1];
+     $data['info']['actor'] = $actor[0];
      $data['vols'] = $this->getVideoVolsTitle($aid,$sid,$view);
      return $data;
   }
-  public function getVideoPlayDataByAid($vid){
-    $list = $this->getVideoVolsTitle($vid,$sid=0,$view=0);
+  public function getVideoPlayDataByAid($vid,$sid,$vol){
+    $list = $this->getVideoVolsTitle($vid,$sid,$view=0,$vol);
     $return = array();
-    foreach($list as $k => &$v){
-      $tmp = array();
-      foreach($v as &$r){
-        $tmp[] = "'".$r['link']."'";
-      }
-      $tmp = implode(',',$tmp);
-      $return[] = "['".$this->serverMod[$k]."',[".$tmp."]]";
-    }
-    $return = implode(',',$return);
-    return '['.$return.']';
+    $link = $this->getVideoPlayLinkUrl($list['link']);
+    $return['url'] = $link['url'];
+    
+    return $return;
   }
-  public function getVideoVolsTitle($vid,$sid,$view){
+  public function getVideoPlayLinkUrl($link){
+    $link = explode('$',$link);
+    return array('title'=>$link[0],'url'=>$link[1],'type'=>$link[2]);
+  }
+  public function getVideoVolsTitle($vid,$sid,$view,$vol=0){
     if($sid){
        $serverMod = &$this->serverMod;
        $sinfo = isset($serverMod[$sid])?$serverMod[$sid]:0;
@@ -193,8 +212,17 @@ class emuleModel extends baseModel{
     }else{
       $struct = $this->_volsPlayStruct;
     }
-    $sql = sprintf('SELECT %s FROM %s WHERE `vid`=%d %s',$struct,$this->db->dbprefix($table),$vid,$vgroupby);
+    $where = '';
+    if($vol){
+      $where = sprintf(' AND `vol`=%d LIMIT 1');
+    }
+    $sql = sprintf('SELECT %s FROM %s WHERE `vid`=%d %s %s',$struct,$this->db->dbprefix($table),$vid,$vgroupby,$where);
+    if($vol){
+      $row = $this->db->query($sql)->row_array();
+      return $row;
+    }
     $lists = $this->db->query($sql)->result_array();
+    
     $return = array();
 //echo '<pre>';echo $sql;var_dump($lists);exit;
     foreach($lists as &$v){
@@ -367,28 +395,9 @@ class emuleModel extends baseModel{
      return $hot;
   }
 
-  public function getCateByCid($sub=0){
-     if($sub){
-       $sql = sprintf('SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `flag` = 1',$this->db->dbprefix('emule_cate'));
-       $list= $this->db->query($sql)->result_array();
-       $res = array();
-       foreach($list as $val){
-         if($val['pid'] == 0){
-           $res[$val['id']]['id'] = $val['id'];
-           $res[$val['id']]['name'] = $val['name'];
-           $res[$val['id']]['atotal'] = $val['atotal'];
-         }else{
-           $res[$val['pid']]['subcate'][] = $val;
-         }
-       }
-       return $res;
-     }
-
-     $sql = sprintf('SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `pid` = 0 AND `flag` = 1',$this->db->dbprefix('emule_cate'));
+  public function getSubCateByCid(){
+     $sql = sprintf('SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `pid` > 0 AND `flag` = 1',$this->db->dbprefix('emule_cate'));
      return $this->db->query($sql)->result_array();
-  }
-  public function getdata(){
-     return 9999999;
   }
 }
 ?>

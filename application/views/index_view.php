@@ -16,7 +16,7 @@
 <?php echo $info['actor'];?>
 &nbsp;&nbsp;</p>
 
-<p>时间：<?php echo $info['onlinedate'];?></p>
+<p>时间：<?php echo date('Y-m-d',strtotime($info['onlinedate']));?></p>
 <!-- 影片信息结束/End -->
 <!-- JiaThis Button BEGIN -->
 <div id="ckepop">

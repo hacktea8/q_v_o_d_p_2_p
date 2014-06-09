@@ -22,7 +22,7 @@ class Usrbase extends Webbase {
     $channel = $this->mem->get('channel');
     if( empty($channel)){
       $channel = $this->emulemodel->getAllChannel();
-      $this->mem->set('channel',$channel,$this->expirettl['1d']);
+      $this->mem->set('channel',$channel,$this->expirettl['3h']);
     } 
     $this->assign(array(
     'seo_keywords'=>$this->seo_keywords,'seo_description'=>$this->seo_description,'seo_title'=>$this->seo_title

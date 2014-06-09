@@ -102,6 +102,6 @@ h4 span.current {background:url(/public/images/sbg.png)  left -383px; color:#fff
 /*Ads*/
 .banner {width:730px; overflow:hidden; text-align:right;}
 .all960 {text-align:center; background:#555;}
-.zz {background:url(repeat.png) left -215px; height:25px; overflow:hidden; line-height:23px; padding-left:15px; color:#fff; font-size:16px; font-weight:bold;}
+.zz {background:url(/public/images/repeat.png) left -215px; height:25px; overflow:hidden; line-height:23px; padding-left:15px; color:#fff; font-size:16px; font-weight:bold;}
 .i704 {width:100%; margin-top:6px; background:#555; height:90px; float:left;}
 /*-Common End-*/

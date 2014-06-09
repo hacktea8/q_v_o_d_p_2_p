@@ -35,7 +35,7 @@
 <p>分类：<?php echo $channel[$v['id']]['name'];?></p>
 <p>人气：<?php echo $v['hits'];?></p>
 <p>时间：<?php echo $v['onlinedate'];?></p>
-<p><a href="<?php echo $v['purl'];?>" class="btn1" target="_blank">马上观看</a></p></li>
+<p><a href="<?php echo $v['url'];?>" class="btn1" target="_blank">马上观看</a></p></li>
 <?php }?>
 </div>
 <!-- 分类列表结束//End -->
