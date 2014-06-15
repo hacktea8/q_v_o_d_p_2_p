@@ -117,6 +117,11 @@ exit;
   }
   public function views($aid){
     $aid = intval($aid);
+    if($aid <1){
+      header('HTTP/1.1 301 Moved Permanently');
+      header('Location: /');
+      exit;
+    }
     $data = $this->emulemodel->getEmuleTopicByAid($aid,0,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
     if(empty($data)){
        header('Location: '.$this->url404);
@@ -129,7 +134,7 @@ exit;
        $viewHot = $this->emulemodel->getArticleListByCid($cid,2,2,18);
        $this->mem->set($_key,$viewHot,$this->expirettl['12h']);
     }
-// seo setting
+// seo setting 唱战记,唱战记在线观看,唱战记全集,电视剧唱战记,唱战记下载,唱战记主题曲,唱战记剧情,唱战记演员表
     $kw = '';
     $keywords = $data['name'].','.$kw.$this->seo_keywords;
     $title = $data['name'];
@@ -145,6 +150,11 @@ exit;
     $vid = intval($vid);
     $sid = intval($sid);
     $vol = intval($vol);
+    if($vid <1 || $vol <1){
+      header('HTTP/1.1 301 Moved Permanently');
+      header('Location: /');
+      exit;
+    }
     $data = $this->emulemodel->getVideoPlayDataByAid($vid,$sid,$vol);
     $view_data = array('sid'=>$sid,'vol'=>$vol,'playInfo'=>$data,'vid'=>$vid);
     $this->load->view('index_playdata',$view_data);
@@ -153,6 +163,11 @@ exit;
     $aid = intval($aid);
     $sid = intval($sid);
     $vol = intval($vol);
+    if($aid <1 || $vol <1){
+      header('HTTP/1.1 301 Moved Permanently');
+      header('Location: /');
+      exit;
+    }
     $data = $this->emulemodel->getEmuleTopicByAid($aid,$sid,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
     $cid = $data['info']['cid'] ? $data['info']['cid'] : 0;
     $_key = 'play_bottomHot'.$cid;
