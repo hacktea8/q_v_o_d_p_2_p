@@ -14,6 +14,17 @@ var XgPlayer = {
 };
 document.write('<script language="javascript" src="http://static.xigua.com/xiguaplayer.js?'+new Date().getTime()+'" charset="utf-8"><\/script>');
 </script>
+<?php }elseif(in_array($sid,array(6))){?>
+<script type="text/javascript">
+var jjvod_url = '<?php echo $playInfo['url'];?>';//播放视频地址
+var jjvod_w = 680;//播放器宽度
+var jjvod_h = 490;//播放器高度
+var jjvod_ad = '';//缓冲和暂停调用广告地址，如http://www.abc.com/ad.html
+var jjvod_c = '<?php echo $domain;?>'; //吉吉影音推广渠道，一般为域名简写，如baidu
+var jjvod_install = 'http://player.jjvod.com/js/jjplayer_install.html?v=1&c='+jjvod_c;
+var jjvod_weburl = unescape(window.location.href);
+</script>
+<script type="text/javascript" src="http://player.jjvod.com/jjplayer_v2.js" charset="utf-8"></script>
 <?php }else{?>
 <script type="text/javascript">
 function Xf_Complete(){
