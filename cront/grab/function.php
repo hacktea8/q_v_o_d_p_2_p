@@ -153,7 +153,7 @@ function getHtml($url){
   //curl_setopt($curl,CURLOPT_HTTPHEADER,$http_header);
   curl_setopt($curl,CURLOPT_FOLLOWLOCATION,true);
   curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
-  curl_setopt($curl, CURLOPT_HEADER, 1);
+  curl_setopt($curl, CURLOPT_HEADER, 0);
 //  curl_setopt($curl, CURLOPT_COOKIEFILE, 'cookie/cookie.txt '); //读取  
 //  curl_setopt($curl, CURLOPT_COOKIEJAR, 'cookie/cookie.txt '); //保存  
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
