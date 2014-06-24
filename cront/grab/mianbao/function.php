@@ -88,7 +88,8 @@ echo $data['ourl'],"\n";
     echo "\nOurl: $data[ourl] Get PlayVols Empty!\n";
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
- // echo '<pre>';var_dump($data);exit;
+  echo '<pre>';var_dump($data);exit;
+
 /**
 //在判断是否更新
   $oname = $data['name'];

@@ -4,6 +4,7 @@ $_root='http://www.vkeke.com/';
 $_devStatus = '_OK';
 #$http_proxy = '211.138.121.37:82';
 $http_proxy = '';
+
 //
 $strreplace=array(
 array('from'=>'www.ed2kers.com','to'=>'emu.hacktea8.com')

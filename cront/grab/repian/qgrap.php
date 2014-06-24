@@ -10,6 +10,8 @@ include_once($APPPATH.'config.php');
 
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
+// index3
+// En site
 
 $num=1;
 foreach($cate_config as $_cate){

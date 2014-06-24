@@ -12,7 +12,7 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$num=17;
+$num=1;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
   //1,5,9,13,17 isok

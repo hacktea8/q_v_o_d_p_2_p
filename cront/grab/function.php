@@ -137,6 +137,10 @@ function addArticle($data){
   $apicurl->postVal = array(
   'article_data' => json_encode($data)
   );
+  $error = json_last_error();
+  if($error){
+    var_dump($data);exit;
+  }
   $html = $apicurl->getHtml();
 //var_dump($html);exit;
   return json_decode($html,1);

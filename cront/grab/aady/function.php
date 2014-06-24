@@ -55,7 +55,6 @@ echo $data['ourl'],"\n";
     echo "获取html失败";exit;
   }
   $data['keyword'] = '';
-  $data['actor'] = @iconv("UTF-8","UTF-8//TRANSLIT",$data['actor']);
   //
   $data['ptime']=time();
   $data['utime']=time();
@@ -65,7 +64,6 @@ echo $data['ourl'],"\n";
 //echo $match[1],"\n";
   $data['intro'] = strip_tags($match[1]);
   $data['intro'] = preg_replace('#&\S+;#Uis','',$data['intro']);
-  $data['intro'] = mb_strlen($data['intro'])>300?mb_substr($data['intro'],0,256,'UTF-8'):$data['intro'];
   $data['intro'] = trim($data['intro']);
   $playhtml = getArticlePlayData($data['purl']);
   if(empty($playhtml)){
@@ -80,8 +78,7 @@ exit;
      return false;
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
-//  echo '<pre>';var_dump($data);exit;
-
+  echo '<pre>';var_dump($data);exit;
 /*
 //在判断是否更新
   $oname = $data['name'];
@@ -124,8 +121,7 @@ function getArticlePlayData($purl){
   $playjs = explode('$$$',$playjs);
   $return = array();
   foreach($playjs as &$v){
-    $player = ''; 
-	  if(false !== stripos($v,'qvod://')){
+    if(false !== stripos($v,'qvod://')){
       $v = str_replace('qvod$$','',$v);
       $v = trim($v,'#');
       //$v = str_replace('++qvod','$qvod',$v);
@@ -148,10 +144,7 @@ function getArticlePlayData($purl){
       $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'xigua';
-	}else{
-	  echo "\n++ $v ++\n";
-	  continue;
-	}
+    }
     $return[] = array($player,$v);
   }
   return $return;

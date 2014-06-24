@@ -11,11 +11,10 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-//page 268
-
-$num = 2;
+$i = 0;
+$num = 18;
 foreach($cate_config as $_cate){
-  $i = $_cate['cid'];
+  $i++;
   //2,6,10,14,18 isok
   if($i > $num){
     break;
@@ -23,8 +22,8 @@ foreach($cate_config as $_cate){
   if($i != $num){
     continue;
   }
-  $cid = $_cate['cid'];
-  getinfolist($_cate);
+  $lastgrab = $path.$_cate['cid'].'_'.$lastgrab;
+  getSubCatearticle($_cate);
   sleep(10);
 }
 

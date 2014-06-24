@@ -6,25 +6,25 @@ include_once($APPPATH.'../function.php');
 include_once($APPPATH.'/function.php');
 include_once($APPPATH.'config.php');
 
+
 /*============ Get Cate article =================*/
 
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-//page 268
-
-$num = 2;
+$i = 0;
+$num = 16;
 foreach($cate_config as $_cate){
-  $i = $_cate['cid'];
-  //2,6,10,14,18 isok
+  $i++;
+  //4,8,12,16,20 isok
   if($i > $num){
     break;
   }
   if($i != $num){
     continue;
   }
-  $cid = $_cate['cid'];
-  getinfolist($_cate);
+  $lastgrab = $path.$_cate['cid'].'_'.$lastgrab;
+  getSubCatearticle($_cate);
   sleep(10);
 }
 

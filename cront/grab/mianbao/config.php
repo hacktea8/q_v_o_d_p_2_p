@@ -3,7 +3,9 @@
 $_root='http://www.mianbao.com/';
 #$http_proxy = '211.138.121.37:82';
 $http_proxy = '';
-//
+$_statusType = 'Error';
+//播放地址JS混淆加密
+
 $strreplace=array(
 array('from'=>'www.ed2kers.com','to'=>'emu.hacktea8.com')
 ,array('from'=>'\"','to'=>'"')
