@@ -18,7 +18,7 @@
 <!-- 今日更新左侧开始//End -->
 <div class="l w250 bg slist">
 <div class="new l">
-<h3 class="ph3">今日最新入库<em class="more"><a href="javascript:void(0);">昨日入库<img src="<?php echo $cdn_url;?>/images/hot.gif?v=<?php echo $version;?>" alt="24小时内更新" class="hot"/></a></em></h3>
+<h3 class="ph3">今日最新入库<em class="more"><a href="javascript:void(0);">昨日入库<img src="<?php echo $cdn_url;?>/public/images/hot.gif?v=<?php echo $version;?>" alt="24小时内更新" class="hot"/></a></em></h3>
 <ul>
 <?php foreach($qvodIndex['todayNewData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>

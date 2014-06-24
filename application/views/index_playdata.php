@@ -1,3 +1,10 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>影片播放</title>
+</head>
+<body>
 <?php if(in_array($sid,array(5))){?>
 <script language="javascript">
 var XgPlayer = {
@@ -7,19 +14,43 @@ var XgPlayer = {
 'NextWebPage': "<?php echo $playInfo['next'];?>", //下一集播放页面地址，需更改
 'Buffer': '/public/player/xigua/xg_loading.html', // 播缓冲AD，需更改
 'Pase': '/public/player/xigua/xg_loading.html', // 暂停AD，需更改
-'Width': 680, // 播放器显示宽度
-'Height': 490, // 播放器显示高度
+'Width': 690, // 播放器显示宽度
+'Height': 550, // 播放器显示高度
 'Second': 8, // 缓冲时间
 "Installpage":'http://static.xigua.com/installpage.html'
 };
 document.write('<script language="javascript" src="http://static.xigua.com/xiguaplayer.js?'+new Date().getTime()+'" charset="utf-8"><\/script>');
 </script>
+<?php }elseif(in_array($sid,array(404))){ ?>
+<script language="javascript">
+var BdPlayer = new Array();
+BdPlayer['time'] = 8;//缓冲广告展示时间(如果设为0,则根据缓冲进度自动控制广告展示时间)
+BdPlayer['buffer'] = '/public/player/bdhd/bd_loading.html';//贴片广告网页地址
+BdPlayer['pause'] = '/public/player/bdhd/bd_loading.html';//暂停广告网页地址
+BdPlayer['end'] = '/public/player/bdhd/bd_loading.html';//影片播放完成后加载的广告
+BdPlayer['tn'] = '12345678';//播放器下载地址渠道号
+BdPlayer['width'] = 690;//播放器宽度(只能为数字)
+BdPlayer['height'] = 550;//播放器高度(只能为数字)
+BdPlayer['showclient'] = 1;//是否显示拉起拖盘按钮(1为显示 0为隐藏)
+BdPlayer['url'] = '<?php echo $playInfo['url'];?>';//当前播放任务播放地址
+BdPlayer['nextcacheurl'] = '<?php echo $playInfo['nexturl'];?>';//下一集播放地址(没有请留空)
+BdPlayer['lastwebpage'] = '<?php echo $playInfo['pre'];?>';//上一集网页地址(没有请留空)
+BdPlayer['nextwebpage'] = '<?php echo $playInfo['next'];?>';//下一集网页地址(没有请留空)
+</script>
+<script language="javascript" src="http://php.player.baidu.com/bdplayer/player.js" charset="utf-8"></script>
+<?php }elseif(in_array($sid,array(404))){ ?>
+<iframe id="iframe_down" name="iframe_down" scrolling="no" frameborder="0" style="position:absolute; z-index:1000; top:0; margin: 0;width: 690px; height: 550px; display: none;" src="http://error2.qvod.com/error2.htm"></iframe>
+<object classid="clsid:F3D0D36F-23F8-4682-A195-74C92B03D4AF" width="690px" height="550px" id="QvodPlayer" name="QvodPlayer" onerror="document.getElementById('QvodPlayer').style.display='none';document.getElementById('iframe_down').style.display='block';"><PARAM NAME='Showcontrol' VALUE='1'><PARAM NAME='URL' VALUE='<?php echo $playInfo['url'];?>'>
+<PARAM NAME='Autoplay' VALUE='1'><PARAM NAME='QvodAdUrl' VALUE=''>
+<PARAM NAME='NextWebPage' VALUE='<?php echo $playInfo['next'];?>'>
+<embed id='QvodPlayer2' name='QvodPlayer2' width='100%' height='100%' URL='<?php echo $playInfo['url'];?>' type='application/qvod-plugin' Autoplay='1' QvodAdUrl='' Showcontrol='1'></embed>
+</object>
 <?php }elseif(in_array($sid,array(6))){?>
 <script type="text/javascript">
 var jjvod_url = '<?php echo $playInfo['url'];?>';//播放视频地址
-var jjvod_w = 680;//播放器宽度
-var jjvod_h = 490;//播放器高度
-var jjvod_ad = '';//缓冲和暂停调用广告地址，如http://www.abc.com/ad.html
+var jjvod_w = 690;//播放器宽度
+var jjvod_h = 550;//播放器高度
+var jjvod_ad = '/public/player/jjvod/jj_loading.html';//缓冲和暂停调用广告地址，如http://www.abc.com/ad.html
 var jjvod_c = '<?php echo $domain;?>'; //吉吉影音推广渠道，一般为域名简写，如baidu
 var jjvod_install = 'http://player.jjvod.com/js/jjplayer_install.html?v=1&c='+jjvod_c;
 var jjvod_weburl = unescape(window.location.href);
@@ -34,11 +65,11 @@ function Xf_Complete(){
 <IFRAME id=xframe_mz name=xframe_mz style="MARGIN: 0px; WIDTH: 100%; DISPLAY: none; HEIGHT: 100%" src="http://error.xfplay.com/error.htm" frameBorder=0 scrolling=no></IFRAME>
 <!--先锋播放器-->
 <OBJECT id=Xfplay name=Xfplay  onerror="document.getElementById('Xfplay').style.display='none';document.getElementById('xframe_mz').style.display='';document.getElementById('xframe_mz').src='http://error.xfplay.com/error.htm';" 
-              CLASSID="CLSID:E38F2429-07FE-464A-9DF6-C14EF88117DD" width="900" height="550">
+              CLASSID="CLSID:E38F2429-07FE-464A-9DF6-C14EF88117DD" width="690" height="550">
 <!--IE 浏览器-->
 <PARAM NAME="URL" VALUE="<?php echo $playInfo['url'];?>">
   <!--火狐，谷歌 等浏览器-->
-<embed type="application/xfplay-plugin" id="Xfplay2" name="Xfplay2" PARAM_URL="<?php echo $playInfo['url'];?>"  Event_Xf_Complete="Xf_Complete" width="900" height="550" ></embed>
+<embed type="application/xfplay-plugin" id="Xfplay2" name="Xfplay2" PARAM_URL="<?php echo $playInfo['url'];?>"  Event_Xf_Complete="Xf_Complete" width="690" height="550" ></embed>
 </OBJECT>
 <SCRIPT language=JavaScript src="http://error.xfplay.com/Player.js"></SCRIPT>
 <!--  IE 浏览器 播放完成后调用 -->
@@ -47,3 +78,5 @@ function Xf_Complete(){
 }   
 </script>
 <?php }?>
+</body>
+</html>

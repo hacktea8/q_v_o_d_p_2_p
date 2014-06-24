@@ -37,7 +37,8 @@ if($_isbreak){
 break;
 }
 ?>
-<h5><span class="vplay l"></span><?php $playMod[$k]['title'];?><em class="more"><a href="<?php $playMod[$k]['url'];?>" target="_blank"><?php $playMod[$k]['title'];?></a></em></h5>
+<h5><span class="vplay l"></span><?php echo $playMod[$k]['title'];?>
+<em class="more"><a onclick="return false;" ref="nofollow" href="<?php echo $playMod[$k]['url'];?>" target="_blank"><?php echo $playMod[$k]['title'];?></a></em></h5>
 <ul>
 <?php foreach($r as &$v){
 if(!$v['volname']){
@@ -45,7 +46,7 @@ if(!$v['volname']){
  break;
 }
 ?>
-<li><a title="<?php echo $v['volname'];?>" href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['volname'];?></a></li>
+<li><a title="<?php echo $v['volname'];?>" ref="nofollow" href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['volname'];?></a></li>
 <?php }?>
 </ul>
 <?php }?>
@@ -74,7 +75,7 @@ if(!$v['volname']){
 <ul>
 <?php foreach($viewHot as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
-<p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
+<p><a href="<?php echo $v['url'];?>" target="_blank" title="<?php echo $v['name'];?>"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>
 </ul>
 </div>
@@ -88,8 +89,21 @@ if(!$v['volname']){
 <!-- 广告位置结束//End -->
 </div>
 </div>
+<div class="hide err_msg_div">
+<div id="err_msg_txt"></div>
+<?php if(!$uinfo['uid']){ ?>
+<div id="fast_login_div"><a href="/maindex/login" rel="nofollow" target="_blank" >立即登陆观看</a></div>
+<?php }?>
+</div>
 <script type="text/javascript">
 <?php if($_reload_page){?>
 window.location.href="<?php echo $current_url;?>";
 <?php }?>
+var err_msg = getCookie('err_msg');
+if(err_msg){
+ //显示 DIV 弹窗
+ jQuery('.err_msg_div').removeClass("hide");
+ jQuery('#fast_login_div').text(err_msg);
+ delCookie('err_msg');
+}
 </script>

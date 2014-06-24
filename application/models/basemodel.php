@@ -1,7 +1,7 @@
 <?php
 class baseModel extends CI_Model{
   public $db;
-  public $serverMod = array(1=>'qvod',2=>'百度影音',3=>'影音先锋',4=>'百度影音',5=>'西瓜影音',6=>'吉吉影音');
+  public $serverMod = array(1=>'qvod',2=>'百度影音',3=>'影音先锋',5=>'西瓜影音',6=>'吉吉影音');
 
   public function __construct(){
      parent::__construct();

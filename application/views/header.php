@@ -1,8 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="expires" CONTENT="0"> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><?php echo $seo_title,'-',$web_title;?>-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载</title>
+<title><?php echo $seo_title,'-',$web_title;?>-影音先锋-快播-吉吉影音-西瓜影音-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载</title>
 <meta name="keywords" content="<?php echo $seo_keywords,',',$web_title;?>,BT种子下载,电驴资源,eD2k,磁力链接,龙BT发布,BT之家,快播资源,百度影音" />
 <meta name="description" content="<?php echo $seo_title,'-',$web_title,$seo_description;?>" />
 <link href="<?php echo $cdn_url;?>/public/css/common.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
@@ -13,7 +16,6 @@
 <script src="<?php echo $cdn_url;?>/public/js/common.js?v=<?php echo $version;?>"></script>
 <script src="<?php echo $cdn_url;?>/public/js/function.js?v=<?php echo $version;?>"></script>
 <?php if(in_array($_a,array('play'))){?>
-<script src="<?php echo $cdn_url;?>/public/js/play.js?v=<?php echo $version;?>"></script>
 <?php }?>
 </head>
 <body>
@@ -70,7 +72,23 @@ continue;
 <li <?php if($cid == $v['id']){echo 'class="current"';}?>><a href="<?php echo $v['url'];?>" ><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
-</div></div>
+</div>
+<div class="nav">
+<ul>
+<?php 
+if($uinfo['isadult']){
+foreach($channel as &$v){
+ if(19 != $v['pid']){
+  continue;
+ }
+?>
+<li <?php if($cid == $v['id']){echo 'class="current"';}?>><a href="<?php echo $v['url'];?>" ><?php echo $v['name'];?></a></li>
+<?php }//end foreach
+ }//end if
+?>
+</ul>
+</div>
+</div>
 </div>
 
 <!-- 导航标签结束//End -->

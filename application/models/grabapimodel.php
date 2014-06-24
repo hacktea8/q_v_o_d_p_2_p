@@ -73,6 +73,9 @@ class grabapiModel extends CI_Model{
     }
     $vols = array();
     $vols['sid'] = $this->serverMod[$data['server']];
+    if( !$vols['sid']){
+      return 0;
+    }
     $vols['vid'] = $data['vid'];
     foreach($data['vols'] as $k => $vol){
       $vols['vol'] = $k+1;

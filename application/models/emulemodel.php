@@ -150,7 +150,7 @@ class emuleModel extends baseModel{
 */
        $where = ' a.`cid` ='.$cid.' AND ';
      }
-     $sql = sprintf('SELECT %s FROM %s as a WHERE %s a.`flag`=1 %s LIMIT %d,%d',$this->_dataStruct,$this->db->dbprefix('emule_article'),$where,$order,$page,$limit);
+     $sql = sprintf('SELECT %s FROM %s as a WHERE %s a.`onlinedate`<=%d AND a.`onlinedate`>0 AND a.`flag`=1 %s LIMIT %d,%d',$this->_dataStruct,$this->db->dbprefix('emule_article'),$where,date('Ymd'),$order,$page,$limit);
 //echo $sql;exit;
      $data = array();
      $data = $this->db->query($sql)->result_array();
@@ -188,12 +188,15 @@ class emuleModel extends baseModel{
     $return = array();
     $link = $this->getVideoPlayLinkUrl($list['link']);
     $return['url'] = $link['url'];
-    
+    $return['nexturl'] = '';
+    $return['pre'] = '';
+    $return['next'] = '';
     return $return;
   }
   public function getVideoPlayLinkUrl($link){
     $link = explode('$',$link);
-    return array('title'=>$link[0],'url'=>$link[1],'type'=>$link[2]);
+    
+    return array('title'=>@$link[0],'url'=>@$link[1],'type'=>@$link[2]);
   }
   public function getVideoVolsTitle($vid,$sid,$view,$vol=0){
     if($sid){
@@ -226,8 +229,8 @@ class emuleModel extends baseModel{
     $return = array();
 //echo '<pre>';echo $sql;var_dump($lists);exit;
     foreach($lists as &$v){
-      $kv = $v['vol'] - 1;
-      $v['url'] = $this->geturl('play',$v['vid'],$v['sid'] - 1,$kv);
+      $kv = $v['vol'];
+      $v['url'] = $this->geturl('play',$v['vid'],$v['sid'],$kv);
       $return[$v['sid']][$kv] = $v;
       if($v['volname']){
          continue;

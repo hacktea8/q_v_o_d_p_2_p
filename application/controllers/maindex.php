@@ -109,7 +109,8 @@ exit;
        $this->mem->set($_key,$list_left_video,$this->expirettl['12h']);
     }
 // seo setting
-    $title = $kw = '';
+    $title = $channel['name'];
+    $kw = '';
     $keywords = $kw.$this->seo_keywords;
     $this->assign(array('seo_title'=>$title,'seo_keywords'=>$keywords,'infolist'=>$data
     ,'page_string'=>$page_string,'cid'=>$cid,'hotRankList'=>$list_left_video['hot'],'hotRecomList'=>$list_left_video['new']));
@@ -124,6 +125,7 @@ exit;
     }
     $data = $this->emulemodel->getEmuleTopicByAid($aid,0,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
     if(empty($data)){
+echo 666;exit;
        header('Location: '.$this->url404);
        exit;
     }
@@ -134,9 +136,9 @@ exit;
        $viewHot = $this->emulemodel->getArticleListByCid($cid,2,2,18);
        $this->mem->set($_key,$viewHot,$this->expirettl['12h']);
     }
-// seo setting 唱战记,唱战记在线观看,唱战记全集,电视剧唱战记,唱战记下载,唱战记主题曲,唱战记剧情,唱战记演员表
-    $kw = '';
-    $keywords = $data['name'].','.$kw.$this->seo_keywords;
+// seo setting
+    $kw = $this->viewData['channel'][$cid]['name'];
+    $keywords = sprintf('%s,%s在线观看,%s全集,%s%s,%s下载,%s主题曲,%s剧情,%s演员表',$data['name'],$data['name'],$data['name'],$kw,$data['name'],$data['name'],$data['name'],$data['name'],$data['name']);
     $title = $data['name'];
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
     $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title
@@ -156,6 +158,8 @@ exit;
       exit;
     }
     $data = $this->emulemodel->getVideoPlayDataByAid($vid,$sid,$vol);
+    //$data['url'] = json_decode($data['url'],1);
+   //var_dump($data);exit; 
     $view_data = array('sid'=>$sid,'vol'=>$vol,'playInfo'=>$data,'vid'=>$vid);
     $this->load->view('index_playdata',$view_data);
   }
@@ -170,6 +174,19 @@ exit;
     }
     $data = $this->emulemodel->getEmuleTopicByAid($aid,$sid,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
     $cid = $data['info']['cid'] ? $data['info']['cid'] : 0;
+    if(empty($data)){
+      header('HTTP/1.1 301 Moved Permanently');
+      header('Location: /');
+      exit;
+    }
+    $infoCate = $this->viewData['channel'][$cid];
+    if($infoCate['isadult'] && !$this->uinfo['isadult']){
+      $err_msg = '抱歉!您还未登陆!(或者您是未成年,暂不提供观看!谢谢您光临本网站!!)请登录后在观看!!';
+      setcookie('err_msg',$err_msg,time()+3600,'/');
+      header('HTTP/1.1 301 Moved Permanently');
+      header('Location: /maindex/views/'.$data['id']);
+      exit;
+    }
     $_key = 'play_bottomHot'.$cid;
     $playRelate = $this->mem->get($_key);
     if(!$playRelate){

@@ -6,6 +6,7 @@ class Usrbase extends Webbase {
   public $seo_keywords = '电驴资源,电驴资源网站,电驴资源下载,电驴资源搜索,电驴资源网,电驴资源网站,电驴下载,电骡资源,ed2k,eMule,电骡下载,emule 资源,电驴资源库,电驴共享';
   public $seo_description = '是一个综合的电驴资源网站，提供包含电影、电视剧、音乐、游戏、动漫、综艺、软件、资料、图书、教育等栏目电驴资源搜索、电驴下载服务。';
   public $imguploadapiurl = 'http://img.hacktea8.com/imgapi/upload/?seq=';
+  public $playMod = array(1=>array('title'=>'qvod','url'=>''),3=>array('title'=>'影音先锋','url'=>''),2=>array('title'=>'百度影音','url'=>''),5=>array('title'=>'西瓜影音','url'=>''),6=>array('title'=>'吉吉影音','url'=>''));
 
   public function __construct(){
     parent::__construct();
@@ -28,7 +29,7 @@ class Usrbase extends Webbase {
     'seo_keywords'=>$this->seo_keywords,'seo_description'=>$this->seo_description,'seo_title'=>$this->seo_title
     ,'showimgapi'=>$this->showimgapi,'error_img'=>$this->showimgapi.'3958009_0000671092.jpg'
     ,'hotTopic'=>$hotTopic['hot'],'youMayLike'=>$hotTopic['maylike'],'channel'=>$channel
-    ,'cpid'=>0,'cid'=>0
+    ,'cpid'=>0,'cid'=>0,'playMod'=>$this->playMod
     ,'editeUrl' => '/edite/index/emuleTopicAdd'
     ));
     $this->_get_postion();
@@ -70,5 +71,17 @@ class Usrbase extends Webbase {
     $this->load->view('header',$this->viewData);
     $this->load->view($view_file);
     $this->load->view('footer');
+  }
+  public function isrobots(){
+    $robots = array('baidu','360','google');
+    $return = 0;
+    foreach($robots as $v){
+     if(FALSE !== stripos($_SERVER['HTTP_USER_AGENT'],$v)){
+      $return = 1;
+      break;
+      
+     }
+    }
+    return $return;
   }
 }

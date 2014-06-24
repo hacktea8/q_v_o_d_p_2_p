@@ -6,7 +6,7 @@
 </span></h1>
 </div>
 <div class="play655">
-<iframe src="/maindex/playdata/<?php echo $info['id'],'/',$sid,'/',$vol;?>"></iframe>
+<iframe width="960px" height="530px"  frameborder="0" scrolling="no" src="/maindex/playdata/<?php echo $info['id'],'/',$sid,'/',$vol;?>"></iframe>
 <div class="playerb">
 <div class="pcomment r"><a href="javascript:void(0)" onclick="reportErr(<?php echo $info['id'];?>)">报 错</a></div>
 </div>
@@ -25,7 +25,7 @@
 <!-- 播放地址开始/End -->
 <div class="vlist bg mb">
 <?php foreach($videovols as $k => &$v){?>
-<h5><span class="vplay l"></span><?php echo $playMod[$k]['title'];?><em class="more"> <a href="<?php echo $playMod[$k]['url'];?>" target="_blank"><?php echo $playMod[$k]['title'];?></a></a></em></h5>
+<h5><span class="vplay l"></span><?php echo $playMod[$k]['title'];?><em class="more"> <a onclick="return false;" href="<?php echo $playMod[$k]['url'];?>" target="_blank" title="<?php echo $playMod[$k]['title'];?>"><?php echo $playMod[$k]['title'];?></a></em></h5>
 <ul>
 <?php foreach($v as &$r){?>
 <li><a class="<?php if($sid == $k && $r['vol'] == $vol){echo 'current';}?>" title="<?php echo $r['volname'];?>" href='<?php echo $r['url'];?>' target="_blank"><?php echo $r['volname'];?></a></li>
@@ -42,8 +42,8 @@
 <?php foreach($playRelate as &$v){?>
 <li>
 <h3><?php echo $v['name'];?></h3>
-<p><a target="_blank" href="<?php echo $v['url'];?>" target="_blank"><img alt="<?php echo $v['name'];?>" src="<?php echo $v['cover'];?>" /></a></p>
-<strong><a target="_blank" href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong></li>
+<p><a target="_blank" href="<?php echo $v['url'];?>" target="_blank"><img alt="<?php echo $v['name'];?>" title="<?php echo $v['name'];?>" src="<?php echo $v['cover'];?>" /></a></p>
+<strong><a target="_blank" href="<?php echo $v['url'];?>" title="<?php echo $v['name'];?>"><?php echo $v['name'];?></a></strong></li>
 <?php }?>
 </ul>
 </div>

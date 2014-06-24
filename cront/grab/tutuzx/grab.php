@@ -40,6 +40,7 @@ if( in_array($status,array(44,404))){
 if(0 == $status){
   echo "$val[id] cover is down!\n";
   seterrcoverByid(4,$val['id']);
+  sleep(1);
   continue;
 }
 
@@ -84,7 +85,7 @@ function seterrcoverByid($cover = '',$id = 0){
      return false;
   }
   global $db;
-  $sql = sprintf('UPDATE %s SET `iscover`=4 WHERE `id`=%d LIMIT 1',$db->getTable('emule_article'),mysql_real_escape_string($cover),$id);
+  $sql = sprintf('UPDATE %s SET `iscover`=%d WHERE `id`=%d LIMIT 1',$db->getTable('emule_article'),$cover,$id);
   $db->query($sql);
 }
 function setcoverByid($cover = '',$id = 0){

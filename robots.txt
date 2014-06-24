@@ -1,6 +1,19 @@
 User-agent: *
 Sitemap: http://qvd.emubt.com/google_sitemap.xml
-Disallow: /maindex/addCollect/
-Disallow: /maindex/login
-Disallow: /maindex/loginout
-Disallow: /maindex/isUserInfo
+Disallow: /*maindex/addCollect/
+Disallow: /*maindex/login
+Disallow: /*maindex/loginout
+Disallow: /*maindex/isUserInfo
+Disallow: /*maindex/play/
+Disallow: /*maindex/playdata/
+Allow: /*maindex/
+Allow: /*.shtm*
+Allow: /*.htm*
+Disallow: /*.php
+Disallow: /*.jpg
+Disallow: /*.jpeg
+Disallow: /*.gif
+Disallow: /*.png
+Disallow: /*.js
+Disallow: /*.css
+
