@@ -9,7 +9,7 @@ require_once $APPPATH.'singleProcess.php';
 
 $db=new DB_MYSQL();
 
-$data = array('url' => 'http://img.hacktea8.com/fileapi/uploadurl?seq=', 'imgurl'=>'');
+$data = array('url' => 'http://img.hacktea8.com/picapi/uploadurl?seq=', 'imgurl'=>'');
 $file_data = array('url' => 'http://img.hacktea8.com/fileapi/uploadurl?seq=', 'imgurl'=>'','filename'=>'');
 $task = 5;
 while($task){
@@ -29,7 +29,7 @@ $data['imgurl'] = $val['thum'];
 $cover = getHtml($data);
 //去除字符串前3个字节
 $cover = substr($cover,3);
-echo $cover,"\n";
+echo $val['id'],' , ',$cover,"\n";
 //exit;
 //echo strlen($cover);exit;
 $status = preg_replace('#[^\d]+#','',$cover);
@@ -47,6 +47,7 @@ if(0 == $status){
 //
 setcoverByid($cover,$val['id']);
 //echo $val['id'],"\n",exit;
+
 sleep(15);
 }
 //var_dump($list);exit;

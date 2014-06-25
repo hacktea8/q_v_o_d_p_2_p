@@ -6,6 +6,7 @@ class Usrbase extends Webbase {
   public $seo_keywords = '电驴资源,电驴资源网站,电驴资源下载,电驴资源搜索,电驴资源网,电驴资源网站,电驴下载,电骡资源,ed2k,eMule,电骡下载,emule 资源,电驴资源库,电驴共享';
   public $seo_description = '是一个综合的电驴资源网站，提供包含电影、电视剧、音乐、游戏、动漫、综艺、软件、资料、图书、教育等栏目电驴资源搜索、电驴下载服务。';
   public $imguploadapiurl = 'http://img.hacktea8.com/imgapi/upload/?seq=';
+  public $showimgapi = 'http://img.hacktea8.com/showfile.php?key=';
   public $playMod = array(1=>array('title'=>'qvod','url'=>''),3=>array('title'=>'影音先锋','url'=>''),2=>array('title'=>'百度影音','url'=>''),5=>array('title'=>'西瓜影音','url'=>''),6=>array('title'=>'吉吉影音','url'=>''));
 
   public function __construct(){

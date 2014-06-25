@@ -2,7 +2,6 @@
 
 class Webbase extends CI_Controller {
   public $expirettl=array('5m'=>300,'15m'=>900,'30m'=>1800,'1h'=>3600,'3h'=>10800,'6h'=>21600,'9h'=>32400,'12h'=>43200,'1d'=>86400,'3d'=>253200,'5d'=>432000,'7d'=>604800);
-  public $showimgapi = 'http://img.hacktea8.com/showpic.php?key=';
   protected $mem = '';
   protected $redis = '';
   public $viewData = array();
