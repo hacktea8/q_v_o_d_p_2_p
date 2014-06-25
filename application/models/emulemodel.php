@@ -196,6 +196,7 @@ class emuleModel extends baseModel{
   public function getVideoPlayLinkUrl($link){
     $link = explode('$',$link);
     
+    return array('title'=>@$link[0],'url'=>@$link[1]);
     return array('title'=>@$link[0],'url'=>@$link[1],'type'=>@$link[2]);
   }
   public function getVideoVolsTitle($vid,$sid,$view,$vol=0){

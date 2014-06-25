@@ -21,7 +21,7 @@ var XgPlayer = {
 };
 document.write('<script language="javascript" src="http://static.xigua.com/xiguaplayer.js?'+new Date().getTime()+'" charset="utf-8"><\/script>');
 </script>
-<?php }elseif(in_array($sid,array(404))){ ?>
+<?php }elseif(in_array($sid,array(2))){ ?>
 <script language="javascript">
 var BdPlayer = new Array();
 BdPlayer['time'] = 8;//缓冲广告展示时间(如果设为0,则根据缓冲进度自动控制广告展示时间)
@@ -37,14 +37,50 @@ BdPlayer['nextcacheurl'] = '<?php echo $playInfo['nexturl'];?>';//下一集播�
 BdPlayer['lastwebpage'] = '<?php echo $playInfo['pre'];?>';//上一集网页地址(没有请留空)
 BdPlayer['nextwebpage'] = '<?php echo $playInfo['next'];?>';//下一集网页地址(没有请留空)
 </script>
-<script language="javascript" src="http://php.player.baidu.com/bdplayer/player.js" charset="utf-8"></script>
-<?php }elseif(in_array($sid,array(404))){ ?>
-<iframe id="iframe_down" name="iframe_down" scrolling="no" frameborder="0" style="position:absolute; z-index:1000; top:0; margin: 0;width: 690px; height: 550px; display: none;" src="http://error2.qvod.com/error2.htm"></iframe>
-<object classid="clsid:F3D0D36F-23F8-4682-A195-74C92B03D4AF" width="690px" height="550px" id="QvodPlayer" name="QvodPlayer" onerror="document.getElementById('QvodPlayer').style.display='none';document.getElementById('iframe_down').style.display='block';"><PARAM NAME='Showcontrol' VALUE='1'><PARAM NAME='URL' VALUE='<?php echo $playInfo['url'];?>'>
-<PARAM NAME='Autoplay' VALUE='1'><PARAM NAME='QvodAdUrl' VALUE=''>
-<PARAM NAME='NextWebPage' VALUE='<?php echo $playInfo['next'];?>'>
-<embed id='QvodPlayer2' name='QvodPlayer2' width='100%' height='100%' URL='<?php echo $playInfo['url'];?>' type='application/qvod-plugin' Autoplay='1' QvodAdUrl='' Showcontrol='1'></embed>
-</object>
+<script language="javascript" src="<?php echo $cdn;?>/public/js/bdplayer.js" charset="utf-8"></script>
+<?php }elseif(in_array($sid,array(1))){ ?>
+<script type="text/javascript">
+var qvod_setup = 1;
+var qvod_url = "<?php echo $playInfo['url'];?>";
+var qvod_next_page = "";
+var pWidth = '690px';
+var pHeight = '550px';
+function QvodInstall(){
+ qvod_setup = 0;
+ if(!qvod_setup){
+  qvod_html = '<iframe id="iframe_down" name="iframe_down" scrolling="no" frameborder="0" style="position:absolute; z-index:1000; top:0; margin: 0;width: '+pWidth+'; height: '+pHeight+';" src="/public/player/qvod/install.html"></iframe>';
+ }
+ document.body.innerHTML=qvod_html;
+}
+var qvod_html='<object id="QvodPlayer" name="QvodPlayer" width="'+pWidth+'" height="'+pHeight+'" onerror="QvodInstall();"  classid="clsid:F3D0D36F-23F8-4682-A195-74C92B03D4AF">';
+qvod_html+='<PARAM NAME="URL" VALUE="'+qvod_url+'">';
+qvod_html+='<PARAM NAME="Showcontrol" VALUE="1">';
+qvod_html+='<PARAM NAME="Autoplay" VALUE="1">';
+if(qvod_next_page){
+ qvod_html+='<PARAM NAME="NextWebPage" VALUE="'+qvod_next_page+'">';
+}
+qvod_html+='</object>';
+var ll =0;
+if(!window.ActiveXObject){
+ if (navigator.plugins) {		
+  for (var i=0;i<navigator.plugins.length;i++) {
+   if(navigator.plugins[i].name == 'QvodInsert'){
+    ll= true;
+    break;
+   }
+  }
+ }
+ if(ll!=false){
+  qvod_html='<embed id="QvodPlayer" onerror="QvodInstall();" name="QvodPlayer" URL="'+qvod_url+'" type="application/qvod-plugin" width="100%" height="'+pHeight+'" Showcontrol="1" Autoplay="1" ></embed>';
+ }else{
+  qvod_setup=0;
+ }	
+}
+if(!qvod_setup){
+ qvod_html = '<iframe id="iframe_down" name="iframe_down" scrolling="no" frameborder="0" style="position:absolute; z-index:1000; top:0; margin: 0;width: '+pWidth+'; height: '+pHeight+';" src="/public/player/qvod/install.html"></iframe>';
+}
+document.body.innerHTML=qvod_html;
+</script>
 <?php }elseif(in_array($sid,array(6))){?>
 <script type="text/javascript">
 var jjvod_url = '<?php echo $playInfo['url'];?>';//播放视频地址
