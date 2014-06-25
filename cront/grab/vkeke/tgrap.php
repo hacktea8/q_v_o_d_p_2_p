@@ -13,7 +13,7 @@ $path = $APPPATH.'config/';
 
 //page 268
 
-$num = 2;
+$num = 6;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
   //2,6,10,14,18 isok
@@ -27,6 +27,7 @@ foreach($cate_config as $_cate){
   getinfolist($_cate);
   sleep(10);
 }
+echo "\n++ Grab List Cid:$cid Is OK! ++\n";
 
 
 

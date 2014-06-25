@@ -12,22 +12,24 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$i = 0;
-$num = 19;
+//152
+
+$num = 7;
 foreach($cate_config as $_cate){
-  $i++;
-  //3,7,11,15,19 isok
+  $i = $_cate['cid'];
+  //3,7,11,15,19,47 isok
   if($i > $num){
     break;
   }
   if($i != $num){
     continue;
   }
-  $lastgrab = $path.$_cate['cid'].'_'.$lastgrab;
-  getSubCatearticle($_cate);
+  $cid = $_cate['cid'];
+  getinfolist($_cate);
   sleep(10);
 }
 
+echo "\n++ Grab List Cid:$cid Is OK! ++\n";
 
 
 ?>

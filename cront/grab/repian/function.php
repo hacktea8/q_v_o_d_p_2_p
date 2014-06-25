@@ -124,27 +124,19 @@ function getArticlePlayData($purl){
   $playjs = explode('$$$',$playjs);
   $return = array();
   foreach($playjs as &$v){
-    $player = ''; 
-	  if(false !== stripos($v,'qvod://')){
+    $player = '';
+	$v = mb_convert_encoding($v,"UTF-8","UTF-8");
+    if(false !== stripos($v,'qvod://')){
       $v = str_replace('qvod$$','',$v);
       $v = trim($v,'#');
-      //$v = str_replace('++qvod','$qvod',$v);
-      //$v = str_replace('+++','$qvod+++',$v);
-      //$v .= '$qvod';
       $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'qvod';
     }elseif(false !== stripos($v,'bdhd://')){
-      //$v = str_replace('++bdhd','$bdhd',$v);
-      //$v = str_replace('+++','$bdhd+++',$v);
-      //$v .= '$bdhd';
       $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'bdhd';
     }elseif(false != stripos($v,'gbl.114s.com')){
-      //$v = str_replace('++bdhd','$bdhd',$v);
-      //$v = str_replace('+++','$bdhd+++',$v);
-      //$v .= '$bdhd';
       $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'xigua';

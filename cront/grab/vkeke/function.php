@@ -2,7 +2,7 @@
 
 function getinfolist($_cate){
   global $_root,$cid;
-  for($i=268; $i<=2000; $i++){
+  for($i=152; $i<=2000; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'.html':'-'.$i.'.html';
     $url = $_root.$_cate['ourl'].$suf;
@@ -80,7 +80,7 @@ exit;
      return false;
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
-//  echo '<pre>';var_dump($data);exit;
+#  echo '<pre>';var_dump($data);exit;
 
 /*
 //在判断是否更新
