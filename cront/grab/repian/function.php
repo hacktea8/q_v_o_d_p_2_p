@@ -80,7 +80,7 @@ exit;
      return false;
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
-//  echo '<pre>';var_dump($data);exit;
+#  echo '<pre>';var_dump($data);exit;
 
 /*
 //在判断是否更新
@@ -109,6 +109,9 @@ function getArticlePlayData($purl){
   //$html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
   $html = mb_convert_encoding($html,"UTF-8","GBK");
   preg_match("#stringReplaceAll\('(.+)','(.+)',(.+)\)\)\)#Uis",$html,$match);;
+  if( !isset($match[1])){
+    return array();
+  }
   $match[1] = str_replace("'+'",'',$match[1]);
   $match[1] = str_replace("'",'',$match[1]);
   $match[2] = str_replace("'+'",'',$match[2]);
@@ -125,10 +128,10 @@ function getArticlePlayData($purl){
   $return = array();
   foreach($playjs as &$v){
     $player = '';
-	$v = mb_convert_encoding($v,"UTF-8","UTF-8");
+    $v = mb_convert_encoding($v,"UTF-8","UTF-8");
+    $v = trim($v,'#');
     if(false !== stripos($v,'qvod://')){
       $v = str_replace('qvod$$','',$v);
-      $v = trim($v,'#');
       $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'qvod';
@@ -140,10 +143,11 @@ function getArticlePlayData($purl){
       $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'xigua';
-	}else{
-	  echo "\n++ $v ++\n";
-	  continue;
-	}
+    }else{
+      echo "\n++ $v ++\n";
+      continue;
+    }
+    $v = str_replace('$$','',$v);
     $return[] = array($player,$v);
   }
   return $return;
@@ -151,7 +155,10 @@ function getArticlePlayData($purl){
 function getParseListInfo($html){
  $return = array();
  preg_match('#<div class="channel-content">(.+)</div>#Uis',$html,$match);
- $html = $match[1];
+ $html = isset($match[1])?$match[1]:'';
+ if( !$html){
+   return array();
+ }
  preg_match_all('#<a href="([^"]+)" title="[^"]+" class="ah"><img src="([^"]+)" alt="([^"]+)">#Uis',$html,$match);
  $urlPool = $match[1];
  $titlePool = $match[3];

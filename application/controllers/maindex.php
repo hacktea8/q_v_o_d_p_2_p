@@ -125,7 +125,6 @@ exit;
     }
     $data = $this->emulemodel->getEmuleTopicByAid($aid,0,$this->userInfo['uid'], $this->userInfo['isadmin'],0);
     if(empty($data)){
-echo 666;exit;
        header('Location: '.$this->url404);
        exit;
     }
@@ -138,8 +137,8 @@ echo 666;exit;
     }
 // seo setting
     $kw = $this->viewData['channel'][$cid]['name'];
-    $keywords = sprintf('%s,%s在线观看,%s全集,%s%s,%s下载,%s主题曲,%s剧情,%s演员表',$data['name'],$data['name'],$data['name'],$kw,$data['name'],$data['name'],$data['name'],$data['name'],$data['name']);
-    $title = $data['name'];
+    $title = $data['info']['name'];
+    $keywords = sprintf('%s,%s在线观看,%s全集,%s%s,%s下载,%s主题曲,%s剧情,%s演员表',$title,$title,$title,$kw,$title,$title,$title,$title,$title);
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
     $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title
     ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
@@ -195,8 +194,8 @@ echo 666;exit;
     }
 // seo setting
     $kw = '';
-    $keywords = $data['name'].','.$kw.$this->seo_keywords;
-    $title = $data['name'];
+    $title = $data['info']['name'];
+    $keywords = $title.','.$kw.$this->seo_keywords;
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
     $this->assign(array('isCollect'=>$isCollect,'seo_title'=>$title,'sid'=>$sid,'vol'=>$vol
     ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
