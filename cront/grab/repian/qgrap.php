@@ -13,7 +13,7 @@ $path = $APPPATH.'config/';
 // index3
 // En site
 
-$num=1;
+$num=5;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
   //1,5,9,13,17 isok
