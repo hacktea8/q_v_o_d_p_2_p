@@ -2,17 +2,24 @@
 
 function getinfolist($_cate){
   global $_root,$cid;
-  for($i=51; $i<=2000; $i++){
+  for($i=1; $i<=2000; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'':'index'.$i.'.html';
     $url = $_root.$_cate['ourl'].$suf;
 echo "\n++++ ",$url," ++++\n";
+  for($ei=0;$ei<3;$ei++){
     $html = getHtml($url);
+    if($html){
+      break;
+    }
+    sleep(12);
+  }
   //  $html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
     $html = mb_convert_encoding($html,"UTF-8","GBK");
     $matchs = getParseListInfo($html);
 //echo '<pre>';var_dump($matchs);exit;
     if(empty($matchs)){
+       $html .= "\r\n\r\n+++++++\r\n $i";
        file_put_contents('match_error_list'.$cid.'.html',$html);
        //preg_match_all('##Uis',$html,$matchs,PREG_SET_ORDER);
     }

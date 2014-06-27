@@ -12,17 +12,19 @@
 <link href="<?php echo $cdn_url;?>/public/css/maindex.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $cdn_url;?>/public/css/global.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script>var sitePath='public/';$.noConflict();</script>
-<script src="<?php echo $cdn_url;?>/public/js/common.js?v=<?php echo $version;?>"></script>
+<script>var sitePath='public/';//$.noConflict();</script>
+<script src="<?php echo $cdn_url;?>/public/js/lanage.js?v=<?php echo $version;?>"></script>
 <script src="<?php echo $cdn_url;?>/public/js/function.js?v=<?php echo $version;?>"></script>
 <?php if(in_array($_a,array('play'))){?>
 <?php }?>
 </head>
 <body>
 <div class="wrap">
+<?php if(0){?>
 <div class="toptools mb">
 <div class="notice">欢迎访问<?php echo $web_title;?>。<font color="#FF0000">重要通知:因快播倒闭,本站发布的新电影改用"影音先锋"播放器发布,站长亲测无毒,速度快!<a href='http://www.xfplay.com/xfplay.exe'>点此下载</a>影音先锋播放器!(之前电影不受影响!)</font></div>
 </div>
+<?php }?>
 <div id="user_login">
    <span class="user">Œ</span>
    <div class="iconList" style="display: none;">
@@ -60,6 +62,9 @@ continue;
 ?>
 <li <?php if($cid == $v['id']){echo 'class="current"';}?>><a href="<?php echo $v['url'];?>" ><?php echo $v['name'];?></a></li>
 <?php }?>
+<li>
+<a style="color: blue;font-size: medium;" href="javascript:transformLan();" id="a-lang" title="點擊以繁體中文>方式浏覽" name="a-lang">繁體中文切換</a>
+</li>
 </ul>
 </div>
 <div class="nav">
