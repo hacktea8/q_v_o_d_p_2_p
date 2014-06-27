@@ -4,14 +4,14 @@ function getinfolist($_cate){
   global $_root,$cid;
   for($i=1; $i<=2000; $i++){
 //通过 atotal计算i的值
-    $suf = $i == 1?'.html':'-'.$i.'.html';
+    $suf = $i == 1?'':'index'.$i.'.html';
     $url = $_root.$_cate['ourl'].$suf;
 echo "\n++++ ",$url," ++++\n";
     $html = getHtml($url);
   //  $html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
-    $html = mb_convert_encoding($html,"UTF-8","UTF-8");
+    $html = mb_convert_encoding($html,"UTF-8","GBK");
     $matchs = getParseListInfo($html);
-//echo '<pre>';var_dump($matchs);exit;
+#echo '<pre>';var_dump($matchs);exit;
     if(empty($matchs)){
        file_put_contents('match_error_list'.$cid.'.html',$html);
        //preg_match_all('##Uis',$html,$matchs,PREG_SET_ORDER);
@@ -48,7 +48,7 @@ echo $data['ourl'],"\n";
   $html = getHtml($data['ourl']);
 //  file_put_contents('error_view.html',$html);
   //$html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
-  $html = mb_convert_encoding($html,"UTF-8","UTF-8");
+  $html = mb_convert_encoding($html,"UTF-8","GBK");
   if(!$html){
     echo "获取html失败";exit;
   }
@@ -57,17 +57,22 @@ echo $data['ourl'],"\n";
   //
   $data['ptime']=time();
   $data['utime']=time();
-  preg_match('#<div class="content">(.+)</div>#Uis',$html,$match);
+  preg_match('#<div class="description b mb">\s*<h2>.+剧情介绍：</h2>(.+)</div>#Uis',$html,$match);
   $match[1] = isset($match[1])?$match[1]:'';
-#  $match[1] = @iconv("UTF-8","UTF-8//TRANSLIT",$match[1]);
-//echo $match[1],"\n";
+  $match[1] = @iconv("UTF-8","UTF-8//TRANSLIT",$match[1]);
+#echo $match[1],"\n";exit;
   $data['intro'] = strip_tags($match[1]);
   $data['intro'] = preg_replace('#&\S+;#Uis','',$data['intro']);
+  $data['intro'] = preg_replace('#《[^》]+》全集在线观看由琪琪影院www.77vcd.com提供如果您觉得本站不错 请推荐给您的好友#Uis','',$data['intro']);
+  $data['intro'] = str_replace('琪琪影院','web_title',$data['intro']);
+  $data['intro'] = str_replace('www.77vcd.com','web_domain',$data['intro']);
   $data['intro'] = mb_strlen($data['intro'])>300?mb_substr($data['intro'],0,256,'UTF-8'):$data['intro'];
   $data['intro'] = trim($data['intro']);
-  preg_match('#<script type="text/javascript" src="(/movie/\d+/\d+\.js\?t=\d+)"></script>#Uis',$html,$match);
-  $data['purl'] = isset($match[1])?$match[1]:'';
-  $playhtml = getArticlePlayData($data['purl']);
+  #var_dump($data['intro']);exit;
+  preg_match('#<ul><li><a title=\'[^\']*\' href=\'(/[^\']+/player-\d+-\d+\.html)\' target="_blank">.*</a></li></ul>#Uis',$html,$match);
+  $purl = isset($match[1])?$match[1]:'';
+#var_dump($match);exit;  
+  $playhtml = getArticlePlayData($purl);
   if(empty($playhtml)){
     echo ("\n++ Ourl:$data[ourl] Purl:$data[purl] playdata vols decode error!++\n");
     return 0;
@@ -80,7 +85,7 @@ exit;
      return false;
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
-#  echo '<pre>';var_dump($data);exit;
+  echo '<pre>';var_dump($data);exit;
 
 /*
 //在判断是否更新
@@ -104,42 +109,37 @@ exit;
 }
 function getArticlePlayData($purl){
   global $_root;
-  if( !$purl){
-   return array();
-  }
   $purl = $_root.$purl;
   $html = getHtml($purl);
   //$html = iconv("GBK","UTF-8//TRANSLIT",$html) ;
-  $html = mb_convert_encoding($html,"UTF-8","UTF-8");
-  $st = strlen('var playdata=');
-  $pjs = substr($html,$st,-1);
-#echo $pjs,"\n";exit;
-  $place = json_decode($pjs,1);
-//var_dump($place);exit;
-  $playjs = array();
-  if( !is_array($place)){
-    return array();
+  $html = mb_convert_encoding($html,"UTF-8","GBK");
+  preg_match("#var VideoInfoList=unescape\('(.+)'\);#Uis",$html,$match);;
+  $vlist = isset($match[1])?$match[1]:'';
+#var_dump($match);exit;
+  if(!$vlist){
+   return array();
   }
-  foreach($place as $item){
-   $tmp = array();
-   foreach($item['data'] as $it){
-	$url = str_replace('xigua=','',$it[1]);
-	$tmpurl = unicode_encode($it[0]).'$'.unicode_encode($url);
-	$tmpurl = mb_convert_encoding($tmpurl,"UTF-8","UTF-8");
-	$tmp[] = $tmpurl;
-   }
-   $playjs[] = implode('#',$tmp);
-  }
-#    var_dump($playjs);exit;
+  $playjs = urldecode($vlist);
+#var_dump($playjs);exit;
+  $playjs = str_replace(array('%u','www.77vcd.com'),array('\u','www.emubt.com'),$playjs);
+  $playjs = explode('$$$',$playjs);
   $return = array();
   foreach($playjs as &$v){
+    $player = '';
+	$v = mb_convert_encoding($v,"UTF-8","UTF-8");
+    $v = str_replace('$$','',$v);
+    $v = trim($v,'#');
     if(false !== stripos($v,'qvod://')){
+      $v = str_replace('qvod$$','',$v);
+      $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'qvod';
     }elseif(false !== stripos($v,'bdhd://')){
+      $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'bdhd';
     }elseif(false != stripos($v,'gbl.114s.com')){
+      $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'xigua';
 	}else{
@@ -152,22 +152,32 @@ function getArticlePlayData($purl){
 }
 function getParseListInfo($html){
  $return = array();
- preg_match_all('#<div class="detail-item-list">(.+)</div>#Uis',$html,$match);
- $item_list = $match[1];
- # var_dump($item_list);exit;
- foreach($item_list as $item){
-  preg_match('#<a href="([^"]+)" title="[^"]+" target="_blank" class="thumb">\s*<img id="img_\d+" src="([^"]+)" alt="[^"]+" title="([^"]+)" />#Uis',$item,$match);
-  $info = array();
-  $info['name'] = $match[3];
-  $info['ourl'] = $match[1];
-  $info['thum'] = $match[2];
-  preg_match('#<li class="mt5"><span>主演：</span>([^<]*)</li>\s*<li><span>类型：</span>([^<]*)</li>#Uis',$item,$match);
-  $actor = @str_replace('  ',',',$match[1]);
-  $actor = str_replace(' ',',',$actor);
-  $type = @str_replace('  ',',',$match[2]);
-  $type = str_replace(' ',',',$type);
-  $info['actor'] = $actor.'|'.$type;
-  $return[] = $info;
+ preg_match('#<ul>\s*<li onmouseover=(.+)</ul>#Uis',$html,$match);
+ $html = $match[1];
+ preg_match_all('# <a href="([^"]+)" class="pica" title="([^"]+)" target="_blank"><img src="([^"]+)"#Uis',$html,$match);
+ $urlPool = $match[1];
+ $titlePool = $match[2];
+ $coverPool = $match[3];
+ preg_match_all('#<p>主演：(.*)</p>#Uis',$html,$match);
+ $actorPool = $match[1];
+ preg_match_all('# <p>导演：(.*)</p>#Uis',$html,$match);
+ $lanagePool = $match[1];
+ 
+ foreach($titlePool as $k => &$v){
+   $str = str_replace('  ',',',$actorPool[$k]);
+   $str = str_replace('，',',',$str);
+   $str = str_replace(' ',',',$str);
+   $str = str_replace(',,',',',$str);
+   $str = str_replace(',,',',',$str);
+   $tmp = str_replace('  ',',',$lanagePool[$k]);
+   $tmp = str_replace('，',',',$tmp);
+   $tmp = str_replace(' ',',',$tmp);
+   $tmp = str_replace(',,',',',$tmp);
+   $tmp = str_replace(',,',',',$tmp);
+   $str = trim($str,',');
+   $tmp = trim($tmp,',');
+   $actor = $str.'|'.$tmp;
+   $return[] = array('name'=>$v,'ourl'=>$urlPool[$k],'actor'=>$actor,'thum'=>$coverPool[$k]);
  }
  return $return;
 }

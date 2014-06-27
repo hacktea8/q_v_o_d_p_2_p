@@ -6,14 +6,19 @@ include_once($APPPATH.'../function.php');
 include_once($APPPATH.'/function.php');
 include_once($APPPATH.'config.php');
 
+/*/
+/**/
+
 /*============ Get Cate article =================*/
 
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$num=13;
+$num=17;
+foreach($cids as $num){
+$i=0;
 foreach($cate_config as $_cate){
-  $i = $_cate['cid'];
+  $i++;
   //1,5,9,13,17 isok
   if($i > $num){
     break;
@@ -21,12 +26,14 @@ foreach($cate_config as $_cate){
   if($i != $num){
     continue;
   }
-  $cid = $i;
-  getinfolist($_cate);
+
+//var_dump($_cate);exit;
+  $lastgrab = $path.$_cate['cid'].'_'.$lastgrab;
+  getSubCatearticle($_cate);
   sleep(10);
 }
-echo "\n++ Grab List Cid:$cid Is OK! ++\n";
-
+sleep(10);
+}
 
 
 ?>

@@ -11,7 +11,7 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$num=13;
+$num=1;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
   //1,5,9,13,17 isok
@@ -25,7 +25,6 @@ foreach($cate_config as $_cate){
   getinfolist($_cate);
   sleep(10);
 }
-echo "\n++ Grab List Cid:$cid Is OK! ++\n";
 
 
 
