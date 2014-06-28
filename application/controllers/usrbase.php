@@ -18,8 +18,8 @@ class Usrbase extends Webbase {
     $youMayLike = $this->mem->get($_key);
 //var_dump($hotTopic);exit;
     if(empty($youMayLike)){
-      $youMayLike = $this->emulemodel->getHotTopic(0,8);
-      $this->mem->set($_key,$youMayLike,$this->expirettl['12h']);
+      $youMayLike = $this->emulemodel->getTopYouMayLike(10);
+      $this->mem->set($_key,$youMayLike,$this->expirettl['2h']);
     }
     $channel = $this->mem->get('channel');
     if( empty($channel)){
@@ -28,8 +28,8 @@ class Usrbase extends Webbase {
     } 
     $this->assign(array(
     'seo_keywords'=>$this->seo_keywords,'seo_description'=>$this->seo_description,'seo_title'=>$this->seo_title
-    ,'showimgapi'=>$this->showimgapi,'error_img'=>$this->showimgapi.'3958009_0000671092.jpg'
-    ,'hotTopic'=>$hotTopic['hot'],'youMayLike'=>$hotTopic['maylike'],'channel'=>$channel
+    ,'showimgapi'=>$this->showimgapi,'error_img'=>'/public/images/show404.jpg'
+    ,'youMayLike'=>$youMayLike,'channel'=>$channel
     ,'cpid'=>0,'cid'=>0,'playMod'=>$this->playMod
     ,'editeUrl' => '/edite/index/emuleTopicAdd'
     ));

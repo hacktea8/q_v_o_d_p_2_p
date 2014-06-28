@@ -22,21 +22,21 @@ while($count){
    $_itemsArr = array();
    $idarr = array();
    foreach($lists as $val){
-      $itemArr['id'] = 'btv_article_'.$val['id'];
+      $itemArr['id'] = 'www_qvdhd_'.$val['id'];
       $itemArr['cat'] = $cate[$val['cid']]['name'];
       $itemArr['title'] = $val['name'];
       $itemArr['group_id'] = intval($val['cid']);
-      $itemArr['tag'] = str_replace('，',',',$val['keyword']);
+      $itemArr['tag'] = str_replace('，',',',$val['keyword']).','.$val['actor'];
       $itemArr['focus_count'] = intval($val['collectcount']);
       $itemArr['create_timestamp'] = $val['ptime'];
       $itemArr['update_timestamp'] = $val['utime'];
-      $itemArr['body'] = trim(preg_replace('#\s+#is',' ',strip_tags($val['intro'])));
+      $itemArr['body'] = trim(preg_replace('#\s+#Uis',' ',strip_tags($val['intro'])));
       $itemArr['body'] = mb_substr($itemArr['body'], 0, 256, 'utf-8');
 //var_dump($val['intro']);
 //var_dump($itemArr['body']);exit;
       $itemArr['thumbnail'] = $val['cover'];
       $itemArr['hit_num'] = intval($val['hits']);
-      $itemArr['url'] = article_url($val['id']);
+      $itemArr['url'] = $val['id'];
       //$_itemsArr[] = $itemArr;
       $idarr[] = $val['id'];
       $post_data = array('fields'=>$itemArr,'cmd'=>'ADD');

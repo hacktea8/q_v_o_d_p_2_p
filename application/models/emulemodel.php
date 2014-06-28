@@ -2,7 +2,7 @@
 require_once 'basemodel.php';
 class emuleModel extends baseModel{
   protected $_dataStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, a.`collectcount`, a.`ptime`, a.`utime`,a.`onlinedate`, a.`cover`, a.`hits`';
-  protected $_datatopicStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`,a.`collectcount`, ac.`keyword`, a.`onlinedate`, a.`ptime`, a.`utime`, ac.`intro`, a.`cover`, a.`hits`';
+  protected $_datatopicStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`,a.`collectcount`, ac.`keyword`,ac.`actor`, a.`onlinedate`, a.`ptime`, a.`utime`, ac.`intro`, a.`cover`, a.`hits`';
   protected $_volsStruct = '`id`, `vid`, `sid`, `vol`, `volname`';
   protected $_volsPlayStruct = '`id`, `vid`, `sid`, `vol`, `volname`, `link`';
 
@@ -34,6 +34,17 @@ class emuleModel extends baseModel{
     foreach($list as &$v){
       $v['url'] = $this->geturl('lists',$v['id']);
       $return[$v['id']] = $v;
+    }
+    return $return;
+  }
+  public function getTopYouMayLike($num = 10){
+    $hot = ceil($num/2);
+    $cold = $num-$hot;
+    $return = array();
+    $return = $this->getArticleListByCid($cid =0,$order=2,$page=1,$hot);
+    $tmp = $this->getArticleListByCid($cid =0,$order=0,$page=1,$cold);
+    foreach($tmp as $v){
+     $return[] = $v;
     }
     return $return;
   }

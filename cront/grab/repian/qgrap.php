@@ -10,10 +10,10 @@ include_once($APPPATH.'config.php');
 
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
-// index3
+// 
 // En site
 
-$num=5;
+$num=9;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
   //1,5,9,13,17 isok

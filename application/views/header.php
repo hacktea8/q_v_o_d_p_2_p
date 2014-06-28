@@ -5,8 +5,8 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <META HTTP-EQUIV="expires" CONTENT="0"> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><?php echo $seo_title,'-',$web_title;?>-影音先锋-快播-吉吉影音-西瓜影音-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载</title>
-<meta name="keywords" content="<?php echo $seo_keywords,',',$web_title;?>,BT种子下载,电驴资源,eD2k,磁力链接,龙BT发布,BT之家,快播资源,百度影音" />
+<title><?php echo $seo_title,'-',$web_title;?><?php if( in_array($_a,array('index','lists'))){?>-影音先锋-快播-吉吉影音-西瓜影音-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载<?php }?></title>
+<meta name="keywords" content="<?php echo $seo_keywords,',',$web_title;?>" />
 <meta name="description" content="<?php echo $seo_title,'-',$web_title,$seo_description;?>" />
 <link href="<?php echo $cdn_url;?>/public/css/common.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $cdn_url;?>/public/css/maindex.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
@@ -15,6 +15,9 @@
 <script>var sitePath='public/';//$.noConflict();</script>
 <script src="<?php echo $cdn_url;?>/public/js/lanage.js?v=<?php echo $version;?>"></script>
 <script src="<?php echo $cdn_url;?>/public/js/function.js?v=<?php echo $version;?>"></script>
+<?php if(in_array($_a,array('index','lists','views','play','fav','search'))){ ?>
+<script type="text/javascript" src="<?php echo $js_url;?>jquery.lazyload.min.js?v=<?php echo $version;?>"></script>
+<?php } ?>
 <?php if(in_array($_a,array('play'))){?>
 <?php }?>
 </head>
@@ -44,7 +47,7 @@
    </div>
   </div>
 
-<div class="box mb"> <a href="/" title="<?php echo $web_title;?>" target="_self" class="l logo"><img src="<?php echo $cdn_url;?>/public/images/logo.gif?v=<?php echo $version;?>" alt="<?php echo $web_title;?>" /></a>
+<div class="box mb"> <a href="/" title="<?php echo $web_title;?>" target="_self" class="l logo"><img src="<?php echo $cdn_url;?>/public/images/qvdlogo.jpg?v=<?php echo $version;?>" alt="<?php echo $web_title;?>" /></a>
 <div class="r banner">
 <!-- 广告位置开始//End -->
 <!-- 广告位置结束//End -->

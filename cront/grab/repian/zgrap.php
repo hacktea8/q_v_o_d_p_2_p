@@ -12,8 +12,9 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
+//12
 $i = 0;
-$num = 12;
+$num = 8;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
   //4,8,12,16,20 isok

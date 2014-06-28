@@ -42,7 +42,7 @@
 <?php foreach($playRelate as &$v){?>
 <li>
 <h3><?php echo $v['name'];?></h3>
-<p><a target="_blank" href="<?php echo $v['url'];?>" target="_blank"><img alt="<?php echo $v['name'];?>" title="<?php echo $v['name'];?>" src="<?php echo $v['cover'];?>" /></a></p>
+<p><a target="_blank" href="<?php echo $v['url'];?>" target="_blank"><img alt="<?php echo $v['name'];?>" title="<?php echo $v['name'];?>" class="lazy"  data-original="<?php echo $showimgapi,$v['cover'];?>" /></a></p>
 <strong><a target="_blank" href="<?php echo $v['url'];?>" title="<?php echo $v['name'];?>"><?php echo $v['name'];?></a></strong></li>
 <?php }?>
 </ul>

@@ -30,7 +30,7 @@
 <h3 class="ppv"><?php echo $channel[$cid]['name'];?>列表</h3>
 <ul>
 <?php foreach($infolist as &$v){?>
-<li onmousemove="this.className='thisli'" onmouseout="this.className=''"><a href="<?php echo $v['url'];?>" class="aimg l" target="_blank"><img src="<?php echo $v['cover'];?>" alt="<?php echo $v['name'];?>" /></a>
+<li onmousemove="this.className='thisli'" onmouseout="this.className=''"><a href="<?php echo $v['url'];?>" class="aimg l" target="_blank"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a>
 <h2><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></h2>
 <p>分类：<?php echo $channel[$v['id']]['name'];?></p>
 <p>人气：<?php echo $v['hits'];?></p>

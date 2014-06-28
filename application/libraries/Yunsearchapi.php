@@ -4,10 +4,11 @@ require_once(YUN_SEARCH_PATH.'CloudsearchClient.php');
 require_once(YUN_SEARCH_PATH.'CloudsearchDoc.php');
 require_once(YUN_SEARCH_PATH.'CloudsearchSearch.php');
 require_once(YUN_SEARCH_PATH.'CloudsearchAnalysis.php');
- 
+
+//126 ml92ML 
 define('CLIENT_ID', '6100619159803307'); // $cleint_id替换成您自己的client id.
 define('CLIENT_SECRET', '237862e841a1529222471eec3e17032a'); // $cleint_secret替换成您自己的密码.
-define('CLIENT_INDEX', 'btv_hk8');
+define('CLIENT_INDEX', 'www_qvdhd');
 
 /*
 $client = new CloudsearchClient(

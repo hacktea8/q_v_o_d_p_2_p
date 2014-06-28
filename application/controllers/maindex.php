@@ -139,12 +139,16 @@ exit;
     $kw = $this->viewData['channel'][$cid]['name'];
     $title = $data['info']['name'];
     $keywords = sprintf('%s,%s在线观看,%s全集,%s%s,%s下载,%s主题曲,%s剧情,%s演员表',$title,$title,$title,$kw,$title,$title,$title,$title,$title);
+    $seo_description = strip_tags($data['info']['intro']);
+    $seo_description = preg_replace('#\s+#Uis','',$seo_description);
+    $seo_description = mb_substr($seo_description,0,250);
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
     $this->assign(array('isCollect'=>$isCollect,'verifycode'=>$verifycode,'seo_title'=>$title
-    ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
+    ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info']
+    ,'aid'=>$aid,'seo_description'=>$seo_description
     ,'videovols'=>$data['vols'],'viewHot'=>$viewHot
     )); 
-//echo "<pre>";var_dump($this->viewData);exit;
+#echo "<pre>";var_dump($this->viewData);exit;
     $this->view('index_view');
   }
   public function playdata($vid,$sid,$vol){

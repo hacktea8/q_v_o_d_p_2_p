@@ -22,8 +22,8 @@ $config['img_url']	= '/public/images/';
 $config['adm_js_url']	= '/public/js/admin/';
 $config['adm_css_url']	= '/public/css/admin/';
 $config['adm_img_url']	= '/public/images/admin/';
-$config['domain']	= 'qvd.emubt.com';
-$config['web_title']	= '种子影音在线';
+$config['domain']	= 'www.qvdhd.com';
+$config['web_title']	= 'QVDHD影院';
 $config['login_url']	= 'http://www.hacktea8.com/member.php?mod=logging&action=login&goto=';
 
 
