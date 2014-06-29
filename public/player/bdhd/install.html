@@ -3,7 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>请安装百度影音播放器</title>
-<script type="text/javascript" src="http://img.baidu.com/js/tangram-base-1.5.2.2.js"></script>
 <script language="javascript">
 var Setup = {
 	'UserAgent': function() {//判断浏览器类型及版本号
@@ -25,13 +24,13 @@ var Setup = {
 		}
 	},
 	'DownUrl':function(){//获取渠道包地址
-		var defaulturl = 'http://dl.p2sp.baidu.com/BaiduPlayer/un2/BaiduPlayerNetSetup_bdplayer.exe';
+		var defaulturl = 'http://www.hacktea8.com/thread-9732-1-1.html';
 		return defaulturl;
 	},
 	'Log': function(subtype){//写入日志
 	}
 }
-var downurl = baidu.string.filterFormat.escapeString(Setup.DownUrl());
+var downurl = Setup.DownUrl();
 var userAgent = Setup.UserAgent();
 var tips = '<font color=red>安装完成后请刷新页面或按F5</font>';
 </script>

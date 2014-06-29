@@ -6,6 +6,15 @@ class Model{
   public function __construct(){
      $this->db = new DB_MYSQL(); 
   }
+  function getCate(){
+    $sql = sprintf('SELECT * FROM %s WHERE `flag`=1',$this->db->getTable('emule_cate'));
+    $list = $this->db->result_array($sql);
+    $return = array();
+    foreach($list as &$v){
+      $return[$v['id']] = $v;
+    }
+    return $return;
+  }
   function get_content_table($id){
     return sprintf('emule_article_content%d',$id%10);
   }

@@ -48,7 +48,9 @@ sort：指定排序规则
     // 添加指定搜索的应用：
     $this->search->addIndex(CLIENT_INDEX);
 // 指定搜索的关键词，
-    //$this->search->setQueryString('词典');
+    $kw = $opts['query'];
+    unset($opts['query']);
+    $this->search->setQueryString("default:'$kw'");
 // 指定搜索返回的格式。
     $this->search->setFormat('json');
 // 返回搜索结果。

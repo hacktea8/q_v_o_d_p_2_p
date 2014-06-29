@@ -50,6 +50,9 @@ function _Userlogin(){
 _Userlogin();
 
 </script>
+<div class="hide">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5944562'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D5944562%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
 <?php if(in_array($_a,array('lists','topic'))){ ?>
 <script  src="<?php echo $js_url,'moneysad.js?v=',$version;?>" ></script>
 <?php } ?>

@@ -109,11 +109,12 @@ exit;
        $this->mem->set($_key,$list_left_video,$this->expirettl['12h']);
     }
 // seo setting
-    $title = $channel['name'];
+    $title = $channel[$cid]['name']."第{$page}页";
     $kw = '';
     $keywords = $kw.$this->seo_keywords;
     $this->assign(array('seo_title'=>$title,'seo_keywords'=>$keywords,'infolist'=>$data
     ,'page_string'=>$page_string,'cid'=>$cid,'hotRankList'=>$list_left_video['hot'],'hotRecomList'=>$list_left_video['new']));
+#var_dump($this->viewData);exit;
     $this->view('index_lists');
   }
   public function views($aid){
@@ -193,7 +194,7 @@ exit;
     $_key = 'play_bottomHot'.$cid;
     $playRelate = $this->mem->get($_key);
     if(!$playRelate){
-       $playRelate = $this->emulemodel->getArticleListByCid($cid,1,2,6);
+       $playRelate = $this->emulemodel->getArticleListByCid($cid,1,2,7);
        $this->mem->set($_key,$playRelate,$this->expirettl['12h']);
     }
 // seo setting
@@ -242,9 +243,9 @@ exit;
          $hotKeywords = $hotKeywords['result']['items']['emu_hacktea8'];
       }
     }
-/*
+/*/
 echo '<pre>';
-var_dump($q);
+var_dump($opt);
 var_dump($hotKeywords);
 var_dump($list);exit;
 /**/

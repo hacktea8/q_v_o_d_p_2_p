@@ -10,7 +10,7 @@ require_once $root.'/../../../application/helpers/rewrite_helper.php';
 $search = new Yunsearchapi();
 $model = new Model();
 $count = 200;
-
+$count = 1;
 $cate = $model->getCate();
 
 while($count){
