@@ -780,7 +780,7 @@ class CloudsearchSearch {
     ($f = $this->getFirstFormulaName()) && ($params['first_formula_name'] = $f);
     ($s = $this->getSummaryString()) && ($params['summary'] = $s);
     ($f = $this->getFetchFields()) && ($params['fetch_fields'] = implode(";", $f));
-    #$this->client->debug = 1;
+
     return $this->client->call($this->path, $params, 'GET');
   }
 

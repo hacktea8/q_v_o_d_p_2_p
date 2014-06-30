@@ -10,7 +10,7 @@ class emuleModel extends baseModel{
      parent::__construct();
   }
   public function autoSetVideoOnline($limit = 5){
-    $cate = $this->getSubCateByCid(0);
+    $cate = $this->getAllChannel();
     foreach($cate as $v){
       $k = $v['id'];
       $sql = sprintf('UPDATE %s SET `onlinedate`=%d,`flag`=1,`utime`=%d,`ptime`=%d WHERE `onlinedate`=0 AND `cid`=%d LIMIT %d',$this->db->dbprefix('emule_article'),date('Ymd'),time(),time(),$k,$limit);
@@ -19,16 +19,16 @@ class emuleModel extends baseModel{
     return 1;
   }
   public function setCateVideoTotal(){
-    $cate = $this->getSubCateByCid(0);
+    $cate = $this->getAllChannel();
     foreach($cate as $v){
       $k = $v['id'];
-      $sql = sprintf('UPDATE %s SET`atotal`=(SELECT COUNT(*) FROM %s WHERE `flag`=1 AND `onlinedate`<=%d AND `cid`=%d) WHERE `id`=%d LIMIT 1',$this->db->dbprefix('emule_cate'),$this->db->dbprefix('emule_article'),date('Ymd'),$k,$k);
+      $sql = sprintf('UPDATE %s SET`atotal`=(SELECT COUNT(*) FROM %s WHERE `flag`=1 AND `onlinedate`<=%d AND `onlinedate`>0 AND `cid`=%d) WHERE `id`=%d LIMIT 1',$this->db->dbprefix('emule_cate'),$this->db->dbprefix('emule_article'),date('Ymd'),$k,$k);
       $this->db->query($sql);
     }
     return 1;
   }
   public function getAllChannel(){
-    $sql = sprintf("SELECT `id`, `pid`, `name`, `atotal` FROM `qd_emule_cate` WHERE `flag`=1");
+    $sql = sprintf("SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `flag`=1",$this->db->dbprefix('emule_cate'));
     $list = $this->db->query($sql)->result_array();
     $return = array();
     foreach($list as &$v){
@@ -85,11 +85,11 @@ class emuleModel extends baseModel{
     $page = $page ? $page : 0;
     $page *= $limit;
     $limit = sprintf(' LIMIT %d,%d ',$page,$limit);
-    $sql = sprintf("SELECT ae.`id`, ae.`cid`, ae.`uid`, ae.`name`, ae.`utime`, ae.`cover`,ct.`atime` FROM %s as ae INNER JOIN %s as ct ON(ae.id=ct.aid) WHERE ct.uid=%d AND ct.`flag`=1 %s %s",$this->db->dbprefix('emule_article'),$this->db->dbprefix('collect'),$uid,$order,$limit);
+    $sql = sprintf("SELECT ae.`id`, ae.`cid`, ae.`uid`, ae.`name`, ae.`hits`, ae.`cover`,ct.`atime` FROM %s as ae INNER JOIN %s as ct ON(ae.id=ct.aid) WHERE ct.uid=%d AND ct.`flag`=1 %s %s",$this->db->dbprefix('emule_article'),$this->db->dbprefix('collect'),$uid,$order,$limit);
     $list = $this->db->query($sql)->result_array();
     foreach($list as &$v){
-      $v['utime'] = date('Y-m-d H:i:s', $v['utime']);
       $v['atime'] = date('Y-m-d H:i:s', $v['atime']);
+      $v['url'] = $this->geturl('views',$v['id']);
     }
     return $list;
   }

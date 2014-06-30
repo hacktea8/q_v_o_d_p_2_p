@@ -48,13 +48,18 @@ sort：指定排序规则
     // 添加指定搜索的应用：
     $this->search->addIndex(CLIENT_INDEX);
 // 指定搜索的关键词，
+/**/
+    $opts['formula_name'] = CLIENT_INDEX;
+    $opts['fetch_fetches'] = array('url','title','body');
     $kw = $opts['query'];
     unset($opts['query']);
     $this->search->setQueryString("default:'$kw'");
+/**/
 // 指定搜索返回的格式。
     $this->search->setFormat('json');
 // 返回搜索结果。
     $lists = $this->search->search($opts);
+#    echo $lists;exit;
     $lists = json_decode($lists,1);
     return 1;
   }

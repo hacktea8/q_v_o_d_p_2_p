@@ -91,7 +91,11 @@ exit;
         break;
       }
     }
-    $data = $this->emulemodel->getArticleListByCid($cid,$order,$page,$limit);
+    $pageTotal = ceil($atotal/$limit);
+    $data = array();
+    if($page <= $pageTotal){
+      $data = $this->emulemodel->getArticleListByCid($cid,$order,$page,$limit);
+    }
     $data = is_array($data) ? $data : array();
     $this->load->library('pagination');
     $config['base_url'] = sprintf('/maindex/lists/%d/%d/',$cid,$order);
@@ -112,7 +116,9 @@ exit;
     $title = $channel[$cid]['name']."第{$page}页";
     $kw = '';
     $keywords = $kw.$this->seo_keywords;
-    $this->assign(array('seo_title'=>$title,'seo_keywords'=>$keywords,'infolist'=>$data
+    $this->assign(array('seo_title'=>$title,'seo_keywords'=>$keywords
+    ,'infolist'=>$data,'pageTotal'=>$pageTotal
+    ,'list_url_tpl'=>$config['base_url']
     ,'page_string'=>$page_string,'cid'=>$cid,'hotRankList'=>$list_left_video['hot'],'hotRecomList'=>$list_left_video['new']));
 #var_dump($this->viewData);exit;
     $this->view('index_lists');
@@ -230,7 +236,8 @@ exit;
     $q = urldecode($q);
     $q = htmlentities($q);
     $page = intval($page);
-    $page = $page < 1 ? 1: $page;
+    $page = $page -1;
+    $page = $page < 0 ? 0: $page;
     $list = array();
     $pageSize = 12;
     if($q){

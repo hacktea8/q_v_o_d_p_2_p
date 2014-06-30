@@ -251,7 +251,7 @@ class CloudsearchClient {
       echo '<xmp style="font-size:12px;text-align:left;">';
       echo $content;
       echo rawurldecode($content);
-      echo '</xmp>';exit;
+      echo '</xmp>';
     }
 
     $socket = fsockopen(

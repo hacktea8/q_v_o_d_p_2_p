@@ -193,7 +193,7 @@ function getPageValue(pageGoName){
 function getPageGoUrl(maxPage,pageDiv,surl){
 	var str,goUrl
 	var url=location.href
-	pageNum=getPageValue(pageDiv)
+	pageNum=document.getElementById('go_page').value;
 	if (pageNum.length==0||isNaN(pageNum)){alert('输入页码非法');return false;}
 	if(pageNum>maxPage){pageNum=maxPage;}
 	pageNum=pageNum<1 || pageNum==1 ? '' : pageNum;

@@ -41,7 +41,9 @@
 <!-- 分类列表结束//End -->
 <div class="page">
 <?php echo $page_string;?>
-<span><input type='input' name='page' size='4'/><input type='button' value='跳转' onclick="getPageGoUrl(184,'page','/list/index2_<page>.html')" class='btn' /></span>
+<?php if($page_string){?>
+<span><input type='input' id='go_page' size='4'/><input type='button' value='跳转' onclick="getPageGoUrl(<?php echo $pageTotal;?>,'page','<?php echo $list_url_tpl;?><page>')" class='btn' /></span>
+<?php }?>
 </div>
 </div>
 </div>

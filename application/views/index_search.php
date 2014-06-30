@@ -30,7 +30,7 @@ em{color:red;}
 <?php echo $web_title;?>
 </a></div>
             <div class="search-form">
-                <form action="/index/search/" method="get" >
+                <form action="/maindex/search/" method="get" >
                     <input type="text" id="keyword" autocomplete="off" class="search-wrod" name="q" placeholder="请输入需要搜索的关键词" x-webkit-speech="" speech="" value="<?php echo $q;?>"/>
                     <button type="submit" id="search_submit" class="search-btn">立即搜索</button>
                 </form>

@@ -136,3 +136,4 @@
 .ptext {width:550px; text-align:center;}
 .ptext a,.pcomment a,.prcommend ul li h2 a {color:#9ed21c;}
 .pcomment {width:80px; height:29px; margin-right:10px; background:url(/public/images/sbg.png) left -665px; overflow:hidden; text-align:center;}
+.addFav{cursor:pointer;}

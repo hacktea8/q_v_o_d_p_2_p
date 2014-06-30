@@ -17,6 +17,7 @@
 &nbsp;&nbsp;</p>
 
 <p>时间：<?php echo date('Y-m-d',strtotime($info['onlinedate']));?></p>
+<p>收藏：<a class="addFav" alt="收藏该资源" id="addFav"><img src="<?php echo $cdn_url,'/public/images/',$isCollect?'del':'','favorite.gif';?>" id="addFavBtn" alt="收藏该资源" /></a></p>
 <!-- 影片信息结束/End -->
 <!-- JiaThis Button BEGIN -->
 <div id="ckepop">
@@ -106,4 +107,17 @@ if(err_msg){
  jQuery('#fast_login_div').text(err_msg);
  delCookie('err_msg');
 }
+$('#addFav').click(function(){
+var uid = <?php echo $uinfo['uid']?0:1;?>;
+if(uid){alert('抱歉！您还未登录。请先登录!!');return false;}
+jQuery.get("/maindex/addCollect/<?php echo $info['id'];?>", function(result){
+  var img_url = '<?php echo $cdn_url;?>/public/images/';
+  if(result.status==1){
+    $('#addFavBtn').attr("src",img_url+"delfavorite.gif");
+  }else{
+    $('#addFavBtn').attr("src",img_url+"favorite.gif");
+  }
+},'json');
+});
+
 </script>
