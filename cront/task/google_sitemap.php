@@ -14,7 +14,8 @@ class model{
   }
   public function getList($page = 1,$limit = 100){
     $start = $page * $limit;
-    $sql = sprintf('SELECT `id`,`utime` FROM `pw_emule_article` WHERE `flag`=1 LIMIT %d,%d',$start,$limit);
+    $table = $this->db->getTable('emule_article');
+    $sql = sprintf('SELECT `id`,`utime` FROM %s WHERE `flag`=1 LIMIT %d,%d',$table,$start,$limit);
      return $this->db->result_array($sql);
   }
   public function addIndex($data = array()){
@@ -28,11 +29,13 @@ class model{
     return $this->db->insert_id();
   }
   public function getIndexList($type){
-    $sql = sprintf('SELECT   `index` FROM `pw_emule_sitemap` WHERE `type`=%d ORDER BY `id` DESC',$type);
+    $table = $this->db->getTable('emule_sitemap');
+    $sql = sprintf('SELECT   `index` FROM %s WHERE `type`=%d ORDER BY `id` DESC',$table,$type);
     return $this->db->result_array($sql);
   }
   public function getMaxIndex($type){
-    $sql = sprintf('SELECT  `aid`, `index` FROM `pw_emule_sitemap` WHERE `type`=%d ORDER BY `id` DESC  LIMIT 1',$type);
+    $table = $this->db->getTable('emule_sitemap');
+    $sql = sprintf('SELECT  `aid`, `index` FROM %s WHERE `type`=%d ORDER BY `id` DESC  LIMIT 1',$table,$type);
     $row = $this->db->row_array($sql);
     $index = isset($row['index'])?$row['index']:0;
     if($index && $row['aid']){
@@ -87,7 +90,7 @@ $sitemap_index = '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="htt
 
 $indexList = $model->getIndexList($type);
 foreach($indexList as $val){
-  $sitemap_index .= '<sitemap><loc>'.$base_url.'google_sitemap'.$val['index'].'.xml</loc><lastmod>'.date('Y-m-d').'</lastmod></sitemap>';
+  $sitemap_index .= '<sitemap><loc>'.$base_url.'/google_sitemap'.$val['index'].'.xml</loc><lastmod>'.date('Y-m-d').'</lastmod></sitemap>';
 }
 
 $sitemap_index .= '</sitemapindex>';

@@ -162,7 +162,13 @@ exit;
     $vid = intval($vid);
     $sid = intval($sid);
     $vol = intval($vol);
-    if($vid <1 || $vol <1){
+    $auth = 1;
+    $key = 'play_auth'.$ip;
+    $pv = $this->redis->get($key);
+    if($pv < 60){
+      $auth = 0;
+    }
+    if($vid <1 || $vol <1 || $auth){
       header('HTTP/1.1 301 Moved Permanently');
       header('Location: /');
       exit;
@@ -171,6 +177,9 @@ exit;
     //$data['url'] = json_decode($data['url'],1);
    //var_dump($data);exit; 
     $view_data = array('sid'=>$sid,'vol'=>$vol,'playInfo'=>$data,'vid'=>$vid);
+//记录播放PV
+    $key = 'play_auth'.$ip;
+    $this->redis->incr($key);
     $this->load->view('index_playdata',$view_data);
   }
   public function play($aid,$sid,$vol){
@@ -205,12 +214,21 @@ exit;
     }
 // seo setting
     $kw = '';
-    $title = $data['info']['name'];
-    $keywords = $title.','.$kw.$this->seo_keywords;
+    $sname = $this->viewData['playMod'][$sid]['title'];
+    $title = sprintf('%s %s 第%s集',$data['info']['name'],$sname,$vol);
+    $keywords = sprintf('%s,%s在线观看,%s全集,%s%s,%s下载,%s主题曲,%s剧情,%s演员表',$title,$title,$title,$kw,$title,$title,$title,$title,$title);
+    $seo_description = strip_tags($data['info']['intro']);
+    $seo_description = preg_replace('#\s+#Uis','',$seo_description);
+    $seo_description = mb_substr($seo_description,0,250);
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
+
+    $key = 'play_auth'.$ip;
+    $pv = $this->redis->get($key);
+    $clear_play_pv = $pv > 50 ? 1: 0;
     $this->assign(array('isCollect'=>$isCollect,'seo_title'=>$title,'sid'=>$sid,'vol'=>$vol
     ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
-    ,'videovols'=>$data['vols'],'playRelate'=>$playRelate
+    ,'videovols'=>$data['vols'],'playRelate'=>$playRelate,'clear_play_pv'=>$clear_play_pv
+    ,'seo_description'=>$seo_description
     )); 
     $ip = $this->input->ip_address();
     $key = sprintf('emuhitslog:%s:%d',$ip,$aid);

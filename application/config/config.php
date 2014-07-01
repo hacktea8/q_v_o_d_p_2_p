@@ -25,7 +25,7 @@ $config['adm_img_url']	= '/public/images/admin/';
 $config['domain']	= 'www.qvdhd.com';
 $config['web_title']	= 'QVDHD影院';
 $config['login_url']	= 'http://www.hacktea8.com/member.php?mod=logging&action=login&goto=';
-
+$config['allow_referer'] = '.qvdhd.com|.hacktea8.com|.emubt.com';
 
 /*
 |--------------------------------------------------------------------------

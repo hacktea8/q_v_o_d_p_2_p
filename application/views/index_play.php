@@ -6,7 +6,7 @@
 </span></h1>
 </div>
 <div class="play655">
-<iframe width="960px" height="550px"  frameborder="0" scrolling="no" src="/maindex/playdata/<?php echo $info['id'],'/',$sid,'/',$vol;?>"></iframe>
+<iframe width="960px" height="550px"  frameborder="0" scrolling="no" rel="nofollow" src="/maindex/playdata/<?php echo $info['id'],'/',$sid,'/',$vol,'/',$play_auth;?>"></iframe>
 <div class="playerb">
 <div class="pcomment r"><a href="javascript:void(0)" onclick="reportErr(<?php echo $info['id'];?>)">报 错</a></div>
 </div>
@@ -58,3 +58,8 @@
 <!-- 广告位置结束//End  -->
 </div>
 </div>
+<script type="text/javascript">
+<?php if($clear_play_pv){?>
+jQuery.get('/ajaxapi/addpv');
+<?php }?>
+</script>

@@ -24,6 +24,11 @@ class Rediscache{
       return false;
     }
   }
+  public function incr($key,$v=1){
+    $key = $this->getkey($key);
+    $this->redis->incrBy($key,$v);
+    return 1;
+  }
   public function exists($key = ''){
     if(!$key){
        return false;
