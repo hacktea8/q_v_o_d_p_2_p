@@ -12,12 +12,12 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-//152
+//
 
-$num = 11;
+$num = 39;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
-  //3,7,11,15,19,47 isok
+  //3,7,11,15,35,39,43,47 isok
   if($i > $num){
     break;
   }

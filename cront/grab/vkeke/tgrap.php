@@ -11,12 +11,12 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-//page 268
+//page 
 
-$num = 6;
+$num = 46;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
-  //2,6,10,14,18 isok
+  //2,6,14,34,38,42,46 isok
   if($i > $num){
     break;
   }
