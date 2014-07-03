@@ -4,7 +4,6 @@ Disallow: /*maindex/addCollect/
 Disallow: /*maindex/login
 Disallow: /*maindex/loginout
 Disallow: /*maindex/isUserInfo
-Disallow: /*maindex/play/*
 Disallow: /*maindex/playdata/*
 Allow: /*maindex/
 Allow: /*.shtm*

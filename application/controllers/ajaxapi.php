@@ -36,4 +36,10 @@ class Ajaxapi extends Webbase {
     $this->redis->set($key,1,$this->expirettl['12h']);
     echo 1;
   }
+  public function clearcache($type = 'mem',$key = 'all'){
+    if($type == 'mem'){
+      $key_map = array('top_youMayLike','channel','');
+    }
+    echo '1';
+  }
 }

@@ -53,8 +53,11 @@ _Userlogin();
 <div class="hide">
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5944562'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/stat.php%3Fid%3D5944562%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
-<?php if(in_array($_a,array('lists','topic'))){ ?>
+<?php if(in_array($_a,array('lists','views','play'))){ ?>
 <script  src="<?php echo $js_url,'moneysad.js?v=',$version;?>" ></script>
+<?php } ?>
+<?php if(in_array($_a,array('views','play'))){ ?>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"将<?php echo $info['name'];?>分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 <?php } ?>
 </div>
 </body>

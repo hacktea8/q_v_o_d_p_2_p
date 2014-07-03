@@ -16,6 +16,15 @@
 <script src="/public/js/lanage.js?v=20140109"></script>
 <script src="/public/js/function.js?v=20140109"></script>
 <script type="text/javascript" src="/public/js/jquery.lazyload.min.js?v=20140109"></script>
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-43439571-5', 'auto');
+ga('send', 'pageview');
+
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -23,18 +32,18 @@
    <span class="user">Œ</span>
    <div class="iconList" style="display: none;">
    <ul>
-    <li><a href="/maindex/fav/" title="我的收藏"><em class="iconfont">ũ</em><cite>我的收藏</cite></a></li>
-    <li><a href="/maindex/loginout" title="登出"><em class="iconfont">ơ</em><cite>登出</cite></a></li>
+    <li><a href="/maindex/fav/" onclick="ga('send','event', 'user','我的收藏');" title="我的收藏"><em class="iconfont">ũ</em><cite>我的收藏</cite></a></li>
+    <li><a href="/maindex/loginout" onclick="ga('send','event', 'user','登出');" title="登出"><em class="iconfont">ơ</em><cite>登出</cite></a></li>
    </ul>
    </div>
    <div class="dropMenu" style="display: none;">
    <ul>
-    <li><a class="btn" title="登入" href="/maindex/login" target="_blank">登入</a></li>
+    <li><a class="btn" title="登入" href="/maindex/login" onclick="ga('send','event', 'user','登入');" target="_blank">登入</a></li>
    </ul>
    </div>
   </div>
 
-<div class="box mb"> <a href="/" title="QVDHD影院" target="_self" class="l logo"><img src="/public/images/qvdlogo.jpg?v=20140109" alt="QVDHD影院" /></a>
+<div class="box mb"> <a href="/" title="QVDHD影院" onclick="ga('send','event', 'site','logo');" target="_self" class="l logo"><img src="/public/images/qvdlogo.jpg?v=20140109" alt="QVDHD影院" /></a>
 <div class="r banner">
 <!-- 广告位置开始//End -->
 <!-- 广告位置结束//End -->
@@ -44,30 +53,56 @@
 <div class="nav_wrap">
 <div class="nav">
 <ul>
-<li class="current"><a href='/'>网站首页</a></li>
-<li ><a href="/maindex/lists/1/0/0.shtml" >动作片</a></li>
-<li ><a href="/maindex/lists/2/0/0.shtml" >喜剧片</a></li>
-<li ><a href="/maindex/lists/3/0/0.shtml" >科幻片</a></li>
-<li ><a href="/maindex/lists/4/0/0.shtml" >恐怖片</a></li>
-<li ><a href="/maindex/lists/5/0/0.shtml" >战争片</a></li>
-<li ><a href="/maindex/lists/6/0/0.shtml" >爱情片</a></li>
-<li ><a href="/maindex/lists/7/0/0.shtml" >剧情片</a></li>
-<li ><a href="/maindex/lists/21/0/0.shtml" >粤语片</a></li>
+<li class="current"><a href='/' onclick="ga('send','event', 'chennel','首頁');">网站首页</a></li>
+<li ><a href="/maindex/lists/1/0/0.shtml" onclick="ga('send','event', 'channel','动作片');" >动作片</a></li>
+<li ><a href="/maindex/lists/2/0/0.shtml" onclick="ga('send','event', 'channel','喜剧片');" >喜剧片</a></li>
+<li ><a href="/maindex/lists/3/0/0.shtml" onclick="ga('send','event', 'channel','科幻片');" >科幻片</a></li>
+<li ><a href="/maindex/lists/4/0/0.shtml" onclick="ga('send','event', 'channel','恐怖片');" >恐怖片</a></li>
+<li ><a href="/maindex/lists/5/0/0.shtml" onclick="ga('send','event', 'channel','战争片');" >战争片</a></li>
+<li ><a href="/maindex/lists/6/0/0.shtml" onclick="ga('send','event', 'channel','爱情片');" >爱情片</a></li>
+<li ><a href="/maindex/lists/7/0/0.shtml" onclick="ga('send','event', 'channel','剧情片');" >剧情片</a></li>
+<li ><a href="/maindex/lists/21/0/0.shtml" onclick="ga('send','event', 'channel','粤语片');" >粤语片</a></li>
 <li>
-<a style="color: blue;font-size: medium;" href="javascript:transformLan();" id="a-lang" title="點擊以繁體中文>方式浏覽" name="a-lang">繁體中文切換</a>
+<a style="color: blue;font-size: medium;" href="javascript:transformLan();" id="a-lang" title="點擊以繁體中文>方式浏覽" onclick="ga('send','event', 'site','简繁转换');" name="a-lang">繁體中文切換</a>
 </li>
 </ul>
 </div>
 <div class="nav">
 <ul>
-<li ><a href="/maindex/lists/11/0/0.shtml" >大陆剧</a></li>
-<li ><a href="/maindex/lists/12/0/0.shtml" >香港剧</a></li>
-<li ><a href="/maindex/lists/13/0/0.shtml" >台湾剧</a></li>
-<li ><a href="/maindex/lists/14/0/0.shtml" >日本剧</a></li>
-<li ><a href="/maindex/lists/15/0/0.shtml" >韩国剧</a></li>
-<li ><a href="/maindex/lists/16/0/0.shtml" >欧美剧</a></li>
-<li ><a href="/maindex/lists/17/0/0.shtml" >海外剧</a></li>
-<li ><a href="/maindex/lists/20/0/0.shtml" >泰国剧</a></li>
+<li ><a href="/maindex/lists/11/0/0.shtml" onclick="ga('send','event', 'channel','大陆剧');" >大陆剧</a></li>
+<li ><a href="/maindex/lists/12/0/0.shtml" onclick="ga('send','event', 'channel','香港剧');" >香港剧</a></li>
+<li ><a href="/maindex/lists/13/0/0.shtml" onclick="ga('send','event', 'channel','台湾剧');" >台湾剧</a></li>
+<li ><a href="/maindex/lists/14/0/0.shtml" onclick="ga('send','event', 'channel','日本剧');" >日本剧</a></li>
+<li ><a href="/maindex/lists/15/0/0.shtml" onclick="ga('send','event', 'channel','韩国剧');" >韩国剧</a></li>
+<li ><a href="/maindex/lists/16/0/0.shtml" onclick="ga('send','event', 'channel','欧美剧');" >欧美剧</a></li>
+<li ><a href="/maindex/lists/17/0/0.shtml" onclick="ga('send','event', 'channel','海外剧');" >海外剧</a></li>
+<li ><a href="/maindex/lists/20/0/0.shtml" onclick="ga('send','event', 'channel','泰国剧');" >泰国剧</a></li>
+</ul>
+</div>
+<!--综艺-->
+<div class="nav">
+<ul>
+<li ><a href="/maindex/lists/9/0/0.shtml" onclick="ga('send','event', 'channel','综艺片');" >综艺片</a></li>
+<li ><a href="/maindex/lists/37/0/0.shtml" onclick="ga('send','event', 'channel','台湾综艺');" >台湾综艺</a></li>
+<li ><a href="/maindex/lists/38/0/0.shtml" onclick="ga('send','event', 'channel','内地综艺');" >内地综艺</a></li>
+<li ><a href="/maindex/lists/39/0/0.shtml" onclick="ga('send','event', 'channel','日本综艺');" >日本综艺</a></li>
+<li ><a href="/maindex/lists/40/0/0.shtml" onclick="ga('send','event', 'channel','香港综艺');" >香港综艺</a></li>
+<li ><a href="/maindex/lists/41/0/0.shtml" onclick="ga('send','event', 'channel','韩国综艺');" >韩国综艺</a></li>
+<li ><a href="/maindex/lists/42/0/0.shtml" onclick="ga('send','event', 'channel','欧美综艺');" >欧美综艺</a></li>
+<li ><a href="/maindex/lists/43/0/0.shtml" onclick="ga('send','event', 'channel','相声小品');" >相声小品</a></li>
+<li ><a href="/maindex/lists/44/0/0.shtml" onclick="ga('send','event', 'channel','晚会');" >晚会</a></li>
+<li ><a href="/maindex/lists/45/0/0.shtml" onclick="ga('send','event', 'channel','演唱会');" >演唱会</a></li>
+<li ><a href="/maindex/lists/46/0/0.shtml" onclick="ga('send','event', 'channel','名家讲座');" >名家讲座</a></li>
+<li ><a href="/maindex/lists/47/0/0.shtml" onclick="ga('send','event', 'channel','科教节目');" >科教节目</a></li>
+</ul>
+</div>
+<!--动漫-->
+<div class="nav">
+<ul>
+<li ><a href="/maindex/lists/8/0/0.shtml" onclick="ga('send','event', 'channel','动漫片');" >动漫片</a></li>
+<li ><a href="/maindex/lists/34/0/0.shtml" onclick="ga('send','event', 'channel','日本动漫');" >日本动漫</a></li>
+<li ><a href="/maindex/lists/35/0/0.shtml" onclick="ga('send','event', 'channel','国产动漫');" >国产动漫</a></li>
+<li ><a href="/maindex/lists/36/0/0.shtml" onclick="ga('send','event', 'channel','欧美动漫');" >欧美动漫</a></li>
 </ul>
 </div>
 <div class="nav">
@@ -82,20 +117,20 @@
 <form name="formsearch" id="formsearch" method="get" action="/maindex/search" target="_blank">
 <div class="r searchbar">
 <input type="text" class="text" id="searchword" name="q" value="请输入要搜索的关键词..." onblur="if(this.value=='') this.value='请输入要搜索的关键词...';" onfocus="if(this.value=='请输入要搜索的关键词...') this.value='';"/>
-<input type="submit" class="submit" value="搜 索" />
+<input type="submit" class="submit" value="搜 索" onclick="ga('send','event', 'site','搜索');" />
 </div>
  </form>
 <div class="l seach_tag"><strong>猜你喜欢看：</strong>
-<a href="/maindex/views/21628.shtml">名门绅士之暮雪情钟</a>
-<a href="/maindex/views/21627.shtml">刁蛮公主小矮人</a>
-<a href="/maindex/views/21626.shtml">龙血翡翠</a>
-<a href="/maindex/views/21625.shtml">男婚女嫁</a>
-<a href="/maindex/views/21624.shtml">前生今世(泰剧)</a>
-<a href="/maindex/views/21628.shtml">名门绅士之暮雪情钟</a>
-<a href="/maindex/views/21627.shtml">刁蛮公主小矮人</a>
-<a href="/maindex/views/21626.shtml">龙血翡翠</a>
-<a href="/maindex/views/21625.shtml">男婚女嫁</a>
-<a href="/maindex/views/21624.shtml">前生今世(泰剧)</a>
+<a href="/maindex/views/21628.shtml" onclick="ga('send','event', 'youMayLike','名门绅士之暮雪情钟');" >名门绅士之暮雪情钟</a>
+<a href="/maindex/views/21627.shtml" onclick="ga('send','event', 'youMayLike','刁蛮公主小矮人');" >刁蛮公主小矮人</a>
+<a href="/maindex/views/21626.shtml" onclick="ga('send','event', 'youMayLike','龙血翡翠');" >龙血翡翠</a>
+<a href="/maindex/views/21625.shtml" onclick="ga('send','event', 'youMayLike','男婚女嫁');" >男婚女嫁</a>
+<a href="/maindex/views/21624.shtml" onclick="ga('send','event', 'youMayLike','前生今世(泰剧)');" >前生今世(泰剧)</a>
+<a href="/maindex/views/21628.shtml" onclick="ga('send','event', 'youMayLike','名门绅士之暮雪情钟');" >名门绅士之暮雪情钟</a>
+<a href="/maindex/views/21627.shtml" onclick="ga('send','event', 'youMayLike','刁蛮公主小矮人');" >刁蛮公主小矮人</a>
+<a href="/maindex/views/21626.shtml" onclick="ga('send','event', 'youMayLike','龙血翡翠');" >龙血翡翠</a>
+<a href="/maindex/views/21625.shtml" onclick="ga('send','event', 'youMayLike','男婚女嫁');" >男婚女嫁</a>
+<a href="/maindex/views/21624.shtml" onclick="ga('send','event', 'youMayLike','前生今世(泰剧)');" >前生今世(泰剧)</a>
 </div>
 </div><!--Search end-->
 <div class="wrap">
@@ -109,25 +144,40 @@
 <div class="w704 r bg">
 <h3 class="ph3">今日推荐必看<em class="more">
 为了下次能快速打开我们的网站，请加入收藏：
-<a id="join" href="javascript:void(0)" onclick="javascript:addFavorite('www.qvdhd.com','QVDHD影院-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载 ')" >【添加到浏览器收藏夹】</a>
-<a href="javascript:window.open('http://shuqian.qq.com/post?from=3&title='+encodeURIComponent(document.title)+'&uri='+encodeURIComponent(document.location.href)+'&jumpback=2&noui=1','favit','width=930,height=470,left=50,top=50,toolbar=no,menubar=no,location=no,scrollbars=yes,status=yes,resizable=yes');void(0)">【添加到QQ收藏】</a></em>
+<a id="join" onclick="ga('send','event', 'site','favsite');" href="javascript:void(0)" onclick="javascript:addFavorite('www.qvdhd.com','QVDHD影院-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载 ')" >【添加到浏览器收藏夹】</a>
+<a onclick="ga('send','event', 'site','qqfavsite');" href="javascript:window.open('http://shuqian.qq.com/post?from=3&title='+encodeURIComponent(document.title)+'&uri='+encodeURIComponent(document.location.href)+'&jumpback=2&noui=1','favit','width=930,height=470,left=50,top=50,toolbar=no,menubar=no,location=no,scrollbars=yes,status=yes,resizable=yes');void(0)">【添加到QQ收藏】</a></em>
 </h3>
 <ul class="cpic">
-<li><a href="/maindex/views/20010.shtml" target="_blank" class="aimg" title="杀手信徒第一季"><img class="lazy" title="杀手信徒第一季" alt="杀手信徒第一季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a><strong><a href="/maindex/views/20010.shtml">杀手信徒第一季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20009.shtml" target="_blank" class="aimg" title="父亲的疯狂世界第一季"><img class="lazy" title="父亲的疯狂世界第一季" alt="父亲的疯狂世界第一季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011985.jpg"/></a><strong><a href="/maindex/views/20009.shtml">父亲的疯狂世界第一季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20008.shtml" target="_blank" class="aimg" title="剩女的混乱生活"><img class="lazy" title="剩女的混乱生活" alt="剩女的混乱生活" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011984.jpg"/></a><strong><a href="/maindex/views/20008.shtml">剩女的混乱生活</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20007.shtml" target="_blank" class="aimg" title="心理追凶第六季"><img class="lazy" title="心理追凶第六季" alt="心理追凶第六季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a><strong><a href="/maindex/views/20007.shtml">心理追凶第六季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20006.shtml" target="_blank" class="aimg" title="又见彩虹第一季"><img class="lazy" title="又见彩虹第一季" alt="又见彩虹第一季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a><strong><a href="/maindex/views/20006.shtml">又见彩虹第一季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20005.shtml" target="_blank" class="aimg" title="美国恐怖故事：女巫集会第三季"><img class="lazy" title="美国恐怖故事：女巫集会第三季" alt="美国恐怖故事：女巫集会第三季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011983.jpg"/></a><strong><a href="/maindex/views/20005.shtml">美国恐怖故事：女巫集会第三季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20004.shtml" target="_blank" class="aimg" title="妙警贼探"><img class="lazy" title="妙警贼探" alt="妙警贼探" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a><strong><a href="/maindex/views/20004.shtml">妙警贼探</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20003.shtml" target="_blank" class="aimg" title="凯莉日记第二季"><img class="lazy" title="凯莉日记第二季" alt="凯莉日记第二季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011982.jpg"/></a><strong><a href="/maindex/views/20003.shtml">凯莉日记第二季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20002.shtml" target="_blank" class="aimg" title="鸦林镇第一季"><img class="lazy" title="鸦林镇第一季" alt="鸦林镇第一季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011981.jpg"/></a><strong><a href="/maindex/views/20002.shtml">鸦林镇第一季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20001.shtml" target="_blank" class="aimg" title="布莱切利四人组第二季"><img class="lazy" title="布莱切利四人组第二季" alt="布莱切利四人组第二季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a><strong><a href="/maindex/views/20001.shtml">布莱切利四人组第二季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/20000.shtml" target="_blank" class="aimg" title="愧疚第一季"><img class="lazy" title="愧疚第一季" alt="愧疚第一季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a><strong><a href="/maindex/views/20000.shtml">愧疚第一季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/19999.shtml" target="_blank" class="aimg" title="荒郊疑云第一季"><img class="lazy" title="荒郊疑云第一季" alt="荒郊疑云第一季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a><strong><a href="/maindex/views/19999.shtml">荒郊疑云第一季</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/19302.shtml" target="_blank" class="aimg" title="野王"><img class="lazy" title="野王" alt="野王" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011865.jpg"/></a><strong><a href="/maindex/views/19302.shtml">野王</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/19301.shtml" target="_blank" class="aimg" title="玻璃假面"><img class="lazy" title="玻璃假面" alt="玻璃假面" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011864.jpg"/></a><strong><a href="/maindex/views/19301.shtml">玻璃假面</a></strong><span>20140701</span></li>
-<li><a href="/maindex/views/19300.shtml" target="_blank" class="aimg" title="我的爱蝴蝶夫人"><img class="lazy" title="我的爱蝴蝶夫人" alt="我的爱蝴蝶夫人" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011863.jpg"/></a><strong><a href="/maindex/views/19300.shtml">我的爱蝴蝶夫人</a></strong><span>20140701</span></li>
+<li><a href="/maindex/views/18082.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_白袍下的高跟鞋');" class="aimg" title="白袍下的高跟鞋"><img class="lazy" title="白袍下的高跟鞋" alt="白袍下的高跟鞋" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18082.shtml" onclick="ga('send','event', 'index_topRecomData','白袍下的高跟鞋');" >白袍下的高跟鞋</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18083.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_回到爱以前(QMV)');" class="aimg" title="回到爱以前(QMV)"><img class="lazy" title="回到爱以前(QMV)" alt="回到爱以前(QMV)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18083.shtml" onclick="ga('send','event', 'index_topRecomData','回到爱以前(QMV)');" >回到爱以前(QMV)</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18084.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_回到爱以前');" class="aimg" title="回到爱以前"><img class="lazy" title="回到爱以前" alt="回到爱以前" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011525.jpg"/></a>
+<strong><a href="/maindex/views/18084.shtml" onclick="ga('send','event', 'index_topRecomData','回到爱以前');" >回到爱以前</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18085.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_光环之后');" class="aimg" title="光环之后"><img class="lazy" title="光环之后" alt="光环之后" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18085.shtml" onclick="ga('send','event', 'index_topRecomData','光环之后');" >光环之后</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18086.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_施公奇案(台版)');" class="aimg" title="施公奇案(台版)"><img class="lazy" title="施公奇案(台版)" alt="施公奇案(台版)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18086.shtml" onclick="ga('send','event', 'index_topRecomData','施公奇案(台版)');" >施公奇案(台版)</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18360.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_爱丽丝之棘');" class="aimg" title="爱丽丝之棘"><img class="lazy" title="爱丽丝之棘" alt="爱丽丝之棘" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18360.shtml" onclick="ga('send','event', 'index_topRecomData','爱丽丝之棘');" >爱丽丝之棘</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18361.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_即便弱小也能获胜');" class="aimg" title="即便弱小也能获胜"><img class="lazy" title="即便弱小也能获胜" alt="即便弱小也能获胜" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18361.shtml" onclick="ga('send','event', 'index_topRecomData','即便弱小也能获胜');" >即便弱小也能获胜</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18362.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_咖啡店的人们');" class="aimg" title="咖啡店的人们"><img class="lazy" title="咖啡店的人们" alt="咖啡店的人们" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18362.shtml" onclick="ga('send','event', 'index_topRecomData','咖啡店的人们');" >咖啡店的人们</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18363.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_BlackPresident');" class="aimg" title="BlackPresident"><img class="lazy" title="BlackPresident" alt="BlackPresident" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18363.shtml" onclick="ga('send','event', 'index_topRecomData','BlackPresident');" >BlackPresident</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/18364.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_鼠小僧');" class="aimg" title="鼠小僧"><img class="lazy" title="鼠小僧" alt="鼠小僧" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/18364.shtml" onclick="ga('send','event', 'index_topRecomData','鼠小僧');" >鼠小僧</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/19094.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_天上女人');" class="aimg" title="天上女人"><img class="lazy" title="天上女人" alt="天上女人" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/19094.shtml" onclick="ga('send','event', 'index_topRecomData','天上女人');" >天上女人</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/19095.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_神的礼物-14天(QMV)');" class="aimg" title="神的礼物-14天(QMV)"><img class="lazy" title="神的礼物-14天(QMV)" alt="神的礼物-14天(QMV)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/19095.shtml" onclick="ga('send','event', 'index_topRecomData','神的礼物-14天(QMV)');" >神的礼物-14天(QMV)</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/19096.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_来了！张宝利');" class="aimg" title="来了！张宝利"><img class="lazy" title="来了！张宝利" alt="来了！张宝利" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/19096.shtml" onclick="ga('send','event', 'index_topRecomData','来了！张宝利');" >来了！张宝利</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/19097.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_贵妇人');" class="aimg" title="贵妇人"><img class="lazy" title="贵妇人" alt="贵妇人" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg"/></a>
+<strong><a href="/maindex/views/19097.shtml" onclick="ga('send','event', 'index_topRecomData','贵妇人');" >贵妇人</a></strong><span>20140703</span></li>
+<li><a href="/maindex/views/19098.shtml" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_好好长大的女儿荷娜');" class="aimg" title="好好长大的女儿荷娜"><img class="lazy" title="好好长大的女儿荷娜" alt="好好长大的女儿荷娜" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011742.jpg"/></a>
+<strong><a href="/maindex/views/19098.shtml" onclick="ga('send','event', 'index_topRecomData','好好长大的女儿荷娜');" >好好长大的女儿荷娜</a></strong><span>20140703</span></li>
 
 </ul>
 </div>
@@ -138,51 +188,74 @@
 <h3 class="ph3">今日最新入库<em class="more"><a href="javascript:void(0);">昨日入库<img src="/public/images/hot.gif?v=20140109" alt="24小时内更新" class="hot"/></a></em></h3>
 <ul>
 <li><em  class="on">1</em>
-<p><a href="/maindex/views/47176.shtml" target="_blank">创造天堂国语版</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/11.shtml" onclick="ga('send','event', 'index_todayNewData','托卡列夫');" target="_blank">托卡列夫</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">2</em>
-<p><a href="/maindex/views/47175.shtml" target="_blank">月光魅影泰剧</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/12.shtml" onclick="ga('send','event', 'index_todayNewData','庞贝末日(2014版)/庞贝末日：天火焚城');" target="_blank">庞贝末日(2014版)/庞贝末日：天火焚城</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">3</em>
-<p><a href="/maindex/views/47174.shtml" target="_blank">蓝色冰点泰剧</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/13.shtml" onclick="ga('send','event', 'index_todayNewData','局外人(2014版)');" target="_blank">局外人(2014版)</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">4</em>
-<p><a href="/maindex/views/47173.shtml" target="_blank">雾里的王子泰剧</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/14.shtml" onclick="ga('send','event', 'index_todayNewData','聚客镇');" target="_blank">聚客镇</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">5</em>
-<p><a href="/maindex/views/47172.shtml" target="_blank">蜜色死神电视剧</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/15.shtml" onclick="ga('send','event', 'index_todayNewData','红色天空(2014)/歼灭天际线');" target="_blank">红色天空(2014)/歼灭天际线</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">6</em>
-<p><a href="/maindex/views/47171.shtml" target="_blank">落日余晖国语版</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/2179.shtml" onclick="ga('send','event', 'index_todayNewData','尴尬时刻/情场DRY爆三兄弟');" target="_blank">尴尬时刻/情场DRY爆三兄弟</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">7</em>
-<p><a href="/maindex/views/47170.shtml" target="_blank">请和我结婚国语版</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/2180.shtml" onclick="ga('send','event', 'index_todayNewData','美味毒妇/波莱特');" target="_blank">美味毒妇/波莱特</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">8</em>
-<p><a href="/maindex/views/47169.shtml" target="_blank">名门绅士之曼舞云霄泰剧</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/2181.shtml" onclick="ga('send','event', 'index_todayNewData','中国益智游戏');" target="_blank">中国益智游戏</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">9</em>
-<p><a href="/maindex/views/47168.shtml" target="_blank">欺诈天使</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/2182.shtml" onclick="ga('send','event', 'index_todayNewData','整容日记');" target="_blank">整容日记</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">10</em>
-<p><a href="/maindex/views/47167.shtml" target="_blank">迷失的星泰剧</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/2183.shtml" onclick="ga('send','event', 'index_todayNewData','官能的法则');" target="_blank">官能的法则</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">11</em>
-<p><a href="/maindex/views/47166.shtml" target="_blank">嫉妒的深海/（妒海泰剧）</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/4359.shtml" onclick="ga('send','event', 'index_todayNewData','雪国列车/末世列车/末日列车');" target="_blank">雪国列车/末世列车/末日列车</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">12</em>
-<p><a href="/maindex/views/47165.shtml" target="_blank">新版凤凰血/玻钻之争/新凤凰血（泰剧）</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/4360.shtml" onclick="ga('send','event', 'index_todayNewData','科学小飞侠/科学忍者队');" target="_blank">科学小飞侠/科学忍者队</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">13</em>
-<p><a href="/maindex/views/47164.shtml" target="_blank">秋天的童话(泰剧)</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/4361.shtml" onclick="ga('send','event', 'index_todayNewData','人族/人类');" target="_blank">人族/人类</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">14</em>
-<p><a href="/maindex/views/47163.shtml" target="_blank">藩篱情缘(泰剧)</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/4362.shtml" onclick="ga('send','event', 'index_todayNewData','雷霆万钧');" target="_blank">雷霆万钧</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">15</em>
-<p><a href="/maindex/views/47162.shtml" target="_blank">天沙(泰剧)</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/4363.shtml" onclick="ga('send','event', 'index_todayNewData','我，弗兰肯斯坦/科学怪人：屠魔大战/妖魔行者');" target="_blank">我，弗兰肯斯坦/科学怪人：屠魔大战/妖魔行者</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">16</em>
-<p><a href="/maindex/views/47161.shtml" target="_blank">死神之泪(泰国)</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/5061.shtml" onclick="ga('send','event', 'index_todayNewData','不安的种子');" target="_blank">不安的种子</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">17</em>
-<p><a href="/maindex/views/47160.shtml" target="_blank">星月争爸(泰剧)</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/5062.shtml" onclick="ga('send','event', 'index_todayNewData','灵视3D');" target="_blank">灵视3D</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">18</em>
-<p><a href="/maindex/views/47159.shtml" target="_blank">爱你每一天(泰剧)</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/5063.shtml" onclick="ga('send','event', 'index_todayNewData','野僵尸/荒野猎杀/杀猪离奇大冒险');" target="_blank">野僵尸/荒野猎杀/杀猪离奇大冒险</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">19</em>
-<p><a href="/maindex/views/47158.shtml" target="_blank">工厂天使（泰剧）</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/5064.shtml" onclick="ga('send','event', 'index_todayNewData','异度迷局/七夜惊魂');" target="_blank">异度迷局/七夜惊魂</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">20</em>
-<p><a href="/maindex/views/47157.shtml" target="_blank">天命之虎2骄傲之虎</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/5065.shtml" onclick="ga('send','event', 'index_todayNewData','13宗罪');" target="_blank">13宗罪</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">21</em>
-<p><a href="/maindex/views/47156.shtml" target="_blank">恶魔之翼(泰剧)</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/6876.shtml" onclick="ga('send','event', 'index_todayNewData','史上最强弟子兼一暗之袭击');" target="_blank">史上最强弟子兼一暗之袭击</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">22</em>
-<p><a href="/maindex/views/47155.shtml" target="_blank">心的牵引泰剧</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/6877.shtml" onclick="ga('send','event', 'index_todayNewData','魔神之骨');" target="_blank">魔神之骨</a>
+<strong></strong></p><span></span></li>
 <li><em  class="on">23</em>
-<p><a href="/maindex/views/47154.shtml" target="_blank">欲孽之屋(泰剧)</a><strong></strong></p><span></span></li>
+<p><a href="/maindex/views/6878.shtml" onclick="ga('send','event', 'index_todayNewData','飙速宅男');" target="_blank">飙速宅男</a>
+<strong></strong></p><span></span></li>
 </ul>
 </div>
 </div>
@@ -197,102 +270,38 @@
 <!-- 最新电影标签开始//End -->
 <h3 class="ph3">最新电影频道</h3>
 <ul class="cpic ulbl">
- <li><a href="/maindex/views/4544.shtml" target="_blank" class="aimg" title="阿特拉斯耸耸肩2"> <img class="lazy" title="阿特拉斯耸耸肩2" alt="阿特拉斯耸耸肩2" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000007976.jpg" alt="阿特拉斯耸耸肩2" /></a><strong><a href="/maindex/views/4544.shtml">阿特拉斯耸耸肩2</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4545.shtml" target="_blank" class="aimg" title="太空堡垒卡拉狄加：血与铬"> <img class="lazy" title="太空堡垒卡拉狄加：血与铬" alt="太空堡垒卡拉狄加：血与铬" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000007977.jpg" alt="太空堡垒卡拉狄加：血与铬" /></a><strong><a href="/maindex/views/4545.shtml">太空堡垒卡拉狄加：血与铬</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4546.shtml" target="_blank" class="aimg" title="蜘蛛3D/蜘蛛入侵/巨毒蜘蛛/3D蜘蛛"> <img class="lazy" title="蜘蛛3D/蜘蛛入侵/巨毒蜘蛛/3D蜘蛛" alt="蜘蛛3D/蜘蛛入侵/巨毒蜘蛛/3D蜘蛛" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000007978.jpg" alt="蜘蛛3D/蜘蛛入侵/巨毒蜘蛛/3D蜘蛛" /></a><strong><a href="/maindex/views/4546.shtml">蜘蛛3D/蜘蛛入侵/巨毒蜘蛛/3D蜘蛛</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4547.shtml" target="_blank" class="aimg" title="假面骑士：大家一起宇宙来啦"> <img class="lazy" title="假面骑士：大家一起宇宙来啦" alt="假面骑士：大家一起宇宙来啦" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000007979.jpg" alt="假面骑士：大家一起宇宙来啦" /></a><strong><a href="/maindex/views/4547.shtml">假面骑士：大家一起宇宙来啦</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4548.shtml" target="_blank" class="aimg" title="蜘蛛侠"> <img class="lazy" title="蜘蛛侠" alt="蜘蛛侠" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="蜘蛛侠" /></a><strong><a href="/maindex/views/4548.shtml">蜘蛛侠</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4549.shtml" target="_blank" class="aimg" title="不明飞行物"> <img class="lazy" title="不明飞行物" alt="不明飞行物" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000007980.jpg" alt="不明飞行物" /></a><strong><a href="/maindex/views/4549.shtml">不明飞行物</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4550.shtml" target="_blank" class="aimg" title="X战警2"> <img class="lazy" title="X战警2" alt="X战警2" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="X战警2" /></a><strong><a href="/maindex/views/4550.shtml">X战警2</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4551.shtml" target="_blank" class="aimg" title="记忆提取/提取"> <img class="lazy" title="记忆提取/提取" alt="记忆提取/提取" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000007981.jpg" alt="记忆提取/提取" /></a><strong><a href="/maindex/views/4551.shtml">记忆提取/提取</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4552.shtml" target="_blank" class="aimg" title="圣诞十二劫"> <img class="lazy" title="圣诞十二劫" alt="圣诞十二劫" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000007982.jpg" alt="圣诞十二劫" /></a><strong><a href="/maindex/views/4552.shtml">圣诞十二劫</a></strong><span>20140701</span></li>
- <li><a href="/maindex/views/4553.shtml" target="_blank" class="aimg" title="掠夺者2012/海岸大捕怪"> <img class="lazy" title="掠夺者2012/海岸大捕怪" alt="掠夺者2012/海岸大捕怪" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000007983.jpg" alt="掠夺者2012/海岸大捕怪" /></a><strong><a href="/maindex/views/4553.shtml">掠夺者2012/海岸大捕怪</a></strong><span>20140701</span></li>
+ <li><a href="/maindex/views/8298.shtml" target="_blank" class="aimg" title="孤独的生还者/红翼行动/绝地孤军/孤独的幸存者" onclick="ga('send','event', 'index_todayMovieNewData','img_孤独的生还者/红翼行动/绝地孤军/孤独的幸存者');"> 
+<img class="lazy" title="孤独的生还者/红翼行动/绝地孤军/孤独的幸存者" alt="孤独的生还者/红翼行动/绝地孤军/孤独的幸存者" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000009020.jpg" alt="孤独的生还者/红翼行动/绝地孤军/孤独的幸存者" /></a><strong>
+<a href="/maindex/views/8298.shtml" onclick="ga('send','event', 'index_todayMovieNewData','孤独的生还者/红翼行动/绝地孤军/孤独的幸存者');">孤独的生还者/红翼行动/绝地孤军/孤独的幸存者</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8299.shtml" target="_blank" class="aimg" title="红色行动队天降横财" onclick="ga('send','event', 'index_todayMovieNewData','img_红色行动队天降横财');"> 
+<img class="lazy" title="红色行动队天降横财" alt="红色行动队天降横财" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="红色行动队天降横财" /></a><strong>
+<a href="/maindex/views/8299.shtml" onclick="ga('send','event', 'index_todayMovieNewData','红色行动队天降横财');">红色行动队天降横财</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8300.shtml" target="_blank" class="aimg" title="红色行动队热血狂飙" onclick="ga('send','event', 'index_todayMovieNewData','img_红色行动队热血狂飙');"> 
+<img class="lazy" title="红色行动队热血狂飙" alt="红色行动队热血狂飙" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="红色行动队热血狂飙" /></a><strong>
+<a href="/maindex/views/8300.shtml" onclick="ga('send','event', 'index_todayMovieNewData','红色行动队热血狂飙');">红色行动队热血狂飙</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8301.shtml" target="_blank" class="aimg" title="红色行动队致命追击" onclick="ga('send','event', 'index_todayMovieNewData','img_红色行动队致命追击');"> 
+<img class="lazy" title="红色行动队致命追击" alt="红色行动队致命追击" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="红色行动队致命追击" /></a><strong>
+<a href="/maindex/views/8301.shtml" onclick="ga('send','event', 'index_todayMovieNewData','红色行动队致命追击');">红色行动队致命追击</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8302.shtml" target="_blank" class="aimg" title="红色行动队之围" onclick="ga('send','event', 'index_todayMovieNewData','img_红色行动队之围');"> 
+<img class="lazy" title="红色行动队之围" alt="红色行动队之围" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="红色行动队之围" /></a><strong>
+<a href="/maindex/views/8302.shtml" onclick="ga('send','event', 'index_todayMovieNewData','红色行动队之围');">红色行动队之围</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8293.shtml" target="_blank" class="aimg" title="血战西盘岛/西盘岛战役揭秘" onclick="ga('send','event', 'index_todayMovieNewData','img_血战西盘岛/西盘岛战役揭秘');"> 
+<img class="lazy" title="血战西盘岛/西盘岛战役揭秘" alt="血战西盘岛/西盘岛战役揭秘" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000009018.jpg" alt="血战西盘岛/西盘岛战役揭秘" /></a><strong>
+<a href="/maindex/views/8293.shtml" onclick="ga('send','event', 'index_todayMovieNewData','血战西盘岛/西盘岛战役揭秘');">血战西盘岛/西盘岛战役揭秘</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8294.shtml" target="_blank" class="aimg" title="300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起" onclick="ga('send','event', 'index_todayMovieNewData','img_300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起');"> 
+<img class="lazy" title="300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起" alt="300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000009019.jpg" alt="300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起" /></a><strong>
+<a href="/maindex/views/8294.shtml" onclick="ga('send','event', 'index_todayMovieNewData','300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起');">300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8295.shtml" target="_blank" class="aimg" title="七七敢死队" onclick="ga('send','event', 'index_todayMovieNewData','img_七七敢死队');"> 
+<img class="lazy" title="七七敢死队" alt="七七敢死队" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="七七敢死队" /></a><strong>
+<a href="/maindex/views/8295.shtml" onclick="ga('send','event', 'index_todayMovieNewData','七七敢死队');">七七敢死队</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8296.shtml" target="_blank" class="aimg" title="大敌当前" onclick="ga('send','event', 'index_todayMovieNewData','img_大敌当前');"> 
+<img class="lazy" title="大敌当前" alt="大敌当前" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="大敌当前" /></a><strong>
+<a href="/maindex/views/8296.shtml" onclick="ga('send','event', 'index_todayMovieNewData','大敌当前');">大敌当前</a></strong><span>20140703</span></li>
+ <li><a href="/maindex/views/8297.shtml" target="_blank" class="aimg" title="血浴羊山" onclick="ga('send','event', 'index_todayMovieNewData','img_血浴羊山');"> 
+<img class="lazy" title="血浴羊山" alt="血浴羊山" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="血浴羊山" /></a><strong>
+<a href="/maindex/views/8297.shtml" onclick="ga('send','event', 'index_todayMovieNewData','血浴羊山');">血浴羊山</a></strong><span>20140703</span></li>
  </ul>
 <ul class="ctext">
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4504.shtml" target="_blank">变形金刚1</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4505.shtml" target="_blank">第九区/第九禁区/D-9异形禁区</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4506.shtml" target="_blank">蒙特利尔</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4507.shtml" target="_blank">抗体/病毒抗体</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4508.shtml" target="_blank">绝命空间/爬行空隙</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4509.shtml" target="_blank">星际拾荒者</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4510.shtml" target="_blank">宿主/天煞逆缘宿主</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4511.shtml" target="_blank">把妹幻觉/性感的邪恶天才</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4512.shtml" target="_blank">变形金刚3：月黑之时</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4513.shtml" target="_blank">变形金刚2:卷土重来</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4514.shtml" target="_blank">西雅图风暴/超级飓风</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4515.shtml" target="_blank">普罗米修斯</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4516.shtml" target="_blank">魔棺/幽灵诞生</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4517.shtml" target="_blank">无姓之人</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4518.shtml" target="_blank">云图</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4519.shtml" target="_blank">大脚的狂野周末</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4472.shtml" target="_blank">四三二一</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4473.shtml" target="_blank">2012世界末日</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4474.shtml" target="_blank">X战警:第一战</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4475.shtml" target="_blank">人类清除计划/国定杀戮日/灭绝游戏/大清洗</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4476.shtml" target="_blank">恐龙计划/恐龙密档</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4477.shtml" target="_blank">迷雾(电影)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4478.shtml" target="_blank">蓝色奇迹(微电影)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4479.shtml" target="_blank">猿族崛起</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4480.shtml" target="_blank">珍爱泉源</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4481.shtml" target="_blank">龙传说：影子的诅咒/龙传说：诅咒的阴影</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4482.shtml" target="_blank">地球停转之日</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/4483.shtml" target="_blank">刀锋战士2</a></li>
 </ul>
 </div>
 <!-- 最新电影标签结束//End -->
@@ -302,49 +311,50 @@
 <h3 class="ph3">电影频道排行榜</h3>
 <ul>
 <li><em  class="on">1</em>
-<p><a href="/maindex/views/4349.shtml" target="_blank">超凡蜘蛛侠2/蜘蛛人惊奇再起2：电光之战/蜘蛛侠2：决战电魔</a><strong>20140609</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8288.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','孤岛浮生');" >孤岛浮生</a>
+<strong>20140702</strong></p><span>0</span></li>
 <li><em  class="on">2</em>
-<p><a href="/maindex/views/4350.shtml" target="_blank">极北之战</a><strong>20140609</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8289.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','我是战士');" >我是战士</a>
+<strong>20140702</strong></p><span>0</span></li>
 <li><em  class="on">3</em>
-<p><a href="/maindex/views/4351.shtml" target="_blank">机械战警2014/新版铁甲威龙/新版机器战警</a><strong>20140609</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8290.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','盟军夺宝队/古文明救兵/大寻宝家');" >盟军夺宝队/古文明救兵/大寻宝家</a>
+<strong>20140702</strong></p><span>0</span></li>
 <li><em  class="on">4</em>
-<p><a href="/maindex/views/4352.shtml" target="_blank">诺亚方舟：创世之旅/挪亚：灭世启示/诺亚方舟/诺亚</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8291.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','老虎连');" >老虎连</a>
+<strong>20140702</strong></p><span>0</span></li>
 <li><em  class="on">5</em>
-<p><a href="/maindex/views/4353.shtml" target="_blank">美国队长2/美国队长2：酷寒战士/美国队长2：冬日战士</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8292.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','诱杀');" >诱杀</a>
+<strong>20140702</strong></p><span>0</span></li>
 <li><em  class="on">6</em>
-<p><a href="/maindex/views/4354.shtml" target="_blank">地缚/地缚大魔妖</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8293.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','血战西盘岛/西盘岛战役揭秘');" >血战西盘岛/西盘岛战役揭秘</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">7</em>
-<p><a href="/maindex/views/4355.shtml" target="_blank">超级鲨大战机器鲨</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8294.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起');" >300勇士：帝国崛起/战狼300：帝国崛起/300壮士：帝国崛起</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">8</em>
-<p><a href="/maindex/views/4356.shtml" target="_blank">机器人/机械危情</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8295.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','七七敢死队');" >七七敢死队</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">9</em>
-<p><a href="/maindex/views/4357.shtml" target="_blank">三天</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8296.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','大敌当前');" >大敌当前</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">10</em>
-<p><a href="/maindex/views/4358.shtml" target="_blank">异星绑架</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8297.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','血浴羊山');" >血浴羊山</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">11</em>
-<p><a href="/maindex/views/4359.shtml" target="_blank">雪国列车/末世列车/末日列车</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8298.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','孤独的生还者/红翼行动/绝地孤军/孤独的幸存者');" >孤独的生还者/红翼行动/绝地孤军/孤独的幸存者</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">12</em>
-<p><a href="/maindex/views/4360.shtml" target="_blank">科学小飞侠/科学忍者队</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8299.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','红色行动队天降横财');" >红色行动队天降横财</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">13</em>
-<p><a href="/maindex/views/4361.shtml" target="_blank">人族/人类</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8300.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','红色行动队热血狂飙');" >红色行动队热血狂飙</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">14</em>
-<p><a href="/maindex/views/4362.shtml" target="_blank">雷霆万钧</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8301.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','红色行动队致命追击');" >红色行动队致命追击</a>
+<strong>20140703</strong></p><span>0</span></li>
 <li><em  class="on">15</em>
-<p><a href="/maindex/views/4363.shtml" target="_blank">我，弗兰肯斯坦/科学怪人：屠魔大战/妖魔行者</a><strong>20140624</strong></p><span>0</span></li>
-<li><em  class="on">16</em>
-<p><a href="/maindex/views/4364.shtml" target="_blank">船长哈洛克/宇宙海盗夏罗古</a><strong>20140624</strong></p><span>0</span></li>
-<li><em  class="on">17</em>
-<p><a href="/maindex/views/4365.shtml" target="_blank">印度超人3/印度先生3/克里斯3</a><strong>20140624</strong></p><span>0</span></li>
-<li><em  class="on">18</em>
-<p><a href="/maindex/views/4366.shtml" target="_blank">星际空间</a><strong>20140624</strong></p><span>0</span></li>
-<li><em  class="on">19</em>
-<p><a href="/maindex/views/4367.shtml" target="_blank">银河护卫队</a><strong>20140624</strong></p><span>0</span></li>
-<li><em  class="on">20</em>
-<p><a href="/maindex/views/4368.shtml" target="_blank">控制(国内版)/控城计/空城计</a><strong>20140624</strong></p><span>0</span></li>
-<li><em  class="on">21</em>
-<p><a href="/maindex/views/4369.shtml" target="_blank">机械战警(2014)/新机械战警/铁甲威龙/新版机器战警</a><strong>20140624</strong></p><span>0</span></li>
-<li><em  class="on">22</em>
-<p><a href="/maindex/views/4370.shtml" target="_blank">神秘的外来客</a><strong>20140624</strong></p><span>0</span></li>
+<p><a href="/maindex/views/8302.shtml" target="_blank" onclick="ga('send','event', 'index_mHD','红色行动队之围');" >红色行动队之围</a>
+<strong>20140703</strong></p><span>0</span></li>
 </ul>
 </div>
 </div>
@@ -355,73 +365,18 @@
 <div class="w704 r bg">
 <h3 class="ph3">最新电视剧场</h3>
 <ul class="cpic ulbl">
- <li><a href="/maindex/views/18267.shtml" target="_blank" class="aimg" title="危险心灵"><img class="lazy" title="危险心灵" alt="危险心灵" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="危险心灵" /></a><strong><a href="/maindex/views/18267.shtml">危险心灵</a></strong><span></span></li>
- <li><a href="/maindex/views/18268.shtml" target="_blank" class="aimg" title="恋香"><img class="lazy" title="恋香" alt="恋香" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="恋香" /></a><strong><a href="/maindex/views/18268.shtml">恋香</a></strong><span></span></li>
- <li><a href="/maindex/views/18269.shtml" target="_blank" class="aimg" title="我的秘密花园2"><img class="lazy" title="我的秘密花园2" alt="我的秘密花园2" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="我的秘密花园2" /></a><strong><a href="/maindex/views/18269.shtml">我的秘密花园2</a></strong><span></span></li>
- <li><a href="/maindex/views/18270.shtml" target="_blank" class="aimg" title="几度夕阳红"><img class="lazy" title="几度夕阳红" alt="几度夕阳红" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="几度夕阳红" /></a><strong><a href="/maindex/views/18270.shtml">几度夕阳红</a></strong><span></span></li>
- <li><a href="/maindex/views/18271.shtml" target="_blank" class="aimg" title="你是我的唯一"><img class="lazy" title="你是我的唯一" alt="你是我的唯一" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="你是我的唯一" /></a><strong><a href="/maindex/views/18271.shtml">你是我的唯一</a></strong><span></span></li>
+ <li><a href="/maindex/views/19094.shtml" target="_blank" onclick="ga('send','event', 'index_tNTV','img_天上女人');" class="aimg" title="天上女人"><img class="lazy" title="天上女人" alt="天上女人" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="天上女人" /></a>
+<strong><a href="/maindex/views/19094.shtml" onclick="ga('send','event', 'index_tNTV','天上女人');">天上女人</a></strong><span></span></li>
+ <li><a href="/maindex/views/19095.shtml" target="_blank" onclick="ga('send','event', 'index_tNTV','img_神的礼物-14天(QMV)');" class="aimg" title="神的礼物-14天(QMV)"><img class="lazy" title="神的礼物-14天(QMV)" alt="神的礼物-14天(QMV)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="神的礼物-14天(QMV)" /></a>
+<strong><a href="/maindex/views/19095.shtml" onclick="ga('send','event', 'index_tNTV','神的礼物-14天(QMV)');">神的礼物-14天(QMV)</a></strong><span></span></li>
+ <li><a href="/maindex/views/19096.shtml" target="_blank" onclick="ga('send','event', 'index_tNTV','img_来了！张宝利');" class="aimg" title="来了！张宝利"><img class="lazy" title="来了！张宝利" alt="来了！张宝利" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="来了！张宝利" /></a>
+<strong><a href="/maindex/views/19096.shtml" onclick="ga('send','event', 'index_tNTV','来了！张宝利');">来了！张宝利</a></strong><span></span></li>
+ <li><a href="/maindex/views/19097.shtml" target="_blank" onclick="ga('send','event', 'index_tNTV','img_贵妇人');" class="aimg" title="贵妇人"><img class="lazy" title="贵妇人" alt="贵妇人" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="贵妇人" /></a>
+<strong><a href="/maindex/views/19097.shtml" onclick="ga('send','event', 'index_tNTV','贵妇人');">贵妇人</a></strong><span></span></li>
+ <li><a href="/maindex/views/19098.shtml" target="_blank" onclick="ga('send','event', 'index_tNTV','img_好好长大的女儿荷娜');" class="aimg" title="好好长大的女儿荷娜"><img class="lazy" title="好好长大的女儿荷娜" alt="好好长大的女儿荷娜" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000011742.jpg" alt="好好长大的女儿荷娜" /></a>
+<strong><a href="/maindex/views/19098.shtml" onclick="ga('send','event', 'index_tNTV','好好长大的女儿荷娜');">好好长大的女儿荷娜</a></strong><span></span></li>
 </ul>
 <ul class="ctext">
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18287.shtml" target="_blank">姐妹</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18288.shtml" target="_blank">江湖.com</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18289.shtml" target="_blank">台湾1895</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18290.shtml" target="_blank">梦幻天堂</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18243.shtml" target="_blank">幸福三颗星</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18244.shtml" target="_blank">战神</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18245.shtml" target="_blank">爱杀17</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18246.shtml" target="_blank">家和万事兴</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18247.shtml" target="_blank">绝世双骄</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18248.shtml" target="_blank">我可能不会爱你</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18249.shtml" target="_blank">勇士们</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18250.shtml" target="_blank">我要变成硬柿子</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18251.shtml" target="_blank">暴雨梨花</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18252.shtml" target="_blank">瑰宝1949</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18253.shtml" target="_blank">光阴的故事</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18254.shtml" target="_blank">隔壁房间的帅哥</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18255.shtml" target="_blank">天师钟馗之倩女情仇</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18256.shtml" target="_blank">两个门牌一个家</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18257.shtml" target="_blank">月满水沙涟</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/18258.shtml" target="_blank">又见橘花香</a></li>
 </ul>
 </div>
 <!-- 电视剧场代码结束//End -->
@@ -431,40 +386,40 @@
 <h3 class="ph3">电视剧场排行榜</h3>
 <ul>
 <li><em  class="on">1</em>
-<p><a href="/maindex/views/18072.shtml" target="_blank">世间情</a><strong>
+<p><a href="/maindex/views/19084.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','妈妈的庭院');">妈妈的庭院</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">2</em>
-<p><a href="/maindex/views/18073.shtml" target="_blank">雨后骄阳</a><strong>
+<p><a href="/maindex/views/19085.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','Pluto秘密敢死队');">Pluto秘密敢死队</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">3</em>
-<p><a href="/maindex/views/18074.shtml" target="_blank">女人30情定水舞间</a><strong>
+<p><a href="/maindex/views/19086.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','闪耀的罗曼史');">闪耀的罗曼史</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">4</em>
-<p><a href="/maindex/views/18075.shtml" target="_blank">龙飞凤舞电视剧</a><strong>
+<p><a href="/maindex/views/19087.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','全都是泡菜');">全都是泡菜</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">5</em>
-<p><a href="/maindex/views/18076.shtml" target="_blank">爱上两个我</a><strong>
+<p><a href="/maindex/views/19088.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','乘着歌声的爱情');">乘着歌声的爱情</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">6</em>
-<p><a href="/maindex/views/18077.shtml" target="_blank">真爱配方</a><strong>
+<p><a href="/maindex/views/19089.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','奇皇后');">奇皇后</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">7</em>
-<p><a href="/maindex/views/18078.shtml" target="_blank">流氓蛋糕店</a><strong>
+<p><a href="/maindex/views/19090.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','只属于我的你');">只属于我的你</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">8</em>
-<p><a href="/maindex/views/18079.shtml" target="_blank">热海恋歌</a><strong>
+<p><a href="/maindex/views/19091.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','魔女的恋爱');">魔女的恋爱</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">9</em>
-<p><a href="/maindex/views/18080.shtml" target="_blank">廉政英雄</a><strong>
+<p><a href="/maindex/views/19092.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','神的礼物-14天');">神的礼物-14天</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">10</em>
-<p><a href="/maindex/views/18081.shtml" target="_blank">我的自由年代</a><strong>
+<p><a href="/maindex/views/19093.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','密会');">密会</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">11</em>
-<p><a href="/maindex/views/18082.shtml" target="_blank">白袍下的高跟鞋</a><strong>
+<p><a href="/maindex/views/19094.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','天上女人');">天上女人</a><strong>
 全集</strong></p><span>0</span></li>
 <li><em  class="on">12</em>
-<p><a href="/maindex/views/18083.shtml" target="_blank">回到爱以前(QMV)</a><strong>
+<p><a href="/maindex/views/19095.shtml" target="_blank" onclick="ga('send','event', 'index_tvHD','神的礼物-14天(QMV)');">神的礼物-14天(QMV)</a><strong>
 全集</strong></p><span>0</span></li>
 </ul>
 </div>
@@ -479,40 +434,18 @@
 <div class="w704 r bg">
 <h3 class="ph3">最新综艺节目</h3>
 <ul class="cpic ulbl">
- <li><a href="/maindex/views/13657.shtml" target="_blank" class="aimg" title="武林风(2014)"><img class="lazy" title="武林风(2014)" alt="武林风(2014)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="武林风(2014)" /></a><strong><a href="/maindex/views/13657.shtml">武林风(2014)</a></strong><span></span></li>
- <li><a href="/maindex/views/13658.shtml" target="_blank" class="aimg" title="超级访问(2014)"><img class="lazy" title="超级访问(2014)" alt="超级访问(2014)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="超级访问(2014)" /></a><strong><a href="/maindex/views/13658.shtml">超级访问(2014)</a></strong><span></span></li>
- <li><a href="/maindex/views/13659.shtml" target="_blank" class="aimg" title="老梁有看法(2014)"><img class="lazy" title="老梁有看法(2014)" alt="老梁有看法(2014)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="老梁有看法(2014)" /></a><strong><a href="/maindex/views/13659.shtml">老梁有看法(2014)</a></strong><span></span></li>
- <li><a href="/maindex/views/13660.shtml" target="_blank" class="aimg" title="语众不同(2014)"><img class="lazy" title="语众不同(2014)" alt="语众不同(2014)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="语众不同(2014)" /></a><strong><a href="/maindex/views/13660.shtml">语众不同(2014)</a></strong><span></span></li>
- <li><a href="/maindex/views/13661.shtml" target="_blank" class="aimg" title="美凤有约(2014)"><img class="lazy" title="美凤有约(2014)" alt="美凤有约(2014)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="美凤有约(2014)" /></a><strong><a href="/maindex/views/13661.shtml">美凤有约(2014)</a></strong><span></span></li>
+ <li><a href="/maindex/views/13667.shtml" target="_blank" class="aimg" title="食平DD" onclick="ga('send','event', 'index_varND','img_食平DD');" ><img class="lazy" title="食平DD" alt="食平DD" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="食平DD" /></a>
+<strong><a href="/maindex/views/13667.shtml" onclick="ga('send','event', 'index_varND','食平DD');">食平DD</a></strong><span></span></li>
+ <li><a href="/maindex/views/13668.shtml" target="_blank" class="aimg" title="老梁故事汇(2014)" onclick="ga('send','event', 'index_varND','img_老梁故事汇(2014)');" ><img class="lazy" title="老梁故事汇(2014)" alt="老梁故事汇(2014)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="老梁故事汇(2014)" /></a>
+<strong><a href="/maindex/views/13668.shtml" onclick="ga('send','event', 'index_varND','老梁故事汇(2014)');">老梁故事汇(2014)</a></strong><span></span></li>
+ <li><a href="/maindex/views/13669.shtml" target="_blank" class="aimg" title="老梁观世界(2014)" onclick="ga('send','event', 'index_varND','img_老梁观世界(2014)');" ><img class="lazy" title="老梁观世界(2014)" alt="老梁观世界(2014)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="老梁观世界(2014)" /></a>
+<strong><a href="/maindex/views/13669.shtml" onclick="ga('send','event', 'index_varND','老梁观世界(2014)');">老梁观世界(2014)</a></strong><span></span></li>
+ <li><a href="/maindex/views/13670.shtml" target="_blank" class="aimg" title="我们约会吧(2014)" onclick="ga('send','event', 'index_varND','img_我们约会吧(2014)');" ><img class="lazy" title="我们约会吧(2014)" alt="我们约会吧(2014)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="我们约会吧(2014)" /></a>
+<strong><a href="/maindex/views/13670.shtml" onclick="ga('send','event', 'index_varND','我们约会吧(2014)');">我们约会吧(2014)</a></strong><span></span></li>
+ <li><a href="/maindex/views/13671.shtml" target="_blank" class="aimg" title="美食大三通" onclick="ga('send','event', 'index_varND','img_美食大三通');" ><img class="lazy" title="美食大三通" alt="美食大三通" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="美食大三通" /></a>
+<strong><a href="/maindex/views/13671.shtml" onclick="ga('send','event', 'index_varND','美食大三通');">美食大三通</a></strong><span></span></li>
 </ul>
 <ul class="ctext">
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13672.shtml" target="_blank">综艺大热门(2014)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13673.shtml" target="_blank">爱情保卫战(2014)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13674.shtml" target="_blank">SS小燕之夜(2014)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13675.shtml" target="_blank">来自星星的事</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13676.shtml" target="_blank">开卷八分钟2014</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13677.shtml" target="_blank">康熙来了(2014)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13678.shtml" target="_blank">军情观察室(2014)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13679.shtml" target="_blank">娱乐百分百(2014)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/13680.shtml" target="_blank">笑林练舞功(2014)</a></li>
 </ul>
 </div>
 <!-- 综艺节目代码结束//End -->
@@ -522,29 +455,41 @@
 <h3 class="ph3">综艺节目排行榜</h3>
 <ul>
 <li><em  class="on">1</em>
-<p><a href="/maindex/views/13657.shtml" target="_blank">武林风(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13657.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','武林风(2014)');" >武林风(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">2</em>
-<p><a href="/maindex/views/13658.shtml" target="_blank">超级访问(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13658.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','超级访问(2014)');" >超级访问(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">3</em>
-<p><a href="/maindex/views/13659.shtml" target="_blank">老梁有看法(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13659.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','老梁有看法(2014)');" >老梁有看法(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">4</em>
-<p><a href="/maindex/views/13660.shtml" target="_blank">语众不同(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13660.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','语众不同(2014)');" >语众不同(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">5</em>
-<p><a href="/maindex/views/13661.shtml" target="_blank">美凤有约(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13661.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','美凤有约(2014)');" >美凤有约(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">6</em>
-<p><a href="/maindex/views/13662.shtml" target="_blank">爸妈囧很大(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13662.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','爸妈囧很大(2014)');" >爸妈囧很大(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">7</em>
-<p><a href="/maindex/views/13663.shtml" target="_blank">大学生了没(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13663.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','大学生了没(2014)');" >大学生了没(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">8</em>
-<p><a href="/maindex/views/13664.shtml" target="_blank">锵锵三人行(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13664.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','锵锵三人行(2014)');" >锵锵三人行(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">9</em>
-<p><a href="/maindex/views/13665.shtml" target="_blank">国光帮帮忙(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13665.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','国光帮帮忙(2014)');" >国光帮帮忙(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">10</em>
-<p><a href="/maindex/views/13666.shtml" target="_blank">非常了得(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13666.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','非常了得(2014)');" >非常了得(2014)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">11</em>
-<p><a href="/maindex/views/13667.shtml" target="_blank">食平DD</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13667.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','食平DD');" >食平DD</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">12</em>
-<p><a href="/maindex/views/13668.shtml" target="_blank">老梁故事汇(2014)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/13668.shtml" target="_blank" onclick="ga('send','event', 'index_varHD','老梁故事汇(2014)');" >老梁故事汇(2014)</a>
+<strong></strong></p><span>0</span></li>
  </ul>
 </div>
 </div>
@@ -555,25 +500,18 @@
 <div class="w704 r bg">
 <h3 class="ph3">最新动漫片</h3>
 <ul class="cpic ulbl">
- <li><a href="/maindex/views/6866.shtml" target="_blank" class="aimg" title="魔法之家"><img class="lazy" title="魔法之家" alt="魔法之家" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000008450.jpg" alt="魔法之家" /></a><strong><a href="/maindex/views/6866.shtml">魔法之家</a></strong><span></span></li>
- <li><a href="/maindex/views/6867.shtml" target="_blank" class="aimg" title="人猿泰山(2014版)"><img class="lazy" title="人猿泰山(2014版)" alt="人猿泰山(2014版)" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000008451.jpg" alt="人猿泰山(2014版)" /></a><strong><a href="/maindex/views/6867.shtml">人猿泰山(2014版)</a></strong><span></span></li>
- <li><a href="/maindex/views/6868.shtml" target="_blank" class="aimg" title="天才眼镜狗/皮巴弟先生与薛曼的时光冒险/百宝狗先生与细蚊：时光机大历险"><img class="lazy" title="天才眼镜狗/皮巴弟先生与薛曼的时光冒险/百宝狗先生与细蚊：时光机大历险" alt="天才眼镜狗/皮巴弟先生与薛曼的时光冒险/百宝狗先生与细蚊：时光机大历险" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000008452.jpg" alt="天才眼镜狗/皮巴弟先生与薛曼的时光冒险/百宝狗先生与细蚊：时光机大历险" /></a><strong><a href="/maindex/views/6868.shtml">天才眼镜狗/皮巴弟先生与薛曼的时光冒险/百宝狗先生与细蚊：时光机大历险</a></strong><span></span></li>
- <li><a href="/maindex/views/6869.shtml" target="_blank" class="aimg" title="里约大冒险2/奇鹦嘉年华2"><img class="lazy" title="里约大冒险2/奇鹦嘉年华2" alt="里约大冒险2/奇鹦嘉年华2" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000008453.jpg" alt="里约大冒险2/奇鹦嘉年华2" /></a><strong><a href="/maindex/views/6869.shtml">里约大冒险2/奇鹦嘉年华2</a></strong><span></span></li>
- <li><a href="/maindex/views/6870.shtml" target="_blank" class="aimg" title="三小强/Q版三国之三小强"><img class="lazy" title="三小强/Q版三国之三小强" alt="三小强/Q版三国之三小强" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000008454.jpg" alt="三小强/Q版三国之三小强" /></a><strong><a href="/maindex/views/6870.shtml">三小强/Q版三国之三小强</a></strong><span></span></li>
+ <li><a href="/maindex/views/6876.shtml" target="_blank" class="aimg" title="史上最强弟子兼一暗之袭击" onclick="ga('send','event', 'index_aniND','img_史上最强弟子兼一暗之袭击');"><img class="lazy" title="史上最强弟子兼一暗之袭击" alt="史上最强弟子兼一暗之袭击" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="史上最强弟子兼一暗之袭击" /></a>
+<strong><a href="/maindex/views/6876.shtml" onclick="ga('send','event', 'index_aniND','史上最强弟子兼一暗之袭击');">史上最强弟子兼一暗之袭击</a></strong><span></span></li>
+ <li><a href="/maindex/views/6877.shtml" target="_blank" class="aimg" title="魔神之骨" onclick="ga('send','event', 'index_aniND','img_魔神之骨');"><img class="lazy" title="魔神之骨" alt="魔神之骨" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="魔神之骨" /></a>
+<strong><a href="/maindex/views/6877.shtml" onclick="ga('send','event', 'index_aniND','魔神之骨');">魔神之骨</a></strong><span></span></li>
+ <li><a href="/maindex/views/6878.shtml" target="_blank" class="aimg" title="飙速宅男" onclick="ga('send','event', 'index_aniND','img_飙速宅男');"><img class="lazy" title="飙速宅男" alt="飙速宅男" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000008456.jpg" alt="飙速宅男" /></a>
+<strong><a href="/maindex/views/6878.shtml" onclick="ga('send','event', 'index_aniND','飙速宅男');">飙速宅男</a></strong><span></span></li>
+ <li><a href="/maindex/views/6879.shtml" target="_blank" class="aimg" title="漫画家与助手" onclick="ga('send','event', 'index_aniND','img_漫画家与助手');"><img class="lazy" title="漫画家与助手" alt="漫画家与助手" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000006678.jpg" alt="漫画家与助手" /></a>
+<strong><a href="/maindex/views/6879.shtml" onclick="ga('send','event', 'index_aniND','漫画家与助手');">漫画家与助手</a></strong><span></span></li>
+ <li><a href="/maindex/views/6880.shtml" target="_blank" class="aimg" title="啦啦啦德玛西亚之超神学院第四季" onclick="ga('send','event', 'index_aniND','img_啦啦啦德玛西亚之超神学院第四季');"><img class="lazy" title="啦啦啦德玛西亚之超神学院第四季" alt="啦啦啦德玛西亚之超神学院第四季" data-original="http://img.hacktea8.com/showfile.php?key=3958009_0000008457.jpg" alt="啦啦啦德玛西亚之超神学院第四季" /></a>
+<strong><a href="/maindex/views/6880.shtml" onclick="ga('send','event', 'index_aniND','啦啦啦德玛西亚之超神学院第四季');">啦啦啦德玛西亚之超神学院第四季</a></strong><span></span></li>
 </ul>
 <ul class="ctext">
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/6886.shtml" target="_blank">破刃之剑(TV版)</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/6887.shtml" target="_blank">如果她的旗帜被折断了</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/6888.shtml" target="_blank">愚者信长</a></li>
-<li>&bull;&nbsp;
-<a href="" target="_blank">[ ]
-<a href="/maindex/views/6889.shtml" target="_blank">众神的恶作剧</a></li>
 </ul>
 </div>
 <!-- 综艺排行榜结束//End -->
@@ -583,29 +521,41 @@
 <h3 class="ph3">动漫排行榜</h3>
 <ul>
 <li><em  class="on">1</em>
-<p><a href="/maindex/views/6866.shtml" target="_blank">魔法之家</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6866.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','魔法之家');">魔法之家</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">2</em>
-<p><a href="/maindex/views/6867.shtml" target="_blank">人猿泰山(2014版)</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6867.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','人猿泰山(2014版)');">人猿泰山(2014版)</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">3</em>
-<p><a href="/maindex/views/6868.shtml" target="_blank">天才眼镜狗/皮巴弟先生与薛曼的时光冒险/百宝狗先生与细蚊：时光机大历险</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6868.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','天才眼镜狗/皮巴弟先生与薛曼的时光冒险/百宝狗先生与细蚊：时光机大历险');">天才眼镜狗/皮巴弟先生与薛曼的时光冒险/百宝狗先生与细蚊：时光机大历险</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">4</em>
-<p><a href="/maindex/views/6869.shtml" target="_blank">里约大冒险2/奇鹦嘉年华2</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6869.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','里约大冒险2/奇鹦嘉年华2');">里约大冒险2/奇鹦嘉年华2</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">5</em>
-<p><a href="/maindex/views/6870.shtml" target="_blank">三小强/Q版三国之三小强</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6870.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','三小强/Q版三国之三小强');">三小强/Q版三国之三小强</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">6</em>
-<p><a href="/maindex/views/6871.shtml" target="_blank">蝙蝠侠之子</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6871.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','蝙蝠侠之子');">蝙蝠侠之子</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">7</em>
-<p><a href="/maindex/views/6872.shtml" target="_blank">漆黑的子弹</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6872.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','漆黑的子弹');">漆黑的子弹</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">8</em>
-<p><a href="/maindex/views/6873.shtml" target="_blank">风云维新大将军</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6873.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','风云维新大将军');">风云维新大将军</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">9</em>
-<p><a href="/maindex/views/6874.shtml" target="_blank">棺姬嘉依卡</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6874.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','棺姬嘉依卡');">棺姬嘉依卡</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">10</em>
-<p><a href="/maindex/views/6875.shtml" target="_blank">监督不行届</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6875.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','监督不行届');">监督不行届</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">11</em>
-<p><a href="/maindex/views/6876.shtml" target="_blank">史上最强弟子兼一暗之袭击</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6876.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','史上最强弟子兼一暗之袭击');">史上最强弟子兼一暗之袭击</a>
+<strong></strong></p><span>0</span></li>
 <li><em  class="on">12</em>
-<p><a href="/maindex/views/6877.shtml" target="_blank">魔神之骨</a><strong></strong></p><span>0</span></li>
+<p><a href="/maindex/views/6877.shtml" target="_blank" onclick="ga('send','event', 'index_aniHD','魔神之骨');">魔神之骨</a>
+<strong></strong></p><span>0</span></li>
  </ul>
 </div>
 </div>

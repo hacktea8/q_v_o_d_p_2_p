@@ -21,6 +21,7 @@
 <!-- 广告位置结束//End -->
 </div>
 </div>
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
 </div>
 <!-- 播放地址开始/End -->
 <div class="vlist bg mb">
@@ -42,8 +43,8 @@
 <?php foreach($playRelate as &$v){?>
 <li>
 <h3><?php echo $v['name'];?></h3>
-<p><a target="_blank" href="<?php echo $v['url'];?>" target="_blank"><img alt="<?php echo $v['name'];?>" title="<?php echo $v['name'];?>" class="lazy"  data-original="<?php echo $showimgapi,$v['cover'];?>" /></a></p>
-<strong><a target="_blank" href="<?php echo $v['url'];?>" title="<?php echo $v['name'];?>"><?php echo $v['name'];?></a></strong></li>
+<p><a target="_blank" href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'play_relate','img_<?php echo $v['name'];?>');"><img alt="<?php echo $v['name'];?>" title="<?php echo $v['name'];?>" class="lazy"  data-original="<?php echo $showimgapi,$v['cover'];?>" /></a></p>
+<strong><a target="_blank" href="<?php echo $v['url'];?>" title="<?php echo $v['name'];?>" onclick="ga('send','event', 'play_relate','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></strong></li>
 <?php }?>
 </ul>
 </div>
@@ -52,6 +53,7 @@
 <span property="v:summary">
 <?php echo $info['intro'];?>
 </span>
+如果您喜欢本(<?php echo $web_title,$domain;?>)网站的影片,请滑动您的鼠标分享本(<?php echo $info['name'];?>)影片!
 </div>
 <div class="all960 mb"></div>
 <!-- 广告位置开始//End  -->

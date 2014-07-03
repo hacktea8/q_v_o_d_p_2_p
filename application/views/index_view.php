@@ -28,6 +28,7 @@
 <?php if(0){?>
 <div class="score">评分：<script type="text/javascript">markVideo(<?php echo $info['id'];?>,1,0,5,5,1);</script></div>
 <?php }?>
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
 </div>
 <!-- 播放地址开始/End -->
 <div class="vlist bg mb">
@@ -47,7 +48,7 @@ if(!$v['volname']){
  break;
 }
 ?>
-<li><a title="<?php echo $v['volname'];?>" ref="nofollow" href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['volname'];?></a></li>
+<li><a title="<?php echo $v['volname'];?>" href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'views','<?php echo $v['volname'];?>');"><?php echo $v['volname'];?></a></li>
 <?php }?>
 </ul>
 <?php }?>
@@ -62,6 +63,7 @@ if(!$v['volname']){
 <p>
 <?php echo $info['intro'];?>
 </p>
+如果您喜欢本(<?php echo $web_title,$domain;?>)网站的影片,请滑动您的鼠标分享本(<?php echo $info['name'];?>)影片!
 </div>
 </div>
 <div class="r w250 bg">
@@ -76,7 +78,7 @@ if(!$v['volname']){
 <ul>
 <?php foreach($viewHot as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
-<p><a href="<?php echo $v['url'];?>" target="_blank" title="<?php echo $v['name'];?>"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
+<p><a href="<?php echo $v['url'];?>" target="_blank" title="<?php echo $v['name'];?>" onclick="ga('send','event', 'views_hot','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>
 </ul>
 </div>
@@ -93,7 +95,7 @@ if(!$v['volname']){
 <div class="hide err_msg_div">
 <div id="err_msg_txt"></div>
 <?php if(!$uinfo['uid']){ ?>
-<div id="fast_login_div"><a href="/maindex/login" rel="nofollow" target="_blank" >立即登陆观看</a></div>
+<div id="fast_login_div"><a href="/maindex/login" rel="nofollow" target="_blank" onclick="ga('send','event', 'views','loginSee');" >立即登陆观看</a></div>
 <?php }?>
 </div>
 <script type="text/javascript">

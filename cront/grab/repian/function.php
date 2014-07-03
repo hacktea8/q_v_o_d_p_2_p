@@ -2,7 +2,7 @@
 
 function getinfolist($_cate){
   global $_root,$cid;
-  for($i=1; $i<=3; $i++){
+  for($i=1; $i<=2; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'':'index'.$i.'.html';
     $url = $_root.$_cate['ourl'].$suf;
@@ -32,7 +32,7 @@ echo "\n++++ ",$url," ++++\n";
       $ovid = array_pop($ovid);
       $oid = intval($ovid);
       $oname = trim($list['name']);
-/**/
+/*/
 //在判断是否更新
       $aid = checkArticleByOname($oname);
       if($aid){
@@ -90,7 +90,7 @@ exit;
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
 #  echo '<pre>';var_dump($data);exit;
 
-/*
+/**/
 //在判断是否更新
   $oname = $data['name'];
   $aid = checkArticleByOname($oname);

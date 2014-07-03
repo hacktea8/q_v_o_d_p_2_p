@@ -1,6 +1,4 @@
 <?php
-ini_set('display_error',1);
-error_reporting(E_ALL);
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once 'usrbase.php';
 class Maindex extends Usrbase {
@@ -165,7 +163,7 @@ exit;
     $auth = 1;
     $key = 'play_auth'.$ip;
     $pv = $this->redis->get($key);
-    if($pv < 60){
+    if($pv < 30){
       $auth = 0;
     }
     if($vid <1 || $vol <1 || $auth){
@@ -215,16 +213,18 @@ exit;
 // seo setting
     $kw = '';
     $sname = $this->viewData['playMod'][$sid]['title'];
-    $title = sprintf('%s %s 第%s集',$data['info']['name'],$sname,$vol);
+    $title = sprintf('%s第%s集',$data['info']['name'],$vol);
     $keywords = sprintf('%s,%s在线观看,%s全集,%s%s,%s下载,%s主题曲,%s剧情,%s演员表',$title,$title,$title,$kw,$title,$title,$title,$title,$title);
+    $title = sprintf('%s第%s集%s在线观看和下载',$data['info']['name'],$vol,$sname);
     $seo_description = strip_tags($data['info']['intro']);
     $seo_description = preg_replace('#\s+#Uis','',$seo_description);
-    $seo_description = mb_substr($seo_description,0,250);
+    $seo_description = $title.'剧情介绍:'.mb_substr($seo_description,0,250);
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
 
     $key = 'play_auth'.$ip;
     $pv = $this->redis->get($key);
-    $clear_play_pv = $pv > 50 ? 1: 0;
+#echo '|',$pv,'|';exit;
+    $clear_play_pv = ($pv > 20 && $pv < 25) ? 1: 0;
     $this->assign(array('isCollect'=>$isCollect,'seo_title'=>$title,'sid'=>$sid,'vol'=>$vol
     ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
     ,'videovols'=>$data['vols'],'playRelate'=>$playRelate,'clear_play_pv'=>$clear_play_pv
@@ -243,8 +243,10 @@ exit;
     if(file_exists($lock) && time()-filemtime($lock)<6*3600){
        return false;
     }
-    $this->emulemodel->autoSetVideoOnline(24);
+    $this->emulemodel->autoSetVideoOnline(5);
     $this->emulemodel->setCateVideoTotal();
+    //clear channel cache
+    $this->mem->set('channel','',$this->expirettl['3h']);
     file_put_contents($lock,'');
     chmod($lock,0777);
     echo 1;exit;

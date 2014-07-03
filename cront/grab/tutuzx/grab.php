@@ -30,7 +30,7 @@ $cover = getHtml($data);
 //去除字符串前3个字节
 $cover = substr($cover,3);
 echo $val['id'],' , ',$cover,"\n";
-//exit;
+#exit;
 //echo strlen($cover);exit;
 $status = preg_replace('#[^\d]+#','',$cover);
 //echo $status;exit;

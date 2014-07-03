@@ -4,12 +4,13 @@
 <div class="w704 r bg">
 <h3 class="ph3">今日推荐必看<em class="more">
 为了下次能快速打开我们的网站，请加入收藏：
-<a id="join" href="javascript:void(0)" onclick="javascript:addFavorite('<?php echo $domain;?>','<?php echo $web_title;?>-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载 ')" >【添加到浏览器收藏夹】</a>
-<a href="javascript:window.open('http://shuqian.qq.com/post?from=3&title='+encodeURIComponent(document.title)+'&uri='+encodeURIComponent(document.location.href)+'&jumpback=2&noui=1','favit','width=930,height=470,left=50,top=50,toolbar=no,menubar=no,location=no,scrollbars=yes,status=yes,resizable=yes');void(0)">【添加到QQ收藏】</a></em>
+<a id="join" onclick="ga('send','event', 'site','favsite');" href="javascript:void(0)" onclick="javascript:addFavorite('<?php echo $domain;?>','<?php echo $web_title;?>-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载 ')" >【添加到浏览器收藏夹】</a>
+<a onclick="ga('send','event', 'site','qqfavsite');" href="javascript:window.open('http://shuqian.qq.com/post?from=3&title='+encodeURIComponent(document.title)+'&uri='+encodeURIComponent(document.location.href)+'&jumpback=2&noui=1','favit','width=930,height=470,left=50,top=50,toolbar=no,menubar=no,location=no,scrollbars=yes,status=yes,resizable=yes');void(0)">【添加到QQ收藏】</a></em>
 </h3>
 <ul class="cpic">
 <?php foreach($qvodIndex['topRecomData'] as &$v){?>
-<li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>"/></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span><?php echo $v['onlinedate'];?></span></li>
+<li><a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_topRecomData','img_<?php echo $v['name'];?>');" class="aimg" title="<?php echo $v['name'];?>"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>"/></a>
+<strong><a href="<?php echo $v['url'];?>" onclick="ga('send','event', 'index_topRecomData','<?php echo $v['name'];?>');" ><?php echo $v['name'];?></a></strong><span><?php echo $v['onlinedate'];?></span></li>
 <?php }?>
 
 </ul>
@@ -22,7 +23,8 @@
 <ul>
 <?php foreach($qvodIndex['todayNewData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
-<p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span></span></li>
+<p><a href="<?php echo $v['url'];?>" onclick="ga('send','event', 'index_todayNewData','<?php echo $v['name'];?>');" target="_blank"><?php echo $v['name'];?></a>
+<strong></strong></p><span></span></li>
 <?php }?>
 </ul>
 </div>
@@ -39,14 +41,16 @@
 <h3 class="ph3">最新电影频道</h3>
 <ul class="cpic ulbl">
 <?php foreach($qvodIndex['todayMovieNewData'] as &$v){?>
- <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"> <img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span><?php echo $v['onlinedate'];?></span></li>
+ <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>" onclick="ga('send','event', 'index_todayMovieNewData','img_<?php echo $v['name'];?>');"> 
+<img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong>
+<a href="<?php echo $v['url'];?>" onclick="ga('send','event', 'index_todayMovieNewData','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></strong><span><?php echo $v['onlinedate'];?></span></li>
 <?php }?>
  </ul>
 <ul class="ctext">
 <?php foreach($qvodIndex['todayMovieNewDataTxt'] as &$v){?>
 <li>&bull;&nbsp;
-<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank">[ <?php echo $channel[$v['id']]['name'];?>]
-<a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
+<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_tMNDT_Cate','<?php echo $channel[$v['id']]['name'];?>');">[ <?php echo $channel[$v['id']]['name'];?>]
+<a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_tMNDT','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
 </div>
@@ -58,7 +62,8 @@
 <ul>
 <?php foreach($qvodIndex['movieHotData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
-<p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong><?php echo $v['onlinedate'];?></strong></p><span><?php echo $v['hits'];?></span></li>
+<p><a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_mHD','<?php echo $v['name'];?>');" ><?php echo $v['name'];?></a>
+<strong><?php echo $v['onlinedate'];?></strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>
 </ul>
 </div>
@@ -71,14 +76,15 @@
 <h3 class="ph3">最新电视剧场</h3>
 <ul class="cpic ulbl">
 <?php foreach($qvodIndex['todayNewTV'] as &$v){?>
- <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span></span></li>
+ <li><a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_tNTV','img_<?php echo $v['name'];?>');" class="aimg" title="<?php echo $v['name'];?>"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a>
+<strong><a href="<?php echo $v['url'];?>" onclick="ga('send','event', 'index_tNTV','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></strong><span></span></li>
 <?php }?>
 </ul>
 <ul class="ctext">
 <?php foreach($qvodIndex['todayNewTVtxt'] as &$v){?>
 <li>&bull;&nbsp;
-<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank">[ <?php echo $channel[$v['id']]['name'];?>]
-<a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
+<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_tNTVt_Cate','<?php echo $channel[$v['id']]['name'];?>');">[ <?php echo $channel[$v['id']]['name'];?>]
+<a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_tNTVt','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
 </div>
@@ -90,7 +96,7 @@
 <ul>
 <?php foreach($qvodIndex['tvHotData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
-<p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong>
+<p><a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_tvHD','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a><strong>
 全集</strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>
 </ul>
@@ -107,14 +113,15 @@
 <h3 class="ph3">最新综艺节目</h3>
 <ul class="cpic ulbl">
 <?php foreach($qvodIndex['varietyNewData'] as &$v){?>
- <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span></span></li>
+ <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>" onclick="ga('send','event', 'index_varND','img_<?php echo $v['name'];?>');" ><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a>
+<strong><a href="<?php echo $v['url'];?>" onclick="ga('send','event', 'index_varND','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></strong><span></span></li>
 <?php }?>
 </ul>
 <ul class="ctext">
 <?php foreach($qvodIndex['varietyNewDatatxt'] as &$v){?>
 <li>&bull;&nbsp;
-<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank">[ <?php echo $channel[$v['id']]['name'];?>]
-<a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
+<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_varNDt','<?php echo $channel[$v['id']]['name'];?>');">[ <?php echo $channel[$v['id']]['name'];?>]
+<a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_varNDt','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
 </div>
@@ -126,7 +133,8 @@
 <ul>
 <?php foreach($qvodIndex['varietyHotData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
-<p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
+<p><a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_varHD','<?php echo $v['name'];?>');" ><?php echo $v['name'];?></a>
+<strong></strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>
  </ul>
 </div>
@@ -139,14 +147,15 @@
 <h3 class="ph3">最新动漫片</h3>
 <ul class="cpic ulbl">
 <?php foreach($qvodIndex['animeNewData'] as &$v){?>
- <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a><strong><a href="<?php echo $v['url'];?>"><?php echo $v['name'];?></a></strong><span></span></li>
+ <li><a href="<?php echo $v['url'];?>" target="_blank" class="aimg" title="<?php echo $v['name'];?>" onclick="ga('send','event', 'index_aniND','img_<?php echo $v['name'];?>');"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a>
+<strong><a href="<?php echo $v['url'];?>" onclick="ga('send','event', 'index_aniND','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></strong><span></span></li>
 <?php }?>
 </ul>
 <ul class="ctext">
 <?php foreach($qvodIndex['animeNewDatatxt'] as &$v){?>
 <li>&bull;&nbsp;
-<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank">[ <?php echo $channel[$v['id']]['name'];?>]
-<a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a></li>
+<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_aniNDt','<?php echo $channel[$v['id']]['name'];?>');">[ <?php echo $channel[$v['id']]['name'];?>]
+<a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_aniNDt','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
 </div>
@@ -158,7 +167,8 @@
 <ul>
 <?php foreach($qvodIndex['animeHotData'] as $k => &$v){?>
 <li><em  class="on"><?php echo $k+1;?></em>
-<p><a href="<?php echo $v['url'];?>" target="_blank"><?php echo $v['name'];?></a><strong></strong></p><span><?php echo $v['hits'];?></span></li>
+<p><a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_aniHD','<?php echo $v['name']; ?>');"><?php echo $v['name'];?></a>
+<strong></strong></p><span><?php echo $v['hits'];?></span></li>
 <?php }?>
  </ul>
 </div>
@@ -174,7 +184,7 @@
 <h5>友情链接</h5>
 <ul>
 <?php foreach($friend_link as &$v){?>
-<li><a href="" target="_blank"></a></li>
+<li><a href="" target="_blank" onclick="ga('send','event', 'site','friendLink_');"></a></li>
 <?php }?>
 </ul>
 </div>
