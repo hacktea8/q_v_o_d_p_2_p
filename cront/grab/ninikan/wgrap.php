@@ -15,7 +15,7 @@ $path = $APPPATH.'config/';
 $i = 0;
 $num = 19;
 foreach($cate_config as $_cate){
-  $i++;
+  $i = $_cate['cid'];
   //3,7,11,15,19 isok
   if($i > $num){
     break;
@@ -23,11 +23,11 @@ foreach($cate_config as $_cate){
   if($i != $num){
     continue;
   }
-  $lastgrab = $path.$_cate['cid'].'_'.$lastgrab;
-  getSubCatearticle($_cate);
+  $cid = $_cate['cid'];
+  getinfolist($_cate);
   sleep(10);
 }
-
+echo "\n++ Grab List Cid:$cid Is OK! ++\n";
 
 
 ?>

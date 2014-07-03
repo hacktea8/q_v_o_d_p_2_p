@@ -23,7 +23,7 @@ echo "\n++++ ",$url," ++++\n";
     foreach($matchs as $list){
       $oid = preg_replace('#[^\d]+#','',$list['ourl']);
       $oname = trim($list['name']);
-/**/
+/*/
 //在判断是否更新
       $aid = checkArticleByOname($oname);
       if($aid){
@@ -82,7 +82,7 @@ exit;
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
 #  echo '<pre>';var_dump($data);exit;
 
-/*
+  /**/
 //在判断是否更新
   $oname = $data['name'];
   $aid = checkArticleByOname($oname);

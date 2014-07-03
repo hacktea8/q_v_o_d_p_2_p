@@ -6,13 +6,6 @@ include_once($APPPATH.'../function.php');
 include_once($APPPATH.'/function.php');
 include_once($APPPATH.'config.php');
 
-/*/
-$cateurl = '/list/index33';
-$cateurl = '/list/index1';
-$cid = 1;
-getinfolist($cateurl);exit;
-getAllcate();exit;
-/**/
 
 /*============ Get Cate article =================*/
 
@@ -22,7 +15,7 @@ $path = $APPPATH.'config/';
 $i=0;
 $num=17;
 foreach($cate_config as $_cate){
-  $i++;
+  $i = $_cate['cid'];
   //1,5,9,13,17 isok
   if($i > $num){
     break;
@@ -30,11 +23,11 @@ foreach($cate_config as $_cate){
   if($i != $num){
     continue;
   }
-  $lastgrab = $path.$_cate['cid'].'_'.$lastgrab;
-  getSubCatearticle($_cate);
+  $cid = $_cate['cid'];
+  getinfolist($_cate);
   sleep(10);
 }
-
+echo "\n++ Grab List Cid:$cid Is OK! ++\n";
 
 
 ?>

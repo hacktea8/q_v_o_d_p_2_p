@@ -1,6 +1,7 @@
 <?php
 
 $_root='http://www.ninikan.com/';
+$_devStatus = '_OK';
 #$http_proxy = '211.138.121.37:82';
 $http_proxy = '';
 //
@@ -26,7 +27,7 @@ array('cid'=>1,'ourl'=>'/action/','name'=>'动作片')
 ,array('cid'=>7,'ourl'=>'drama/','name'=>'剧情片')
 ,array('cid'=>8,'ourl'=>'/anime/','name'=>'动漫片')
 ,array('cid'=>9,'ourl'=>'/arts/','name'=>'综艺片')
-,array('cid'=>10,'ourl'=>'/list/index32','name'=>'纪录片')
+#,array('cid'=>10,'ourl'=>'/list/index32','name'=>'纪录片')
 ,array('cid'=>11,'ourl'=>'/domestic/','name'=>'大陆剧')
 ,array('cid'=>12,'ourl'=>'/hongkong/','name'=>'香港剧')
 ,array('cid'=>13,'ourl'=>'/taiwan/','name'=>'台湾剧')
@@ -35,7 +36,7 @@ array('cid'=>1,'ourl'=>'/action/','name'=>'动作片')
 ,array('cid'=>16,'ourl'=>'/united/','name'=>'欧美剧')
 ,array('cid'=>17,'ourl'=>'/overseas/','name'=>'海外剧')
 ,array('cid'=>21,'ourl'=>'/cantonese/','name'=>'粤语片')
-,array('cid'=>0,'ourl'=>'/last/','name'=>'最近更新')
+#,array('cid'=>0,'ourl'=>'/last/','name'=>'最近更新')
 
 );
 

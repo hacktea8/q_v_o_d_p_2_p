@@ -1,7 +1,7 @@
 <?php
 
 $_root='http://www.vkeke.com/';
-$_devStatus = '_OK';
+$_devStatus = 'OK';
 #$http_proxy = '211.138.121.37:82';
 $http_proxy = '';
 
@@ -51,6 +51,6 @@ array('cid'=>1,'ourl'=>'/channel/list1','name'=>'动作片')
 );
 
 $cids = array(1,2,3,4,5,6,7,11,12,13,14,15,16,20,34,35,36,37,38,39,40,41,42,43,44,45,46,47);
-$cids = array(11);
+#$cids = array(11);
 
 ?>
