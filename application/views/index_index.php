@@ -4,7 +4,7 @@
 <div class="w704 r bg">
 <h3 class="ph3">今日推荐必看<em class="more">
 为了下次能快速打开我们的网站，请加入收藏：
-<a id="join" onclick="ga('send','event', 'site','favsite');" href="javascript:void(0)" onclick="javascript:addFavorite('<?php echo $domain;?>','<?php echo $web_title;?>-影音先锋-快播-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载 ')" >【添加到浏览器收藏夹】</a>
+<a id="join" href="javascript:void(0)" onclick="addFavorite('http://<?php echo $domain;?>','<?php echo $web_title;?>');ga('send','event', 'site','favsite');" >【添加到浏览器收藏夹】</a>
 <a onclick="ga('send','event', 'site','qqfavsite');" href="javascript:window.open('http://shuqian.qq.com/post?from=3&title='+encodeURIComponent(document.title)+'&uri='+encodeURIComponent(document.location.href)+'&jumpback=2&noui=1','favit','width=930,height=470,left=50,top=50,toolbar=no,menubar=no,location=no,scrollbars=yes,status=yes,resizable=yes');void(0)">【添加到QQ收藏】</a></em>
 </h3>
 <ul class="cpic">

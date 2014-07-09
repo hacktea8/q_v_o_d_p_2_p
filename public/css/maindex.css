@@ -98,7 +98,7 @@
 .relatedinfo ul li p {padding:8px 0;}
 .relatedinfo ul li p img {width:107px; height:126px; margin:0 auto;}
 .relatedinfo ul li strong {display:block;width:125px;height:18px;overflow:hidden;}
-.relatedinfo ul li strong a {color:red;}
+.relatedinfo ul li strong a {color:green;}
 
 .description ul {padding:10px; line-height:2.2; font-size:14px;}
 .description ul a {color:#f60;}

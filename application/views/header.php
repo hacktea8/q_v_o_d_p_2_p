@@ -5,7 +5,7 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <META HTTP-EQUIV="expires" CONTENT="0"> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title><?php echo $seo_title,'-',$web_title;?><?php if( in_array($_a,array('index'))){?>-影音先锋-快播-吉吉影音-西瓜影音-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载<?php }?></title>
+<title><?php echo $seo_title,'-',$web_title;?><?php if( in_array($_a,array('index'))){?>-影音先锋-快播-吉吉影音-西瓜影音-百度影音-最新电影-最新电视剧-在线观看-迅雷下载-BT下载-网盘下载<?php }echo '-',$domain;?></title>
 <meta name="keywords" content="<?php echo $seo_keywords,',',$web_title;?>" />
 <meta name="description" content="<?php echo $seo_title,'-',$web_title,$seo_description;?>" />
 <link href="<?php echo $cdn_url;?>/public/css/common.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />

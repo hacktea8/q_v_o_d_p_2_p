@@ -227,7 +227,7 @@ class emuleModel extends baseModel{
     }else{
       $struct = $this->_volsPlayStruct;
     }
-    $where = '';
+    $where = ' ORDER BY `vol` DESC ';
     if($vol){
       $where = sprintf(' AND `vol`=%d LIMIT 1');
     }

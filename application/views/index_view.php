@@ -4,7 +4,7 @@
 <div class="bg box content mb">
 <h3 class="ph3">影片信息</h3>
 <div class="infobox box">
-<img src="<?php echo $showimgapi,$info['cover'];?>" alt="<?php echo $info['name'];?>" class="pic l" />
+<img src="<?php echo $showimgapi,$info['cover'];?>" onerror="this.src='<?php echo $errorimg;?>';" alt="<?php echo $info['name'];?>" class="pic l" />
 <div class="info l">
 <h1><?php echo $info['name'];?>
 <?php if($uinfo['uid'] === $info['uid'] || $uinfo['isadmin']){echo "<a href='$editeUrl/$info[id]'>编辑</a>"; }?>
