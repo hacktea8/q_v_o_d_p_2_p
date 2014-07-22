@@ -35,7 +35,7 @@ array('cid'=>1,'ourl'=>'/list/index1','name'=>'动作片')
 ,array('cid'=>15,'ourl'=>'/list/index14','name'=>'韩国剧')
 ,array('cid'=>16,'ourl'=>'/list/index15','name'=>'欧美剧')
 ,array('cid'=>17,'ourl'=>'/list/index30','name'=>'海外剧')
-,array('cid'=>18,'ourl'=>'/list/index34','name'=>'全部电视剧')
+#,array('cid'=>18,'ourl'=>'/list/index34','name'=>'全部电视剧')
 
 );
 
