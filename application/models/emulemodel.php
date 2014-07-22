@@ -169,6 +169,7 @@ class emuleModel extends baseModel{
        $val['url'] = $this->geturl('views',$val['id']);
        $val['ptime'] = date('Y-m-d', $val['ptime']);
        $val['utime'] = date('Y/m/d', $val['utime']);
+       $val['onlinedate'] = $val['ptime'];
      }
      return $data;
   }

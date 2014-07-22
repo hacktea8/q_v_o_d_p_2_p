@@ -32,7 +32,7 @@
 <?php foreach($infolist as &$v){?>
 <li onmousemove="this.className='thisli'" onmouseout="this.className=''"><a href="<?php echo $v['url'];?>" class="aimg l" target="_blank" onclick="ga('send','event', 'listC<?php echo $cid;?>','img_<?php echo $v['name'];?>');"><img class="lazy" title="<?php echo $v['name'];?>" alt="<?php echo $v['name'];?>" data-original="<?php echo $showimgapi,$v['cover'];?>" alt="<?php echo $v['name'];?>" /></a>
 <h2><a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'listC<?php echo $cid;?>',''<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></h2>
-<p>分类：<?php echo $channel[$v['id']]['name'];?></p>
+<p>分类：<?php echo $channel[$v['cid']]['name'];?></p>
 <p>人气：<?php echo $v['hits'];?></p>
 <p>时间：<?php echo $v['onlinedate'];?></p>
 <p><a href="<?php echo $v['url'];?>" class="btn1" target="_blank" onclick="ga('send','event', 'listC<?php echo $cid;?>','views_<?php echo $v['name'];?>');">马上观看</a></p></li>

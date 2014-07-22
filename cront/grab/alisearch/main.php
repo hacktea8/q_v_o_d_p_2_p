@@ -9,13 +9,13 @@ require_once $root.'/../../../application/helpers/rewrite_helper.php';
 
 $search = new Yunsearchapi();
 $model = new Model();
-$count = 200;
-$count = 1;
+$count = 100;
 $cate = $model->getCate();
 
 while($count){
-   $lists = $model->getNoneSearchLimit(5);
+   $lists = $model->getNoneSearchLimit(50);
    if(empty($lists)){
+     echo "\n++++ 需要加入搜索索引的列表为Empty! ++++++\n";
      break;
    }
 //var_dump($lists);exit;
