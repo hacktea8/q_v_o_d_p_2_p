@@ -11,7 +11,7 @@
 <link href="<?php echo $cdn_url;?>/public/css/common.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $cdn_url;?>/public/css/maindex.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo $cdn_url;?>/public/css/global.css?v=<?php echo $version;?>" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
 <script>var sitePath='public/';//$.noConflict();</script>
 <script src="<?php echo $cdn_url;?>/public/js/lanage.js?v=<?php echo $version;?>"></script>
 <script src="<?php echo $cdn_url;?>/public/js/function.js?v=<?php echo $version;?>"></script>

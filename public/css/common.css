@@ -19,7 +19,7 @@ a:hover,.new li a:hover,.slist li a:hover,.news li a:hover {color:#f33c64; text-
 
 /*-Common-*/
 .bg {background:#2b2b2b;}
-.wrap {width:960px; overflow:hidden; margin:0 auto;}
+.wrap {width:980px; overflow:hidden; margin:0 auto;}
 .l {float:left;}
 .r {float:right;}
 .mb {margin-bottom:6px;}

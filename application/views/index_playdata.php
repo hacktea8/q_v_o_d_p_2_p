@@ -21,7 +21,7 @@ var XgPlayer = {
 };
 document.write('<script language="javascript" src="http://static.xigua.com/xiguaplayer.js?'+new Date().getTime()+'" charset="utf-8"><\/script>');
 </script>
-<?php }elseif(in_array($sid,array(2))){ ?>
+<?php }elseif(in_array($sid,array(20))){ ?>
 <script language="javascript">
 var BdPlayer = new Array();
 BdPlayer['time'] = 8;//缓冲广告展示时间(如果设为0,则根据缓冲进度自动控制广告展示时间)
@@ -38,7 +38,7 @@ BdPlayer['lastwebpage'] = '<?php echo $playInfo['pre'];?>';//上一集网页地�
 BdPlayer['nextwebpage'] = '<?php echo $playInfo['next'];?>';//下一集网页地址(没有请留空)
 </script>
 <script language="javascript" src="<?php echo $cdn;?>/public/js/bdplayer.js" charset="utf-8"></script>
-<?php }elseif(in_array($sid,array(1))){ ?>
+<?php }elseif(in_array($sid,array(1,2))){ ?>
 <script type="text/javascript">
 var qvod_setup = 1;
 var qvod_url = "<?php echo $playInfo['url'];?>";
@@ -48,7 +48,7 @@ var pHeight = '550px';
 function QvodInstall(){
  qvod_setup = 0;
  if(!qvod_setup){
-  qvod_html = '<iframe id="iframe_down" name="iframe_down" scrolling="no" frameborder="0" style="position:absolute; z-index:1000; top:0; margin: 0;width: '+pWidth+'; height: '+pHeight+';" src="/public/player/qvod/install.html"></iframe>';
+  qvod_html = '<iframe id="iframe_down" name="iframe_down" scrolling="no" frameborder="0" style="position:absolute; z-index:1; top:0; margin: 0;width: '+pWidth+'; height: '+pHeight+';" src="/public/player/qvod/install.html"></iframe>';
  }
  document.body.innerHTML=qvod_html;
 }
@@ -77,7 +77,7 @@ if(!window.ActiveXObject){
  }	
 }
 if(!qvod_setup){
- qvod_html = '<iframe id="iframe_down" name="iframe_down" scrolling="no" frameborder="0" style="position:absolute; z-index:1000; top:0; margin: 0;width: '+pWidth+'; height: '+pHeight+';" src="/public/player/qvod/install.html"></iframe>';
+ qvod_html = '<iframe id="iframe_down" name="iframe_down" scrolling="no" frameborder="0" style="position:absolute; z-index:1; top:0; margin: 0;width: '+pWidth+'; height: '+pHeight+';" src="/public/player/qvod/install.html"></iframe>';
 }
 document.body.innerHTML=qvod_html;
 </script>

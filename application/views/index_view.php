@@ -59,6 +59,9 @@ if(!$v['volname']){
 </div>
 
 <div class="bg mb box description">
+<p style="font-size: small;">温馨提示: <span style="color:red;">请勿打开影片里面的连接!! 以免中病毒!!</span>
+【如果 百度影音、Qvod快播无法播放请<a style="color:green;"  href="http://www.hacktea8.com/thread-9732-1-1.html" target="_blank">下载增强版</a>】
+</p>
 <h3 class="ph3">影片介绍</h3>
 <p>
 <?php echo $info['intro'];?>

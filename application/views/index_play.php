@@ -4,6 +4,9 @@
 <h1>正在播放：<a href='/'>首页</a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;<a href='<?php echo $channel[$cid]['url'];?>' ><?php echo $channel[$cid]['name'];?></a>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;<a href='<?php echo $info['url'];?>'>><?php echo $info['name'];?></a><span class="more">
 <?php if($uinfo['uid'] === $info['uid'] || $uinfo['isadmin']){echo "<a href='$editeUrl/$info[id]'>编辑</a>"; }?>
 </span></h1>
+<h1>温馨提示: <span style="color:red;">请勿打开影片里面的连接!! 以免中病毒!!</span>
+【如果 百度影音、Qvod快播无法播放请<a href="http://www.hacktea8.com/thread-9732-1-1.html" target="_blank">下载增强版</a>】
+</h1>
 </div>
 <div class="play655">
 <iframe width="960px" height="550px"  frameborder="0" scrolling="no" rel="nofollow" src="/maindex/playdata/<?php echo $info['id'],'/',$sid,'/',$vol,'/',$play_auth;?>"></iframe>
@@ -21,7 +24,6 @@
 <!-- 广告位置结束//End -->
 </div>
 </div>
-<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
 </div>
 <!-- 播放地址开始/End -->
 <div class="vlist bg mb">

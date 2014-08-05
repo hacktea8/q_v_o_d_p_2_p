@@ -126,7 +126,7 @@
 .ad250{width:300px; height:250px; float:right; margin-top:10px;}
 .playbox {position:relative;}
 .playerbox {width:960px; overflow:hidden; margin:0 auto; }
-.playert,.playerb {height:29px; line-height:29px; overflow:hidden; position:relative; background:url(/public/images/repeat.png) left -410px;}
+.playert,.playerb {height:60px; line-height:29px; overflow:hidden; position:relative; background:url(/public/images/repeat.png) left -410px;}
 .playert h1 {font-size:14px; color:#9ed21c; padding-left:10px;}
 .playert span.more {font-size:14px; color:#f70; font-weight:900; margin-right:25px;}
 .player {width:500px; overflow:hidden;}
