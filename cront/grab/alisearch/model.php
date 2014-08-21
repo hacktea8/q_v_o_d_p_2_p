@@ -21,6 +21,7 @@ class Model{
   public function getNoneSearchLimit($limit = 30){
      $sql = sprintf('SELECT * FROM %s WHERE nonesearch = 0 LIMIT %d',$this->db->getTable('emule_article'), $limit);
      $list = $this->db->result_array($sql);
+     $list = empty($list)?array():$list;
      foreach($list as $k => $val){
        $table = $this->get_content_table($val['id']);
        $sql = sprintf('SELECT intro FROM %s WHERE id = %d LIMIT 1',$this->db->getTable($table),$val['id']);

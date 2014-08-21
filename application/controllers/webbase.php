@@ -9,11 +9,12 @@ class Webbase extends CI_Controller {
   public $adminList = array(1);
   protected $_c = 'index'; 
   protected $_a = 'index'; 
-  
+  protected $_isrobot = 0;
+
   public function __construct(){
     parent::__construct();
-    $this->load->library('memcache');
-    $this->mem = &$this->memcache;
+    $this->load->library('memcached');
+    $this->mem = &$this->memcached;
     $this->load->library('rediscache');
     $this->redis = &$this->rediscache;
     $session_uinfo = $this->session->userdata('user_logindata');
@@ -43,6 +44,7 @@ class Webbase extends CI_Controller {
        $this->_a = 'list' == $c ? 'lists' : 'topic';
     }
     $current_url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    $this->checkIsrobot();
     $this->assign(array('domain'=>$this->config->item('domain'),
                 'base_url'=>$this->config->item('base_url'),'css_url'=>$this->config->item('css_url'),
                 'admin_email'=>$this->config->item('admin_email'),'errorimg'=>'/public/images/show404.jpg',
@@ -77,6 +79,11 @@ class Webbase extends CI_Controller {
   protected function assign($data){
     foreach($data as $key => $val){
       $this->viewData[$key] = $val;
+    }
+  }
+  protected function checkIsrobot(){
+    if(false !== stripos($_SERVER['HTTP_USER_AGENT'],'spider')){
+      $this->_isrobot = 1;
     }
   }
 }
