@@ -162,6 +162,7 @@ exit;
     $sid = intval($sid);
     $vol = intval($vol);
     $auth = 1;
+    $ip = $this->input->ip_address();
     $key = 'play_auth'.$ip;
     $pv = $this->redis->get($key);
     if($pv < 30){
@@ -222,6 +223,7 @@ exit;
     $seo_description = $title.'剧情介绍:'.mb_substr($seo_description,0,250);
     $isCollect = $this->emulemodel->getUserIscollect($this->userInfo['uid'],$data['info']['id']);
 
+    $ip = $this->input->ip_address();
     $key = 'play_auth'.$ip;
     $pv = $this->redis->get($key);
 #echo '|',$pv,'|';exit;
@@ -230,12 +232,13 @@ exit;
     ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
     ,'videovols'=>$data['vols'],'playRelate'=>$playRelate,'clear_play_pv'=>$clear_play_pv
     ,'seo_description'=>$seo_description
-    )); 
-    $ip = $this->input->ip_address();
-    $key = sprintf('emuhitslog:%s:%d',$ip,$aid);
-//var_dump($this->redis->exists($key));exit;
-    if(!$this->redis->exists($key)){
-       $this->redis->set($key, 1, $this->expirettl['6h']);
+    ));
+    if( !$this->_isrobot){
+      $key = sprintf('emuhitslog:%s:%d',$ip,$aid);
+      //var_dump($this->redis->exists($key));exit;
+      if(!$this->redis->exists($key)){
+        $this->redis->set($key, 1, $this->expirettl['6h']);
+      }
     }
     $this->view('index_play');
   }

@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'qvodweb';
-$db['default']['password'] = 'ilovehk8';
+$db['default']['password'] = 'ilove';
 $db['default']['database'] = 'qvodweb';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'qd_';
