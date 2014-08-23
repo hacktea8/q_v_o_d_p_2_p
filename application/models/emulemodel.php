@@ -230,7 +230,7 @@ class emuleModel extends baseModel{
     }
     $where = ' ORDER BY `vol` DESC ';
     if($vol){
-      $where = sprintf(' AND `vol`=%d LIMIT 1');
+      $where = sprintf(' AND `vol`=%d LIMIT 1',$vol);
     }
     $sql = sprintf('SELECT %s FROM %s WHERE `vid`=%d %s %s',$struct,$this->db->dbprefix($table),$vid,$vgroupby,$where);
     if($vol){
