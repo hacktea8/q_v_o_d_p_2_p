@@ -2,8 +2,9 @@
   
 
 function getinfolist(&$_cate){
-  global $_root,$cid;
-  for($i=1; $i<=2000; $i++){
+  global $_root,$cid,$start_page;
+  $start_page = $start_page?$start_page:1;
+  for($i=$start_page; $i<=2; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'index':'index'.$i;
     $url = $_root.$_cate['ourl'].$suf.'.html';
@@ -24,7 +25,7 @@ echo "\n++++ ",$url," ++++\n";
     foreach($matchs as $list){
       $oid = intval(preg_replace('#[^\d]+#','',$list['ourl']));
       $oname = trim($list['name']);
-/*
+/*/
 //在判断是否更新
       $aid = checkArticleByOname($oname);
       if($aid){
@@ -32,7 +33,7 @@ echo "\n++++ ",$url," ++++\n";
          continue;
         return 6;
       }
-*/
+/**/
       $ourl = getFullPath($list['ourl']);
       $purl = '';
       $ainfo = array('thum'=>$list['cover'],'ourl'=>$ourl,'purl'=>$purl,'actor'=>$list['actor'],'name'=>$oname,'oid'=>$oid,'cid'=>$cid);
@@ -58,12 +59,17 @@ echo $data['ourl'],"\n";
   $data['utime']=time();
   preg_match('#剧情介绍：</h2>\s*</div>\s*<div style="[^"]+">(.+)<p>#Uis',$html,$match);
   $match[1] = isset($match[1])?$match[1]:'';
-  $match[1] = @iconv("UTF-8","UTF-8//TRANSLIT",$match[1]);
 //echo $match[1],"\n";
   $data['intro'] = strip_tags($match[1]);
   $data['intro'] = preg_replace('#&\S+;#Uis','',$data['intro']);
   $data['intro'] = mb_strlen($data['intro'])>300?mb_substr($data['intro'],0,300,'utf-8'):$data['intro'];
+  $data['intro'] = str_replace('?','',$data['intro']);
   $data['intro'] = trim($data['intro']);
+  $data['intro'] = preg_replace("#(\r\n)+#is","\r\n",$data['intro']);
+  $data['intro'] = preg_replace("#\n+#is","\n",$data['intro']);
+  $data['intro'] = preg_replace('#\s\s+#is',' ',$data['intro']);
+  $data['intro'] = @iconv("UTF-8","UTF-8//TRANSLIT",$data['intro']);
+  $data['intro'] = str_replace('?','',$data['intro']);
   preg_match('#<li><a title=\'[^\']+\' href=\'(/.+/player-0-0\.html)\' target="_blank">.+</a></li>#Uis',$html,$match);
   $data['purl'] = @$match[1];
   $playhtml = getArticlePlayData($data['purl']);
@@ -78,7 +84,8 @@ echo $data['ourl'],"\n";
      return false;
   }
   $data['ourl'] = str_replace($_root,'',$data['ourl']);
-  echo '<pre>';var_dump($data);exit;
+#  echo '<pre>';var_dump($data);exit;
+/**/
 //在判断是否更新
   $oname = $data['name'];
   $aid = checkArticleByOname($oname);
@@ -88,6 +95,7 @@ echo $data['ourl'],"\n";
     echo "{$aid}已存在更新!\r\n";
     return 6;
   }
+/**/
 
   $aid = addArticle($data);
 //echo '|',$aid,'|';exit;
@@ -103,7 +111,10 @@ function getArticlePlayData($purl){
   $html = getHtml($purl);
   $html = mb_convert_encoding($html,"UTF-8","GBK");
   preg_match('#<script type="text/javascript" src="(/playdata/[^"]+)"></script>#Uis',$html,$match);
-  $url = $match[1];
+  $url = @$match[1];
+  if( !$url){
+    return '';
+  }
   $url = getFullPath($url);
   $html = getHtml($url);
   $html = mb_convert_encoding($html,"UTF-8","GBK");
@@ -147,8 +158,14 @@ function getFullPath($url){
   return $url;
 }
 function getParseVideoInfo($html){
+  if( !$html){
+    return array();
+  }
   $html = urldecode($html);
-  $html = str_replace(array('%u','www.1684.cc'),array('\u','www.qvdhd.com'),$html);
+  $charset = mb_detect_encoding($html, 'UTF-8');
+  $html = iconv('UTF-8',"UTF-8//TRANSLIT",$html);
+  $html = preg_replace('#\[[^\[]+\.[a-z]+\]#is','[www.qvdhd.com]',$html);
+  $html = str_replace(array('%u','?','�'),array('\u','',''),$html);
   $playType = explode('$$$',$html);
   $return = array();
   foreach($playType as $v){
@@ -161,14 +178,20 @@ function getParseVideoInfo($html){
       $player = 'xigua';
     }elseif(false !== stripos($v,'jjhd://')){
       $player = 'jjhd';
+    }elseif(false !== stripos($v,'xfplay://')){
+      $player = 'xfplay';
     }else{
       echo "\n++ $v ++\n";
       continue;
     }
     $v = str_replace('$$',' ',$v);
+    $v = preg_replace('#\s+\$#','$',$v);
     $v = explode('#',$v);
     $return[] = array($player,$v);
   }
-  return $return;
+  if('UTF-8' === $charset){
+    return $return;
+  }
+  echo $charset,"\n";
   var_dump($return);exit;
 }
