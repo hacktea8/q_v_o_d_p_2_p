@@ -14,10 +14,10 @@ $path = $APPPATH.'config/';
 
 $i = 0;
 $num = 2;
-$start_page = 1;
+$start_page = 9;
 foreach($cate_config as $k => $_cate){
   $i = $_cate['cid'];
-  //3,7,11,15 isok
+  //2, isok
   if($k > $num){
     break;
   }

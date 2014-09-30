@@ -14,7 +14,8 @@ $path = $APPPATH.'config/';
 
 $i = 0;
 $num = 3;
-$start_page = 1;
+//13
+$start_page = 57;
 foreach($cate_config as $k => $_cate){
   $i = $_cate['cid'];
   //3, isok

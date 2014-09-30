@@ -4,7 +4,7 @@
 function getinfolist(&$_cate){
   global $_root,$cid,$start_page;
   $start_page = $start_page?$start_page:1;
-  for($i=$start_page; $i<=2; $i++){
+  for($i=$start_page; $i<=2000; $i++){
 //通过 atotal计算i的值
     $suf = $i == 1?'':'-'.$i;
     $url = $_root.$_cate['ourl'].$suf.'.html';
@@ -39,7 +39,7 @@ echo "\n++++ ",$url," ++++\n";
       $purl = getFullPath($purl);
       $ainfo = array('thum'=>$list['cover'],'ourl'=>$ourl,'purl'=>$purl,'actor'=>$list['actor'],'name'=>$oname,'oid'=>$oid,'cid'=>$cid);
       getinfodetail($ainfo);
-sleep(1);
+//sleep(5);
     }
   }
 return 0;
@@ -170,7 +170,7 @@ function getParseVideoInfo($html){
       continue;
     }
     $v = str_replace(array('null$$','$$'),array('',' '),$v);
-    $v = preg_replace('#\s+\$#','$',$v);
+    //$v = preg_replace('#\s+\$#','$',$v);
     $v = explode('#',$v);
     $return[] = array($player,$v);
   }

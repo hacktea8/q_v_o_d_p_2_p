@@ -1,4 +1,5 @@
 <?php
+$start_page = 1;
 
 $APPPATH=dirname(__FILE__).'/';
 include_once($APPPATH.'../config.php');
@@ -10,11 +11,10 @@ include_once($APPPATH.'config.php');
 /*============ Get Cate article =================*/
 
 
-$num=0;
-$start_page = 1;
+$num=16;
 foreach($cate_config as $k => $_cate){
   $i = $_cate['cid'];
-  //1,5,9,13,17,49 isok
+  //0,4,8,12,16 isok
   if($k > $num){
     break;
   }
