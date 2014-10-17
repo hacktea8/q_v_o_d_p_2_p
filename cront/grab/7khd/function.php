@@ -46,7 +46,7 @@ return 0;
 }
 
 function getinfodetail(&$data){
-  global $model,$_root,$cid,$strreplace,$pregreplace;
+  global $model,$start_page,$_root,$cid,$strreplace,$pregreplace;
 echo $data['ourl'],"\n";
   $html = getHtml($data['ourl']);
 //  $html = mb_convert_encoding($html,"UTF-8","GBK");

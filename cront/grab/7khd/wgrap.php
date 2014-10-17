@@ -1,4 +1,5 @@
 <?php
+$start_page = 168;
 
 $APPPATH=dirname(__FILE__).'/';
 include_once($APPPATH.'../config.php');
@@ -13,11 +14,10 @@ $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
 $i = 0;
-$num = 2;
-$start_page = 9;
+$num = 6;
 foreach($cate_config as $k => $_cate){
   $i = $_cate['cid'];
-  //2, isok
+  //2,6,10,14 isok
   if($k > $num){
     break;
   }

@@ -153,6 +153,9 @@ function getHtml($url){
   curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36');
   if($http_proxy){
     //curl_setopt($curl, CURLOPT_PROXY ,"http://$http_proxy");
+   curl_setopt($curl, CURLOPT_HTTPPROXYTUNNEL, 1);
+   curl_setopt($curl, CURLOPT_PROXY ,$http_proxy);
+   curl_setopt($curl, CURLOPT_PROXYTYPE, 7);
   }
   //curl_setopt($curl,CURLOPT_HTTPHEADER,$http_header);
   curl_setopt($curl,CURLOPT_FOLLOWLOCATION,true);
