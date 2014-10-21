@@ -63,6 +63,7 @@
 </div>
 </div>
 <script type="text/javascript">
+window.setTimeout(function(){$.get('/ajaxapi/article_pv/<?php echo $info['id'];?>')},5000);
 <?php if($clear_play_pv){?>
 jQuery.get('/ajaxapi/addpv');
 <?php }?>

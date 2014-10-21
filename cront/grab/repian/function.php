@@ -151,6 +151,10 @@ function getArticlePlayData($purl){
       $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'xigua';
+    }elseif(false != stripos($v,'jjhd://')){
+      $v = unicode_encode($v);
+      $v = explode('#',$v);
+      $player = 'jjhd';
     }else{
       echo "\n++ $v ++\n";
       continue;

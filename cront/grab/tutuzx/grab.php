@@ -11,7 +11,7 @@ $db=new DB_MYSQL();
 
 $data = array('url' => 'http://img.hacktea8.com/picapi/uploadurl?seq=', 'imgurl'=>'');
 $file_data = array('url' => 'http://img.hacktea8.com/fileapi/uploadurl?seq=', 'imgurl'=>'','filename'=>'');
-$task = 5;
+$task = 3;
 while($task){
 $list = getnocoverlist();
 if(empty($list)){

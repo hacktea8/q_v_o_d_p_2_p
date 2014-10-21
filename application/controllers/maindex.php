@@ -227,7 +227,7 @@ exit;
     $key = 'play_auth'.$ip;
     $pv = $this->redis->get($key);
 #echo '|',$pv,'|';exit;
-    $clear_play_pv = ($pv > 20 && $pv < 25) ? 1: 0;
+    $clear_play_pv = ($pv > 15 && $pv < 25) ? 1: 0;
     $this->assign(array('isCollect'=>$isCollect,'seo_title'=>$title,'sid'=>$sid,'vol'=>$vol
     ,'seo_keywords'=>$keywords,'cid'=>$cid,'cpid'=>$cpid,'info'=>$data['info'],'aid'=>$aid
     ,'videovols'=>$data['vols'],'playRelate'=>$playRelate,'clear_play_pv'=>$clear_play_pv
