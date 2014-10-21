@@ -3,7 +3,7 @@
 $_root='http://www.repian.com/';
 $_devStatus = 'OK';
 #$http_proxy = '211.138.121.37:82';
-$http_proxy = '';
+$http_proxy = '192.168.1.254:9990';
 //
 $strreplace=array(
 array('from'=>'www.ed2kers.com','to'=>'emu.hacktea8.com')

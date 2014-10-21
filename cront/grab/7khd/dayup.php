@@ -14,21 +14,24 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$abort = 0;
-$lastK = 0;
-  
+$num=0;
+$len = count($cate_config);
+for($num = 0;$num<$len;$num++){
 foreach($cate_config as $k => $_cate){
- $i = $_cate['cid'];
- echo "\n==== Current Index $k Cid $i =====\n";
- if($abort && $lask < $k){
-  continue;
- }
+  $i = $_cate['cid'];
+  //0, isok
+  if($k > $num){
+    break;
+  }
+  if($k != $num){
+    continue;
+  }
 
- #var_dump($_cate);exit;
- $cid = $_cate['cid'];
- getinfolist($_cate);
- sleep(10);
- echo "\n++ Grab Cate Cid:$cid Is OK! ++\n";
- }
+//var_dump($_cate);exit;
+  $cid = $i;
+  getinfolist($_cate);
+  echo "\n==== 抓取任务结束! =====\n";
+}
+}
 
 ?>

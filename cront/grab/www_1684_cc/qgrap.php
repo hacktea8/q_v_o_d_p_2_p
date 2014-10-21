@@ -10,10 +10,11 @@ include_once($APPPATH.'config.php');
 /*============ Get Cate article =================*/
 
 
-$num=1;
+$num=17;
+$start_page = 1;
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
-  //1,5,9,13,17 isok
+  //1,5,9,13,17,49 isok
   if($i > $num){
     break;
   }

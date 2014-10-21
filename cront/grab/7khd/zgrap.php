@@ -6,29 +6,30 @@ include_once($APPPATH.'../function.php');
 include_once($APPPATH.'/function.php');
 include_once($APPPATH.'config.php');
 
-/*/
-/**/
 
 /*============ Get Cate article =================*/
 
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$abort = 0;
-$lastK = 0;
-  
+$i = 0;
+$num = 3;
+//13
+$start_page = 57;
 foreach($cate_config as $k => $_cate){
- $i = $_cate['cid'];
- echo "\n==== Current Index $k Cid $i =====\n";
- if($abort && $lask < $k){
-  continue;
- }
+  $i = $_cate['cid'];
+  //3, isok
+  if($k > $num){
+    break;
+  }
+  if($k != $num){
+    continue;
+  }
+  $cid = $i;
+  getinfolist($_cate);
+  echo "\n==== 抓取任务结束! =====\n";
+}
 
- #var_dump($_cate);exit;
- $cid = $_cate['cid'];
- getinfolist($_cate);
- sleep(10);
- echo "\n++ Grab Cate Cid:$cid Is OK! ++\n";
- }
+
 
 ?>

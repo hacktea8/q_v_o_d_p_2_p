@@ -35,11 +35,11 @@ array('cid'=>1,'ourl'=>'/movie/dz/','name'=>'动作片')
 ,array('cid'=>15,'ourl'=>'/teleplay/hanguo/','name'=>'韩国剧')
 ,array('cid'=>16,'ourl'=>'/teleplay/oumei/','name'=>'欧美剧')
 ,array('cid'=>17,'ourl'=>'/teleplay/taiguo/','name'=>'海外剧')
-#,array('cid'=>18,'ourl'=>'/34','name'=>'全部电视剧')
+,array('cid'=>49,'ourl'=>'/movie/laodianying/','name'=>'老电影')
 
 );
 
-$cids = array(1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17);
-//$cids = array(17);
+$cids = array(1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,49);
+//$cids = array(12,13,14,15,16,17,49);
 
 ?>

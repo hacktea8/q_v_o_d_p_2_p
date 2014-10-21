@@ -60,9 +60,11 @@ echo "\n++++ ",$url," ++++\n";
         return 6;
       }
 */
+      $actor = $list[4];
+      $actor = str_replace(array(',/,'),array(','),$actor);
       $ourl = $_root.$list[2];
       $purl = $_root.$list[6];
-      $ainfo = array('thum'=>$list[1],'ourl'=>$ourl,'purl'=>$purl,'actor'=>$list[4],'name'=>$oname,'oid'=>$oid,'cid'=>$cid);
+      $ainfo = array('thum'=>$list[1],'ourl'=>$ourl,'purl'=>$purl,'actor'=>$actor,'name'=>$oname,'oid'=>$oid,'cid'=>$cid);
       getinfodetail($ainfo);
 sleep(1);
     }
