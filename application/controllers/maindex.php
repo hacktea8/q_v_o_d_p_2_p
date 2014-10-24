@@ -233,6 +233,7 @@ exit;
     ,'videovols'=>$data['vols'],'playRelate'=>$playRelate,'clear_play_pv'=>$clear_play_pv
     ,'seo_description'=>$seo_description
     ));
+/*
     if( !$this->_isrobot){
       $key = sprintf('emuhitslog:%s:%d',$ip,$aid);
       //var_dump($this->redis->exists($key));exit;
@@ -240,6 +241,7 @@ exit;
         $this->redis->set($key, 1, $this->expirettl['6h']);
       }
     }
+*/
     $this->view('index_play');
   }
   public function crontab(){
