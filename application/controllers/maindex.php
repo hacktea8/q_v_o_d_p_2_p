@@ -156,6 +156,14 @@ exit;
     )); 
 #echo "<pre>";var_dump($this->viewData);exit;
     $this->view('index_view');
+    if( self::$static_html){
+      $cache_file = CACHEDIR.($aid%10).'/views_'.$aid.'.html';
+      $cache_dir = dirname($cache_file);
+      makedir($cache_dir,0777);
+      $output = $this->output->get_output();
+      file_put_contents($cache_file,$output);
+      @chmod($cache_file,0777);
+    }
   }
   public function playdata($vid,$sid,$vol){
     $vid = intval($vid);
