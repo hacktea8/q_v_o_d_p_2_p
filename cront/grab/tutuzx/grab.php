@@ -2,6 +2,7 @@
 
 $APPPATH=dirname(__FILE__).'/';
 include_once($APPPATH.'../db.class.php');
+include_once($APPPATH.'../function.php');
 include_once($APPPATH.'config.php');
 
 $pattern = '/tutuzx/grab.php';
@@ -24,13 +25,18 @@ if('http://' != substr($val['thum'],0,7)){
   $val['thum'] = $_root.$val['thum'];
 }
 echo "== $val[thum] ==\n";
+if( stripos($val['thum'], 'www.7khd.com') > 0){
+ //http://www.7khd.com  isDown
+ seterrcoverByid(17,$val['id']);
+ continue;
+}
 //exit;
 $data['imgurl'] = $val['thum'];
-$cover = getHtml($data);
+$cover = get_html($data);
 //去除字符串前3个字节
-$cover = substr($cover,3);
+$cover = trimBOM($cover);
 echo $val['id'],' , ',$cover,"\n";
-#exit;
+//exit;
 //echo strlen($cover);exit;
 $status = preg_replace('#[^\d]+#','',$cover);
 //echo $status;exit;
@@ -98,7 +104,7 @@ function setcoverByid($cover = '',$id = 0){
   $sql = sprintf('UPDATE %s SET `cover`=\'%s\',flag=1,`iscover`=1 WHERE `id`=%d LIMIT 1',$db->getTable('emule_article'),mysql_real_escape_string($cover),$id);
   $db->query($sql);
 }
-function getHtml(&$data){
+function get_html(&$data){
   $curl = curl_init();
   $url = $data['url'];
   unset($data['url']);
