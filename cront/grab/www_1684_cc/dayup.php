@@ -1,4 +1,6 @@
 <?php
+$abort = 0;
+$lastK = 16;
 
 $APPPATH=dirname(__FILE__).'/';
 include_once($APPPATH.'../config.php');
@@ -14,11 +16,13 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$num=17;
 foreach($cids as $num){
-$i=0;
+ if($abort && $num < $lastK){
+  continue;
+ }
 foreach($cate_config as $_cate){
   $i = $_cate['cid'];
+ echo "\n=== Cid $i ======\n";
   //1,5,9,13,17 isok
   if($i > $num){
     break;

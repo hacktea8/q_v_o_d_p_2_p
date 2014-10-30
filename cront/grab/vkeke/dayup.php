@@ -14,7 +14,7 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$num=17;
+$num = 17;
 foreach($cids as $num){
 $i=0;
 foreach($cate_config as $_cate){

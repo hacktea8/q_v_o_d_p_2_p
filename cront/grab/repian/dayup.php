@@ -1,4 +1,6 @@
 <?php
+$abort = 0;
+$lastK = 11;
 
 $APPPATH=dirname(__FILE__).'/';
 include_once($APPPATH.'../config.php');
@@ -14,13 +16,11 @@ include_once($APPPATH.'config.php');
 $lastgrab = basename(__FILE__);
 $path = $APPPATH.'config/';
 
-$abort = 0;
-$lastK = 0;
   
 foreach($cate_config as $k => $_cate){
  $i = $_cate['cid'];
  echo "\n==== Current Index $k Cid $i =====\n";
- if($abort && $lask < $k){
+ if($abort && $lastK > $k){
   continue;
  }
 
@@ -29,6 +29,6 @@ foreach($cate_config as $k => $_cate){
  getinfolist($_cate);
  sleep(10);
  echo "\n++ Grab Cate Cid:$cid Is OK! ++\n";
- }
+}
 
 ?>
