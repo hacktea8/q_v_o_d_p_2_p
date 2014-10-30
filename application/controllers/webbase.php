@@ -10,6 +10,7 @@ class Webbase extends CI_Controller {
   protected $_c = 'index'; 
   protected $_a = 'index'; 
   protected $_isrobot = 0;
+  static protected $static_html = '1';
 
   public function __construct(){
     parent::__construct();

@@ -10,6 +10,17 @@ $apicurl->config['cookie'] = 'cookie_api';
 
 //$model=new Model();
 
+function trimBOM ($contents) {
+ $charset = array();
+ $charset[1] = substr($contents, 0, 1);
+ $charset[2] = substr($contents, 1, 1);
+ $charset[3] = substr($contents, 2, 1);
+ if (ord($charset[1]) == 239 && ord($charset[2]) == 187 && ord($charset[3]) == 191) {
+   return substr($contents, 3);
+ }
+ return $contents;
+}
+
 /*
 获取配对的标签的内容
 */

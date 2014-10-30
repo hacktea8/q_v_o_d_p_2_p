@@ -102,6 +102,7 @@ if(!$v['volname']){
 <?php }?>
 </div>
 <script type="text/javascript">
+window.setTimeout(function(){$.get('/ajaxapi/article_pv/<?php echo $info['id'];?>')},5000);
 <?php if($_reload_page){?>
 window.location.href="<?php echo $current_url;?>";
 <?php }?>

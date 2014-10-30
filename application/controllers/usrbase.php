@@ -6,7 +6,7 @@ class Usrbase extends Webbase {
   public $seo_keywords = '最新百度影音电视剧,最新电影网,好看的电视剧,好看的百度影音电影,QVDHD影院,西瓜影音,吉吉影音,影音先锋,快播,百度影音,最新电影,最新电视剧,在线观看,迅雷下载,BT下载,网盘下载';
   public $seo_description = '提供最全的2014最新电影,百度影音电影网站以及各种好看的电视剧、动漫、综艺的在线观看,在线观看分为普通视频模式和百度影音高清播放模式,每天第一时间更新,放送最新好看的免费电影。';
   public $imguploadapiurl = 'http://img.hacktea8.com/imgapi/upload/?seq=';
-  public $showimgapi = 'http://img.hacktea8.com/showfile.php?key=';
+  public $showimgapi = 'http://i1.hacktea8.com/showfile.php?key=';
   public $playMod = array(1=>array('title'=>'qvod','url'=>''),3=>array('title'=>'影音先锋','url'=>''),2=>array('title'=>'百度影音','url'=>''),5=>array('title'=>'西瓜影音','url'=>''),6=>array('title'=>'吉吉影音','url'=>''));
 
   public function __construct(){

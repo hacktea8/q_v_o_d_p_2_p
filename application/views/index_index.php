@@ -49,7 +49,7 @@
 <ul class="ctext">
 <?php foreach($qvodIndex['todayMovieNewDataTxt'] as &$v){?>
 <li>&bull;&nbsp;
-<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_tMNDT_Cate','<?php echo $channel[$v['id']]['name'];?>');">[ <?php echo $channel[$v['id']]['name'];?>]
+<a href="<?php echo $channel[$v['cid']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_tMNDT_Cate','<?php echo $channel[$v['cid']]['name'];?>');">[ <?php echo $channel[$v['cid']]['name'];?>]
 <a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_tMNDT','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
@@ -83,7 +83,7 @@
 <ul class="ctext">
 <?php foreach($qvodIndex['todayNewTVtxt'] as &$v){?>
 <li>&bull;&nbsp;
-<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_tNTVt_Cate','<?php echo $channel[$v['id']]['name'];?>');">[ <?php echo $channel[$v['id']]['name'];?>]
+<a href="<?php echo $channel[$v['cid']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_tNTVt_Cate','<?php echo $channel[$v['cid']]['name'];?>');">[ <?php echo $channel[$v['cid']]['name'];?>]
 <a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_tNTVt','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
@@ -120,7 +120,7 @@
 <ul class="ctext">
 <?php foreach($qvodIndex['varietyNewDatatxt'] as &$v){?>
 <li>&bull;&nbsp;
-<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_varNDt','<?php echo $channel[$v['id']]['name'];?>');">[ <?php echo $channel[$v['id']]['name'];?>]
+<a href="<?php echo $channel[$v['cid']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_varNDt','<?php echo $channel[$v['cid']]['name'];?>');">[ <?php echo $channel[$v['cid']]['name'];?>]
 <a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_varNDt','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>
@@ -154,7 +154,7 @@
 <ul class="ctext">
 <?php foreach($qvodIndex['animeNewDatatxt'] as &$v){?>
 <li>&bull;&nbsp;
-<a href="<?php echo $channel[$v['id']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_aniNDt','<?php echo $channel[$v['id']]['name'];?>');">[ <?php echo $channel[$v['id']]['name'];?>]
+<a href="<?php echo $channel[$v['cid']]['url'];?>" target="_blank" onclick="ga('send','event', 'index_aniNDt','<?php echo $channel[$v['cid']]['name'];?>');">[ <?php echo $channel[$v['cid']]['name'];?>]
 <a href="<?php echo $v['url'];?>" target="_blank" onclick="ga('send','event', 'index_aniNDt','<?php echo $v['name'];?>');"><?php echo $v['name'];?></a></li>
 <?php }?>
 </ul>

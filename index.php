@@ -1,6 +1,17 @@
 <?php
 redirect();
 
+function makedir($dir,$mod = 0777,$mkindex = true){
+if(!is_dir($dir)) {
+ makedir(dirname($dir), $mod, $mkindex);
+ @mkdir($dir, $mod);
+ @chmod($dir, 0777);
+ if(!empty($mkindex)) {
+   @touch($dir.'/index.htm'); @chmod($dir.'/index.htm', 0777);
+ }
+}
+return true;
+}
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -19,7 +30,7 @@ redirect();
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+	define('ENVIRONMENT', 'production');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -200,6 +211,10 @@ if (defined('ENVIRONMENT'))
  * And away we go...
  *
  */
+/* cache html  */
+define('CACHEDIR',APPPATH.'cache/webhtmlcache/');
+//webhtmlcache();
+
 require_once BASEPATH.'core/CodeIgniter.php';
 
 function redirect(){
@@ -215,3 +230,24 @@ header('HTTP/1.1 301 Moved Permanently');
 header($jumpUrl);// 301 跳转到设置的 url
 exit(0);
 }
+function webhtmlcache(){
+$param = explode('/',$_SERVER['REQUEST_URI']);
+$aid = intval($param[3]);
+$mod = '';
+if( stripos($_SERVER['REQUEST_URI'],'/views/') >0){
+ $mod = 'views_';
+}
+/*
+if( stripos($_SERVER['REQUEST_URI'],'/play/') >0){
+ $mod = 'play_';
+}
+*/
+$cache_file = CACHEDIR.($aid%10).'/'.$mod.$aid.'.html';
+if( $mod && file_exists($cache_file) && (time() - filemtime($cache_file)) < 86400){
+  $html = file_get_contents($cache_file);
+  echo $html;exit;
+}
+//走PHP路由
+#echo $cache_file;exit;
+}
+
