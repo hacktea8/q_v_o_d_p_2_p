@@ -104,7 +104,7 @@ if(!$v['volname']){
 <script type="text/javascript">
 window.setTimeout(function(){$.get('/ajaxapi/article_pv/<?php echo $info['id'];?>')},5000);
 <?php if($_reload_page){?>
-window.location.href="<?php echo $current_url;?>";
+//window.location.href="<?php echo $current_url;?>";
 <?php }?>
 var err_msg = getCookie('err_msg');
 if(err_msg){

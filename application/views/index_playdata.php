@@ -5,7 +5,38 @@
 <title>影片播放</title>
 </head>
 <body>
-<?php if(in_array($sid,array(5))){?>
+<?php if(in_array($sid,array(8))){?>
+<div id="a1"></div>
+<script type="text/javascript" src="<?php echo $cdn_url;?>/public/ckplayer/ckplayer.js" charset="utf-8"></script>
+<script type="text/javascript">
+function loadedHandler(){
+ //alert('加载已完成')
+}
+var flashvars={
+f:'<?php echo $playInfo['url'];?>',
+c:0,
+<?php if($playInfo['cover']){echo "i:'$playInfo[cover]'";}?>,
+h:4,
+<?php if($playInfo['cur']){echo "my_url:'$playInfo[cur]'";}?>,
+<?php if($playInfo['title']){echo "my_title:'$playInfo[title]'";}?>,
+loaded:'loadedHandler',
+b:0
+};
+var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+CKobject.embedSWF('<?php echo $cdn_url;?>/public/ckplayer/ckplayer.swf','a1','ckplayer_a1','690','550',flashvars,params);
+</script>
+<?php }else if(in_array($sid,array(9))){?>
+<script type="text/javascript" src="<?php echo $cdn_url;?>/public/cmp4/cmp.js" charset="utf-8"></script>
+<div style="height:550px;" class="player" id="player">
+</div>
+<script type="text/javascript">
+var flashvars = {
+    lists : "<?php echo $playInfo['url'];?>"
+};
+var htm = CMP.create("cmp", "100%", "100%", cdn_url+"/public/cmp4/cmpn.swf",flashvars);
+document.getElementById("player").innerHTML = htm;
+</script>
+<?php }else if(in_array($sid,array(5))){?>
 <script language="javascript">
 var XgPlayer = {
 'Url': "<?php echo $playInfo['url'];?>", //本集播放地址，需更改

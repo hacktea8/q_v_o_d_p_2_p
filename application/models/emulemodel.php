@@ -265,7 +265,8 @@ class emuleModel extends baseModel{
       $volname = substr($row['link'],0,strpos($row['link'],'$'));
       $volname = trim($volname);
       //echo $row['link'],'<br />',$volname,'<br />';
-      $volname = $this->unicode_decode($volname);
+      $newvolname = $this->unicode_decode($volname);
+      $volname = $newvolname? $newvolname:$volname;
       $update_data = array('volname'=>$volname);
       $where_data = array('id'=>$id);
       $sql = $this->db->update_string($table,$update_data,$where_data);

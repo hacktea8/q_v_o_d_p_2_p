@@ -1,7 +1,8 @@
 <?php
 class grabapiModel extends CI_Model{
   public $db;
-  public $serverMod = array('qvod'=>1,'百度影音'=>2,'xfplay'=>3,'bdhd'=>2,'xigua'=>5,'jjhd'=>6);  
+  public $serverMod = array('qvod'=>1,'百度影音'=>2,'xfplay'=>3,'bdhd'=>2,'xigua'=>5,'jjhd'=>6,'youku'=>7
+  ,'online'=>8,'cmp4'=>9); 
   public function __construct(){
      parent::__construct();
      $this->db  = $this->load->database('default', TRUE);
