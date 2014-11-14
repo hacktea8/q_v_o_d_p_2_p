@@ -7,7 +7,17 @@ class Model{
   function __construct(){
     $this->db=new DB_MYSQL();
   }
-
+ function checkid97vid($ovid = 0){
+  $sql = sprintf('SELECT id FROM grab_id97 where ovid=%d limit 1',$ovid);
+  $r = $this->db->row_array($sql);
+  return @$r['id'];
+ }
+ function addid97vid($ovid = 0){
+  $sql = $this->db->insert_string('grab_id97', compact('ovid'));
+  $this->db->query($sql);
+  $id = $this->db->insert_id();
+  return $id;
+ }
   function getCateBycid($cid){
     if(!$cid){
       return false;

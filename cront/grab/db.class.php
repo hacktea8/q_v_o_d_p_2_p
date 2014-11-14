@@ -23,6 +23,10 @@ class DB_MYSQL{
   var $num_rows = 0;
 
   public function  __construct($server = "localhost",$user = "qvodweb",$password = "ilove",$database = "qvodweb"){
+   global $nopassword;
+   if($nopassword){
+    $password = '';
+   }
     $this->connect($server,$user,$password,$database);
     mysql_query("set names utf8");
   }
