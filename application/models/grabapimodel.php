@@ -39,6 +39,10 @@ class grabapiModel extends CI_Model{
     if(empty($data['name'])){
       return 0;
     }
+    $check = $this->checkArticleByOname($data['name']);
+   if($check){
+    return $check;
+   }
     $head = $this->copy_array($data,array('name','cid','thum','ourl','ptime','utime'));
     $contents = $this->copy_array($data,array('intro','actor','keyword'));
     $sql = $this->db->insert_string($this->db->dbprefix('emule_article'),$head);

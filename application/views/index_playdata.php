@@ -3,6 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>影片播放</title>
+<script>
+var cdn_url = '';
+</script>
 </head>
 <body>
 <?php if(in_array($sid,array(8))){?>
@@ -13,25 +16,26 @@ function loadedHandler(){
  //alert('加载已完成')
 }
 var flashvars={
-f:'<?php echo $playInfo['url'];?>',
-c:0,
-<?php if($playInfo['cover']){echo "i:'$playInfo[cover]'";}?>,
-h:4,
-<?php if($playInfo['cur']){echo "my_url:'$playInfo[cur]'";}?>,
-<?php if($playInfo['title']){echo "my_title:'$playInfo[title]'";}?>,
+f:'/videos/iqiyixml/iqy/<?php echo $playInfo['url'];?>',
+s:2,
 loaded:'loadedHandler',
-b:0
 };
 var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
 CKobject.embedSWF('<?php echo $cdn_url;?>/public/ckplayer/ckplayer.swf','a1','ckplayer_a1','690','550',flashvars,params);
 </script>
+<?php }else if(in_array($sid,array(7))){?>
+<div id="movieid">
+ <embed src="/public/player/youku/loader.swf?VideoIDS=<?php echo $playInfo['url'];?>&amp;isAutoPlay=true" type="application/x-shockwave-flash" width="100%" height="550" align="middle" allowFullScreen="true" quality="high" allowScriptAccess="always"/>
+</div>
 <?php }else if(in_array($sid,array(9))){?>
 <script type="text/javascript" src="<?php echo $cdn_url;?>/public/cmp4/cmp.js" charset="utf-8"></script>
 <div style="height:550px;" class="player" id="player">
 </div>
 <script type="text/javascript">
 var flashvars = {
-    lists : "<?php echo $playInfo['url'];?>"
+ name : "CMP4",
+ skin : "skins/mini/vplayer.zip",
+ lists : "<?php echo $playInfo['url'];?>"
 };
 var htm = CMP.create("cmp", "100%", "100%", cdn_url+"/public/cmp4/cmpn.swf",flashvars);
 document.getElementById("player").innerHTML = htm;
