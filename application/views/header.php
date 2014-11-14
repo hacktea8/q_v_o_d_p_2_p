@@ -27,7 +27,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-43439571-5', 'auto');
 ga('send', 'pageview');
-
+var cdn_url = '<?php echo $cdn_url;?>';
 </script>
 </head>
 <body>

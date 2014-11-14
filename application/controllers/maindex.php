@@ -176,7 +176,9 @@ exit;
     if($pv < 30){
       $auth = 0;
     }
+$auth=0;
     if($vid <1 || $vol <1 || $auth){
+var_dump($vid);exit;
       header('HTTP/1.1 301 Moved Permanently');
       header('Location: /');
       exit;

@@ -1,0 +1,10 @@
+﻿<cmp 
+	name = "PVideos" 
+	link = "http://www.qvdhd.com/" 
+	description = ""
+	logo = ""
+	skins = "skins/mini/vplayer.zip"
+	auto_play = "true"
+	list_delete = "true"
+	
+/>

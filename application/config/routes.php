@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "maindex";
 $route['404_override'] = 'maindex/show404';
+$route['videos/(:any+)'] = 'videos/index/$1';
 
 
 /* End of file routes.php */

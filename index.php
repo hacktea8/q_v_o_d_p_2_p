@@ -1,5 +1,5 @@
 <?php
-redirect();
+//redirect();
 
 function makedir($dir,$mod = 0777,$mkindex = true){
 if(!is_dir($dir)) {
