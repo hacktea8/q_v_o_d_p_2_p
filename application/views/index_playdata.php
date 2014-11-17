@@ -27,6 +27,22 @@ CKobject.embedSWF('<?php echo $cdn_url;?>/public/ckplayer/ckplayer.swf','a1','ck
 <div id="movieid">
  <embed src="/public/player/youku/loader.swf?VideoIDS=<?php echo $playInfo['url'];?>&amp;isAutoPlay=true" type="application/x-shockwave-flash" width="100%" height="550" align="middle" allowFullScreen="true" quality="high" allowScriptAccess="always"/>
 </div>
+<div id="maskvid" onclick="return false;" style="display:none;position: absolute;"></div>
+<script>
+window.setTimeout("maskdiv('movieid')", 3000);
+function maskdiv(objid){
+ obj = document.getElementById(objid);
+ opt = document.getElementById('maskvid');
+ _top = obj.offsetHeight;
+ _lft = obj.offsetWidth;
+ _optW = 105;_optH=36;
+ opt.style.display = "block";
+ opt.style.left = _lft-_optW-5+"px";
+ opt.style.top = _top-_optH+"px";
+ opt.style.width = _optW+'px';
+ opt.style.height = _optH+'px';
+}
+</script>
 <?php }else if(in_array($sid,array(9))){?>
 <script type="text/javascript" src="<?php echo $cdn_url;?>/public/cmp4/cmp.js" charset="utf-8"></script>
 <div style="height:550px;" class="player" id="player">
