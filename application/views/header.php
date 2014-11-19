@@ -20,6 +20,9 @@
 <?php } ?>
 <?php if(in_array($_a,array('play'))){?>
 <?php }?>
+<?php if(in_array($_a,array('index','lists','views','play','search'))){ ?>
+<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
+<?php }?>
 <script type="text/javascript">
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

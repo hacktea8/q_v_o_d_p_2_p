@@ -1,5 +1,9 @@
 <div id="footer">
-<script src="http://finead.cn/page/?s=7669"></script>
+<?php if( in_array($_a,array('index','lists','views','play','search'))){?>
+<script type="text/javascript">
+//广告位：site_right_cpv
+BAIDU_CLB_fillSlot("1006689");</script>
+<?php }?>
 <div class="sitedescription">
 &copy;2013 - <?php echo date('Y');?>
 免责声明:本站所有视频均来自互联网收集而来，版权归原创者所有，如果侵犯了你的权益，请通知我们，我们会及时删除侵权内容，谢谢合作！<?php echo $admin_email;?><br/>
