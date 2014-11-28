@@ -180,6 +180,8 @@ function getParseVideoInfo($html){
       $player = 'jjhd';
     }elseif(false !== stripos($v,'xfplay://')){
       $player = 'xfplay';
+    }elseif(false !== stripos($v,'$youku')){
+      $player = 'youku';
     }else{
       echo "\n++ $v ++\n";
       continue;

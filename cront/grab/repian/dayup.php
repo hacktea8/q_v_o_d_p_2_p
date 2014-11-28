@@ -1,6 +1,6 @@
 <?php
-$abort = 0;
-$lastK = 11;
+$abort = 1;
+$lastK = 17;
 
 $APPPATH=dirname(__FILE__).'/';
 include_once($APPPATH.'../config.php');
