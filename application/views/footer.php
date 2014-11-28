@@ -16,6 +16,11 @@ function _loadIndex(){jQuery.get("/maindex/index");
 jQuery.get("/maindex/crontab");
 }
 jQuery(document).ready(function(){
+<?php if($isShowPoint){ ?>
+function addUserOnlinePoint(){$.get('/ajaxapi/addUserOnlinePoint');}
+setTimeout(addUserOnlinePoint,5000);
+setInterval(addUserOnlinePoint,600000);
+<?php }?>
 <?php if(in_array($_a,array('index','lists','fav','views','play','search'))){ ?>
  $("img.lazy").lazyload({
   event : "sporty",
