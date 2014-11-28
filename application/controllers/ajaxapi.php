@@ -1,6 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-ini_set('display_errors',1);
-error_reporting(E_ALL);
 require_once 'webbase.php';
 class Ajaxapi extends Webbase {
 
@@ -38,14 +36,14 @@ class Ajaxapi extends Webbase {
   if( $this->redis->exists($key)){
    return 0;
   }
-  $this->redis->set($key, 1,$this->expirettl['1d']);
+  $this->redis->set($key, 1,self::$ttl['1d']);
   $key = sprintf('user_topic_hits:%d',$aid);
   $this->redis->incr($key);
 
  }
  public function addpv(){
   $key = 'play_auth'.$ip;
-  $this->redis->set($key,1,$this->expirettl['12h']);
+  $this->redis->set($key,1,self::$ttl['12h']);
   echo 1;
  }
  public function clearcache($type = 'mem',$key = 'all'){
@@ -53,5 +51,26 @@ class Ajaxapi extends Webbase {
    $key_map = array('top_youMayLike','channel','');
   }
   echo '1';
+ }
+ public function addUserOnlinePoint(){
+  if( !$this->userInfo['uid']){
+   return false;
+  }
+  $k = 'user_online_point_'.$this->userInfo['uid'];
+  $ltime = $this->redis->get($k);
+  $ctime = time();
+  if( !$ltime){
+   $this->redis->set($k, $ctime, self::$ttl['15m']);
+   return 0;
+  }
+  $step = $ctime - $ltime;
+  if($step < 600){
+   return false;
+  }
+  $point = floor($step/600);
+  $this->load->model('userModel');
+  $this->userModel->updateUserPoint($this->userInfo['uid'], $point);
+  $this->redis->set($k, $ctime, self::$ttl['15m']);
+  return 1;
  }
 }

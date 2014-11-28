@@ -108,7 +108,7 @@ exit;
        $left_hot = $this->emulemodel->getArticleListByCid($cid,2,2,18);
        $left_new = $this->emulemodel->getArticleListByCid($cid,1,2,20);
        $list_left_video = array('hot'=>$left_hot,'new'=>$left_new);
-       $this->mem->set($_key,$list_left_video,$this->expirettl['12h']);
+       $this->mem->set($_key,$list_left_video,self::$ttl['12h']);
     }
 // seo setting
     $title = $channel[$cid]['name']."第{$page}页";
@@ -138,7 +138,7 @@ exit;
     $viewHot = $this->mem->get($_key);
     if(!$viewHot){
        $viewHot = $this->emulemodel->getArticleListByCid($cid,2,2,18);
-       $this->mem->set($_key,$viewHot,$this->expirettl['12h']);
+       $this->mem->set($_key,$viewHot,self::$ttl['12h']);
     }
     $data['info']['intro'] = preg_replace(array('#[a-z]+://[a-z0-9]+\.[a-z0-9-_/\.]+#is','#[a-z0-9]+\.[a-z0-9-_/\.]+#is'),array('',''),$data['info']['intro']);
 // seo setting
@@ -218,7 +218,7 @@ exit;
     $playRelate = $this->mem->get($_key);
     if(!$playRelate){
        $playRelate = $this->emulemodel->getArticleListByCid($cid,1,2,7);
-       $this->mem->set($_key,$playRelate,$this->expirettl['12h']);
+       $this->mem->set($_key,$playRelate,self::$ttl['12h']);
     }
 // seo setting
     $kw = '';
@@ -241,15 +241,6 @@ exit;
     ,'videovols'=>$data['vols'],'playRelate'=>$playRelate,'clear_play_pv'=>$clear_play_pv
     ,'seo_description'=>$seo_description
     ));
-/*
-    if( !$this->_isrobot){
-      $key = sprintf('emuhitslog:%s:%d',$ip,$aid);
-      //var_dump($this->redis->exists($key));exit;
-      if(!$this->redis->exists($key)){
-        $this->redis->set($key, 1, $this->expirettl['6h']);
-      }
-    }
-*/
     $this->view('index_play');
   }
   public function crontab(){
@@ -260,7 +251,7 @@ exit;
     $this->emulemodel->autoSetVideoOnline(5);
     $this->emulemodel->setCateVideoTotal();
     //clear channel cache
-    $this->mem->set('channel','',$this->expirettl['3h']);
+    $this->mem->set('channel','',self::$ttl['3h']);
     file_put_contents($lock,'');
     chmod($lock,0777);
     echo 1;exit;
