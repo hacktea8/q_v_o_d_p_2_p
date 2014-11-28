@@ -31,11 +31,17 @@ if( stripos($val['thum'], 'www.7khd.com') > 0){
  continue;
 }
 //exit;
-$data['imgurl'] = $val['thum'];
-$cover = get_html($data);
-//去除字符串前3个字节
-$cover = trimBOM($cover);
-echo $val['id'],' , ',$cover,"\n";
+for($ii = 0;$ii<4;$ii++){
+ $data['imgurl'] = $val['thum'];
+ $cover = get_html($data);
+ //去除字符串前3个字节
+ $cover = trimBOM($cover);
+ if(strlen($cover) <30 ){
+  break;
+ }
+ sleep(16);
+}
+ echo $val['id'],' , ',$cover,"\n";
 //exit;
 //echo strlen($cover);exit;
 $status = preg_replace('#[^\d]+#','',$cover);
@@ -48,6 +54,11 @@ if(0 == $status){
   seterrcoverByid(4,$val['id']);
   sleep(1);
   continue;
+}
+if(strlen($cover)>30){
+ echo "=== Cover failed =====\n";
+ sleep(16);
+ continue;
 }
 
 //
