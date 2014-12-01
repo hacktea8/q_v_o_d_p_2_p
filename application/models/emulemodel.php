@@ -1,227 +1,232 @@
 <?php
 require_once 'basemodel.php';
 class emuleModel extends baseModel{
-  protected $_dataStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, a.`collectcount`, a.`ptime`, a.`utime`,a.`onlinedate`, a.`cover`, a.`hits`';
-  protected $_datatopicStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`,a.`collectcount`, ac.`keyword`,ac.`actor`, a.`onlinedate`, a.`ptime`, a.`utime`, ac.`intro`, a.`cover`, a.`hits`';
-  protected $_volsStruct = '`id`, `vid`, `sid`, `vol`, `volname`';
-  protected $_volsPlayStruct = '`id`, `vid`, `sid`, `vol`, `volname`, `link`';
+ protected $_dataStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`, a.`collectcount`, a.`ptime`, a.`utime`,a.`onlinedate`, a.`cover`, a.`hits`';
+ protected $_datatopicStruct = 'a.`id`, a.`cid`, a.`uid`, a.`name`,a.`collectcount`, ac.`keyword`,ac.`actor`, a.`onlinedate`, a.`ptime`, a.`utime`, ac.`intro`, a.`cover`, a.`hits`';
+ protected $_volsStruct = '`id`, `vid`, `sid`, `vol`, `volname`';
+ protected $_volsPlayStruct = '`id`, `vid`, `sid`, `vol`, `volname`, `link`';
 
-  public function __construct(){
-     parent::__construct();
+ public function __construct(){
+  parent::__construct();
+ }
+ public function autoSetVideoOnline($limit = 5){
+  $cate = $this->getAllChannel();
+  foreach($cate as $v){
+   $k = $v['id'];
+   $sql = sprintf('UPDATE %s SET `onlinedate`=%d,`flag`=1,`utime`=%d,`ptime`=%d WHERE `onlinedate`=0 AND `cid`=%d LIMIT %d',$this->db->dbprefix('emule_article'),date('Ymd'),time(),time(),$k,$limit);
+   $this->db->query($sql);
   }
-  public function autoSetVideoOnline($limit = 5){
-    $cate = $this->getAllChannel();
-    foreach($cate as $v){
-      $k = $v['id'];
-      $sql = sprintf('UPDATE %s SET `onlinedate`=%d,`flag`=1,`utime`=%d,`ptime`=%d WHERE `onlinedate`=0 AND `cid`=%d LIMIT %d',$this->db->dbprefix('emule_article'),date('Ymd'),time(),time(),$k,$limit);
-      $this->db->query($sql);
-    }
-    return 1;
+  return 1;
+ }
+ public function setCateVideoTotal(){
+  $cate = $this->getAllChannel();
+  foreach($cate as $v){
+   $k = $v['id'];
+   $sql = sprintf('UPDATE %s SET`atotal`=(SELECT COUNT(*) FROM %s WHERE `flag`=1 AND `onlinedate`<=%d AND `onlinedate`>0 AND `cid`=%d) WHERE `id`=%d LIMIT 1',$this->db->dbprefix('emule_cate'),$this->db->dbprefix('emule_article'),date('Ymd'),$k,$k);
+   $this->db->query($sql);
   }
-  public function setCateVideoTotal(){
-    $cate = $this->getAllChannel();
-    foreach($cate as $v){
-      $k = $v['id'];
-      $sql = sprintf('UPDATE %s SET`atotal`=(SELECT COUNT(*) FROM %s WHERE `flag`=1 AND `onlinedate`<=%d AND `onlinedate`>0 AND `cid`=%d) WHERE `id`=%d LIMIT 1',$this->db->dbprefix('emule_cate'),$this->db->dbprefix('emule_article'),date('Ymd'),$k,$k);
-      $this->db->query($sql);
-    }
-    return 1;
+  return 1;
+ }
+ public function getAllChannel(){
+  $sql = sprintf("SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `flag`=1",$this->db->dbprefix('emule_cate'));
+  $list = $this->db->query($sql)->result_array();
+  $return = array();
+  foreach($list as &$v){
+   $v['url'] = $this->geturl('lists',$v['id']);
+   $return[$v['id']] = $v;
   }
-  public function getAllChannel(){
-    $sql = sprintf("SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `flag`=1",$this->db->dbprefix('emule_cate'));
-    $list = $this->db->query($sql)->result_array();
-    $return = array();
-    foreach($list as &$v){
-      $v['url'] = $this->geturl('lists',$v['id']);
-      $return[$v['id']] = $v;
-    }
-    return $return;
+  return $return;
+ }
+ public function getTopYouMayLike($num = 10){
+  $hot = ceil($num/2);
+  $cold = $num-$hot;
+  $return = array();
+  $return = $this->getArticleListByCid($cid =0,$order=2,$page=1,$hot);
+  $tmp = $this->getArticleListByCid($cid =0,$order=0,$page=1,$cold);
+  foreach($tmp as $v){
+   $return[] = $v;
   }
-  public function getTopYouMayLike($num = 10){
-    $hot = ceil($num/2);
-    $cold = $num-$hot;
-    $return = array();
-    $return = $this->getArticleListByCid($cid =0,$order=2,$page=1,$hot);
-    $tmp = $this->getArticleListByCid($cid =0,$order=0,$page=1,$cold);
-    foreach($tmp as $v){
-     $return[] = $v;
-    }
-    return $return;
-  }
-  public function getIndexData(){
-    $return = array();
-    $return['topRecomData'] = $this->getArticleListByCid($cid =0,$order=0,$page=5,$limit=15);
-    $return['todayNewData'] = $this->getArticleListByCid($cid =0,$order=0,$page=1,$limit=23);
-    $movieCid = date('w')+1;
-    $return['todayMovieNewData'] = $this->getArticleListByCid($cid =$movieCid,$order=0,$page=1,$limit=10);
-    $return['todayMovieNewDataTxt'] = $this->getArticleListByCid($cid =$movieCid,$order=0,$page=3,$limit=28);
-    $return['movieHotData'] = $this->getArticleListByCid($cid =$movieCid,$order=2,$page=1,$limit=22);
-    $tvCid = $movieCid+10;
-    $return['todayNewTV'] = $this->getArticleListByCid($cid =$tvCid,$order=0,$page=1,$limit=5);
-    $return['todayNewTVtxt'] = $this->getArticleListByCid($cid =$tvCid,$order=0,$page=2,$limit=20);
-    $return['tvHotData'] = $this->getArticleListByCid($cid =$tvCid,$order=2,$page=1,$limit=12);
-    $return['varietyNewData'] = $this->getArticleListByCid($cid =9,$order=0,$page=1,$limit=5);
-    $return['varietyNewDatatxt'] = $this->getArticleListByCid($cid =9,$order=0,$page=2,$limit=15);
-    $return['varietyHotData'] = $this->getArticleListByCid($cid =9,$order=2,$page=1,$limit=12);
-    $return['animeNewData'] = $this->getArticleListByCid($cid =8,$order=0,$page=1,$limit=5);
-    $return['animeNewDatatxt'] = $this->getArticleListByCid($cid =8,$order=0,$page=2,$limit=20);
-    $return['animeHotData'] = $this->getArticleListByCid($cid =8,$order=2,$page=1,$limit=12);
-    return $return;
-  }
-  public function getNoVIPDownList($limit = 30){
-    $sql = sprintf("SELECT `id`, `name` FROM %s WHERE `flag`=2 ORDER BY `hits` DESC LIMIT %d",$this->db->dbprefix('emule_article'),$limit);
-    $list = $this->db->query($sql)->result_array();
-    return $list;
-  }
+  return $return;
+ }
+ public function getIndexData(){
+  $return = array();
+  $return['topRecomData'] = $this->getArticleListByCid($cid =0,$order=0,$page=5,$limit=15);
+  $return['todayNewData'] = $this->getArticleListByCid($cid =0,$order=0,$page=1,$limit=23);
+  $movieCid = date('w')+1;
+  $return['todayMovieNewData'] = $this->getArticleListByCid($cid =$movieCid,$order=0,$page=1,$limit=10);
+  $return['todayMovieNewDataTxt'] = $this->getArticleListByCid($cid =$movieCid,$order=0,$page=3,$limit=28);
+  $return['movieHotData'] = $this->getArticleListByCid($cid =$movieCid,$order=2,$page=1,$limit=22);
+  $tvCid = $movieCid+10;
+  $return['todayNewTV'] = $this->getArticleListByCid($cid =$tvCid,$order=0,$page=1,$limit=5);
+  $return['todayNewTVtxt'] = $this->getArticleListByCid($cid =$tvCid,$order=0,$page=2,$limit=20);
+  $return['tvHotData'] = $this->getArticleListByCid($cid =$tvCid,$order=2,$page=1,$limit=12);
+  $return['varietyNewData'] = $this->getArticleListByCid($cid =9,$order=0,$page=1,$limit=5);
+  $return['varietyNewDatatxt'] = $this->getArticleListByCid($cid =9,$order=0,$page=2,$limit=15);
+  $return['varietyHotData'] = $this->getArticleListByCid($cid =9,$order=2,$page=1,$limit=12);
+  $return['animeNewData'] = $this->getArticleListByCid($cid =8,$order=0,$page=1,$limit=5);
+  $return['animeNewDatatxt'] = $this->getArticleListByCid($cid =8,$order=0,$page=2,$limit=20);
+  $return['animeHotData'] = $this->getArticleListByCid($cid =8,$order=2,$page=1,$limit=12);
+  return $return;
+ }
+ public function getNoVIPDownList($limit = 30){
+  $sql = sprintf("SELECT `id`, `name` FROM %s WHERE `flag`=2 ORDER BY `hits` DESC LIMIT %d",$this->db->dbprefix('emule_article'),$limit);
+  $list = $this->db->query($sql)->result_array();
+  return $list;
+ }
 
-  public function getUserCollectList($uid,$order=0,$page=1,$limit=25){
-    if( !$uid){
-      return false;
-    }
-    $ordermap = array('new'=>'ct.`atime` DESC ');
-    $order = isset($ordermap[$order]) ? $ordermap[$order] : array_shift($ordermap);
-    $order = ' ORDER BY '.$order;
-    $page = intval($page) - 1;
-    $page = $page ? $page : 0;
-    $page *= $limit;
-    $limit = sprintf(' LIMIT %d,%d ',$page,$limit);
-    $sql = sprintf("SELECT ae.`id`, ae.`cid`, ae.`uid`, ae.`name`, ae.`hits`, ae.`cover`,ct.`atime` FROM %s as ae INNER JOIN %s as ct ON(ae.id=ct.aid) WHERE ct.uid=%d AND ct.`flag`=1 %s %s",$this->db->dbprefix('emule_article'),$this->db->dbprefix('collect'),$uid,$order,$limit);
-    $list = $this->db->query($sql)->result_array();
-    foreach($list as &$v){
-      $v['atime'] = date('Y-m-d H:i:s', $v['atime']);
-      $v['url'] = $this->geturl('views',$v['id']);
-    }
-    return $list;
+ public function getUserCollectList($uid,$order=0,$page=1,$limit=25){
+  if( !$uid){
+   return false;
   }
-
-  public function renewUserShip($data){
-    //collect
-    if('collect' === $data['type']){
-       $sql = sprintf("UPDATE %s SET `collectcount`=`collectcount` %s WHERE `id`=%d LIMIT 1",$this->db->dbprefix('emule_article'),$data['collect'],$data['aid']);
-       return $this->db->query($sql);
-    }
+  $ordermap = array('new'=>'ct.`atime` DESC ');
+  $order = isset($ordermap[$order]) ? $ordermap[$order] : array_shift($ordermap);
+  $order = ' ORDER BY '.$order;
+  $page = intval($page) - 1;
+  $page = $page ? $page : 0;
+  $page *= $limit;
+  $limit = sprintf(' LIMIT %d,%d ',$page,$limit);
+  $sql = sprintf("SELECT ae.`id`, ae.`cid`, ae.`uid`, ae.`name`, ae.`hits`, ae.`cover`,ct.`atime` FROM %s as ae INNER JOIN %s as ct ON(ae.id=ct.aid) WHERE ct.uid=%d AND ct.`flag`=1 %s %s",$this->db->dbprefix('emule_article'),$this->db->dbprefix('collect'),$uid,$order,$limit);
+  $list = $this->db->query($sql)->result_array();
+  foreach($list as &$v){
+   $v['atime'] = date('Y-m-d H:i:s', $v['atime']);
+   $v['url'] = $this->geturl('views',$v['id']);
   }
+  return $list;
+ }
 
-  public function addUserCollect($uid,$aid){
-    if( !$uid || !$aid){
-      return false;
-    }
-    $table = $this->db->dbprefix('collect');
-    $sql = sprintf("SELECT `flag` FROM %s WHERE `aid`=%d AND `uid`=%d LIMIT 1",$table,$aid,$uid);
-    $row = $this->db->query($sql)->row_array();
-    if(isset($row['flag'])){
-      $flag = $row['flag'];
-      $flag = $flag ? 0:1;
-      $sql = $this->db->update_string($table,array('flag'=>$flag),array('aid'=>$aid,'uid'=>$uid));
-      $this->db->query($sql);
-      return $flag;
-    }
-    $data = array('aid'=>$aid,'uid'=>$uid,'flag'=>1,'atime'=>time());
-    $sql = $this->db->insert_string($table,$data);
-    $this->db->query($sql);
-    return 1;
+ public function renewUserShip($data){
+  //collect
+  if('collect' === $data['type']){
+   $sql = sprintf("UPDATE %s SET `collectcount`=`collectcount` %s WHERE `id`=%d LIMIT 1",$this->db->dbprefix('emule_article'),$data['collect'],$data['aid']);
+   return $this->db->query($sql);
   }
+ }
 
-  public function getUserIscollect($uid,$aid){
-    if( !$uid || !$aid){
-      return false;
-    }
-    $sql = sprintf("SELECT `flag` FROM %s WHERE `aid`=%d AND `uid`=%d LIMIT 1",$this->db->dbprefix('collect'),$aid,$uid);
-    $row = $this->db->query($sql)->row_array();
-    return isset($row['flag']) ? $row['flag']:0;
+ public function addUserCollect($uid,$aid){
+  if( !$uid || !$aid){
+   return false;
   }
-
-  public function getUserCollectTotal($uid){
-    if( !$uid){
-      return false;
-    }
-    $sql = sprintf("SELECT count(*) as total FROM %s WHERE `uid`=%d",$this->db->dbprefix('collect'),$uid);
-    $row = $this->db->query($sql)->row_array();
-    return isset($row['total']) ? $row['total']: 0;
+  $table = $this->db->dbprefix('collect');
+  $sql = sprintf("SELECT `flag` FROM %s WHERE `aid`=%d AND `uid`=%d LIMIT 1",$table,$aid,$uid);
+  $row = $this->db->query($sql)->row_array();
+  if(isset($row['flag'])){
+   $flag = $row['flag'];
+   $flag = $flag ? 0:1;
+   $sql = $this->db->update_string($table,array('flag'=>$flag),array('aid'=>$aid,'uid'=>$uid));
+   $this->db->query($sql);
+   return $flag;
   }
+  $data = array('aid'=>$aid,'uid'=>$uid,'flag'=>1,'atime'=>time());
+  $sql = $this->db->insert_string($table,$data);
+  $this->db->query($sql);
+  return 1;
+ }
 
-  public function getArticleListByCid($cid='',$order=0,$page=1,$limit=25){
-     switch($order){
-       case 1:
-       $order=' ORDER BY a.hits ASC '; break;
-       case 2:
-       $order=' ORDER BY a.hits DESC '; break;
-       default:
-       $order=' ORDER BY a.ptime DESC ';
-     }
-     $page = intval($page) - 1;
-     $page = $page ? $page : 0;
-     $page *= $limit;
-     $where = '';
-     if($cid){
+ public function getUserIscollect($uid,$aid){
+  if( !$uid || !$aid){
+   return false;
+  }
+  $sql = sprintf("SELECT `flag` FROM %s WHERE `aid`=%d AND `uid`=%d LIMIT 1",$this->db->dbprefix('collect'),$aid,$uid);
+  $row = $this->db->query($sql)->row_array();
+  return isset($row['flag']) ? $row['flag']:0;
+ }
+
+ public function getUserCollectTotal($uid){
+  if( !$uid){
+   return false;
+  }
+  $sql = sprintf("SELECT count(*) as total FROM %s WHERE `uid`=%d",$this->db->dbprefix('collect'),$uid);
+  $row = $this->db->query($sql)->row_array();
+  return isset($row['total']) ? $row['total']: 0;
+ }
+
+ public function getArticleListByCid($cid='',$order=0,$page=1,$limit=25){
+  switch($order){
+  case 1:
+  $order=' ORDER BY a.hits ASC '; break;
+  case 2:
+  $order=' ORDER BY a.hits DESC '; break;
+  default:
+  $order=' ORDER BY a.ptime DESC ';
+  }
+  $page = intval($page) - 1;
+  $page = $page ? $page : 0;
+  $page *= $limit;
+  $where = '';
+  if($cid){
 /*
-       $cids = $this->getAllCateidsByCid($cid);
-       $cids = implode(',',$cids);
-       $where = ' a.`cid` in ('.$cids.')  ';
+   $cids = $this->getAllCateidsByCid($cid);
+   $cids = implode(',',$cids);
+   $where = ' a.`cid` in ('.$cids.')  ';
 */
-       $where = ' a.`cid` ='.$cid.' AND ';
-     }
-     $sql = sprintf('SELECT %s FROM %s as a WHERE %s a.`onlinedate`<=%d AND a.`onlinedate`>0 AND a.`flag`=1 %s LIMIT %d,%d',$this->_dataStruct,$this->db->dbprefix('emule_article'),$where,date('Ymd'),$order,$page,$limit);
+   $where = ' a.`cid` ='.$cid.' AND ';
+  }
+  $sql = sprintf('SELECT %s FROM %s as a WHERE %s a.`onlinedate`<=%d AND a.`onlinedate`>0 AND a.`flag`=1 %s LIMIT %d,%d',$this->_dataStruct,$this->db->dbprefix('emule_article'),$where,date('Ymd'),$order,$page,$limit);
 //echo $sql;exit;
-     $data = array();
-     $data = $this->db->query($sql)->result_array();
-     foreach($data as &$val){
-       $val['url'] = $this->geturl('views',$val['id']);
-       $val['ptime'] = date('Y-m-d', $val['ptime']);
-       $val['utime'] = date('Y/m/d', $val['utime']);
-       $val['onlinedate'] = $val['ptime'];
-     }
-     return $data;
+  $data = array();
+  $data = $this->db->query($sql)->result_array();
+  foreach($data as &$val){
+   $val['url'] = $this->geturl('views',$val['id']);
+   $val['ptime'] = date('Y-m-d', $val['ptime']);
+   $val['utime'] = date('Y/m/d', $val['utime']);
+   $val['onlinedate'] = $val['ptime'];
   }
+  return $data;
+ }
 
-  public function get_vols_table($id){
-    return sprintf('emule_article_vols%d',$id%10);
-  }
-  public function get_content_table($id){
-    return sprintf('emule_article_content%d',$id%10);
-  }
-  public function getEmuleTopicByAid($aid,$sid=0,$uid=0,$isadmin=false,$edite=1,$view=1){
-     $where = '';
-     if($uid && !$isadmin && $edite)
-       $where = sprintf(' AND `uid`=%d ',$uid);
+ public function get_vols_table($id){
+  return sprintf('emule_article_vols%d',$id%10);
+ }
+ public function get_content_table($id){
+  return sprintf('emule_article_content%d',$id%10);
+ }
+ public function getEmuleTopicByAid($aid,$sid=0,$uid=0,$isadmin=false,$edite=1,$view=1){
+  $where = '';
+  if($uid && !$isadmin && $edite)
+   $where = sprintf(' AND `uid`=%d ',$uid);
 
-     $table = $this->get_content_table($aid);
-     $sql = sprintf('SELECT %s FROM %s as a LEFT JOIN %s as ac ON (a.id=ac.id) WHERE a.id =%d  %s LIMIT 1',$this->_datatopicStruct,$this->db->dbprefix('emule_article'),$this->db->dbprefix($table),$aid,$where);
-     $data = array();
-     $data['info'] = $this->db->query($sql)->row_array();
-     $actor = explode('|',$data['info']['keyword']);
-     $data['info']['type'] = $actor[1];
-     $data['info']['actor'] = $actor[0];
-     $data['vols'] = $this->getVideoVolsTitle($aid,$sid,$view);
-     return $data;
-  }
-  public function getVideoPlayDataByAid($vid,$sid,$vol){
-    $list = $this->getVideoVolsTitle($vid,$sid,$view=0,$vol);
-    $return = array();
-    $link = $this->getVideoPlayLinkUrl($list['link']);
-    $return['url'] = $link['url'];
-    $return['nexturl'] = '';
-    $return['pre'] = '';
-    $return['next'] = '';
-    return $return;
-  }
-  public function getVideoPlayLinkUrl($link){
-    $link = explode('$',$link);
+  $table = $this->get_content_table($aid);
+  $sql = sprintf('SELECT %s FROM %s as a LEFT JOIN %s as ac ON (a.id=ac.id) WHERE a.id =%d  %s LIMIT 1',$this->_datatopicStruct,$this->db->dbprefix('emule_article'),$this->db->dbprefix($table),$aid,$where);
+  $data = array();
+  $data['info'] = $this->db->query($sql)->row_array();
+  $actor = explode('|',$data['info']['keyword']);
+  $data['info']['type'] = $actor[1];
+  $data['info']['actor'] = $actor[0];
+  $data['vols'] = $this->getVideoVolsTitle($aid,$sid,$view);
+  return $data;
+ }
+ public function getVideoCid($vid){
+  $sql = sprintf('SELECT cid FROM %s WHERE id =%d LIMIT 1',$this->db->dbprefix('emule_article'),$aid);
+  $info = $this->db->query($sql)->row_array();
+  return $info;
+ }
+ public function getVideoPlayDataByAid($vid,$sid,$vol){
+  $list = $this->getVideoVolsTitle($vid,$sid,$view=0,$vol);
+  $return = array();
+  $link = $this->getVideoPlayLinkUrl($list['link']);
+  $return['url'] = $link['url'];
+  $return['nexturl'] = '';
+  $return['pre'] = '';
+  $return['next'] = '';
+  return $return;
+ }
+ public function getVideoPlayLinkUrl($link){
+  $link = explode('$',$link);
     
-    return array('title'=>@$link[0],'url'=>@$link[1]);
-    return array('title'=>@$link[0],'url'=>@$link[1],'type'=>@$link[2]);
+  return array('title'=>@$link[0],'url'=>@$link[1]);
+  return array('title'=>@$link[0],'url'=>@$link[1],'type'=>@$link[2]);
+ }
+ public function getVideoVolsTitle($vid,$sid,$view,$vol=0){
+  if($sid){
+   $serverMod = &$this->serverMod;
+   $sinfo = isset($serverMod[$sid])?$serverMod[$sid]:0;
   }
-  public function getVideoVolsTitle($vid,$sid,$view,$vol=0){
-    if($sid){
-       $serverMod = &$this->serverMod;
-       $sinfo = isset($serverMod[$sid])?$serverMod[$sid]:0;
-    }
-    if($sinfo){
-      $vgroupby = sprintf(' AND `sid`=%d ',$sid);
-    }else{
-      //$vgroupby = ' GROUP BY `sid` ';
-      $vgroupby = ' ';
-    }
+  if($sinfo){
+   $vgroupby = sprintf(' AND `sid`=%d ',$sid);
+  }else{
+   //$vgroupby = ' GROUP BY `sid` ';
+   $vgroupby = ' ';
+  }
     $table = $this->get_vols_table($vid);
     if(1 == $view){
       $struct = $this->_volsStruct;
