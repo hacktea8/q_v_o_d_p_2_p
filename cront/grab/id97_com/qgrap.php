@@ -15,7 +15,7 @@ $m = new Model();
 
 
 $start_page = 1;
-for(; $start_page<20;$start_page++){
+for(; $start_page<5;$start_page++){
  $listUrl = sprintf('%svideos/movie/page/%d',$_root,$start_page);
  $html = getHtml($listUrl);
  preg_match_all('#<a href="([^"]*)">\s*<img src="([^"]*)" height="280" width="180">\s*<div class="meta lh180">\s*<p>([^<]*)</p>\s*<em>[^<]*</em>\s*</div>\s*</a>#Uis',$html,$mhList);
@@ -44,8 +44,12 @@ for(; $start_page<20;$start_page++){
   $vinfo = getParseVideoInfo($uv);
   $data['vols'] = $vinfo;
 //var_dump($data);exit;
-  if(empty($vinfo)){
-   echo "\n==== Get Parse Info Failed Ourl: $infoUrl Purl: $sourceUrl  Page: $start_page =====\n";exit;
+  if(empty($vinfo) ){
+   echo "\n==== Get Parse Info Failed Ourl: $infoUrl Purl: $sourceUrl  Page: $start_page =====\n";
+   if(stripos($uv,'/resource/id/') !== false){
+    continue;
+   }
+   exit;
   }
   $aid = checkArticleByOname($data['name']);
   if($aid){

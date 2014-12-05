@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once 'webbase.php';
-class Usrbase extends Webbase {
+class Viewbase extends Webbase {
  public $url404 = '/maindex/show404'; 
  public $seo_title = '首页'; 
  public $seo_keywords = 'bt之家,最新电影网,好看的电视剧,BT之家,西瓜影音,吉吉影音,影音先锋,快播,百度影音,最新电影,最新电视剧,网盘下载';
@@ -39,16 +39,23 @@ class Usrbase extends Webbase {
  protected function _get_postion($postion = array()){
   $this->assign(array('postion'=>$postion));
  }
- public function view($view_file){
+ protected function view($view_file){
   $this->load->view('header',$this->viewData);
   $this->load->view($view_file);
   $this->load->view('footer');
  }
- public function isrobots(){
-  $return = 0;
-  if(FALSE !== stripos($_SERVER['HTTP_USER_AGENT'],$v)){
-   $return = 1;
+ protected function checkAge($adult = 0,$goReferer = ''){
+  if($this->userInfo['isvip'] || $this->userInfo['isadmin']){
+   return 1;
   }
-  return $return;
+  if( $this->robot || !$adult){
+   return 0;
+  }
+  $isAdult = $this->cookie('isAdult');
+  if($isAdult){
+   return 1;
+  }
+  $this->cookie('goReferer', $goReferer, $ttl = 86400);
+  redirect('/checkage');
  }
 }

@@ -142,6 +142,9 @@ function getArticlePlayData($purl){
     }elseif(false != stripos($v,'gbl.114s.com')){
       $v = explode('#',$v);
       $player = 'xigua';
+    }elseif(false != stripos($v,'$youku')){
+      $v = explode('#',$v);
+      $player = 'youku';
 	}else{
 	  echo "\n++ $v ++\n";
 	  continue;

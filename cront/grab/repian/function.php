@@ -155,6 +155,10 @@ function getArticlePlayData($purl){
       $v = unicode_encode($v);
       $v = explode('#',$v);
       $player = 'jjhd';
+    }elseif(false != stripos($v,'$youku')){
+      $v = unicode_encode($v);
+      $v = explode('#',$v);
+      $player = 'youku';
     }else{
       echo "\n++ $v ++\n";
       continue;
