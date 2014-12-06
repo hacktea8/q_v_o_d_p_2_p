@@ -1,5 +1,5 @@
 <div id="footer">
-<?php if( in_array($_a,array('index','lists','views','play','search'))){?>
+<?php if( $show_ad && in_array($_a,array('index','lists','views','play','search'))){?>
 <script type="text/javascript">
 //广告位：site_right_cpv
 BAIDU_CLB_fillSlot("1006689");</script>

@@ -28,7 +28,7 @@ class emuleModel extends baseModel{
   return 1;
  }
  public function getAllChannel(){
-  $sql = sprintf("SELECT `id`, `pid`, `name`, `atotal` FROM %s WHERE `flag`=1",$this->db->dbprefix('emule_cate'));
+  $sql = sprintf("SELECT `id`, `pid`, `name`, `atotal`,isadult FROM %s WHERE `flag`=1",$this->db->dbprefix('emule_cate'));
   $list = $this->db->query($sql)->result_array();
   $return = array();
   foreach($list as &$v){
@@ -195,8 +195,36 @@ class emuleModel extends baseModel{
   $data['vols'] = $this->getVideoVolsTitle($aid,$sid,$view);
   return $data;
  }
+ public function getUserPlayLog($uid,$vid){
+  if( !$uid || !$vid){
+   return 0;
+  }
+  $ctime = time() - 86400;
+  $sql = sprintf('SELECT id FROM %s WHERE uid=%d AND vid=%d AND ctime>=%d LIMIT 1'
+  ,$this->db->dbprefix('video_play_log'),$uid,$vid,$ctime);
+  $r = $this->db->query($sql)->row_array();
+  return $r;
+ }
+ public function addUserBuyPlayLog($uid,$vid,$ip = ''){
+  $sql = sprintf('SELECT COUNT(*) as num FROM %s WHERE ip=\'%s\' AND cdate=%d GROUP BY uid LIMIT 1'
+  ,$this->db->dbprefix('video_ip_log'),mysql_real_escape_string($ip),date('Ymd'));
+  $ipCheck = $this->db->query($sql)->row_array();
+  if($ipCheck['num']>=3){
+   return 0;
+  }
+  $sql = sprintf('SELECT point FROM %s WHERE uid=%d LIMIT 1',$this->db->dbprefix('user'),$uid);
+  $uinfo = $this->db->query($sql)->row_array();
+  $point = $uinfo['point'] - 8;
+  if($point <0){
+   return 0;
+  }
+  $this->db->insert($this->db->dbprefix('video_play_log'),array('uid'=>$uid,'vid'=>$vid,'ctime'=>time()));
+  $this->db->update($this->db->dbprefix('user'),array('point'=>$point),array('uid'=>$uid));
+  $this->db->insert($this->db->dbprefix('video_ip_log'),array('uid'=>$uid,'ip'=>$ip,'cdate'=>date('Ymd')));
+  return 1;
+ }
  public function getVideoCid($vid){
-  $sql = sprintf('SELECT cid FROM %s WHERE id =%d LIMIT 1',$this->db->dbprefix('emule_article'),$aid);
+  $sql = sprintf('SELECT cid FROM %s WHERE id =%d LIMIT 1',$this->db->dbprefix('emule_article'),$vid);
   $info = $this->db->query($sql)->row_array();
   return $info;
  }

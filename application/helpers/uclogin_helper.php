@@ -51,23 +51,23 @@ if ( ! function_exists('getSynuserUid'))
       $uinfo = uc_authcode($code, $operation = 'DECODE');
       $info = array();
       list($info['uname'],$info['uid']) = explode("\t", $uinfo);
-      $info['uname'] = mb_convert_encoding($info['uname'],'UTF-8','GBK');
+//      $info['uname'] = mb_convert_encoding($info['uname'],'UTF-8','GBK');
       return $info;
     }
     return false;
   }
 }
 
-if ( ! function_exists('getSynuserInfo'))
-{
-  function getSynuserInfo($uid){
-    if( !$uid){
-       return false;
-    }
-    list($status['uid'],$status['groupid'],$status['groupexpiry'],$status['groups']) = uc_user_info($uid);
-    $status['groups'] = explode(',',$status['groups']);
-    return $status;
+if ( ! function_exists('getSynuserInfo')){
+ function getSynuserInfo($uid){
+  if( !$uid){
+   return false;
   }
+  $uinfo = uc_user_info($uid);
+  list($status['uid'],$status['groupid'],$status['groupexpiry'],$status['groups']) = $uinfo;
+  $status['groups'] = explode(',',$status['groups']);
+  return $status;
+ }
 }
 
 if ( ! function_exists('strtrip'))

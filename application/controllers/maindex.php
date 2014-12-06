@@ -188,7 +188,30 @@ exit;
   }
   $info = $this->emulemodel->getVideoCid($vid);
   if($this->viewData['channel'][$info['cid']]['isadult']){
-   exit;
+   $playAuth = 0;
+   if($this->userInfo['uid'] ){
+    if( !($this->userInfo['isvip'] && $this->userInfo['isadmin'])){
+     //check log
+     $log = $this->emulemodel->getUserPlayLog($this->userInfo['uid'],$vid);
+     if(empty($log)){
+      $ip = $this->input->ip_address();
+      $log = $this->emulemodel->addUserBuyPlayLog($this->userInfo['uid'],$vid,$ip);
+      if($log){
+       $playAuth = 1;
+      }
+     }else{
+      $playAuth = 1;
+     }
+    }else{
+     $playAuth = 1;
+    }
+   }
+   if(!$playAuth){
+    $this->viewData['vid'] = $vid;
+    $this->load->view('playdata_adult',$this->viewData);
+    $output = $this->output->get_output();
+    echo $output;exit;
+   }
   }
   $data = $this->emulemodel->getVideoPlayDataByAid($vid,$sid,$vol);
   //$data['url'] = json_decode($data['url'],1);
@@ -313,8 +336,13 @@ var_dump($list);exit;
   $this->view('index_show404');
  }
  public function login(){
+  if($this->userInfo['uid']){
+   header('Location: /');
+   exit;
+  }
 //var_dump($_SERVER);exit;
-  $url = $this->viewData['login_url'].urlencode($_SERVER['HTTP_REFERER']);
+  $goto = isset($_GET['goto'])?$_GET['goto']:$_SERVER['HTTP_REFERER'];
+  $url = $this->viewData['login_url'].urlencode($goto);
 //echo $url;exit;
   header('Location: '.$url);
   exit;

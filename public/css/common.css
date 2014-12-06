@@ -49,8 +49,8 @@ h4 span.current {background:url(/public/images/sbg.png)  left -383px; color:#fff
 .toptools .l,.toptools .r {width:4px; height:28px; overflow:hidden; background:url(/public/images/repeat.png) left -101px;}
 .toptools .r {background-position:left -177px;}
 .toptools .notice {padding-left:30px; background:url(/public/images/sbg.png) 5px 1px no-repeat; width:92%; overflow:hidden;}
-.logo {width:230px; height:90px; display:block; overflow:hidden;}
-.logo img {width:230px; height:90px;}
+.logo {width:230px; height:101px; display:block; overflow:hidden;}
+.logo img {width:230px; height:101px;}
 .nav_wrap{width:960px;overflow:hidden;display:table;text-align:center;background:url(/public/images/2.gif);clear:both;margin:5px auto;}
 .nav_wrap .nav{width:962px;margin:0 auto;height:35px;border-left:1px solid #222;position:relative;}
 .nav ul{width:962px;position:absolute;left:0;top:0;z-index:2;}

@@ -9,7 +9,8 @@ class Viewbase extends Webbase {
  public $showimgapi = 'http://img.hacktea8.com/showfile.php?key=';
  public $playMod = array(1=>array('title'=>'qvod','url'=>''),3=>array('title'=>'影音先锋','url'=>''),2=>array('title'=>'百度影音','url'=>''),5=>array('title'=>'西瓜影音','url'=>''),6=>array('title'=>'吉吉影音','url'=>''),7=>array('title'=>'优酷在线','url'=>''),8=>array('title'=>'在线播放','url'=>'')
  ,9=>array('title'=>'在线播放','url'=>''));
-
+ public $isAdult = 0;
+ 
  public function __construct(){
   parent::__construct();  
   $this->load->helper('rewrite');
@@ -22,12 +23,14 @@ class Viewbase extends Webbase {
    $this->mem->set($_key,$youMayLike,self::$ttl['2h']);
   }
   $channel = $this->mem->get('channel');
-  if( empty($channel)){
+  if( 1||empty($channel)){
    $channel = $this->emulemodel->getAllChannel();
    $this->mem->set('channel',$channel,self::$ttl['12h']);
   } 
+  $this->isAdult = $this->cookie('isAdult');
   $this->assign(array(
-  'seo_keywords'=>$this->seo_keywords,'seo_description'=>$this->seo_description,'seo_title'=>$this->seo_title
+  'seo_keywords'=>$this->seo_keywords,'seo_description'=>$this->seo_description
+  ,'seo_title'=>$this->seo_title,'show_ad'=>1,'isAdult'=>$this->isAdult
   ,'showimgapi'=>$this->showimgapi,'error_img'=>'/public/images/show404.jpg'
   ,'youMayLike'=>$youMayLike,'channel'=>$channel,'isShowPoint'=>1
   ,'cpid'=>0,'cid'=>0,'playMod'=>$this->playMod
@@ -45,17 +48,20 @@ class Viewbase extends Webbase {
   $this->load->view('footer');
  }
  protected function checkAge($adult = 0,$goReferer = ''){
+  if($adult || $this->userInfo['isvip']){
+   $this->viewData['show_ad'] = 0;
+  }
   if($this->userInfo['isvip'] || $this->userInfo['isadmin']){
    return 1;
   }
   if( $this->robot || !$adult){
    return 0;
   }
-  $isAdult = $this->cookie('isAdult');
-  if($isAdult){
+  if($this->isAdult){
    return 1;
   }
   $this->cookie('goReferer', $goReferer, $ttl = 86400);
-  redirect('/checkage');
+  header('Location: /checkage');
+  exit;
  }
 }

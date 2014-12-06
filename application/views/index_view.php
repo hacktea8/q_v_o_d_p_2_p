@@ -62,6 +62,13 @@ if(!$v['volname']){
 <p style="font-size: small;">温馨提示: <span style="color:red;">请勿打开影片里面的连接!! 以免中病毒!!</span>
 【如果 百度影音、Qvod快播无法播放请<a style="color:green;"  href="http://www.hacktea8.com/thread-9732-1-1.html" target="_blank">下载增强版</a>】
 </p>
+<p style="font-size: medium;color:gold;">
+<?php if( !$uinfo['isvip']){
+?>
+您還不是本站的VIP會員，看片需要消耗點數，每天積累<a style="color:yellowgreen;" href="http://bbs.qvdhd.com/forum.php?mod=forumdisplay&fid=36" target="_blank">在線時長</a>，即可增加觀看點數.<br />
+或者直接<a style="color:red;"href="http://bbs.qvdhd.com/85pay.php?op=info" target="_blank">升級成為本站會員</a>。即可不受限制。
+<?php };?>
+</p>
 <h3 class="ph3">影片介绍</h3>
 <p>
 <?php echo $info['intro'];?>

@@ -59,7 +59,7 @@ var cdn_url = '<?php echo $cdn_url;?>';
    </div>
   </div>
 
-<div class="box mb"> <a href="/" title="<?php echo $web_title;?>" onclick="ga('send','event', 'site','logo');" target="_self" class="l logo"><img src="<?php echo $cdn_url;?>/public/images/qvdlogo.jpg?v=<?php echo $version;?>" alt="<?php echo $web_title;?>" /></a>
+<div class="box mb"> <a href="/" title="<?php echo $web_title;?>" onclick="ga('send','event', 'site','logo');" class="l logo"><img src="<?php echo $cdn_url;?>/public/images/qvdlogo.png?v=<?php echo $version;?>" alt="<?php echo $web_title;?>" /></a>
 <div class="r banner">
 <!-- 广告位置开始//End -->
 <!-- 广告位置结束//End -->
@@ -124,9 +124,9 @@ foreach($channel as &$v){
 <div class="nav">
 <ul>
 <?php 
-if($uinfo['isadult']){
+if($uinfo['isvip'] || $isAdult){
 foreach($channel as &$v){
- if(19 != $v['pid']){
+ if(23 != $v['pid']){
   continue;
  }
 ?>

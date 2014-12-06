@@ -15,18 +15,14 @@ class userModel extends baseModel{
   $sql = sprintf("SELECT * FROM `%s` WHERE `uid`=%d LIMIT 1", $this->db->dbprefix('user'), $uinfo['uid']);
   $row = $this->db->query($sql)->row_array();
   $uinfo['isvip'] = 0;
-  foreach($uinfo['groups'] as $group){
-   if($group == 25){
-    $uinfo['isvip'] = 1;
-    break;
-   }elseif($group == 33){
+  if($uinfo['groupid'] == 21){
+   $uinfo['isvip'] = 1;
+  }elseif( in_array($uinfo['groupid'] ,array(22,1,2)) ){
     $uinfo['isvip'] = 2;
-    break;
-   }
+  }elseif( in_array($uinfo['groupid'] ,array(1,2)) ){
+    $uinfo['isadmin'] = 1;
   }
   $ip = get_client_ip();
-  $row['groupid'] = $uinfo['groupid'];
-  $row['groups'] = $uinfo['groups'];
   if(isset($row['uid'])){
    $update = array();
    if($row['loginip'] != $ip){
@@ -48,7 +44,7 @@ class userModel extends baseModel{
    }
    return $row;
   }else{
-   $sql = sprintf("INSERT INTO %s(`uid`, `uname`, `isvip`, `loginip`, `logintime`, `collectcount`, `bmarkcount`) VALUES (%d,'%s',%d,'%s',%d,0,0)", $this->db->dbprefix('user'), $uinfo['uid'],mysql_real_escape_string($uinfo['uname']),$uinfo['isvip'],mysql_real_escape_string($ip),date('Ymd'));
+   $sql = sprintf("INSERT INTO %s(`uid`, `uname`, `isvip`, `loginip`, `logintime`, `collectcount`, `bmarkcount`,point) VALUES (%d,'%s',%d,'%s',%d,0,0,24)", $this->db->dbprefix('user'), $uinfo['uid'],mysql_real_escape_string($uinfo['uname']),$uinfo['isvip'],mysql_real_escape_string($ip),date('Ymd'));
    $this->db->query($sql);
   }
   return $uinfo;

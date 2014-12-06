@@ -51,6 +51,13 @@
 </ul>
 </div>
 <div class="bg mb box description">
+<p style="font-size: medium;color:gold;">
+<?php if( !$uinfo['isvip']){
+?>
+您還不是本站的VIP會員，看片需要消耗點數，每天積累<a style="color:yellowgreen;" href="http://bbs.qvdhd.com/forum.php?mod=forumdisplay&fid=36" target="_blank">在線時長</a>，即可增加觀看點數.<br />
+或者直接<a style="color:red;"href="http://bbs.qvdhd.com/85pay.php?op=info" target="_blank">升級成為本站會員</a>。即可不受限制。
+<?php };?>
+</p>
 <h3 class="ph3">影片介绍</h3>
 <span property="v:summary">
 <?php echo $info['intro'];?>

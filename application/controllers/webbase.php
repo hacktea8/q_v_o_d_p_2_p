@@ -30,14 +30,13 @@ class Webbase extends CI_Controller {
     $uinfo = $this->usermodel->getUserInfo($uinfo);
     if($uinfo){
      $this->userInfo = array_merge($this->userInfo,$uinfo);
-     $this->userInfo['isadmin'] = $this->checkIsadmin($return = 1);
      $this->session->set_userdata(array('user_logindata'=>$this->userInfo));
     }
    }
   }else{
    $this->userInfo = $session_uinfo;
   }
-  //var_dump($this->userInfo);exit;
+ // var_dump($this->userInfo);exit;
   $this->_c = $this->uri->segment(1,'index');
   $this->_a = $this->uri->segment(2,'index');
   $c = isset($_GET['c'])?$_GET['c']:'';
