@@ -9,10 +9,33 @@ class emuleModel extends baseModel{
  public function __construct(){
   parent::__construct();
  }
- public function autoSetVideoOnline($limit = 5){
+ public function autoSetVideoOnline($limit = 5,$adult = 0){
+  //$this->autoSetAdultVideoOnline($limit, 1);
   $cate = $this->getAllChannel();
   foreach($cate as $v){
    $k = $v['id'];
+   if($adult && !$v['isadult']){
+    continue;
+   }
+   if(!$adult && $v['isadult']){
+    continue;
+   }
+   $sql = sprintf('UPDATE %s SET `onlinedate`=%d,`flag`=1,`utime`=%d,`ptime`=%d WHERE `onlinedate`=0 AND `cid`=%d LIMIT %d',$this->db->dbprefix('emule_article'),date('Ymd'),time(),time(),$k,$limit);
+   $this->db->query($sql);
+  }
+  return 1;
+ }
+ public function autoSetAdultVideoOnline($limit = 5,$adult = 0){
+  //$this->autoSetVideoOnline($limit, 1);
+  $cate = $this->getAllChannel();
+  foreach($cate as $v){
+   $k = $v['id'];
+   if($adult && !$v['isadult']){
+    continue;
+   }
+   if(!$adult && $v['isadult']){
+    continue;
+   }
    $sql = sprintf('UPDATE %s SET `onlinedate`=%d,`flag`=1,`utime`=%d,`ptime`=%d WHERE `onlinedate`=0 AND `cid`=%d LIMIT %d',$this->db->dbprefix('emule_article'),date('Ymd'),time(),time(),$k,$limit);
    $this->db->query($sql);
   }
@@ -322,7 +345,8 @@ class emuleModel extends baseModel{
           $code = base_convert(substr($str, 2, 2), 16, 10);
           $code2 = base_convert(substr($str, 4), 16, 10);
           $c = chr($code).chr($code2);
-          $c = iconv('UCS-2', 'UTF-8', $c);
+          //$c = iconv('UCS-2', 'UTF-8', $c);
+          $c = iconv('UCS-2BE', 'UTF-8', $c);
           $name .= $c;
         }else{
           $name .= $str;

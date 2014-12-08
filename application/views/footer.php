@@ -17,7 +17,8 @@ jQuery.get("/maindex/crontab");
 }
 jQuery(document).ready(function(){
 <?php if($isShowPoint){ ?>
-function addUserOnlinePoint(){$.get('/ajaxapi/addUserOnlinePoint');}
+var iCount = 0;
+function addUserOnlinePoint(){if(iCount>12){return 0;}$.get('/ajaxapi/addUserOnlinePoint');iCount++;}
 setTimeout(addUserOnlinePoint,5000);
 setInterval(addUserOnlinePoint,600000);
 <?php }?>

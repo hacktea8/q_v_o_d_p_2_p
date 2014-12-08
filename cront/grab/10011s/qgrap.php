@@ -10,15 +10,14 @@ include_once($APPPATH.'config.php');
 /*============ Get Cate article =================*/
 
 
-$i=0;
-$num=24;
-foreach($cate_config as $_cate){
-  $i=$_cate['cid'];
-  //1,5,9,13,17 isok
-  if($i > $num){
+$startPage = 1;
+$num = 8;
+foreach($cate_config as $k => $_cate){
+  //0,4,8 isok
+  if($k > $num){
     break;
   }
-  if($i != $num){
+  if($k != $num){
     continue;
   }
   $cid = $_cate['cid'];

@@ -16,7 +16,7 @@ class Maindex extends Viewbase {
     if( !file_exists($view) || (time() - filemtime($view)) > 1*3600 ){
       if(!file_exists($lock)){
         $qvodIndex = $this->emulemodel->getIndexData();
-        $this->assign(array('_a'=>'index','qvodIndex'=>$qvodIndex));
+        $this->assign(array('_a'=>'index','qvodIndex'=>$qvodIndex,'uinfo'=>array()));
         $this->view('index_index');
         $output = $this->output->get_output();
         file_put_contents($lock, '');
