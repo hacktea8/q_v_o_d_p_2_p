@@ -68,10 +68,14 @@ function setCookie(c_name,value,expiredays){
 }
 function go941(){
  if($('#over18:checked').val()){
+  <?php if($auth){?>
   setCookie('isAdult','1',1);
   referer = getCookie('goReferer');
   referer = referer ? referer: '';
   location.href=referer;
+ <?php }else{?>
+ alert('中國大陸用戶，請自覺離開!謝謝合作!!');
+ <?php }?>
  }else{
   alert('請先同意上述規範:D');
  }

@@ -348,7 +348,7 @@ class CI_Input {
 		}
 		else
 		{
-			$this->ip_address = $_SERVER['REMOTE_ADDR'];
+			$this->ip_address = @$_SERVER['HTTP_CF_CONNECTING_IP']?$_SERVER['HTTP_CF_CONNECTING_IP']:$_SERVER['REMOTE_ADDR'];
 		}
 
 		if ( ! $this->valid_ip($this->ip_address))
@@ -842,7 +842,11 @@ class CI_Input {
 	{
 		return (php_sapi_name() === 'cli' OR defined('STDIN'));
 	}
+ public function ip_country(){
+  $country = @$_SERVER['HTTP_CF_IPCOUNTRY'];
 
+  return strtolower($country);
+ }
 }
 
 /* End of file Input.php */

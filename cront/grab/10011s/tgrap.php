@@ -11,9 +11,9 @@ include_once($APPPATH.'config.php');
 
 
 $startPage = 1;
-$num = 5;
+$num = 9;
 foreach($cate_config as $k => $_cate){
-  //1 isok
+  //1,5,9 isok
   if($k > $num){
     break;
   }

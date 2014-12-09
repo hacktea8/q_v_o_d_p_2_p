@@ -6,6 +6,9 @@ class Checkage extends Viewbase {
   parent::__construct();
  }
  public function index(){
+  $country = $this->input->ip_country();
+  $auth = $country == 'cn'?0:1;
+  $this->assign(compact('auth'));
   $this->load->view('checkage_index',$this->viewData);
  }
 }

@@ -2,7 +2,7 @@
 
 function getinfolist(&$_cate){
  global $_root,$cid,$startPage;
- for($i=$startPage; $i<=20000; $i++){
+ for($i=$startPage; $i<=20; $i++){
 //通过 atotal计算i的值
   $suf = $i == 1?'':'_'.$i;
   $url = $_root.$_cate['ourl'].$suf.'.html';

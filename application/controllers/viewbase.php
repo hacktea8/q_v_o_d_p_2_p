@@ -23,7 +23,7 @@ class Viewbase extends Webbase {
    $this->mem->set($_key,$youMayLike,self::$ttl['2h']);
   }
   $channel = $this->mem->get('channel');
-  if( 1||empty($channel)){
+  if( empty($channel)){
    $channel = $this->emulemodel->getAllChannel();
    $this->mem->set('channel',$channel,self::$ttl['12h']);
   } 
