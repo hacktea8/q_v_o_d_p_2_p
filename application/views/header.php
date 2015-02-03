@@ -124,7 +124,7 @@ foreach($channel as &$v){
 <div class="nav">
 <ul>
 <?php 
-if($uinfo['isvip'] || $isAdult){
+if(0 && ($uinfo['isvip'] || $isAdult) ){
 foreach($channel as &$v){
  if(23 != $v['pid']){
   continue;

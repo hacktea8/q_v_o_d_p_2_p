@@ -68,7 +68,7 @@ function setCookie(c_name,value,expiredays){
 }
 function go941(){
  if($('#over18:checked').val()){
-  <?php if($auth){?>
+  <?php $week=date('w'); if($auth || in_array($week,array(0,6))){?>
   setCookie('isAdult','1',1);
   referer = getCookie('goReferer');
   referer = referer ? referer: '';

@@ -79,7 +79,7 @@ exit;
   $page = $page > 0 ? $page: 1;
   $limit = 12;
   $channel = &$this->viewData['channel'];
-  $this->checkAge($adult = 0,$goReferer = '');
+  $this->checkAge($channel[$cid]['isadult'], $goReferer = '');
   $atotal = isset($channel[$cid])?$channel[$cid]['atotal']:0;
   if(!$channel[$cid]['pid']){
    foreach($channel as &$v){

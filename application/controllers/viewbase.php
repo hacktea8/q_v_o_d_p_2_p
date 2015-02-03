@@ -48,6 +48,10 @@ class Viewbase extends Webbase {
   $this->load->view('footer');
  }
  protected function checkAge($adult = 0,$goReferer = ''){
+  if($adult){
+   header('Location: /');
+   exit;
+  }
   if($adult || $this->userInfo['isvip']){
    $this->viewData['show_ad'] = 0;
   }
